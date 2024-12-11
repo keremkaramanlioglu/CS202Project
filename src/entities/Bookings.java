@@ -98,4 +98,19 @@ public class Bookings {
     public void setC_check_out_status(boolean c_check_out_status) {
         this.c_check_out_status = c_check_out_status;
     }
+
+    @Override
+    public String toString() {
+        return "Bookings{" +
+                "booking_id=" + booking_id +
+                ", c_ssn='" + c_ssn + '\'' +
+                ", room_id=" + room_id +
+                ", payment_status='" + payment_status + '\'' +
+                ", payment_method='" + payment_method + '\'' +
+                ", booking_start_date=" + booking_start_date +
+                ", booking_end_date=" + booking_end_date +
+                ", c_check_in_status=" + c_check_in_status +
+                ", c_check_out_status=" + c_check_out_status +
+                '}';
+    }
 }
