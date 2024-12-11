@@ -68,4 +68,16 @@ public class CleaningSchedule {
     public void setService_status(String service_status) {
         this.service_status = service_status;
     }
+
+    @Override
+    public String toString() {
+        return "CleaningSchedule{" +
+                "schedule_id=" + schedule_id +
+                ", housekeeper_ssn='" + housekeeper_ssn + '\'' +
+                ", receptionist_ssn='" + receptionist_ssn + '\'' +
+                ", room_id=" + room_id +
+                ", cleaning_date=" + cleaning_date +
+                ", service_status='" + service_status + '\'' +
+                '}';
+    }
 }

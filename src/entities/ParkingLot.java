@@ -37,4 +37,13 @@ public class ParkingLot {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+
+    @Override
+    public String toString() {
+        return "ParkingLot{" +
+                "park_id=" + park_id +
+                ", hotel_id=" + hotel_id +
+                ", capacity=" + capacity +
+                '}';
+    }
 }

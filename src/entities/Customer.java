@@ -98,4 +98,19 @@ public class Customer {
     public void setZip_code(String zip_code) {
         this.zip_code = zip_code;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "c_ssn='" + c_ssn + '\'' +
+                ", c_firstname='" + c_firstname + '\'' +
+                ", c_lastname='" + c_lastname + '\'' +
+                ", c_bd=" + c_bd +
+                ", c_room_id=" + c_room_id +
+                ", c_email='" + c_email + '\'' +
+                ", c_phone_num='" + c_phone_num + '\'' +
+                ", c_gender='" + c_gender + '\'' +
+                ", zip_code='" + zip_code + '\'' +
+                '}';
+    }
 }

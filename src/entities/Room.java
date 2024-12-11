@@ -77,4 +77,17 @@ public class Room {
     public void setRoom_capacity(String room_capacity) {
         this.room_capacity = room_capacity;
     }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "room_id=" + room_id +
+                ", hotel_id=" + hotel_id +
+                ", room_num='" + room_num + '\'' +
+                ", room_type='" + room_type + '\'' +
+                ", room_size=" + room_size +
+                ", room_price=" + room_price +
+                ", room_capacity='" + room_capacity + '\'' +
+                '}';
+    }
 }

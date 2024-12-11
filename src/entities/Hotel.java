@@ -87,4 +87,18 @@ public class Hotel {
     public void setZip_code(String zip_code) {
         this.zip_code = zip_code;
     }
+
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "hotel_id='" + hotel_id + '\'' +
+                ", hotel_name='" + hotel_name + '\'' +
+                ", hotel_phone='" + hotel_phone + '\'' +
+                ", hotel_email='" + hotel_email + '\'' +
+                ", hotel_rating=" + hotel_rating +
+                ", street='" + street + '\'' +
+                ", no='" + no + '\'' +
+                ", zip_code='" + zip_code + '\'' +
+                '}';
+    }
 }
