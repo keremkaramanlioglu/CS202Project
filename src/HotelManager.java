@@ -49,6 +49,8 @@ public class HotelManager {
                     if (hotelView.getCurrPanel().equals("Admin")) {
                          Panel adminPanel = hotelView.getAdminPanel();
                          adminPanel.setCenterPanel(adminPanel.getPanelByName(command));
+                    } else if (hotelView.getCurrPanel().equals("Receptionist")) {
+
                     }
                     break;
             }
