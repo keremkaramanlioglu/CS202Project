@@ -42,10 +42,6 @@ public class ReceptionistPanel extends Panel {
     @Override
     public void addButtonListener(ActionListener l) {
         btnHousekeeping.addActionListener(l);
-        btnFinance.addActionListener(l);
-        btnBookings.addActionListener(l);
-        btnEmployees.addActionListener(l);
-        btnUsers.addActionListener(l);
         btnRooms.addActionListener(l);
         btnBack.addActionListener(l);
     }
