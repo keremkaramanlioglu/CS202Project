@@ -11,11 +11,13 @@ public class HotelManager {
     private Hotel hotel;
     private HotelView hotelView;
 
+
     public HotelManager(Hotel hotel, HotelView hotelView) {
         this.hotel = hotel;
         this.hotelView = hotelView;
         hotelView.addButtonListener(new ButtonListener());
     }
+
 
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
@@ -49,6 +51,7 @@ public class HotelManager {
                     if (hotelView.getCurrPanel().equals("Admin")) {
                          Panel adminPanel = hotelView.getAdminPanel();
                          adminPanel.setCenterPanel(adminPanel.getPanelByName(command));
+
                     } else if (hotelView.getCurrPanel().equals("Receptionist")) {
 
                     }

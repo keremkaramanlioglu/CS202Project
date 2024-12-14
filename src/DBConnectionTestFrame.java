@@ -51,12 +51,13 @@ public class DBConnectionTestFrame extends JFrame {
             {
                 panel1.setPreferredSize(new Dimension(650, 660));
                 panel1.setBackground(new Color(0x333333));
-                panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
-                ( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border
-                . TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
-                . Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
-                propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
-                ; }} );
+                panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
+                . swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing
+                . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
+                Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
+                ) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
+                public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName (
+                ) )) throw new RuntimeException( ); }} );
 
                 //---- label8 ----
                 label8.setText("Host:");
@@ -184,8 +185,8 @@ public class DBConnectionTestFrame extends JFrame {
                                         .addComponent(textField10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addComponent(label13, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(textField13, GroupLayout.PREFERRED_SIZE, 496, GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(textField13, GroupLayout.PREFERRED_SIZE, 502, GroupLayout.PREFERRED_SIZE))
                                     .addComponent(button6, GroupLayout.PREFERRED_SIZE, 606, GroupLayout.PREFERRED_SIZE)
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addComponent(button4, GroupLayout.PREFERRED_SIZE, 303, GroupLayout.PREFERRED_SIZE)
