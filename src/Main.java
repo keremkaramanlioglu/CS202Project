@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws SQLException {
         //Hotel hotel = new Hotel();
-        HotelView view = new HotelView();
-        new HotelManager(view);
+        //HotelView view = new HotelView();
+        //new HotelManager(view);
 //        try {
 //            String tableName = "Rooms";
 //            String sql = "select * from " + tableName;
@@ -50,7 +50,7 @@ public class Main {
 //            System.out.println(e.getMessage());
 //        }
 
-        //new DBConnectionTestFrame();
+        new DBConnectionTestFrame();
     }
 }
 
