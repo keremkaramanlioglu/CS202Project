@@ -14,8 +14,8 @@ new FormModel {
 			"resizable": false
 			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/icons/MySQL.png" )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, par l {comp button6::::601:x, seq {par l {par l:::p {seq {comp label8:::p:92:p, space :::p, comp textField8:::p::p, space :::p, comp label9:::p:49:p, space :::p, comp textField9:::::x}, seq l {comp label10:::p:92:p, space :::p, comp textField10:::p::p}}, seq l {comp label11:::p:92:p, space :::p, comp textField13:::p::p}, seq l {comp label12:::p:92:p, space :::p, comp textField11:::p::p}, seq l {comp label13:::p:92:p, space :::p, comp textField12:::p::p}, seq l {comp button4:::p:303:p, space :::p, comp button5:::p:291:p}}, space :0:1:x}}, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :::p, par b {comp textField8::b:p::p, comp label9::b:p:38:p, comp textField9::b:p::p, comp label8::b:p:38:p}, space s:::p, par b {comp label10::b:p:38:p, comp textField10::b:p::p}, space s:::p, par b {comp label11::b:p:38:p, comp textField13::b:p::p}, space s:::p, par b {comp label12::b:p:38:p, comp textField11::b:p::p}, space s:::p, par b {comp label13::b:p:38:p, comp textField12::b:p::p}, space s:::p, comp button6:::p:45:p, space ::242:x, par b {comp button4::b:p:45:p, comp button5::b:p:45:p}, space :::p}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {comp button6::::601:x, seq {par l {par l:::p {seq {comp label8:::p:92:p, space :::p, comp textField8:::p::p, space :::p, comp label9:::p:49:p, space :::p, comp textField9:::::x}, seq l {comp label10:::p:92:p, space :::p, comp textField10:::p::p}}, seq l {comp label12:::p:92:p, space :::p, comp textField11:::p::p}, seq l {comp button4:::p:303:p, space :::p, comp button5:::p:291:p}}, space :0:1:x}, seq l {comp label11:::p:92:p, space :::p, comp passwordField1::::503:x}}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, par b {comp textField8::b:p::p, comp label9::b:p:38:p, comp textField9::b:p::p, comp label8::b:p:38:p}, space s:::p, par b {comp label10::b:p:38:p, comp textField10::b:p::p}, space s:::p, par b {comp label11::b:p:38:p, comp passwordField1::b:p::p}, space s:::p, par b {comp label12::b:p:38:p, comp textField11::b:p::p}, space :p:74:p, comp button6:::p:45:p, space ::246:x, par b {comp button4::b:p:45:p, comp button5::b:p:45:p}, space :::p}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 51, 51, 51, 255 )
@@ -76,16 +76,6 @@ new FormModel {
 					"preferredSize": new java.awt.Dimension( 40, 20 )
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
 				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField13"
-					"preferredSize": new java.awt.Dimension( 502, 40 )
-					"background": new java.awt.Color( 51, 51, 51, 255 )
-					"foreground": new java.awt.Color( 255, 255, 255, 255 )
-					"border": new javax.swing.border.LineBorder( sfield java.awt.Color lightGray, 1, false )
-					"caretColor": new java.awt.Color( 255, 255, 255, 255 )
-					"font": new java.awt.Font( "JetBrains Mono Medium", 0, 14 )
-					"horizontalAlignment": 0
-				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label12"
 					"text": "Database:"
@@ -94,22 +84,6 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textField11"
-					"preferredSize": new java.awt.Dimension( 502, 40 )
-					"background": new java.awt.Color( 51, 51, 51, 255 )
-					"foreground": new java.awt.Color( 255, 255, 255, 255 )
-					"border": new javax.swing.border.LineBorder( sfield java.awt.Color lightGray, 1, false )
-					"caretColor": new java.awt.Color( 255, 255, 255, 255 )
-					"font": new java.awt.Font( "JetBrains Mono Medium", 0, 14 )
-					"horizontalAlignment": 0
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label13"
-					"text": "URL:"
-					"preferredSize": new java.awt.Dimension( 40, 20 )
-					"foreground": new java.awt.Color( 255, 255, 255, 255 )
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textField12"
 					"preferredSize": new java.awt.Dimension( 502, 40 )
 					"background": new java.awt.Color( 51, 51, 51, 255 )
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
@@ -141,6 +115,15 @@ new FormModel {
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
 					"border": new javax.swing.border.LineBorder( sfield java.awt.Color lightGray, 1, false )
 					"focusable": false
+				} )
+				add( new FormComponent( "javax.swing.JPasswordField" ) {
+					name: "passwordField1"
+					"preferredSize": new java.awt.Dimension( 502, 40 )
+					"caretColor": new java.awt.Color( 255, 255, 255, 255 )
+					"border": new javax.swing.border.LineBorder( sfield java.awt.Color lightGray, 1, false )
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"background": new java.awt.Color( 51, 51, 51, 255 )
+					"horizontalAlignment": 0
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
