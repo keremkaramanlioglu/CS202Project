@@ -45,6 +45,18 @@ public class HousekeeperPanel extends Panel {
         btnBack.addActionListener(al);
     }
 
+    private void btnRoomsMouseClicked(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void btnBackMouseClicked(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
@@ -56,13 +68,13 @@ public class HousekeeperPanel extends Panel {
 
         //======== this ========
         setBackground(new Color(0x666666));
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
-        .border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder
-        .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.
-        awt.Font.BOLD,12),java.awt.Color.red), getBorder()))
-        ; addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-        ){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}})
-        ;
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
+        javax.swing.border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax
+        .swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java
+        .awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt
+        .Color.red), getBorder())); addPropertyChangeListener(new java.beans.
+        PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".
+        equals(e.getPropertyName()))throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
         //======== panel1 ========
@@ -72,13 +84,19 @@ public class HousekeeperPanel extends Panel {
             panel1.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
 
             //---- btnRooms ----
-            btnRooms.setText("Rooms");
+            btnRooms.setText("My Jobs");
             btnRooms.setPreferredSize(new Dimension(120, 40));
             btnRooms.setBackground(new Color(0x333333));
             btnRooms.setForeground(Color.white);
             btnRooms.setBorder(null);
             btnRooms.setFocusable(false);
             btnRooms.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnRooms.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    btnRoomsMouseClicked(e);
+                }
+            });
             panel1.add(btnRooms);
 
             //---- btnBack ----
@@ -89,6 +107,12 @@ public class HousekeeperPanel extends Panel {
             btnBack.setPreferredSize(new Dimension(120, 40));
             btnBack.setFocusable(false);
             btnBack.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnBack.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    btnBackMouseClicked(e);
+                }
+            });
             panel1.add(btnBack);
         }
         add(panel1, BorderLayout.WEST);

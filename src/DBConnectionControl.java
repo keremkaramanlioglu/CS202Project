@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
@@ -26,7 +27,7 @@ public class DBConnectionControl {
         port = dbConnectionTestFrame.getPort();
         url += hostName + ":" + port + "/" + dbName;
         con = DriverManager.getConnection(url, userName, password);
-        JOptionPane.showMessageDialog(dbConnectionTestFrame, "Connection Established!");
+        JOptionPane.showMessageDialog(null, "Connection Established!");
     }
 
     class ButtonListener implements ActionListener {
@@ -37,7 +38,7 @@ public class DBConnectionControl {
                     try {
                         createConnection();
                     } catch (SQLException e1) {
-                        JOptionPane.showMessageDialog(dbConnectionTestFrame, e1.getMessage());
+                        JOptionPane.showMessageDialog(dbConnectionTestFrame, e1.getMessage(), "Connection Error", JOptionPane.ERROR_MESSAGE);
                     }
             }
         }

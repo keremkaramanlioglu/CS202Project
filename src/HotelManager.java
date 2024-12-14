@@ -12,7 +12,7 @@ public class HotelManager {
     private HotelView hotelView;
 
 
-    public HotelManager(Hotel hotel, HotelView hotelView) {
+    public HotelManager(HotelView hotelView) {
         this.hotel = hotel;
         this.hotelView = hotelView;
         hotelView.addButtonListener(new ButtonListener());
@@ -49,11 +49,9 @@ public class HotelManager {
                     break;
                 case "Rooms":
                     if (hotelView.getCurrPanel().equals("Admin")) {
-                         Panel adminPanel = hotelView.getAdminPanel();
-                         adminPanel.setCenterPanel(adminPanel.getPanelByName(command));
-
+                        hotelView.getAdminPanel().setCenterPanel(hotelView.getAdminPanel().getPanelByName(command));
                     } else if (hotelView.getCurrPanel().equals("Receptionist")) {
-
+                        hotelView.getReceptionistPanel().setCenterPanel(hotelView.getReceptionistPanel().getPanelByName(command));
                     }
                     break;
             }

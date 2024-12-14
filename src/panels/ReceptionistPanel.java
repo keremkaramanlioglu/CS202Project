@@ -41,6 +41,7 @@ public class ReceptionistPanel extends Panel {
 
     @Override
     public void addButtonListener(ActionListener l) {
+        btnBookings.addActionListener(l);
         btnHousekeeping.addActionListener(l);
         btnRooms.addActionListener(l);
         btnBack.addActionListener(l);
@@ -58,20 +59,25 @@ public class ReceptionistPanel extends Panel {
         // TODO add your code here
     }
 
-    public JButton getBtnHousekeeping() {
-        return btnHousekeeping;
+    public JButton getBtnRooms() {
+        return btnRooms;
     }
 
     public JButton getBtnBack() {
         return btnBack;
     }
 
+    public JButton getBtnHousekeeping() {
+        return btnHousekeeping;
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         panel1 = new JPanel();
-        btnRooms = new JButton();
+        btnBookings = new JButton();
         btnHousekeeping = new JButton();
+        btnRooms = new JButton();
         btnBack = new JButton();
         pnlHeader = new JPanel();
         label1 = new JLabel();
@@ -79,10 +85,10 @@ public class ReceptionistPanel extends Panel {
         //======== this ========
         setBackground(new Color(0x666666));
         setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
-        EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder.CENTER,javax.swing
+        EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing
         .border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),
         java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener()
-        {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.getPropertyName()))
+        {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName()))
         throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
@@ -92,21 +98,21 @@ public class ReceptionistPanel extends Panel {
             panel1.setBackground(new Color(0x333333));
             panel1.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
 
-            //---- btnRooms ----
-            btnRooms.setText("Bookings");
-            btnRooms.setPreferredSize(new Dimension(120, 40));
-            btnRooms.setBackground(new Color(0x333333));
-            btnRooms.setForeground(Color.white);
-            btnRooms.setBorder(null);
-            btnRooms.setFocusable(false);
-            btnRooms.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnRooms.addMouseListener(new MouseAdapter() {
+            //---- btnBookings ----
+            btnBookings.setText("Bookings");
+            btnBookings.setPreferredSize(new Dimension(120, 40));
+            btnBookings.setBackground(new Color(0x333333));
+            btnBookings.setForeground(Color.white);
+            btnBookings.setBorder(null);
+            btnBookings.setFocusable(false);
+            btnBookings.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnBookings.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     btnRoomsMouseClicked(e);
                 }
             });
-            panel1.add(btnRooms);
+            panel1.add(btnBookings);
 
             //---- btnHousekeeping ----
             btnHousekeeping.setText("Housekeeping");
@@ -123,6 +129,22 @@ public class ReceptionistPanel extends Panel {
                 }
             });
             panel1.add(btnHousekeeping);
+
+            //---- btnRooms ----
+            btnRooms.setText("Rooms");
+            btnRooms.setBackground(new Color(0x333333));
+            btnRooms.setForeground(Color.white);
+            btnRooms.setBorder(null);
+            btnRooms.setPreferredSize(new Dimension(120, 40));
+            btnRooms.setFocusable(false);
+            btnRooms.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnRooms.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    btnHousekeepingMouseClicked(e);
+                }
+            });
+            panel1.add(btnRooms);
 
             //---- btnBack ----
             btnBack.setText("Back");
@@ -164,8 +186,9 @@ public class ReceptionistPanel extends Panel {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JPanel panel1;
-    private JButton btnRooms;
+    private JButton btnBookings;
     private JButton btnHousekeeping;
+    private JButton btnRooms;
     private JButton btnBack;
     private JPanel pnlHeader;
     private JLabel label1;
