@@ -24,7 +24,7 @@ public class DBConnectionControl {
         userName = dbConnectionTestFrame.getUsername();
         password = String.valueOf(dbConnectionTestFrame.getPassword());
         port = dbConnectionTestFrame.getPort();
-        url = url + hostName + ":" + port + "/" + dbName;
+        url += hostName + ":" + port + "/" + dbName;
         con = DriverManager.getConnection(url, userName, password);
         JOptionPane.showMessageDialog(dbConnectionTestFrame, "Connection Established!");
     }

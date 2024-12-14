@@ -82,13 +82,13 @@ public class DBConnectionTestFrame extends JFrame {
             {
                 panel1.setBackground(new Color(0x333333));
                 panel1.setForeground(Color.white);
-                panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
-                swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border
-                . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dialo\u0067"
-                ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder
-                ( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
-                .beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .getPropertyName () )) throw new RuntimeException
-                ( ); }} );
+                panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+                . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder
+                . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .
+                awt .Font .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) )
+                ; panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+                ) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+                ;
 
                 //---- label8 ----
                 label8.setText("Host:");
@@ -104,6 +104,7 @@ public class DBConnectionTestFrame extends JFrame {
                 textField8.setBorder(new LineBorder(Color.lightGray));
                 textField8.setFont(new Font("JetBrains Mono Medium", Font.PLAIN, 14));
                 textField8.setHorizontalAlignment(SwingConstants.CENTER);
+                textField8.setText("localhost");
 
                 //---- label9 ----
                 label9.setText("Port:");
@@ -119,6 +120,7 @@ public class DBConnectionTestFrame extends JFrame {
                 textField9.setBorder(new LineBorder(Color.lightGray));
                 textField9.setFont(new Font("JetBrains Mono Medium", Font.PLAIN, 14));
                 textField9.setHorizontalAlignment(SwingConstants.CENTER);
+                textField9.setText("3306");
 
                 //---- label10 ----
                 label10.setText("Username:");
@@ -133,6 +135,7 @@ public class DBConnectionTestFrame extends JFrame {
                 textField10.setCaretColor(Color.white);
                 textField10.setFont(new Font("JetBrains Mono Medium", Font.PLAIN, 14));
                 textField10.setHorizontalAlignment(SwingConstants.CENTER);
+                textField10.setText("root");
 
                 //---- label11 ----
                 label11.setText("Password:");
@@ -243,7 +246,7 @@ public class DBConnectionTestFrame extends JFrame {
                                 .addComponent(textField11, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                             .addGap(74, 74, 74)
                             .addComponent(button6, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 244, Short.MAX_VALUE)
                             .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(button4, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(button5, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
