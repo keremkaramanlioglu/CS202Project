@@ -124,7 +124,6 @@ new FormModel {
 					"background": new java.awt.Color( 0, 153, 255, 255 )
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
 					"border": new javax.swing.border.LineBorder( sfield java.awt.Color black, 1, false )
-					"focusable": false
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "button4"
@@ -132,7 +131,6 @@ new FormModel {
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
 					"background": new java.awt.Color( 0, 153, 255, 255 )
 					"border": new javax.swing.border.LineBorder( sfield java.awt.Color lightGray, 1, false )
-					"focusable": false
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "button5"
@@ -140,7 +138,6 @@ new FormModel {
 					"background": new java.awt.Color( 0, 153, 255, 255 )
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
 					"border": new javax.swing.border.LineBorder( sfield java.awt.Color lightGray, 1, false )
-					"focusable": false
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
