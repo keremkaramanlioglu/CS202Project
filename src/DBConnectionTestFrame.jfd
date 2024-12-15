@@ -4,7 +4,7 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
-			name: "frame1"
+			name: "this"
 			"visible": true
 			"preferredSize": new java.awt.Dimension( 650, 670 )
 			"defaultCloseOperation": 3

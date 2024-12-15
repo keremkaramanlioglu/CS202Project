@@ -40,6 +40,10 @@ public class DBConnectionControl {
                     } catch (SQLException e1) {
                         JOptionPane.showMessageDialog(dbConnectionTestFrame, e1.getMessage(), "Connection Error", JOptionPane.ERROR_MESSAGE);
                     }
+                    break;
+                case "OK":
+                    dbConnectionTestFrame.dispose();
+                    dbConnectionTestFrame.setVisible(false);
             }
         }
     }

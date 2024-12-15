@@ -4,16 +4,44 @@
 
 package panels.adminPanels;
 
+import panels.Panel;
+
 import java.awt.*;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.*;
 
 /**
  * @author kerem
  */
-public class RoomsPanel extends JPanel {
+public class RoomsPanel extends Panel {
     public RoomsPanel() {
         initComponents();
+    }
+
+    @Override
+    public void addButtonListener(ActionListener al) {
+
+    }
+
+    @Override
+    public void setSelectedButton(JButton b) {
+
+    }
+
+    @Override
+    public void resetPanel() {
+
+    }
+
+    @Override
+    public void setCenterPanel(JPanel panel) {
+
+    }
+
+    @Override
+    public JPanel getPanelByName(String panelName) {
+        return null;
     }
 
     private void initComponents() {

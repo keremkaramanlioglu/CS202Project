@@ -1,5 +1,7 @@
 package panels;
 
+import panels.adminPanels.RoomsPanel;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -8,9 +10,11 @@ import javax.swing.plaf.basic.BasicOptionPaneUI;
 public class AdminPanel extends Panel {
     private JButton prevSelectedButton;
     private JPanel prevCenterPanel;
+    private Panel pnlRooms;
 
     public AdminPanel() {
         initComponents();
+        pnlRooms = new RoomsPanel();
         prevSelectedButton = null;
         prevCenterPanel = null;
     }

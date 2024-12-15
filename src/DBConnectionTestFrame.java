@@ -48,8 +48,7 @@ public class DBConnectionTestFrame extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
-        frame1 = new JFrame();
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         panel1 = new JPanel();
         label8 = new JLabel();
         textField8 = new JTextField();
@@ -65,203 +64,201 @@ public class DBConnectionTestFrame extends JFrame {
         button5 = new JButton();
         passwordField1 = new JPasswordField();
 
-        //======== frame1 ========
+        //======== this ========
+        setVisible(true);
+        setPreferredSize(new Dimension(650, 670));
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setBackground(Color.black);
+        setForeground(SystemColor.textInactiveText);
+        setTitle("Connect to a Database");
+        setResizable(false);
+        setIconImage(new ImageIcon(getClass().getResource("/icons/MySQL.png")).getImage());
+        var contentPane = getContentPane();
+        contentPane.setLayout(new BorderLayout());
+
+        //======== panel1 ========
         {
-            frame1.setVisible(true);
-            frame1.setPreferredSize(new Dimension(650, 670));
-            frame1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            frame1.setBackground(Color.black);
-            frame1.setForeground(SystemColor.textInactiveText);
-            frame1.setTitle("Connect to a Database");
-            frame1.setResizable(false);
-            frame1.setIconImage(new ImageIcon(getClass().getResource("/icons/MySQL.png")).getImage());
-            var frame1ContentPane = frame1.getContentPane();
-            frame1ContentPane.setLayout(new BorderLayout());
+            panel1.setBackground(new Color(0x333333));
+            panel1.setForeground(Color.white);
+            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax .
+            swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border
+            . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog"
+            , java .awt . Font. BOLD ,12 ) ,java . awt. Color .red ) ,panel1. getBorder
+            () ) ); panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java
+            . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException
+            ( ) ;} } );
 
-            //======== panel1 ========
-            {
-                panel1.setBackground(new Color(0x333333));
-                panel1.setForeground(Color.white);
-                panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
-                border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER
-                , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font
-                .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (
-                new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er"
-                .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            //---- label8 ----
+            label8.setText("Host:");
+            label8.setPreferredSize(new Dimension(40, 20));
+            label8.setBackground(new Color(0x333333));
+            label8.setForeground(Color.white);
 
-                //---- label8 ----
-                label8.setText("Host:");
-                label8.setPreferredSize(new Dimension(40, 20));
-                label8.setBackground(new Color(0x333333));
-                label8.setForeground(Color.white);
+            //---- textField8 ----
+            textField8.setPreferredSize(new Dimension(264, 40));
+            textField8.setForeground(Color.white);
+            textField8.setCaretColor(Color.white);
+            textField8.setBackground(new Color(0x333333));
+            textField8.setBorder(new LineBorder(Color.lightGray));
+            textField8.setFont(new Font("JetBrains Mono Medium", Font.PLAIN, 14));
+            textField8.setHorizontalAlignment(SwingConstants.CENTER);
+            textField8.setText("localhost");
 
-                //---- textField8 ----
-                textField8.setPreferredSize(new Dimension(264, 40));
-                textField8.setForeground(Color.white);
-                textField8.setCaretColor(Color.white);
-                textField8.setBackground(new Color(0x333333));
-                textField8.setBorder(new LineBorder(Color.lightGray));
-                textField8.setFont(new Font("JetBrains Mono Medium", Font.PLAIN, 14));
-                textField8.setHorizontalAlignment(SwingConstants.CENTER);
-                textField8.setText("localhost");
+            //---- label9 ----
+            label9.setText("Port:");
+            label9.setPreferredSize(new Dimension(40, 20));
+            label9.setForeground(Color.white);
 
-                //---- label9 ----
-                label9.setText("Port:");
-                label9.setPreferredSize(new Dimension(40, 20));
-                label9.setForeground(Color.white);
+            //---- textField9 ----
+            textField9.setPreferredSize(new Dimension(165, 40));
+            textField9.setBackground(new Color(0x333333));
+            textField9.setForeground(Color.white);
+            textField9.setCaretColor(Color.white);
+            textField9.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+            textField9.setBorder(new LineBorder(Color.lightGray));
+            textField9.setFont(new Font("JetBrains Mono Medium", Font.PLAIN, 14));
+            textField9.setHorizontalAlignment(SwingConstants.CENTER);
+            textField9.setText("3306");
 
-                //---- textField9 ----
-                textField9.setPreferredSize(new Dimension(165, 40));
-                textField9.setBackground(new Color(0x333333));
-                textField9.setForeground(Color.white);
-                textField9.setCaretColor(Color.white);
-                textField9.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-                textField9.setBorder(new LineBorder(Color.lightGray));
-                textField9.setFont(new Font("JetBrains Mono Medium", Font.PLAIN, 14));
-                textField9.setHorizontalAlignment(SwingConstants.CENTER);
-                textField9.setText("3306");
+            //---- label10 ----
+            label10.setText("Username:");
+            label10.setPreferredSize(new Dimension(40, 20));
+            label10.setForeground(Color.white);
 
-                //---- label10 ----
-                label10.setText("Username:");
-                label10.setPreferredSize(new Dimension(40, 20));
-                label10.setForeground(Color.white);
+            //---- textField10 ----
+            textField10.setPreferredSize(new Dimension(502, 40));
+            textField10.setBackground(new Color(0x333333));
+            textField10.setForeground(Color.white);
+            textField10.setBorder(new LineBorder(Color.lightGray));
+            textField10.setCaretColor(Color.white);
+            textField10.setFont(new Font("JetBrains Mono Medium", Font.PLAIN, 14));
+            textField10.setHorizontalAlignment(SwingConstants.CENTER);
+            textField10.setText("root");
 
-                //---- textField10 ----
-                textField10.setPreferredSize(new Dimension(502, 40));
-                textField10.setBackground(new Color(0x333333));
-                textField10.setForeground(Color.white);
-                textField10.setBorder(new LineBorder(Color.lightGray));
-                textField10.setCaretColor(Color.white);
-                textField10.setFont(new Font("JetBrains Mono Medium", Font.PLAIN, 14));
-                textField10.setHorizontalAlignment(SwingConstants.CENTER);
-                textField10.setText("root");
+            //---- label11 ----
+            label11.setText("Password:");
+            label11.setPreferredSize(new Dimension(40, 20));
+            label11.setForeground(Color.white);
 
-                //---- label11 ----
-                label11.setText("Password:");
-                label11.setPreferredSize(new Dimension(40, 20));
-                label11.setForeground(Color.white);
+            //---- label12 ----
+            label12.setText("Database:");
+            label12.setPreferredSize(new Dimension(40, 20));
+            label12.setForeground(Color.white);
 
-                //---- label12 ----
-                label12.setText("Database:");
-                label12.setPreferredSize(new Dimension(40, 20));
-                label12.setForeground(Color.white);
+            //---- textField11 ----
+            textField11.setPreferredSize(new Dimension(502, 40));
+            textField11.setBackground(new Color(0x333333));
+            textField11.setForeground(Color.white);
+            textField11.setBorder(new LineBorder(Color.lightGray));
+            textField11.setCaretColor(Color.white);
+            textField11.setFont(new Font("JetBrains Mono Medium", Font.PLAIN, 14));
+            textField11.setHorizontalAlignment(SwingConstants.CENTER);
 
-                //---- textField11 ----
-                textField11.setPreferredSize(new Dimension(502, 40));
-                textField11.setBackground(new Color(0x333333));
-                textField11.setForeground(Color.white);
-                textField11.setBorder(new LineBorder(Color.lightGray));
-                textField11.setCaretColor(Color.white);
-                textField11.setFont(new Font("JetBrains Mono Medium", Font.PLAIN, 14));
-                textField11.setHorizontalAlignment(SwingConstants.CENTER);
+            //---- button6 ----
+            button6.setText("Test Connection");
+            button6.setBackground(new Color(0x0099ff));
+            button6.setForeground(Color.white);
+            button6.setBorder(LineBorder.createBlackLineBorder());
+            button6.setFocusable(false);
 
-                //---- button6 ----
-                button6.setText("Test Connection");
-                button6.setBackground(new Color(0x0099ff));
-                button6.setForeground(Color.white);
-                button6.setBorder(LineBorder.createBlackLineBorder());
-                button6.setFocusable(false);
+            //---- button4 ----
+            button4.setText("Back");
+            button4.setForeground(Color.white);
+            button4.setBackground(new Color(0x0099ff));
+            button4.setBorder(new LineBorder(Color.lightGray));
+            button4.setFocusable(false);
 
-                //---- button4 ----
-                button4.setText("Back");
-                button4.setForeground(Color.white);
-                button4.setBackground(new Color(0x0099ff));
-                button4.setBorder(new LineBorder(Color.lightGray));
-                button4.setFocusable(false);
+            //---- button5 ----
+            button5.setText("OK");
+            button5.setBackground(new Color(0x0099ff));
+            button5.setForeground(Color.white);
+            button5.setBorder(new LineBorder(Color.lightGray));
+            button5.setFocusable(false);
 
-                //---- button5 ----
-                button5.setText("OK");
-                button5.setBackground(new Color(0x0099ff));
-                button5.setForeground(Color.white);
-                button5.setBorder(new LineBorder(Color.lightGray));
-                button5.setFocusable(false);
+            //---- passwordField1 ----
+            passwordField1.setPreferredSize(new Dimension(502, 40));
+            passwordField1.setCaretColor(Color.white);
+            passwordField1.setBorder(new LineBorder(Color.lightGray));
+            passwordField1.setForeground(Color.white);
+            passwordField1.setBackground(new Color(0x333333));
+            passwordField1.setHorizontalAlignment(SwingConstants.CENTER);
 
-                //---- passwordField1 ----
-                passwordField1.setPreferredSize(new Dimension(502, 40));
-                passwordField1.setCaretColor(Color.white);
-                passwordField1.setBorder(new LineBorder(Color.lightGray));
-                passwordField1.setForeground(Color.white);
-                passwordField1.setBackground(new Color(0x333333));
-                passwordField1.setHorizontalAlignment(SwingConstants.CENTER);
-
-                GroupLayout panel1Layout = new GroupLayout(panel1);
-                panel1.setLayout(panel1Layout);
-                panel1Layout.setHorizontalGroup(
-                    panel1Layout.createParallelGroup()
-                        .addGroup(panel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(panel1Layout.createParallelGroup()
-                                .addComponent(button6, GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
-                                .addGroup(panel1Layout.createSequentialGroup()
-                                    .addGroup(panel1Layout.createParallelGroup()
-                                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(panel1Layout.createSequentialGroup()
-                                                .addComponent(label8, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(textField8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(label9, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(textField9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGroup(panel1Layout.createSequentialGroup()
-                                                .addComponent(label10, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(textField10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+            GroupLayout panel1Layout = new GroupLayout(panel1);
+            panel1.setLayout(panel1Layout);
+            panel1Layout.setHorizontalGroup(
+                panel1Layout.createParallelGroup()
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panel1Layout.createParallelGroup()
+                            .addComponent(button6, GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                         .addGroup(panel1Layout.createSequentialGroup()
-                                            .addComponent(label12, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(label8, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(textField11, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(textField8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(label9, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(textField9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGroup(panel1Layout.createSequentialGroup()
-                                            .addComponent(button4, GroupLayout.PREFERRED_SIZE, 303, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(label10, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(button5, GroupLayout.PREFERRED_SIZE, 291, GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(0, 1, Short.MAX_VALUE))
-                                .addGroup(panel1Layout.createSequentialGroup()
-                                    .addComponent(label11, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(passwordField1, GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)))
-                            .addContainerGap())
-                );
-                panel1Layout.setVerticalGroup(
-                    panel1Layout.createParallelGroup()
-                        .addGroup(panel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(textField8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label9, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textField9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label8, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(label10, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textField10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(label11, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(passwordField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(label12, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textField11, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addGap(74, 74, 74)
-                            .addComponent(button6, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 244, Short.MAX_VALUE)
-                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(button4, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(button5, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap())
-                );
-            }
-            frame1ContentPane.add(panel1, BorderLayout.CENTER);
-            frame1.pack();
-            frame1.setLocationRelativeTo(frame1.getOwner());
+                                            .addComponent(textField10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addComponent(label12, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(textField11, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addComponent(button4, GroupLayout.PREFERRED_SIZE, 303, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(button5, GroupLayout.PREFERRED_SIZE, 291, GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 1, Short.MAX_VALUE))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(label11, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(passwordField1, GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)))
+                        .addContainerGap())
+            );
+            panel1Layout.setVerticalGroup(
+                panel1Layout.createParallelGroup()
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(textField8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label9, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textField9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label8, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(label10, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textField10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(label11, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(label12, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textField11, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGap(74, 74, 74)
+                        .addComponent(button6, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 244, Short.MAX_VALUE)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(button4, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(button5, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+            );
         }
+        contentPane.add(panel1, BorderLayout.CENTER);
+        pack();
+        setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
-    private JFrame frame1;
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JPanel panel1;
     private JLabel label8;
     private JTextField textField8;

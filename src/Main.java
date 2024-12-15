@@ -50,7 +50,8 @@ public class Main {
 //            System.out.println(e.getMessage());
 //        }
 
-        new DBConnectionTestFrame();
+        new HotelManager(new HotelView());
+        new DBConnectionControl();
     }
 }
 
