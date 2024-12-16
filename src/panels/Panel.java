@@ -9,4 +9,4 @@ public abstract class Panel extends JPanel {
     public abstract void reset();
     public abstract void setCenterPanel(Panel panel);
     public abstract Panel getPanelByName(String panelName);
-}
+}//shduoawhd
