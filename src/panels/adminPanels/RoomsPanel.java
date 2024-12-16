@@ -41,7 +41,7 @@ public class RoomsPanel extends Panel {
         tfRoomPrice.setText("");
         cbFilterOption.setSelectedIndex(0);
         cbSelectColumn.setSelectedIndex(0);
-    }
+    } // comment
 
     @Override
     public void setCenterPanel(Panel panel) {
