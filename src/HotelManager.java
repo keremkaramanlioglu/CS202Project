@@ -9,11 +9,10 @@ import java.awt.event.ActionListener;
 
 public class HotelManager {
     private Hotel hotel;
-    private HotelView hotelView;
+    private final HotelView hotelView;
 
 
     public HotelManager(HotelView hotelView) {
-        this.hotel = hotel;
         this.hotelView = hotelView;
         hotelView.addButtonListener(new ButtonListener());
     }

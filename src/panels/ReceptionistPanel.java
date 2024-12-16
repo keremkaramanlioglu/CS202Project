@@ -30,12 +30,12 @@ public class ReceptionistPanel extends Panel {
     }
 
     @Override
-    public void setCenterPanel(JPanel panel) {
+    public void setCenterPanel(Panel panel) {
 
     }
 
     @Override
-    public JPanel getPanelByName(String panelName) {
+    public Panel getPanelByName(String panelName) {
         return null;
     }
 
