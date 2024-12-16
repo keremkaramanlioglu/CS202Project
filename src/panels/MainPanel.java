@@ -34,7 +34,7 @@ public class MainPanel extends Panel {
 
     @Override
     public void reset() {
-
+        return;
     }
 
 
