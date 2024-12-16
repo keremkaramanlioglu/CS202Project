@@ -39,7 +39,7 @@ public class MainPanel extends Panel {
 
 
     @Override
-    public void setCenterPanel(JPanel panel) {
+    public void setCenterPanel(Panel panel) {
 
     }
 

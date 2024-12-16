@@ -9,7 +9,7 @@ import javax.swing.plaf.basic.BasicOptionPaneUI;
 
 public class AdminPanel extends Panel {
     private JButton prevSelectedButton;
-    private JPanel prevCenterPanel;
+    private Panel prevCenterPanel;
     private Panel pnlRooms;
 
     public AdminPanel() {
@@ -33,20 +33,24 @@ public class AdminPanel extends Panel {
     public void reset() {
         if(prevSelectedButton != null) prevSelectedButton.setBackground(MainPanel.sidePanelColor);
         prevSelectedButton = null;
+        if (prevCenterPanel != null) this.remove(prevCenterPanel);
         // other components needs reset too.
     }
 
     @Override
-    public void setCenterPanel(JPanel panel) {
+    public void setCenterPanel(Panel panel) {
         if (prevCenterPanel == panel) return;
-        if (prevCenterPanel != null) this.remove(prevCenterPanel);
+        if (prevCenterPanel != null) {
+            prevCenterPanel.reset();
+            this.remove(prevCenterPanel);
+        }
         this.add(panel, BorderLayout.CENTER);
         prevCenterPanel = panel;
         this.revalidate();
     }
 
     @Override
-    public JPanel getPanelByName(String panelName) {
+    public Panel getPanelByName(String panelName) {
         switch(panelName) {
             case "Rooms":
                 return pnlRooms;
