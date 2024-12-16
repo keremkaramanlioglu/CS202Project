@@ -26,7 +26,9 @@ public class HotelView extends JFrame {
         setActivePanel(mainPanel);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setPreferredSize(new Dimension(800, 600));
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setResizable(false);
+        this.setPreferredSize(new Dimension(1000, 750));
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
