@@ -33,12 +33,12 @@ public class MainPanel extends Panel {
     }
 
     @Override
-    public void reset() {
+    public void resetPanel() {
 
     }
 
     @Override
-    public void setCenterPanel(Panel panel) {
+    public void setCenterPanel(JPanel panel) {
 
     }
 
