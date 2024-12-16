@@ -30,7 +30,7 @@ public class RoomsPanel extends Panel {
     }
 
     @Override
-    public void resetPanel() {
+    public void reset() {
 
     }
 
