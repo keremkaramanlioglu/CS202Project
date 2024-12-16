@@ -71,12 +71,11 @@ public class HousekeepingPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(1920, 1080));
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
-        border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER
-        ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font
-        . BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener(
-        new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r"
-        .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder (
+        0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder
+        . BOTTOM, new java. awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .
+        red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java .
+        beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -127,9 +126,9 @@ public class HousekeepingPanel extends Panel {
                 pnlSelection.setPreferredSize(new Dimension(400, 200));
                 pnlSelection.setLayout(null);
                 pnlSelection.add(textField1);
-                textField1.setBounds(20, 30, 90, textField1.getPreferredSize().height);
+                textField1.setBounds(15, 30, 90, textField1.getPreferredSize().height);
                 pnlSelection.add(textField2);
-                textField2.setBounds(102, 29, 90, textField2.getPreferredSize().height);
+                textField2.setBounds(110, 30, 90, textField2.getPreferredSize().height);
                 pnlSelection.add(textField3);
                 textField3.setBounds(205, 30, 90, textField3.getPreferredSize().height);
                 pnlSelection.add(textField4);
@@ -153,22 +152,22 @@ public class HousekeepingPanel extends Panel {
                 //---- label2 ----
                 label2.setText("Room Id:");
                 pnlSelection.add(label2);
-                label2.setBounds(6, 6, 90, label2.getPreferredSize().height);
+                label2.setBounds(20, 6, 76, label2.getPreferredSize().height);
 
                 //---- label3 ----
                 label3.setText("text");
                 pnlSelection.add(label3);
-                label3.setBounds(102, 6, 90, label3.getPreferredSize().height);
+                label3.setBounds(115, 6, 80, label3.getPreferredSize().height);
 
                 //---- label4 ----
                 label4.setText("text");
                 pnlSelection.add(label4);
-                label4.setBounds(210, 6, 90, label4.getPreferredSize().height);
+                label4.setBounds(210, 6, 80, label4.getPreferredSize().height);
 
                 //---- label5 ----
                 label5.setText("text");
                 pnlSelection.add(label5);
-                label5.setBounds(306, 6, 95, label5.getPreferredSize().height);
+                label5.setBounds(310, 6, 91, label5.getPreferredSize().height);
 
                 {
                     // compute preferred size

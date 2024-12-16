@@ -61,7 +61,6 @@ public class RoomsPanel extends Panel {
         controlPanel = new JPanel();
         selectionPanel = new JPanel();
         btnAdd = new JButton();
-        btnBakarız = new JButton();
         btnDelete = new JButton();
         btnUpdate = new JButton();
         tfRoomType = new JTextField();
@@ -69,19 +68,25 @@ public class RoomsPanel extends Panel {
         tfRoomPrice = new JTextField();
         tfCapacity = new JTextField();
         tfRoomNum = new JTextField();
+        label1 = new JLabel();
+        label2 = new JLabel();
+        label3 = new JLabel();
+        label4 = new JLabel();
+        label5 = new JLabel();
         filterPanel = new JPanel();
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
         tfFilterValue = new JTextField();
+        label6 = new JLabel();
+        button1 = new JButton();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
-        EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing
-        .border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),
-        java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener()
-        {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName()))
-        throw new RuntimeException();}});
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(
+        0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder
+        .BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font.BOLD,12),java.awt.Color.
+        red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.
+        beans.PropertyChangeEvent e){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException();}});
+        setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
         {
@@ -104,14 +109,14 @@ public class RoomsPanel extends Panel {
                     return columnTypes[columnIndex];
                 }
             });
-            table1.setPreferredSize(new Dimension(525, 350));
-            table1.setPreferredScrollableViewportSize(new Dimension(450, 200));
+            table1.setPreferredSize(new Dimension(525, 400));
             scrollPane1.setViewportView(table1);
         }
-        add(scrollPane1);
+        add(scrollPane1, BorderLayout.CENTER);
 
         //======== controlPanel ========
         {
+            controlPanel.setPreferredSize(new Dimension(750, 230));
             controlPanel.setLayout(new BoxLayout(controlPanel, BoxLayout.X_AXIS));
 
             //======== selectionPanel ========
@@ -122,47 +127,67 @@ public class RoomsPanel extends Panel {
                 //---- btnAdd ----
                 btnAdd.setText("Add");
                 selectionPanel.add(btnAdd);
-                btnAdd.setBounds(25, 55, 80, btnAdd.getPreferredSize().height);
-
-                //---- btnBakarız ----
-                btnBakarız.setText("bakar\u0131z");
-                selectionPanel.add(btnBakarız);
-                btnBakarız.setBounds(280, 55, 80, btnBakarız.getPreferredSize().height);
+                btnAdd.setBounds(25, 170, 140, 60);
 
                 //---- btnDelete ----
                 btnDelete.setText("Delete");
                 selectionPanel.add(btnDelete);
-                btnDelete.setBounds(110, 55, 80, btnDelete.getPreferredSize().height);
+                btnDelete.setBounds(170, 170, 140, 60);
 
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
                 selectionPanel.add(btnUpdate);
-                btnUpdate.setBounds(195, 55, 80, btnUpdate.getPreferredSize().height);
+                btnUpdate.setBounds(315, 170, 140, 60);
 
                 //---- tfRoomType ----
                 tfRoomType.setToolTipText("Room Type");
                 selectionPanel.add(tfRoomType);
-                tfRoomType.setBounds(100, 10, 80, 34);
+                tfRoomType.setBounds(125, 55, 100, 34);
 
                 //---- tfRoomSize ----
                 tfRoomSize.setToolTipText("Room Size");
                 selectionPanel.add(tfRoomSize);
-                tfRoomSize.setBounds(180, 10, 80, 34);
+                tfRoomSize.setBounds(230, 55, 100, 34);
 
                 //---- tfRoomPrice ----
                 tfRoomPrice.setToolTipText("Room Price");
                 selectionPanel.add(tfRoomPrice);
-                tfRoomPrice.setBounds(260, 10, 80, 34);
+                tfRoomPrice.setBounds(335, 55, 100, 34);
 
                 //---- tfCapacity ----
                 tfCapacity.setToolTipText("Capacity");
                 selectionPanel.add(tfCapacity);
-                tfCapacity.setBounds(340, 10, 80, 34);
+                tfCapacity.setBounds(440, 55, 100, 34);
 
                 //---- tfRoomNum ----
                 tfRoomNum.setToolTipText("Room Number");
                 selectionPanel.add(tfRoomNum);
-                tfRoomNum.setBounds(20, 10, 80, 34);
+                tfRoomNum.setBounds(20, 55, 100, 34);
+
+                //---- label1 ----
+                label1.setText("Room Number:");
+                selectionPanel.add(label1);
+                label1.setBounds(125, 35, 90, 25);
+
+                //---- label2 ----
+                label2.setText("Hotel ID:");
+                selectionPanel.add(label2);
+                label2.setBounds(20, 35, 90, 25);
+
+                //---- label3 ----
+                label3.setText("Room Type:");
+                selectionPanel.add(label3);
+                label3.setBounds(230, 35, 90, 25);
+
+                //---- label4 ----
+                label4.setText("Room Size:");
+                selectionPanel.add(label4);
+                label4.setBounds(335, 35, 90, 25);
+
+                //---- label5 ----
+                label5.setText("Capacity:");
+                selectionPanel.add(label5);
+                label5.setBounds(440, 35, 90, 25);
 
                 {
                     // compute preferred size
@@ -195,7 +220,7 @@ public class RoomsPanel extends Panel {
                     "Capacity"
                 }));
                 filterPanel.add(cbSelectColumn);
-                cbSelectColumn.setBounds(0, 10, 100, 30);
+                cbSelectColumn.setBounds(40, 35, 120, 45);
 
                 //---- cbFilterOption ----
                 cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
@@ -210,12 +235,22 @@ public class RoomsPanel extends Panel {
                     "contains"
                 }));
                 filterPanel.add(cbFilterOption);
-                cbFilterOption.setBounds(110, 10, 100, 30);
+                cbFilterOption.setBounds(165, 35, 120, 45);
 
                 //---- tfFilterValue ----
                 tfFilterValue.setToolTipText("Filter Input");
                 filterPanel.add(tfFilterValue);
-                tfFilterValue.setBounds(0, 55, 130, 30);
+                tfFilterValue.setBounds(45, 110, 235, 40);
+
+                //---- label6 ----
+                label6.setText("Filter Value:");
+                filterPanel.add(label6);
+                label6.setBounds(50, 85, 225, 30);
+
+                //---- button1 ----
+                button1.setText("Apply");
+                filterPanel.add(button1);
+                button1.setBounds(45, 170, 235, 60);
 
                 {
                     // compute preferred size
@@ -234,7 +269,7 @@ public class RoomsPanel extends Panel {
             }
             controlPanel.add(filterPanel);
         }
-        add(controlPanel);
+        add(controlPanel, BorderLayout.SOUTH);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -245,7 +280,6 @@ public class RoomsPanel extends Panel {
     private JPanel controlPanel;
     private JPanel selectionPanel;
     private JButton btnAdd;
-    private JButton btnBakarız;
     private JButton btnDelete;
     private JButton btnUpdate;
     private JTextField tfRoomType;
@@ -253,9 +287,16 @@ public class RoomsPanel extends Panel {
     private JTextField tfRoomPrice;
     private JTextField tfCapacity;
     private JTextField tfRoomNum;
+    private JLabel label1;
+    private JLabel label2;
+    private JLabel label3;
+    private JLabel label4;
+    private JLabel label5;
     private JPanel filterPanel;
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;
     private JTextField tfFilterValue;
+    private JLabel label6;
+    private JButton button1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

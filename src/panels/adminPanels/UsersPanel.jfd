@@ -82,8 +82,7 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
 				"axis": 0
 			} ) {
-				name: "pnlControl"
-				"preferredSize": new java.awt.Dimension( 0, 250 )
+
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "pnlSelection"
 					"preferredSize": new java.awt.Dimension( 350, 200 )
@@ -338,8 +337,6 @@ new FormModel {
 				"value": "South"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 900, 700 )
 		} )
 	}
 }

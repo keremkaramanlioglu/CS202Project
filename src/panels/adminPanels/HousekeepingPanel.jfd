@@ -102,15 +102,15 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "textField1"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 20
+						"x": 15
 						"y": 30
 						"width": 90
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "textField2"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 102
-						"y": 29
+						"x": 110
+						"y": 30
 						"width": 90
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
@@ -155,17 +155,17 @@ new FormModel {
 						name: "label2"
 						"text": "Room Id:"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 6
+						"x": 20
 						"y": 6
-						"width": 90
+						"width": 76
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label3"
 						"text": "text"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 102
+						"x": 115
 						"y": 6
-						"width": 90
+						"width": 80
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label4"
@@ -173,15 +173,15 @@ new FormModel {
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 210
 						"y": 6
-						"width": 90
+						"width": 80
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label5"
 						"text": "text"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 306
+						"x": 310
 						"y": 6
-						"width": 95
+						"width": 91
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {

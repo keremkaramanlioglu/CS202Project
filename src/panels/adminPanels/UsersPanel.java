@@ -41,6 +41,7 @@ public class UsersPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
+
         // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         pnlData = new JScrollPane();
         tblUsers = new JTable();
@@ -84,6 +85,7 @@ public class UsersPanel extends Panel {
         setLayout(new BorderLayout());
 
         //======== pnlData ========
+
         {
             pnlData.setPreferredSize(new Dimension(900, 450));
 
@@ -111,8 +113,6 @@ public class UsersPanel extends Panel {
 
         //======== pnlControl ========
         {
-            pnlControl.setPreferredSize(new Dimension(0, 250));
-            pnlControl.setLayout(new BoxLayout(pnlControl, BoxLayout.X_AXIS));
 
             //======== pnlSelection ========
             {
@@ -283,6 +283,7 @@ public class UsersPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
+
     // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JScrollPane pnlData;
     private JTable tblUsers;
@@ -315,5 +316,6 @@ public class UsersPanel extends Panel {
     private JTextField tfFilterInput;
     private JLabel lblFilterInput;
     private JButton btnApplyFilter;
+
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
