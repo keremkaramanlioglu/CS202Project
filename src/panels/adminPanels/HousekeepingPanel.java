@@ -4,6 +4,8 @@
 
 package panels.adminPanels;
 
+import panels.Panel;
+
 import java.awt.*;
 import javax.swing.*;
 
