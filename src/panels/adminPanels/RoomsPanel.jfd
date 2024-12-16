@@ -8,7 +8,7 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "dataPanel"
+				name: "scrollPane1"
 				add( new FormComponent( "javax.swing.JTable" ) {
 					name: "table1"
 					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
@@ -63,6 +63,8 @@ new FormModel {
 						add( null )
 						add( null )
 					} )
+					"preferredSize": new java.awt.Dimension( 525, 350 )
+					"preferredScrollableViewportSize": new java.awt.Dimension( 450, 200 )
 				} )
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) ) {
@@ -104,7 +106,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "tfRoomType"
-						"text": "Room Type"
+						"toolTipText": "Room Type"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 80
 						"height": 34
@@ -113,7 +115,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "tfRoomSize"
-						"text": "Room Size"
+						"toolTipText": "Room Size"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 80
 						"height": 34
@@ -122,7 +124,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "tfRoomPrice"
-						"text": "Room Price"
+						"toolTipText": "Room Price"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 80
 						"height": 34
@@ -131,7 +133,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "tfCapacity"
-						"text": "Capacity"
+						"toolTipText": "Capacity"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 80
 						"height": 34
@@ -140,7 +142,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "tfRoomNum"
-						"text": "Room Number"
+						"toolTipText": "Room Number"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 80
 						"height": 34
@@ -151,7 +153,7 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "filterPanel"
 					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "ColumnOptions"
+						name: "cbSelectColumn"
 						"model": new javax.swing.DefaultComboBoxModel {
 							selectedItem: "Room Id"
 							addElement( "Room Id" )
@@ -168,9 +170,10 @@ new FormModel {
 						"height": 30
 					} )
 					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "filter"
+						name: "cbFilterOption"
 						"model": new javax.swing.DefaultComboBoxModel {
-							selectedItem: "=="
+							selectedItem: "None"
+							addElement( "None" )
 							addElement( "==" )
 							addElement( "!=" )
 							addElement( "<" )
@@ -188,7 +191,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "tfFilterValue"
-						"text": "Filter Input"
+						"toolTipText": "Filter Input"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 0
 						"y": 55
@@ -199,7 +202,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 100, 0 )
-			"size": new java.awt.Dimension( 770, 540 )
+			"size": new java.awt.Dimension( 1080, 760 )
 		} )
 	}
 }

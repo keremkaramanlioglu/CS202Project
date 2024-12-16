@@ -56,13 +56,6 @@ public class UsersPanel extends Panel {
         setMaximumSize(new Dimension(65534, 65534));
         setMinimumSize(new Dimension(630, 109));
         setPreferredSize(new Dimension(600, 450));
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
-        .border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder
-        .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.
-        awt.Font.BOLD,12),java.awt.Color.red), getBorder()))
-        ; addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-        ){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}})
-        ;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         //======== scrollPane1 ========
