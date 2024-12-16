@@ -41,7 +41,7 @@ public class HousekeeperPanel extends Panel {
 
     @Override
     public void addButtonListener(ActionListener al) {
-        btnRooms.addActionListener(al);
+        btnMyJobs.addActionListener(al);
         btnBack.addActionListener(al);
     }
 
@@ -61,20 +61,19 @@ public class HousekeeperPanel extends Panel {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         panel1 = new JPanel();
-        btnRooms = new JButton();
+        btnMyJobs = new JButton();
         btnBack = new JButton();
         pnlHeader = new JPanel();
         label1 = new JLabel();
 
         //======== this ========
         setBackground(new Color(0x666666));
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
-        javax.swing.border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax
-        .swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java
-        .awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt
-        .Color.red), getBorder())); addPropertyChangeListener(new java.beans.
-        PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".
-        equals(e.getPropertyName()))throw new RuntimeException();}});
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border
+        .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER ,javax
+        . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,
+        12 ) ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans
+        .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e.
+        getPropertyName () ) )throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== panel1 ========
@@ -83,21 +82,21 @@ public class HousekeeperPanel extends Panel {
             panel1.setBackground(new Color(0x333333));
             panel1.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
 
-            //---- btnRooms ----
-            btnRooms.setText("My Jobs");
-            btnRooms.setPreferredSize(new Dimension(120, 40));
-            btnRooms.setBackground(new Color(0x333333));
-            btnRooms.setForeground(Color.white);
-            btnRooms.setBorder(null);
-            btnRooms.setFocusable(false);
-            btnRooms.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnRooms.addMouseListener(new MouseAdapter() {
+            //---- btnMyJobs ----
+            btnMyJobs.setText("My Jobs");
+            btnMyJobs.setPreferredSize(new Dimension(120, 40));
+            btnMyJobs.setBackground(new Color(0x333333));
+            btnMyJobs.setForeground(Color.white);
+            btnMyJobs.setBorder(null);
+            btnMyJobs.setFocusable(false);
+            btnMyJobs.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnMyJobs.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     btnRoomsMouseClicked(e);
                 }
             });
-            panel1.add(btnRooms);
+            panel1.add(btnMyJobs);
 
             //---- btnBack ----
             btnBack.setText("Back");
@@ -139,7 +138,7 @@ public class HousekeeperPanel extends Panel {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JPanel panel1;
-    private JButton btnRooms;
+    private JButton btnMyJobs;
     private JButton btnBack;
     private JPanel pnlHeader;
     private JLabel label1;

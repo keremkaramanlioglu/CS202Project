@@ -7,14 +7,40 @@ package panels.adminPanels;
 import panels.Panel;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
  * @author kerem
  */
-public class HousekeepingPanel extends JPanel {
+public class HousekeepingPanel extends Panel {
     public HousekeepingPanel() {
         initComponents();
+    }
+
+    @Override
+    public void addButtonListener(ActionListener al) {
+
+    }
+
+    @Override
+    public void setSelectedButton(JButton b) {
+
+    }
+
+    @Override
+    public void reset() {
+
+    }
+
+    @Override
+    public void setCenterPanel(Panel panel) {
+
+    }
+
+    @Override
+    public Panel getPanelByName(String panelName) {
+        return null;
     }
 
     private void initComponents() {
