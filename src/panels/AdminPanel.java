@@ -1,6 +1,7 @@
 package panels;
 
 import panels.adminPanels.RoomsPanel;
+import panels.adminPanels.UsersPanel;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -10,11 +11,13 @@ import javax.swing.plaf.basic.BasicOptionPaneUI;
 public class AdminPanel extends Panel {
     private JButton prevSelectedButton;
     private Panel prevCenterPanel;
-    private Panel pnlRooms;
+    private final Panel pnlRooms;
+    private final Panel pnlUsers;
 
     public AdminPanel() {
         initComponents();
         pnlRooms = new RoomsPanel();
+        pnlUsers = new UsersPanel();
         prevSelectedButton = null;
         prevCenterPanel = null;
     }
@@ -49,6 +52,7 @@ public class AdminPanel extends Panel {
         this.add(panel, BorderLayout.CENTER);
         prevCenterPanel = panel;
         this.revalidate();
+        this.repaint();
     }
 
     @Override
@@ -56,6 +60,8 @@ public class AdminPanel extends Panel {
         switch(panelName) {
             case "Rooms":
                 return pnlRooms;
+            case "Users":
+                return pnlUsers;
         }
         return null;
     }

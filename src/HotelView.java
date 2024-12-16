@@ -22,16 +22,14 @@ public class HotelView extends JFrame {
         guestPanel = new GuestPanel();
         receptionistPanel = new ReceptionistPanel();
         housekeeperPanel = new HousekeeperPanel();
-        activePanel = mainPanel;
+        activePanel = null;
+        setActivePanel(mainPanel);
 
-
-        this.setContentPane(mainPanel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setPreferredSize(new Dimension(800, 600));
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.revalidate();
     }
 
     public Panel getPanelByName(String name) {
@@ -50,7 +48,10 @@ public class HotelView extends JFrame {
 
     public void setActivePanel(Panel activePanel) {
         if (this.activePanel == activePanel) return;
-        if (this.activePanel != null) this.activePanel.reset();
+        if (this.activePanel != null) {
+            this.activePanel.reset();
+            this.remove(this.activePanel);
+        }
         this.activePanel = activePanel;
         this.setContentPane(activePanel);
         this.revalidate();
