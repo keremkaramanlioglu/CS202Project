@@ -87,9 +87,9 @@ new FormModel {
 				"axis": 0
 			} ) {
 				name: "panel1"
-				"minimumSize": new java.awt.Dimension( 630, 89 )
+				"minimumSize": new java.awt.Dimension( 825, 230 )
 				"maximumSize": new java.awt.Dimension( 65534, 32767 )
-				"preferredSize": new java.awt.Dimension( 630, 89 )
+				"preferredSize": new java.awt.Dimension( 750, 230 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "panel2"
 					"minimumSize": new java.awt.Dimension( 420, 89 )
@@ -131,7 +131,7 @@ new FormModel {
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 340 )
+			"location": new java.awt.Point( 0, 285 )
 			"size": new java.awt.Dimension( 1030, 750 )
 		} )
 	}

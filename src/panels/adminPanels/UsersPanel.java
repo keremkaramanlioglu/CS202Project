@@ -41,7 +41,7 @@ public class UsersPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         scrollPane1 = new JScrollPane();
         table1 = new JTable();
         panel1 = new JPanel();
@@ -56,13 +56,12 @@ public class UsersPanel extends Panel {
         setMaximumSize(new Dimension(65534, 65534));
         setMinimumSize(new Dimension(630, 109));
         setPreferredSize(new Dimension(600, 450));
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
-        .border.EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e",javax.swing.border.TitledBorder
-        .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dialo\u0067",java.
-        awt.Font.BOLD,12),java.awt.Color.red), getBorder()))
-        ; addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-        ){if("borde\u0072".equals(e.getPropertyName()))throw new RuntimeException();}})
-        ;
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
+        EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing
+        . border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ),
+        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
+        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () ))
+        throw new RuntimeException( ); }} );
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         //======== scrollPane1 ========
@@ -95,9 +94,9 @@ public class UsersPanel extends Panel {
 
         //======== panel1 ========
         {
-            panel1.setMinimumSize(new Dimension(630, 89));
+            panel1.setMinimumSize(new Dimension(825, 230));
             panel1.setMaximumSize(new Dimension(65534, 32767));
-            panel1.setPreferredSize(new Dimension(630, 89));
+            panel1.setPreferredSize(new Dimension(750, 230));
             panel1.setLayout(new BoxLayout(panel1, BoxLayout.X_AXIS));
 
             //======== panel2 ========
@@ -168,7 +167,7 @@ public class UsersPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane scrollPane1;
     private JTable table1;
     private JPanel panel1;
