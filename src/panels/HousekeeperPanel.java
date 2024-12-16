@@ -30,12 +30,12 @@ public class HousekeeperPanel extends Panel {
     }
 
     @Override
-    public void setCenterPanel(Panel panel) {
+    public void setCenterPanel(JPanel panel) {
 
     }
 
     @Override
-    public Panel getPanelByName(String panelName) {
+    public JPanel getPanelByName(String panelName) {
         return null;
     }
 
