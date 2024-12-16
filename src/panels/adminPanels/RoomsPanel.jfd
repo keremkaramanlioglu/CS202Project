@@ -71,7 +71,7 @@ new FormModel {
 					name: "selectionPanel"
 					"preferredSize": new java.awt.Dimension( 470, 89 )
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "button1"
+						name: "btnAdd"
 						"text": "Add"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 25
@@ -79,7 +79,7 @@ new FormModel {
 						"width": 80
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "button2"
+						name: "btnBakarız"
 						"text": "bakarız"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 280
@@ -87,7 +87,7 @@ new FormModel {
 						"width": 80
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "button3"
+						name: "btnDelete"
 						"text": "Delete"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 110
@@ -95,7 +95,7 @@ new FormModel {
 						"width": 80
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "button4"
+						name: "btnUpdate"
 						"text": "Update"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 195
@@ -103,7 +103,7 @@ new FormModel {
 						"width": 80
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField2"
+						name: "tfRoomType"
 						"text": "Room Type"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 80
@@ -112,7 +112,7 @@ new FormModel {
 						"y": 10
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField3"
+						name: "tfRoomSize"
 						"text": "Room Size"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 80
@@ -121,7 +121,7 @@ new FormModel {
 						"y": 10
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField4"
+						name: "tfRoomPrice"
 						"text": "Room Price"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 80
@@ -130,7 +130,7 @@ new FormModel {
 						"y": 10
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField5"
+						name: "tfCapacity"
 						"text": "Capacity"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 80
@@ -139,7 +139,7 @@ new FormModel {
 						"y": 10
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField6"
+						name: "tfRoomNum"
 						"text": "Room Number"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 80
@@ -187,7 +187,7 @@ new FormModel {
 						"y": 10
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "filterInput"
+						name: "tfFilterValue"
 						"text": "Filter Input"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 0

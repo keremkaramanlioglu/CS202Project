@@ -6,7 +6,7 @@ new FormModel {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
 			"axis": 1
 		} ) {
-			name: "UsersPanel"
+			name: "this"
 			"maximumSize": new java.awt.Dimension( 65534, 65534 )
 			"minimumSize": new java.awt.Dimension( 630, 109 )
 			"preferredSize": new java.awt.Dimension( 600, 450 )
