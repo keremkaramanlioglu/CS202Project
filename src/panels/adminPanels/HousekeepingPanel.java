@@ -71,12 +71,12 @@ public class HousekeepingPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(1920, 1080));
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder
-        (0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER,javax.swing.border
-        .TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font.BOLD,12),java.awt
-        .Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void
-        propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException()
-        ;}});
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
+        border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER
+        ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font
+        . BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener(
+        new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r"
+        .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -127,28 +127,28 @@ public class HousekeepingPanel extends Panel {
                 pnlSelection.setPreferredSize(new Dimension(400, 200));
                 pnlSelection.setLayout(null);
                 pnlSelection.add(textField1);
-                textField1.setBounds(6, 29, 90, textField1.getPreferredSize().height);
+                textField1.setBounds(20, 30, 90, textField1.getPreferredSize().height);
                 pnlSelection.add(textField2);
                 textField2.setBounds(102, 29, 90, textField2.getPreferredSize().height);
                 pnlSelection.add(textField3);
-                textField3.setBounds(210, 29, 90, textField3.getPreferredSize().height);
+                textField3.setBounds(205, 30, 90, textField3.getPreferredSize().height);
                 pnlSelection.add(textField4);
                 textField4.setBounds(306, 29, 97, textField4.getPreferredSize().height);
 
                 //---- button1 ----
                 button1.setText("Add");
                 pnlSelection.add(button1);
-                button1.setBounds(6, 89, 100, button1.getPreferredSize().height);
+                button1.setBounds(10, 155, 100, button1.getPreferredSize().height);
 
                 //---- button2 ----
                 button2.setText("Delete");
                 pnlSelection.add(button2);
-                button2.setBounds(112, 89, 103, button2.getPreferredSize().height);
+                button2.setBounds(120, 155, 103, button2.getPreferredSize().height);
 
                 //---- button3 ----
                 button3.setText("Update");
                 pnlSelection.add(button3);
-                button3.setBounds(225, 90, 100, button3.getPreferredSize().height);
+                button3.setBounds(230, 155, 100, button3.getPreferredSize().height);
 
                 //---- label2 ----
                 label2.setText("Room Id:");
