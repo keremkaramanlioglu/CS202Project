@@ -6,17 +6,17 @@ new FormModel {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
 			"axis": 1
 		} ) {
-			name: "this"
+			name: "UsersPanel"
 			"maximumSize": new java.awt.Dimension( 65534, 65534 )
 			"minimumSize": new java.awt.Dimension( 630, 109 )
-			"preferredSize": new java.awt.Dimension( 680, 516 )
+			"preferredSize": new java.awt.Dimension( 600, 450 )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "scrollPane1"
 				add( new FormComponent( "javax.swing.JTable" ) {
 					name: "table1"
 					"minimumSize": new java.awt.Dimension( 105, 40 )
 					"preferredSize": new java.awt.Dimension( 525, 350 )
-					"preferredScrollableViewportSize": new java.awt.Dimension( 450, 350 )
+					"preferredScrollableViewportSize": new java.awt.Dimension( 450, 200 )
 					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
 						add( new java.util.Vector {
 							add( null )
@@ -93,17 +93,46 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "panel2"
 					"minimumSize": new java.awt.Dimension( 420, 89 )
-					"preferredSize": new java.awt.Dimension( 400, 0 )
+					"preferredSize": new java.awt.Dimension( 200, 100 )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button1"
+						"text": "text"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 10
+						"y": 115
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button2"
+						"text": "text"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 90
+						"y": 115
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button3"
+						"text": "text"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 170
+						"y": 115
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField1"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 10
+						"y": 15
+						"width": 75
+						"height": 30
+					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "panel3"
 					"minimumSize": new java.awt.Dimension( 210, 85 )
-					"preferredSize": new java.awt.Dimension( 200, 0 )
+					"preferredSize": new java.awt.Dimension( 200, 100 )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 600, 450 )
+			"location": new java.awt.Point( 0, 340 )
+			"size": new java.awt.Dimension( 1030, 750 )
 		} )
 	}
 }
