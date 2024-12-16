@@ -15,13 +15,16 @@ import javax.swing.table.*;
  * @author kerem
  */
 public class RoomsPanel extends Panel {
+
     public RoomsPanel() {
         initComponents();
     }
 
     @Override
     public void addButtonListener(ActionListener al) {
-
+        btnAdd.addActionListener(al);
+        btnDelete.addActionListener(al);
+        btnUpdate.addActionListener(al);
     }
 
     @Override
@@ -31,54 +34,68 @@ public class RoomsPanel extends Panel {
 
     @Override
     public void reset() {
+        tfRoomNum.setText("");
+        tfRoomType.setText("");
+        tfFilterValue.setText("");
+        tfCapacity.setText("");
+        tfRoomSize.setText("");
+        tfRoomPrice.setText("");
+    }
+
+    @Override
+    public void setCenterPanel(Panel panel) {
 
     }
 
     @Override
-    public void setCenterPanel(JPanel panel) {
-
-    }
-
-    @Override
-    public JPanel getPanelByName(String panelName) {
+    public Panel getPanelByName(String panelName) {
         return null;
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         dataPanel = new JScrollPane();
-        table1 = new JTable();
+        dataTable = new JTable();
         controlPanel = new JPanel();
         selectionPanel = new JPanel();
-        button1 = new JButton();
-        button2 = new JButton();
-        button3 = new JButton();
-        button4 = new JButton();
-        textField2 = new JTextField();
-        textField3 = new JTextField();
-        textField4 = new JTextField();
-        textField5 = new JTextField();
-        textField6 = new JTextField();
+        btnAdd = new JButton();
+        btnBakarız = new JButton();
+        btnDelete = new JButton();
+        btnUpdate = new JButton();
+        tfRoomType = new JTextField();
+        tfRoomSize = new JTextField();
+        tfRoomPrice = new JTextField();
+        tfCapacity = new JTextField();
+        tfRoomNum = new JTextField();
+        label1 = new JLabel();
+        label2 = new JLabel();
+        label3 = new JLabel();
+        label4 = new JLabel();
+        label5 = new JLabel();
         filterPanel = new JPanel();
-        ColumnOptions = new JComboBox<>();
-        filter = new JComboBox<>();
-        filterInput = new JTextField();
+        cbRoomId = new JComboBox<>();
+        cbFilterOption = new JComboBox<>();
+        tfFilterValue = new JTextField();
+        label6 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-        EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing
-        . border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ),
-        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () ))
-        throw new RuntimeException( ); }} );
+        setBackground(new Color(0x666666));
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
+        .border.EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder
+        .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.
+        awt.Font.BOLD,12),java.awt.Color.red), getBorder()))
+        ; addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+        ){if("\u0062ord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}})
+        ;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         //======== dataPanel ========
         {
+            dataPanel.setBackground(new Color(0x666666));
 
-            //---- table1 ----
-            table1.setModel(new DefaultTableModel(
+            //---- dataTable ----
+            dataTable.setModel(new DefaultTableModel(
                 new Object[][] {
                     {null, null, null, null, null, null, null},
                     {null, null, null, null, null, null, null},
@@ -95,7 +112,9 @@ public class RoomsPanel extends Panel {
                     return columnTypes[columnIndex];
                 }
             });
-            dataPanel.setViewportView(table1);
+            dataTable.setBackground(new Color(0x666666));
+            dataTable.setForeground(Color.white);
+            dataPanel.setViewportView(dataTable);
         }
         add(dataPanel);
 
@@ -106,52 +125,75 @@ public class RoomsPanel extends Panel {
             //======== selectionPanel ========
             {
                 selectionPanel.setPreferredSize(new Dimension(470, 89));
+                selectionPanel.setBackground(new Color(0x666666));
                 selectionPanel.setLayout(null);
 
-                //---- button1 ----
-                button1.setText("Add");
-                selectionPanel.add(button1);
-                button1.setBounds(25, 55, 80, button1.getPreferredSize().height);
+                //---- btnAdd ----
+                btnAdd.setText("Add");
+                selectionPanel.add(btnAdd);
+                btnAdd.setBounds(25, 65, 80, btnAdd.getPreferredSize().height);
 
-                //---- button2 ----
-                button2.setText("bakar\u0131z");
-                selectionPanel.add(button2);
-                button2.setBounds(280, 55, 80, button2.getPreferredSize().height);
+                //---- btnBakarız ----
+                btnBakarız.setText("bakar\u0131z");
+                selectionPanel.add(btnBakarız);
+                btnBakarız.setBounds(280, 65, 80, btnBakarız.getPreferredSize().height);
 
-                //---- button3 ----
-                button3.setText("Delete");
-                selectionPanel.add(button3);
-                button3.setBounds(110, 55, 80, button3.getPreferredSize().height);
+                //---- btnDelete ----
+                btnDelete.setText("Delete");
+                selectionPanel.add(btnDelete);
+                btnDelete.setBounds(110, 65, 80, btnDelete.getPreferredSize().height);
 
-                //---- button4 ----
-                button4.setText("Update");
-                selectionPanel.add(button4);
-                button4.setBounds(195, 55, 80, button4.getPreferredSize().height);
+                //---- btnUpdate ----
+                btnUpdate.setText("Update");
+                selectionPanel.add(btnUpdate);
+                btnUpdate.setBounds(195, 65, 80, btnUpdate.getPreferredSize().height);
+                selectionPanel.add(tfRoomType);
+                tfRoomType.setBounds(95, 20, 80, 34);
+                selectionPanel.add(tfRoomSize);
+                tfRoomSize.setBounds(180, 20, 80, 34);
+                selectionPanel.add(tfRoomPrice);
+                tfRoomPrice.setBounds(265, 20, 80, 34);
+                selectionPanel.add(tfCapacity);
+                tfCapacity.setBounds(350, 20, 80, 34);
+                selectionPanel.add(tfRoomNum);
+                tfRoomNum.setBounds(10, 20, 80, 34);
 
-                //---- textField2 ----
-                textField2.setText("Room Type");
-                selectionPanel.add(textField2);
-                textField2.setBounds(100, 10, 80, 34);
+                //---- label1 ----
+                label1.setText("Room Number:");
+                label1.setFont(new Font("Inter", Font.PLAIN, 10));
+                label1.setForeground(Color.white);
+                label1.setPreferredSize(new Dimension(75, 15));
+                selectionPanel.add(label1);
+                label1.setBounds(10, 0, 75, 25);
 
-                //---- textField3 ----
-                textField3.setText("Room Size");
-                selectionPanel.add(textField3);
-                textField3.setBounds(180, 10, 80, 34);
+                //---- label2 ----
+                label2.setText("Room Type:");
+                label2.setFont(new Font("Inter", Font.PLAIN, 10));
+                label2.setForeground(Color.white);
+                label2.setPreferredSize(new Dimension(75, 15));
+                selectionPanel.add(label2);
+                label2.setBounds(95, 0, 75, 25);
 
-                //---- textField4 ----
-                textField4.setText("Room Price");
-                selectionPanel.add(textField4);
-                textField4.setBounds(260, 10, 80, 34);
+                //---- label3 ----
+                label3.setText("Room Size:");
+                label3.setFont(new Font("Inter", Font.PLAIN, 10));
+                label3.setForeground(Color.white);
+                selectionPanel.add(label3);
+                label3.setBounds(180, 0, 75, 25);
 
-                //---- textField5 ----
-                textField5.setText("Capacity");
-                selectionPanel.add(textField5);
-                textField5.setBounds(340, 10, 80, 34);
+                //---- label4 ----
+                label4.setText("Room Price:");
+                label4.setFont(new Font("Inter", Font.PLAIN, 10));
+                label4.setForeground(Color.white);
+                selectionPanel.add(label4);
+                label4.setBounds(265, 0, 75, 25);
 
-                //---- textField6 ----
-                textField6.setText("Room Number");
-                selectionPanel.add(textField6);
-                textField6.setBounds(20, 10, 80, 34);
+                //---- label5 ----
+                label5.setText("Capacity:");
+                label5.setFont(new Font("Inter", Font.PLAIN, 10));
+                label5.setForeground(Color.white);
+                selectionPanel.add(label5);
+                label5.setBounds(350, 0, 75, 25);
 
                 {
                     // compute preferred size
@@ -172,10 +214,11 @@ public class RoomsPanel extends Panel {
 
             //======== filterPanel ========
             {
+                filterPanel.setBackground(new Color(0x666666));
                 filterPanel.setLayout(null);
 
-                //---- ColumnOptions ----
-                ColumnOptions.setModel(new DefaultComboBoxModel<>(new String[] {
+                //---- cbRoomId ----
+                cbRoomId.setModel(new DefaultComboBoxModel<>(new String[] {
                     "Room Id",
                     "Room Number",
                     "Room Type",
@@ -183,11 +226,11 @@ public class RoomsPanel extends Panel {
                     "Room Price",
                     "Capacity"
                 }));
-                filterPanel.add(ColumnOptions);
-                ColumnOptions.setBounds(0, 10, 100, 30);
+                filterPanel.add(cbRoomId);
+                cbRoomId.setBounds(0, 10, 100, 30);
 
-                //---- filter ----
-                filter.setModel(new DefaultComboBoxModel<>(new String[] {
+                //---- cbFilterOption ----
+                cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
                     "==",
                     "!=",
                     "<",
@@ -197,13 +240,17 @@ public class RoomsPanel extends Panel {
                     "between",
                     "contains"
                 }));
-                filterPanel.add(filter);
-                filter.setBounds(110, 10, 100, 30);
+                filterPanel.add(cbFilterOption);
+                cbFilterOption.setBounds(110, 10, 100, 30);
+                filterPanel.add(tfFilterValue);
+                tfFilterValue.setBounds(0, 65, 130, 30);
 
-                //---- filterInput ----
-                filterInput.setText("Filter Input");
-                filterPanel.add(filterInput);
-                filterInput.setBounds(0, 55, 130, 30);
+                //---- label6 ----
+                label6.setText("Filter Value:");
+                label6.setFont(new Font("Inter", Font.PLAIN, 11));
+                label6.setForeground(Color.white);
+                filterPanel.add(label6);
+                label6.setBounds(0, 40, 125, 25);
 
                 {
                     // compute preferred size
@@ -227,23 +274,29 @@ public class RoomsPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane dataPanel;
-    private JTable table1;
+    private JTable dataTable;
     private JPanel controlPanel;
     private JPanel selectionPanel;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JTextField textField5;
-    private JTextField textField6;
+    private JButton btnAdd;
+    private JButton btnBakarız;
+    private JButton btnDelete;
+    private JButton btnUpdate;
+    private JTextField tfRoomType;
+    private JTextField tfRoomSize;
+    private JTextField tfRoomPrice;
+    private JTextField tfCapacity;
+    private JTextField tfRoomNum;
+    private JLabel label1;
+    private JLabel label2;
+    private JLabel label3;
+    private JLabel label4;
+    private JLabel label5;
     private JPanel filterPanel;
-    private JComboBox<String> ColumnOptions;
-    private JComboBox<String> filter;
-    private JTextField filterInput;
+    private JComboBox<String> cbRoomId;
+    private JComboBox<String> cbFilterOption;
+    private JTextField tfFilterValue;
+    private JLabel label6;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
