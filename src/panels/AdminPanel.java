@@ -1,7 +1,6 @@
 package panels;
 
-import panels.adminPanels.RoomsPanel;
-import panels.adminPanels.UsersPanel;
+import panels.adminPanels.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -13,11 +12,19 @@ public class AdminPanel extends Panel {
     private Panel prevCenterPanel;
     private final Panel pnlRooms;
     private final Panel pnlUsers;
+    private final Panel pnlHousekeeping;
+    private final Panel pnlEmployees;
+    private final Panel pnlFinance;
+    private final Panel pnlBookings;
 
     public AdminPanel() {
         initComponents();
         pnlRooms = new RoomsPanel();
         pnlUsers = new UsersPanel();
+        pnlHousekeeping = new HousekeepingPanel();
+        pnlEmployees = new EmployeesPanel();
+        pnlFinance = new FinancePanel();
+        pnlBookings = new BookingsPanel();
         prevSelectedButton = null;
         prevCenterPanel = null;
     }
@@ -62,6 +69,14 @@ public class AdminPanel extends Panel {
                 return pnlRooms;
             case "Users":
                 return pnlUsers;
+            case "Housekeeping":
+                return pnlHousekeeping;
+            case "Employees":
+                return pnlEmployees;
+            case "Finance":
+                return pnlFinance;
+            case "Bookings":
+                return pnlBookings;
         }
         return null;
     }
