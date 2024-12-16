@@ -33,7 +33,7 @@ public class UsersPanel extends Panel {
     }@Override
     public Panel getPanelByName(String panelName) {
         return null;
-    }
+    } // comment
 
     public UsersPanel() {
         initComponents();
