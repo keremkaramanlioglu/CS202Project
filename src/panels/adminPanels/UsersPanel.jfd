@@ -16,7 +16,7 @@ new FormModel {
 					name: "table1"
 					"minimumSize": new java.awt.Dimension( 105, 40 )
 					"preferredSize": new java.awt.Dimension( 525, 350 )
-					"preferredScrollableViewportSize": new java.awt.Dimension( 450, 350 )
+					"preferredScrollableViewportSize": new java.awt.Dimension( 450, 200 )
 					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
 						add( new java.util.Vector {
 							add( null )
@@ -99,21 +99,21 @@ new FormModel {
 						"text": "text"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 10
-						"y": 50
+						"y": 115
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button2"
 						"text": "text"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 90
-						"y": 50
+						"y": 115
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button3"
 						"text": "text"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 170
-						"y": 50
+						"y": 115
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "textField1"
@@ -132,7 +132,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 340 )
-			"size": new java.awt.Dimension( 600, 450 )
+			"size": new java.awt.Dimension( 1030, 750 )
 		} )
 	}
 }
