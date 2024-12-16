@@ -4,13 +4,42 @@
 
 package panels.adminPanels;
 
+import panels.Panel;
+
 import java.awt.*;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
  * @author kerem
  */
-public class EmployeesPanel extends JPanel {
+public class EmployeesPanel extends Panel {
+
+    @Override
+    public void addButtonListener(ActionListener al) {
+
+    }
+
+    @Override
+    public void setSelectedButton(JButton b) {
+
+    }
+
+    @Override
+    public void reset() {
+
+    }
+
+    @Override
+    public void setCenterPanel(Panel panel) {
+
+    }
+
+    @Override
+    public Panel getPanelByName(String panelName) {
+        return null;
+    }
+
     public EmployeesPanel() {
         initComponents();
     }

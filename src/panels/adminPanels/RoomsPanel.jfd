@@ -8,7 +8,7 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "dataPanel"
+				name: "scrollPane1"
 				add( new FormComponent( "javax.swing.JTable" ) {
 					name: "table1"
 					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
@@ -63,6 +63,8 @@ new FormModel {
 						add( null )
 						add( null )
 					} )
+					"preferredSize": new java.awt.Dimension( 525, 350 )
+					"preferredScrollableViewportSize": new java.awt.Dimension( 450, 200 )
 				} )
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) ) {
@@ -71,7 +73,7 @@ new FormModel {
 					name: "selectionPanel"
 					"preferredSize": new java.awt.Dimension( 470, 89 )
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "button1"
+						name: "btnAdd"
 						"text": "Add"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 25
@@ -79,7 +81,7 @@ new FormModel {
 						"width": 80
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "button2"
+						name: "btnBakarız"
 						"text": "bakarız"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 280
@@ -87,7 +89,7 @@ new FormModel {
 						"width": 80
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "button3"
+						name: "btnDelete"
 						"text": "Delete"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 110
@@ -95,7 +97,7 @@ new FormModel {
 						"width": 80
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "button4"
+						name: "btnUpdate"
 						"text": "Update"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 195
@@ -103,8 +105,8 @@ new FormModel {
 						"width": 80
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField2"
-						"text": "Room Type"
+						name: "tfRoomType"
+						"toolTipText": "Room Type"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 80
 						"height": 34
@@ -112,8 +114,8 @@ new FormModel {
 						"y": 10
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField3"
-						"text": "Room Size"
+						name: "tfRoomSize"
+						"toolTipText": "Room Size"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 80
 						"height": 34
@@ -121,8 +123,8 @@ new FormModel {
 						"y": 10
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField4"
-						"text": "Room Price"
+						name: "tfRoomPrice"
+						"toolTipText": "Room Price"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 80
 						"height": 34
@@ -130,8 +132,8 @@ new FormModel {
 						"y": 10
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField5"
-						"text": "Capacity"
+						name: "tfCapacity"
+						"toolTipText": "Capacity"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 80
 						"height": 34
@@ -139,8 +141,8 @@ new FormModel {
 						"y": 10
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField6"
-						"text": "Room Number"
+						name: "tfRoomNum"
+						"toolTipText": "Room Number"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 80
 						"height": 34
@@ -151,7 +153,7 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "filterPanel"
 					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "ColumnOptions"
+						name: "cbSelectColumn"
 						"model": new javax.swing.DefaultComboBoxModel {
 							selectedItem: "Room Id"
 							addElement( "Room Id" )
@@ -168,9 +170,10 @@ new FormModel {
 						"height": 30
 					} )
 					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "filter"
+						name: "cbFilterOption"
 						"model": new javax.swing.DefaultComboBoxModel {
-							selectedItem: "=="
+							selectedItem: "None"
+							addElement( "None" )
 							addElement( "==" )
 							addElement( "!=" )
 							addElement( "<" )
@@ -187,8 +190,8 @@ new FormModel {
 						"y": 10
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "filterInput"
-						"text": "Filter Input"
+						name: "tfFilterValue"
+						"toolTipText": "Filter Input"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 0
 						"y": 55
@@ -199,7 +202,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 100, 0 )
-			"size": new java.awt.Dimension( 770, 540 )
+			"size": new java.awt.Dimension( 1080, 760 )
 		} )
 	}
 }

@@ -1,6 +1,6 @@
 package panels;
 
-import panels.adminPanels.RoomsPanel;
+import panels.adminPanels.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -10,11 +10,21 @@ import javax.swing.plaf.basic.BasicOptionPaneUI;
 public class AdminPanel extends Panel {
     private JButton prevSelectedButton;
     private Panel prevCenterPanel;
-    private Panel pnlRooms;
+    private final Panel pnlRooms;
+    private final Panel pnlUsers;
+    private final Panel pnlHousekeeping;
+    private final Panel pnlEmployees;
+    private final Panel pnlFinance;
+    private final Panel pnlBookings;
 
     public AdminPanel() {
         initComponents();
         pnlRooms = new RoomsPanel();
+        pnlUsers = new UsersPanel();
+        pnlHousekeeping = new HousekeepingPanel();
+        pnlEmployees = new EmployeesPanel();
+        pnlFinance = new FinancePanel();
+        pnlBookings = new BookingsPanel();
         prevSelectedButton = null;
         prevCenterPanel = null;
     }
@@ -49,6 +59,7 @@ public class AdminPanel extends Panel {
         this.add(panel, BorderLayout.CENTER);
         prevCenterPanel = panel;
         this.revalidate();
+        this.repaint();
     }
 
     @Override
@@ -56,6 +67,16 @@ public class AdminPanel extends Panel {
         switch(panelName) {
             case "Rooms":
                 return pnlRooms;
+            case "Users":
+                return pnlUsers;
+            case "Housekeeping":
+                return pnlHousekeeping;
+            case "Employees":
+                return pnlEmployees;
+            case "Finance":
+                return pnlFinance;
+            case "Bookings":
+                return pnlBookings;
         }
         return null;
     }
@@ -121,7 +142,7 @@ public class AdminPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         panel1 = new JPanel();
         btnRooms = new JButton();
         btnUsers = new JButton();
@@ -135,13 +156,6 @@ public class AdminPanel extends Panel {
 
         //======== this ========
         setBackground(new Color(0x666666));
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
-        swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border
-        . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog"
-        ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder
-        ( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
-        .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException
-        ( ); }} );
         setLayout(new BorderLayout());
 
         //======== panel1 ========
@@ -284,7 +298,7 @@ public class AdminPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JPanel panel1;
     private JButton btnRooms;
     private JButton btnUsers;

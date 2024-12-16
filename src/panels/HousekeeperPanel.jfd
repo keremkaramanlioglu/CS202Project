@@ -15,7 +15,7 @@ new FormModel {
 				"preferredSize": new java.awt.Dimension( 120, 0 )
 				"background": new java.awt.Color( 51, 51, 51, 255 )
 				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "btnRooms"
+					name: "btnMyJobs"
 					"text": "My Jobs"
 					"preferredSize": new java.awt.Dimension( 120, 40 )
 					"background": new java.awt.Color( 51, 51, 51, 255 )
