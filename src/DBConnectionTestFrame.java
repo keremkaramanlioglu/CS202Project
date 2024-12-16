@@ -36,8 +36,8 @@ public class DBConnectionTestFrame extends JFrame {
         return textField10.getText();
     }
 
-    public char[] getPassword() {
-        return passwordField1.getPassword();
+    public String getPassword() {
+        return String.valueOf(passwordField1.getPassword());
     }
 
     public void addButtonListener(ActionListener al) {

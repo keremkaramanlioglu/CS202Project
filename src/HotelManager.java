@@ -25,35 +25,12 @@ public class HotelManager {
             JButton button = (JButton) e.getSource();  // maybe define a compare function to check if a button is side panel button to apply selection operations
             String[] sidePanelOptions = {"Rooms", "Users", "Employees", "Finance", "Bookings", "Housekeeping",
                     "Book a room", "My Bookings", "Profile"};
-            if (compare(command, sidePanelOptions)) ((Panel)hotelView.getContentPane()).setSelectedButton(button);
-            switch (command) {   // each button needs to have a unique name so that we will know where we are
-                case "Admin":
-                    hotelView.setCurrPanel(command);
-                    changeContentPane(hotelView.getAdminPanel());
-                    break;
-                case "Guest":
-                    hotelView.setCurrPanel(command);
-                    changeContentPane(hotelView.getGuestPanel());
-                    break;
-                case "Housekeeper":
-                    hotelView.setCurrPanel(command);
-                    changeContentPane(hotelView.getHousekeeperPanel());
-                    break;
-                case "Receptionist":
-                    hotelView.setCurrPanel(command);
-                    changeContentPane(hotelView.getReceptionistPanel());
-                    break;
-                case "Back":
-                    ((Panel)hotelView.getContentPane()).resetPanel();
-                    changeContentPane(hotelView.getMainPanel());
-                    break;
-                case "Rooms":
-                    if (hotelView.getCurrPanel().equals("Admin")) {
-                        hotelView.getAdminPanel().setCenterPanel(hotelView.getAdminPanel().getPanelByName(command));
-                    } else if (hotelView.getCurrPanel().equals("Receptionist")) {
-                        hotelView.getReceptionistPanel().setCenterPanel(hotelView.getReceptionistPanel().getPanelByName(command));
-                    }
-                    break;
+            String [] mainPanelOptions = {"Admin", "Guest", "Housekeeper", "Receptionist", "Back"};
+            if (compare(command, sidePanelOptions)) {
+                hotelView.getActivePanel().setSelectedButton(button);
+                hotelView.getActivePanel().setCenterPanel(hotelView.getActivePanel().getPanelByName(command));
+            } else if (compare(command, mainPanelOptions)) {
+                hotelView.setActivePanel(hotelView.getPanelByName(command));
             }
         }
 
