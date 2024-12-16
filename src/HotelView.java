@@ -7,12 +7,12 @@ import javax.swing.*;
 
 
 public class HotelView extends JFrame {
-    private static MainPanel mainPanel;
-    private static AdminPanel adminPanel;
-    private static GuestPanel guestPanel;
-    private static HousekeeperPanel housekeeperPanel;
-    private static ReceptionistPanel receptionistPanel;
-    private String currPanel;
+    private static Panel mainPanel;
+    private static Panel adminPanel;
+    private static Panel guestPanel;
+    private static Panel housekeeperPanel;
+    private static Panel receptionistPanel;
+    private Panel activePanel;
     public static Color sidePanelColor = new Color(0x333333);
     public static Color centerPanelColor = new Color(0x666666);
 
@@ -22,7 +22,7 @@ public class HotelView extends JFrame {
         guestPanel = new GuestPanel();
         receptionistPanel = new ReceptionistPanel();
         housekeeperPanel = new HousekeeperPanel();
-        currPanel = "Main Panel";
+        activePanel = mainPanel;
 
 
         this.setContentPane(mainPanel);
@@ -34,15 +34,29 @@ public class HotelView extends JFrame {
         this.revalidate();
     }
 
-    public String getCurrPanel() {
-        return currPanel;
+    public Panel getPanelByName(String name) {
+        return switch (name) {
+            case "Admin" -> adminPanel;
+            case "Guest" -> guestPanel;
+            case "Receptionist" -> receptionistPanel;
+            case "Housekeeper" -> housekeeperPanel;
+            default -> mainPanel;
+        };
     }
 
-    public void setCurrPanel(String currPanel) {
-        this.currPanel = currPanel;
+    public Panel getActivePanel() {
+        return activePanel;
     }
 
-    public MainPanel getMainPanel() {
+    public void setActivePanel(Panel activePanel) {
+        if (this.activePanel == activePanel) return;
+        if (this.activePanel != null) this.activePanel.reset();
+        this.activePanel = activePanel;
+        this.setContentPane(activePanel);
+        this.revalidate();
+    }
+
+    public Panel getMainPanel() {
         return mainPanel;
     }
 
