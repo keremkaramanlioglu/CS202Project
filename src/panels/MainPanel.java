@@ -11,7 +11,7 @@ import javax.swing.*;
 /**
  * @author kerem
  */
-public class MainPanel extends JPanel {
+public class MainPanel extends Panel {
 
     public static Color sidePanelColor = new Color(0x333333);
     public static Color centerPanelColor = new Color(0x666666);
@@ -25,6 +25,26 @@ public class MainPanel extends JPanel {
         btnGuestPanel.addActionListener(l);
         btnHousePanel.addActionListener(l);
         btnRecepPanel.addActionListener(l);
+    }
+
+    @Override
+    public void setSelectedButton(JButton b) {
+
+    }
+
+    @Override
+    public void reset() {
+
+    }
+
+    @Override
+    public void setCenterPanel(Panel panel) {
+
+    }
+
+    @Override
+    public Panel getPanelByName(String panelName) {
+        return null;
     }
 
     private void btnAdminPanelMouseEntered(MouseEvent e) {
