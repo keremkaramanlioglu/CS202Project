@@ -6,9 +6,9 @@ new FormModel {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "pnlBookings"
+				name: "pnlJobs"
 				add( new FormComponent( "javax.swing.JTable" ) {
-					name: "tblBookings"
+					name: "tblJobs"
 					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
 						add( new java.util.Vector {
 							add( null )
@@ -16,7 +16,6 @@ new FormModel {
 							add( null )
 							add( null )
 							add( null )
-							add( null )
 						} )
 						add( new java.util.Vector {
 							add( null )
@@ -24,24 +23,14 @@ new FormModel {
 							add( null )
 							add( null )
 							add( null )
-							add( null )
 						} )
 					}, new java.util.Vector {
-						add( "Hotel name" )
-						add( "Zip Code" )
-						add( "Room Type" )
-						add( "#People" )
-						add( "Check-in Date" )
-						add( "Check-out Date" )
+						add( "Room Number" )
+						add( "Receptionist ID" )
+						add( "Cleaning Date" )
+						add( "Service Status" )
+						add( "Schedule ID" )
 					}, new java.util.Vector {
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-					}, new java.util.Vector {
-						add( null )
 						add( null )
 						add( null )
 						add( null )
@@ -49,6 +38,11 @@ new FormModel {
 						add( null )
 					}, new java.util.Vector {
 						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
 						add( null )
 						add( null )
 						add( null )
@@ -62,23 +56,14 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 				name: "pnlControl"
 				"preferredSize": new java.awt.Dimension( 0, 200 )
-				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "btnCancel"
-					"text": "Cancel"
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "rbMark"
+					"text": "Mark as Completed"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 90
-					"y": 60
-					"width": 225
-					"height": 75
-				} )
-				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "btnNewBooking"
-					"text": "New Booking"
-				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"width": 225
-					"height": 75
-					"x": 590
-					"y": 60
+					"x": 60
+					"y": 15
+					"width": 250
+					"height": 25
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "South"

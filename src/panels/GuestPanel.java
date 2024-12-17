@@ -41,7 +41,7 @@ public class GuestPanel extends Panel {
     public Panel getPanelByName(String panelName) {
         return switch (panelName) {
             case "Book a room" -> bookARoomPanel;
-            case "My bookings" -> myBookingsPanel;
+            case "My Bookings" -> myBookingsPanel;
             case "Profile" -> profilePanel;
             default -> null;
         };

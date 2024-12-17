@@ -1,5 +1,7 @@
 package panels;
 
+import panels.housekeeperPanels.MyJobsPanel;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -7,10 +9,12 @@ import javax.swing.*;
 public class HousekeeperPanel extends Panel {
 
     private JButton prevSelectedButton;
+    private final Panel MyJobsPanel;
 
     public HousekeeperPanel() {
         initComponents();
         prevSelectedButton = null;
+        MyJobsPanel = new MyJobsPanel();
     }
 
     @Override
@@ -21,7 +25,10 @@ public class HousekeeperPanel extends Panel {
 
     @Override
     public Panel getPanelByName(String panelName) {
-        return null;
+        return switch (panelName) {
+            case "My Jobs" -> MyJobsPanel;
+            default -> null;
+        };
     }
 
     @Override

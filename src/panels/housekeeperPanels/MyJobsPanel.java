@@ -1,36 +1,31 @@
 /*
- * Created by JFormDesigner on Wed Dec 11 20:10:49 TRT 2024
+ * Created by JFormDesigner on Wed Dec 11 20:11:47 TRT 2024
  */
 
-package panels.guestPanels;
+package panels.housekeeperPanels;
 
-import javax.swing.table.*;
 import panels.Panel;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.table.*;
 
 /**
  * @author kerem
  */
-public class MyBookingsPanel extends Panel {
-    public MyBookingsPanel() {
+public class MyJobsPanel extends Panel {
+    public MyJobsPanel() {
         initComponents();
     }
 
-
     @Override
     public void addButtonListener(ActionListener al) {
-        // TODO add button listeners to components
-    }
 
-    @Override
+    }@Override
     public void reset() {
-        // TODO reset the components
-    }
 
-    @Override
+    }@Override
     public Panel getPanelByName(String panelName) {
         return null;
     }
@@ -38,54 +33,46 @@ public class MyBookingsPanel extends Panel {
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kutay Mumcu
-        pnlBookings = new JScrollPane();
-        tblBookings = new JTable();
+        pnlJobs = new JScrollPane();
+        tblJobs = new JTable();
         pnlControl = new JPanel();
-        btnCancel = new JButton();
-        btnNewBooking = new JButton();
+        rbMark = new JRadioButton();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
-        new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn"
-        , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
-        , new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 )
-        , java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
-        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-        ) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
-        ; }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
+        EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing
+        . border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ),
+        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
+        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () ))
+        throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
-        //======== pnlBookings ========
+        //======== pnlJobs ========
         {
 
-            //---- tblBookings ----
-            tblBookings.setModel(new DefaultTableModel(
+            //---- tblJobs ----
+            tblJobs.setModel(new DefaultTableModel(
                 new Object[][] {
-                    {null, null, null, null, null, null},
-                    {null, null, null, null, null, null},
+                    {null, null, null, null, null},
+                    {null, null, null, null, null},
                 },
                 new String[] {
-                    "Hotel name", "Zip Code", "Room Type", "#People", "Check-in Date", "Check-out Date"
+                    "Room Number", "Receptionist ID", "Cleaning Date", "Service Status", "Schedule ID"
                 }
             ));
-            pnlBookings.setViewportView(tblBookings);
+            pnlJobs.setViewportView(tblJobs);
         }
-        add(pnlBookings, BorderLayout.CENTER);
+        add(pnlJobs, BorderLayout.CENTER);
 
         //======== pnlControl ========
         {
             pnlControl.setPreferredSize(new Dimension(0, 200));
             pnlControl.setLayout(null);
 
-            //---- btnCancel ----
-            btnCancel.setText("Cancel");
-            pnlControl.add(btnCancel);
-            btnCancel.setBounds(90, 60, 225, 75);
-
-            //---- btnNewBooking ----
-            btnNewBooking.setText("New Booking");
-            pnlControl.add(btnNewBooking);
-            btnNewBooking.setBounds(590, 60, 225, 75);
+            //---- rbMark ----
+            rbMark.setText("Mark as Completed");
+            pnlControl.add(rbMark);
+            rbMark.setBounds(60, 15, 250, 25);
 
             {
                 // compute preferred size
@@ -106,13 +93,11 @@ public class MyBookingsPanel extends Panel {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
-
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Kutay Mumcu
-    private JScrollPane pnlBookings;
-    private JTable tblBookings;
+    private JScrollPane pnlJobs;
+    private JTable tblJobs;
     private JPanel pnlControl;
-    private JButton btnCancel;
-    private JButton btnNewBooking;
+    private JRadioButton rbMark;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
