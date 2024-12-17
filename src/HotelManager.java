@@ -26,8 +26,9 @@ public class HotelManager {
                     "Book a room", "My Bookings", "Profile", "My Jobs"};
             String [] mainPanelOptions = {"Admin", "Guest", "Housekeeper", "Receptionist", "Back"};
             if (compare(command, sidePanelOptions)) {
-                hotelView.getActivePanel().setSelectedButton(button);
-                hotelView.getActivePanel().setCenterPanel(hotelView.getActivePanel().getPanelByName(command));
+                Panel activePanel = hotelView.getActivePanel();
+                activePanel.setSelectedButton(button);
+                activePanel.setCenterPanel(activePanel.getPanelByName(command));
             } else if (compare(command, mainPanelOptions)) {
                 hotelView.setActivePanel(hotelView.getPanelByName(command));
             }

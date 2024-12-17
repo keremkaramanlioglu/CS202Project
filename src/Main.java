@@ -51,7 +51,7 @@ public class Main {
 //        }
 
         new HotelManager(new HotelView());
-        new DBConnectionControl();
+        //new DBConnectionControl();
     }
 }
 

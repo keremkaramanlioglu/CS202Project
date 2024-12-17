@@ -56,9 +56,6 @@ new FormModel {
 					auxiliary() {
 						"JavaCodeGenerator.variableGetter": true
 					}
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseEntered", "btnAdminPanelMouseEntered", true ) )
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseExited", "btnAdminPanelMouseExited", true ) )
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnAdminPanelMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnGuestPanel"
@@ -74,9 +71,6 @@ new FormModel {
 					auxiliary() {
 						"JavaCodeGenerator.variableGetter": true
 					}
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseEntered", "btnGuestPanelMouseEntered", true ) )
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseExited", "btnGuestPanelMouseExited", true ) )
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnGuestPanelMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnHousePanel"
@@ -92,9 +86,6 @@ new FormModel {
 					auxiliary() {
 						"JavaCodeGenerator.variableGetter": true
 					}
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseEntered", "btnHousePanelMouseEntered", true ) )
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseExited", "btnHousePanelMouseExited", true ) )
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnHousePanelMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnRecepPanel"
@@ -111,9 +102,6 @@ new FormModel {
 					auxiliary() {
 						"JavaCodeGenerator.variableGetter": true
 					}
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseEntered", "btnRecepPanelMouseEntered", true ) )
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseExited", "btnRecepPanelMouseExited", true ) )
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnRecepPanelMouseClicked", true ) )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "North"

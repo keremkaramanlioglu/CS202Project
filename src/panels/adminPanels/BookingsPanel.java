@@ -19,22 +19,12 @@ public class BookingsPanel extends Panel {
 
     @Override
     public void addButtonListener(ActionListener al) {
-
-    }
-
-    @Override
-    public void setSelectedButton(JButton b) {
-
+        // TODO add button listeners to components
     }
 
     @Override
     public void reset() {
-
-    }
-
-    @Override
-    public void setCenterPanel(Panel panel) {
-
+        // TODO reset the components
     }
 
     @Override
@@ -79,13 +69,12 @@ public class BookingsPanel extends Panel {
         btnDelete2 = new JButton();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax
-        .swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e",javax.swing
-        .border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.
-        Font("Dialo\u0067",java.awt.Font.BOLD,12),java.awt.Color.red
-        ), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override
-        public void propertyChange(java.beans.PropertyChangeEvent e){if("borde\u0072".equals(e.getPropertyName(
-        )))throw new RuntimeException();}});
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.
+        border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER
+        ,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font
+        .BOLD,12),java.awt.Color.red), getBorder())); addPropertyChangeListener(
+        new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order"
+        .equals(e.getPropertyName()))throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -95,11 +84,11 @@ public class BookingsPanel extends Panel {
             table1.setPreferredSize(new Dimension(150, 400));
             table1.setModel(new DefaultTableModel(
                 new Object[][] {
-                    {null, null, null, null, null, null, null, null, null},
+                    {null, null, null, null, null, null, null, false, false},
                     {null, null, null, null, null, null, null, null, null},
                 },
                 new String[] {
-                    "booking_id", "c_ssn", "room_id", "payment_status", "payment_method", "booking_start_date", "booking_end_date", "c_check_in_status", "c_check_out_status"
+                    "Book ID", "Customer SSN", "Room ID", "Payment Status", "Payment Method", "Start Date", "End Date", "Checked in", "Checked out"
                 }
             ) {
                 Class<?>[] columnTypes = new Class<?>[] {
@@ -227,12 +216,15 @@ public class BookingsPanel extends Panel {
 
                 //---- cbSelectColumn ----
                 cbSelectColumn.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "Room Id",
-                    "Room Number",
-                    "Room Type",
-                    "Room Size",
-                    "Room Price",
-                    "Capacity"
+                    "Book ID",
+                    "Customer SSN",
+                    "Room ID",
+                    "Payment Method",
+                    "Payment Status",
+                    "Start Date",
+                    "End Date",
+                    "Checked in",
+                    "Checked out"
                 }));
                 panel2.add(cbSelectColumn);
                 cbSelectColumn.setBounds(10, 20, 120, 45);
@@ -247,7 +239,14 @@ public class BookingsPanel extends Panel {
                     "<=",
                     ">=",
                     "between",
-                    "contains"
+                    "contains",
+                    "Completed",
+                    "Pending",
+                    "Canceled",
+                    "In Advance",
+                    "During Check-out",
+                    "Checked in",
+                    "Checked out"
                 }));
                 panel2.add(cbFilterOption);
                 cbFilterOption.setBounds(130, 20, 120, 45);

@@ -20,22 +20,12 @@ public class ProfilePanel extends Panel {
 
     @Override
     public void addButtonListener(ActionListener al) {
-
-    }
-
-    @Override
-    public void setSelectedButton(JButton b) {
-
+        // TODO add button listeners to components
     }
 
     @Override
     public void reset() {
-
-    }
-
-    @Override
-    public void setCenterPanel(Panel panel) {
-
+        // TODO reset the components
     }
 
     @Override

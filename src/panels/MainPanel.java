@@ -28,88 +28,12 @@ public class MainPanel extends Panel {
     }
 
     @Override
-    public void setSelectedButton(JButton b) {
-
-    }
-
-    @Override
     public void reset() {
-        return;
-    }
-
-
-    @Override
-    public void setCenterPanel(Panel panel) {
-
     }
 
     @Override
     public Panel getPanelByName(String panelName) {
         return null;
-    }
-
-    private void btnAdminPanelMouseEntered(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnAdminPanelMouseExited(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnAdminPanelMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnGuestPanelMouseEntered(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnGuestPanelMouseExited(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnGuestPanelMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnHousePanelMouseEntered(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnHousePanelMouseExited(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnHousePanelMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnRecepPanelMouseEntered(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnRecepPanelMouseExited(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnRecepPanelMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    public JButton getBtnAdminPanel() {
-        return btnAdminPanel;
-    }
-
-    public JButton getBtnGuestPanel() {
-        return btnGuestPanel;
-    }
-
-    public JButton getBtnHousePanel() {
-        return btnHousePanel;
-    }
-
-    public JButton getBtnRecepPanel() {
-        return btnRecepPanel;
     }
 
     private void initComponents() {
@@ -168,20 +92,6 @@ public class MainPanel extends Panel {
             btnAdminPanel.setAlignmentY(0.0F);
             btnAdminPanel.setIconTextGap(0);
             btnAdminPanel.setActionCommand("Admin");
-            btnAdminPanel.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    btnAdminPanelMouseClicked(e);
-                }
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    btnAdminPanelMouseEntered(e);
-                }
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    btnAdminPanelMouseExited(e);
-                }
-            });
             sidePanel.add(btnAdminPanel);
 
             //---- btnGuestPanel ----
@@ -194,20 +104,6 @@ public class MainPanel extends Panel {
             btnGuestPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             btnGuestPanel.setAlignmentY(0.0F);
             btnGuestPanel.setIconTextGap(0);
-            btnGuestPanel.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    btnGuestPanelMouseClicked(e);
-                }
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    btnGuestPanelMouseEntered(e);
-                }
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    btnGuestPanelMouseExited(e);
-                }
-            });
             sidePanel.add(btnGuestPanel);
 
             //---- btnHousePanel ----
@@ -220,20 +116,6 @@ public class MainPanel extends Panel {
             btnHousePanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             btnHousePanel.setAlignmentY(0.0F);
             btnHousePanel.setIconTextGap(0);
-            btnHousePanel.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    btnHousePanelMouseClicked(e);
-                }
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    btnHousePanelMouseEntered(e);
-                }
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    btnHousePanelMouseExited(e);
-                }
-            });
             sidePanel.add(btnHousePanel);
 
             //---- btnRecepPanel ----
@@ -247,20 +129,6 @@ public class MainPanel extends Panel {
             btnRecepPanel.setMaximumSize(new Dimension(106, 40));
             btnRecepPanel.setAlignmentY(0.0F);
             btnRecepPanel.setIconTextGap(0);
-            btnRecepPanel.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    btnRecepPanelMouseClicked(e);
-                }
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    btnRecepPanelMouseEntered(e);
-                }
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    btnRecepPanelMouseExited(e);
-                }
-            });
             sidePanel.add(btnRecepPanel);
         }
         add(sidePanel, BorderLayout.NORTH);

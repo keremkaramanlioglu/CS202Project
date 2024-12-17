@@ -56,12 +56,12 @@ new FormModel {
 								add( null )
 							} )
 						}, new java.util.Vector {
-							add( "schedule_id" )
-							add( "housekeeper_ssn" )
-							add( "receptionist_ssn" )
-							add( "room_id" )
-							add( "cleanin_date" )
-							add( "service_status" )
+							add( "Schedule ID" )
+							add( "Housekeeper SSN" )
+							add( "Receptionist SSN" )
+							add( "Room ID" )
+							add( "Cleaning Date" )
+							add( "Status" )
 						}, new java.util.Vector {
 							add( class java.lang.Integer )
 							add( class java.lang.String )
@@ -102,37 +102,41 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "textField1"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 15
+						"x": 30
 						"y": 30
-						"width": 90
+						"width": 100
+						"height": 34
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "textField2"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 110
+						"x": 135
 						"y": 30
-						"width": 90
+						"width": 100
+						"height": 34
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "textField3"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 205
+						"x": 240
 						"y": 30
-						"width": 90
+						"width": 100
+						"height": 34
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "textField4"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 306
-						"y": 29
-						"width": 97
+						"x": 345
+						"y": 30
+						"width": 100
+						"height": 34
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button1"
 						"text": "Add"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 10
-						"y": 155
+						"y": 140
 						"width": 100
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
@@ -140,48 +144,58 @@ new FormModel {
 						"text": "Delete"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 120
-						"y": 155
+						"y": 140
 						"width": 103
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button3"
 						"text": "Update"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 230
-						"y": 155
+						"x": 235
+						"y": 140
 						"width": 100
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label2"
-						"text": "Room Id:"
+						"text": "Housekeeper SSN:"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 20
-						"y": 6
-						"width": 76
+						"x": 25
+						"y": 10
+						"width": 85
+						"height": 24
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label3"
-						"text": "text"
+						"text": "Recetionist SSN:"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 115
-						"y": 6
+						"x": 135
+						"y": 15
 						"width": 80
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label4"
-						"text": "text"
+						"text": "Room ID:"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 210
-						"y": 6
+						"x": 235
+						"y": 15
 						"width": 80
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label5"
-						"text": "text"
+						"text": "Cleaning Date:"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 310
-						"y": 6
+						"x": 340
+						"y": 15
 						"width": 91
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "checkBox1"
+						"text": "Completed"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 30
+						"y": 70
+						"width": 105
+						"height": 32
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
@@ -189,6 +203,15 @@ new FormModel {
 					"preferredSize": new java.awt.Dimension( 400, 200 )
 					add( new FormComponent( "javax.swing.JComboBox" ) {
 						name: "comboBox1"
+						"model": new javax.swing.DefaultComboBoxModel {
+							selectedItem: "Schedule ID"
+							addElement( "Schedule ID" )
+							addElement( "Housekeeper SSN" )
+							addElement( "Receptionist SSN" )
+							addElement( "Room ID" )
+							addElement( "Cleaning Date" )
+							addElement( "Status" )
+						}
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 25
 						"y": 23
@@ -196,6 +219,20 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JComboBox" ) {
 						name: "comboBox2"
+						"model": new javax.swing.DefaultComboBoxModel {
+							selectedItem: "None"
+							addElement( "None" )
+							addElement( "==" )
+							addElement( "!=" )
+							addElement( "<" )
+							addElement( ">" )
+							addElement( "<=" )
+							addElement( ">=" )
+							addElement( "between" )
+							addElement( "contains" )
+							addElement( "Pending" )
+							addElement( "Completed" )
+						}
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 135
 						"y": 23

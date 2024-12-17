@@ -23,7 +23,6 @@ new FormModel {
 					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 					"focusable": false
 					"cursor": &Cursor0 new java.awt.Cursor( 12 )
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnRoomsMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnUsers"
@@ -37,7 +36,6 @@ new FormModel {
 					auxiliary() {
 						"JavaCodeGenerator.variableName": "btnUsers"
 					}
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnUsersMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnEmployees"
@@ -52,7 +50,6 @@ new FormModel {
 						"JavaCodeGenerator.variableGetter": true
 						"JavaCodeGenerator.variableName": "btnEmployees"
 					}
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnEmployeesMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnFinance"
@@ -67,7 +64,6 @@ new FormModel {
 						"JavaCodeGenerator.variableGetter": true
 						"JavaCodeGenerator.variableName": "btnFinance"
 					}
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnFinanceMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnBookings"
@@ -82,7 +78,6 @@ new FormModel {
 						"JavaCodeGenerator.variableGetter": true
 						"JavaCodeGenerator.variableName": "btnBookings"
 					}
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnBookingsMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnHousekeeping"
@@ -97,7 +92,6 @@ new FormModel {
 						"JavaCodeGenerator.variableGetter": true
 						"JavaCodeGenerator.variableName": "btnHousekeeping"
 					}
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnHousekeepingMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnBack"
@@ -112,7 +106,6 @@ new FormModel {
 						"JavaCodeGenerator.variableGetter": true
 						"JavaCodeGenerator.variableName": "btnBack"
 					}
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnBackMouseClicked", true ) )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "West"

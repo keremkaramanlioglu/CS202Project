@@ -17,9 +17,9 @@ import javax.swing.*;
  * @author kerem
  */
 public class GuestPanel extends Panel {
-    private Panel bookARoomPanel;
-    private Panel myBookingsPanel;
-    private Panel profilePanel;
+    private final Panel bookARoomPanel;
+    private final Panel myBookingsPanel;
+    private final Panel profilePanel;
 
     public GuestPanel() {
         initComponents();
@@ -30,34 +30,12 @@ public class GuestPanel extends Panel {
         super.prevSelectedButton = null;
     }
 
-//    @Override
-//    public void setSelectedButton(JButton button) {
-//        if (prevSelectedButton == button) return;
-//        if (prevSelectedButton != null) {
-//            prevSelectedButton.setBackground(MainPanel.sidePanelColor);
-//        }
-//        prevSelectedButton = button;
-//        button.setBackground(MainPanel.centerPanelColor);
-//    }
-
     @Override
     public void reset() {
         if(super.prevSelectedButton != null) super.prevSelectedButton.setBackground(MainPanel.sidePanelColor);
         super.prevSelectedButton = null;
     }
 
-//    @Override
-//    public void setCenterPanel(Panel panel) {
-//        if (prevCenterPanel == panel) return;  // TODO maybe dont panel class absract for the functions that does the same thing
-//        if (prevCenterPanel != null) {
-//            prevCenterPanel.reset();
-//            this.remove(prevCenterPanel);
-//        }
-//        this.add(panel, BorderLayout.CENTER);
-//        prevCenterPanel = panel;
-//        this.revalidate();
-//        this.repaint();
-//    }
 
     @Override
     public Panel getPanelByName(String panelName) {
@@ -77,26 +55,27 @@ public class GuestPanel extends Panel {
         btnBookARoom.addActionListener(l);
     }
 
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
-        panel1 = new JPanel();
+        pnlSide = new JPanel();
         btnBookARoom = new JButton();
         btnMyBookings = new JButton();
         btnProfile = new JButton();
         btnBack = new JButton();
-        panel2 = new JPanel();
+        pnlHeader = new JPanel();
         label1 = new JLabel();
 
         //======== this ========
-
+        setBackground(new Color(0x666666));
         setLayout(new BorderLayout());
 
-        //======== panel1 ========
+        //======== pnlSide ========
         {
-            panel1.setPreferredSize(new Dimension(120, 0));
-            panel1.setBackground(new Color(0x333333));
-            panel1.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
+            pnlSide.setPreferredSize(new Dimension(120, 0));
+            pnlSide.setBackground(new Color(0x333333));
+            pnlSide.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
 
             //---- btnBookARoom ----
             btnBookARoom.setText("Book a room");
@@ -107,7 +86,7 @@ public class GuestPanel extends Panel {
             btnBookARoom.setFocusable(false);
             btnBookARoom.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             btnBookARoom.setHorizontalAlignment(SwingConstants.CENTER);
-            panel1.add(btnBookARoom);
+            pnlSide.add(btnBookARoom);
 
             //---- btnMyBookings ----
             btnMyBookings.setText("My Bookings");
@@ -117,7 +96,7 @@ public class GuestPanel extends Panel {
             btnMyBookings.setPreferredSize(new Dimension(120, 40));
             btnMyBookings.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             btnMyBookings.setFocusable(false);
-            panel1.add(btnMyBookings);
+            pnlSide.add(btnMyBookings);
 
             //---- btnProfile ----
             btnProfile.setText("Profile");
@@ -127,7 +106,7 @@ public class GuestPanel extends Panel {
             btnProfile.setPreferredSize(new Dimension(120, 40));
             btnProfile.setFocusable(false);
             btnProfile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            panel1.add(btnProfile);
+            pnlSide.add(btnProfile);
 
             //---- btnBack ----
             btnBack.setText("Back");
@@ -137,15 +116,15 @@ public class GuestPanel extends Panel {
             btnBack.setPreferredSize(new Dimension(120, 40));
             btnBack.setFocusable(false);
             btnBack.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            panel1.add(btnBack);
+            pnlSide.add(btnBack);
         }
-        add(panel1, BorderLayout.WEST);
+        add(pnlSide, BorderLayout.WEST);
 
-        //======== panel2 ========
+        //======== pnlHeader ========
         {
-            panel2.setPreferredSize(new Dimension(0, 50));
-            panel2.setBackground(new Color(0x333333));
-            panel2.setLayout(new BorderLayout());
+            pnlHeader.setPreferredSize(new Dimension(0, 50));
+            pnlHeader.setBackground(new Color(0x333333));
+            pnlHeader.setLayout(new BorderLayout());
 
             //---- label1 ----
             label1.setText("Guest Panel");
@@ -153,20 +132,20 @@ public class GuestPanel extends Panel {
             label1.setFont(new Font("JetBrains Mono Medium", Font.BOLD, 20));
             label1.setBackground(new Color(0x333333));
             label1.setForeground(Color.white);
-            panel2.add(label1, BorderLayout.CENTER);
+            pnlHeader.add(label1, BorderLayout.CENTER);
         }
-        add(panel2, BorderLayout.NORTH);
+        add(pnlHeader, BorderLayout.NORTH);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
-    private JPanel panel1;
+    private JPanel pnlSide;
     private JButton btnBookARoom;
     private JButton btnMyBookings;
     private JButton btnProfile;
     private JButton btnBack;
-    private JPanel panel2;
+    private JPanel pnlHeader;
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

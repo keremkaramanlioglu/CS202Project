@@ -14,28 +14,14 @@ public class ReceptionistPanel extends Panel {
     }
 
     @Override
-    public void setSelectedButton(JButton button) {
-        if (prevSelectedButton == button) return;
-        if (prevSelectedButton != null) {
-            prevSelectedButton.setBackground(MainPanel.sidePanelColor);
-        }
-        prevSelectedButton = button;
-        button.setBackground(MainPanel.centerPanelColor);
-    }
-
-    @Override
     public void reset() {
         if(prevSelectedButton != null) prevSelectedButton.setBackground(MainPanel.sidePanelColor);
         prevSelectedButton = null;
     }
 
     @Override
-    public void setCenterPanel(Panel panel) {
-
-    }
-
-    @Override
     public Panel getPanelByName(String panelName) {
+        // TODO implement this panels sub panels
         return null;
     }
 
@@ -45,36 +31,13 @@ public class ReceptionistPanel extends Panel {
         btnHousekeeping.addActionListener(l);
         btnRooms.addActionListener(l);
         btnBack.addActionListener(l);
-    }
-
-    private void btnRoomsMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnHousekeepingMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnBackMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    public JButton getBtnRooms() {
-        return btnRooms;
-    }
-
-    public JButton getBtnBack() {
-        return btnBack;
-    }
-
-    public JButton getBtnHousekeeping() {
-        return btnHousekeeping;
+        // TODO add button listeners of recep. sub panels
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
-        panel1 = new JPanel();
+        pnlSide = new JPanel();
         btnBookings = new JButton();
         btnHousekeeping = new JButton();
         btnRooms = new JButton();
@@ -84,19 +47,13 @@ public class ReceptionistPanel extends Panel {
 
         //======== this ========
         setBackground(new Color(0x666666));
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
-        EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing
-        .border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),
-        java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener()
-        {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName()))
-        throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
-        //======== panel1 ========
+        //======== pnlSide ========
         {
-            panel1.setPreferredSize(new Dimension(120, 0));
-            panel1.setBackground(new Color(0x333333));
-            panel1.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
+            pnlSide.setPreferredSize(new Dimension(120, 0));
+            pnlSide.setBackground(new Color(0x333333));
+            pnlSide.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
 
             //---- btnBookings ----
             btnBookings.setText("Bookings");
@@ -106,13 +63,7 @@ public class ReceptionistPanel extends Panel {
             btnBookings.setBorder(null);
             btnBookings.setFocusable(false);
             btnBookings.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnBookings.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    btnRoomsMouseClicked(e);
-                }
-            });
-            panel1.add(btnBookings);
+            pnlSide.add(btnBookings);
 
             //---- btnHousekeeping ----
             btnHousekeeping.setText("Housekeeping");
@@ -122,13 +73,7 @@ public class ReceptionistPanel extends Panel {
             btnHousekeeping.setPreferredSize(new Dimension(120, 40));
             btnHousekeeping.setFocusable(false);
             btnHousekeeping.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnHousekeeping.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    btnHousekeepingMouseClicked(e);
-                }
-            });
-            panel1.add(btnHousekeeping);
+            pnlSide.add(btnHousekeeping);
 
             //---- btnRooms ----
             btnRooms.setText("Rooms");
@@ -138,13 +83,7 @@ public class ReceptionistPanel extends Panel {
             btnRooms.setPreferredSize(new Dimension(120, 40));
             btnRooms.setFocusable(false);
             btnRooms.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnRooms.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    btnHousekeepingMouseClicked(e);
-                }
-            });
-            panel1.add(btnRooms);
+            pnlSide.add(btnRooms);
 
             //---- btnBack ----
             btnBack.setText("Back");
@@ -154,15 +93,9 @@ public class ReceptionistPanel extends Panel {
             btnBack.setPreferredSize(new Dimension(120, 40));
             btnBack.setFocusable(false);
             btnBack.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnBack.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    btnBackMouseClicked(e);
-                }
-            });
-            panel1.add(btnBack);
+            pnlSide.add(btnBack);
         }
-        add(panel1, BorderLayout.WEST);
+        add(pnlSide, BorderLayout.WEST);
 
         //======== pnlHeader ========
         {
@@ -185,7 +118,7 @@ public class ReceptionistPanel extends Panel {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
-    private JPanel panel1;
+    private JPanel pnlSide;
     private JButton btnBookings;
     private JButton btnHousekeeping;
     private JButton btnRooms;
