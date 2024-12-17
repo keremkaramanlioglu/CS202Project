@@ -50,8 +50,12 @@ public class Main {
 //            System.out.println(e.getMessage());
 //        }
 
-        new HotelManager(new HotelView());
-        //new DBConnectionControl();
+        try {
+            new HotelManager(new HotelView());
+            DBConnectionControl dbControl = new DBConnectionControl();
+            HotelDao hotelDao = new HotelDao(dbControl.getConnection());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
-
