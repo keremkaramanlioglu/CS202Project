@@ -58,6 +58,7 @@ new FormModel {
 						"name": "dateChooser"
 						"editable": false
 						"cursor": &Cursor0 new java.awt.Cursor( 12 )
+						"text": "Choose a Date!"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 35
 						"y": 80
@@ -69,6 +70,7 @@ new FormModel {
 						"name": "dateChooser"
 						"editable": false
 						"cursor": #Cursor0
+						"text": "Choose a Date!"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 40

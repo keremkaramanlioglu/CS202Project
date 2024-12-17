@@ -78,6 +78,13 @@ public class RoomsPanel extends Panel {
         button1 = new JButton();
 
         //======== this ========
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.
+        swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e",javax.swing.border
+        .TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dialo\u0067"
+        ,java.awt.Font.BOLD,12),java.awt.Color.red), getBorder
+        ())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java
+        .beans.PropertyChangeEvent e){if("borde\u0072".equals(e.getPropertyName()))throw new RuntimeException
+        ();}});
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -118,18 +125,21 @@ public class RoomsPanel extends Panel {
 
                 //---- btnAdd ----
                 btnAdd.setText("Add");
+                btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 selectionPanel.add(btnAdd);
-                btnAdd.setBounds(25, 170, 140, 60);
+                btnAdd.setBounds(20, 150, 140, 60);
 
                 //---- btnDelete ----
                 btnDelete.setText("Delete");
+                btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 selectionPanel.add(btnDelete);
-                btnDelete.setBounds(170, 170, 140, 60);
+                btnDelete.setBounds(170, 150, 140, 60);
 
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
+                btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 selectionPanel.add(btnUpdate);
-                btnUpdate.setBounds(315, 170, 140, 60);
+                btnUpdate.setBounds(320, 150, 140, 60);
 
                 //---- tfRoomType ----
                 tfRoomType.setToolTipText("Room Type");
@@ -211,6 +221,7 @@ public class RoomsPanel extends Panel {
                     "Room Price",
                     "Capacity"
                 }));
+                cbSelectColumn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 filterPanel.add(cbSelectColumn);
                 cbSelectColumn.setBounds(40, 35, 120, 45);
 
@@ -226,6 +237,7 @@ public class RoomsPanel extends Panel {
                     "between",
                     "contains"
                 }));
+                cbFilterOption.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 filterPanel.add(cbFilterOption);
                 cbFilterOption.setBounds(165, 35, 120, 45);
 
@@ -241,8 +253,9 @@ public class RoomsPanel extends Panel {
 
                 //---- button1 ----
                 button1.setText("Apply");
+                button1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 filterPanel.add(button1);
-                button1.setBounds(45, 170, 235, 60);
+                button1.setBounds(45, 150, 235, 60);
 
                 {
                     // compute preferred size

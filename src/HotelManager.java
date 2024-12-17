@@ -61,7 +61,7 @@ public class HotelManager {
             JTextField tf = (JTextField) e.getSource();
             switch (tf.getName()) {
                 case "dateChooser":
-                    tf.setText(datePicker.setPickedDate());
+                    if (tf.isEditable()) tf.setText(datePicker.setPickedDate());
                     break;
             }
         }

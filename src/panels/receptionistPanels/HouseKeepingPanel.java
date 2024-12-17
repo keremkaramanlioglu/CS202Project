@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Tue Dec 17 21:24:08 TRT 2024
  */
 
-package receptionistPanels;
+package panels.receptionistPanels;
 
 import java.awt.*;
 import javax.swing.*;

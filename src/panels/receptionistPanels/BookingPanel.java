@@ -1,4 +1,4 @@
-package receptionistPanels;
+package panels.receptionistPanels;
 
 import javax.swing.*;
 import javax.swing.table.*;
@@ -6,11 +6,17 @@ import panels.Panel;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 
 public class BookingPanel extends Panel {
 
     @Override
     public void addButtonListener(ActionListener al) {
+
+    }
+
+    @Override
+    public void addMouseListener(MouseListener ml) {
 
     }
 

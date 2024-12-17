@@ -72,12 +72,11 @@ public class HousekeepingPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(1920, 1080));
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
-        border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder. CENTER
-        ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069alog", java .awt . Font
-        . BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener(
-        new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order"
-        .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0
+        ,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
+        ,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt.Color.red),
+         getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+        ){if("\u0062ord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -137,16 +136,20 @@ public class HousekeepingPanel extends Panel {
                 //---- tfCleaningDate ----
                 tfCleaningDate.setEditable(false);
                 tfCleaningDate.setName("dateChooser");
+                tfCleaningDate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                tfCleaningDate.setText("Choose a Date!");
                 pnlSelection.add(tfCleaningDate);
                 tfCleaningDate.setBounds(345, 30, 100, 34);
 
                 //---- btnAdd ----
                 btnAdd.setText("Add");
+                btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlSelection.add(btnAdd);
                 btnAdd.setBounds(15, 125, 100, 60);
 
                 //---- btnDelete ----
                 btnDelete.setText("Delete");
+                btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlSelection.add(btnDelete);
                 btnDelete.setBounds(120, 125, 100, 60);
 
@@ -177,6 +180,7 @@ public class HousekeepingPanel extends Panel {
 
                 //---- checkBox1 ----
                 checkBox1.setText("Completed");
+                checkBox1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlSelection.add(checkBox1);
                 checkBox1.setBounds(30, 70, 105, 32);
 
@@ -211,6 +215,7 @@ public class HousekeepingPanel extends Panel {
                     "Cleaning Date",
                     "Status"
                 }));
+                comboBox1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlFilter.add(comboBox1);
                 comboBox1.setBounds(25, 23, 98, comboBox1.getPreferredSize().height);
 
@@ -228,6 +233,7 @@ public class HousekeepingPanel extends Panel {
                     "Pending",
                     "Completed"
                 }));
+                comboBox2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlFilter.add(comboBox2);
                 comboBox2.setBounds(135, 23, 105, comboBox2.getPreferredSize().height);
                 pnlFilter.add(textField6);
@@ -240,6 +246,7 @@ public class HousekeepingPanel extends Panel {
 
                 //---- btnApply ----
                 btnApply.setText("Apply");
+                btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlFilter.add(btnApply);
                 btnApply.setBounds(25, 125, 215, 60);
 

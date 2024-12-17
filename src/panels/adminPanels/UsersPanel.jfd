@@ -163,6 +163,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btnUpdate"
 						"text": "Update"
+						"cursor": &Cursor1 new java.awt.Cursor( 12 )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 50
@@ -289,6 +290,7 @@ new FormModel {
 							addElement( "Gender" )
 							addElement( "Zip Code" )
 						}
+						"cursor": #Cursor1
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 45
 						"y": 35
@@ -309,6 +311,7 @@ new FormModel {
 							addElement( "between" )
 							addElement( "contains" )
 						}
+						"cursor": #Cursor1
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 120
 						"height": 40
@@ -334,6 +337,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btnApplyFilter"
 						"text": "Apply Filters"
+						"cursor": #Cursor1
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 45
 						"y": 150

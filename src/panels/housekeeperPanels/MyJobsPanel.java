@@ -8,6 +8,7 @@ import panels.Panel;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -22,7 +23,14 @@ public class MyJobsPanel extends Panel {
     @Override
     public void addButtonListener(ActionListener al) {
 
-    }@Override
+    }
+
+    @Override
+    public void addMouseListener(MouseListener ml) {
+
+    }
+
+    @Override
     public void reset() {
 
     }@Override

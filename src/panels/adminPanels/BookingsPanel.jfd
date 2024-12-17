@@ -161,6 +161,7 @@ new FormModel {
 						name: "cbCheckin"
 						"text": "Checked in"
 						"font": new java.awt.Font( "Inter", 0, 12 )
+						"cursor": &Cursor0 new java.awt.Cursor( 12 )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 125
 						"y": 105
@@ -171,6 +172,7 @@ new FormModel {
 						name: "cbCheckout"
 						"text": "Checked out"
 						"font": new java.awt.Font( "Inter", 0, 12 )
+						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 34
@@ -180,7 +182,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btnAdd"
 						"text": "Add"
-						"cursor": &Cursor0 new java.awt.Cursor( 12 )
+						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 60

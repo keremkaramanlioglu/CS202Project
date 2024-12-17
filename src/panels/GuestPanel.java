@@ -7,9 +7,7 @@ import panels.guestPanels.ProfilePanel;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-/*
- * Created by JFormDesigner on Sat Dec 07 23:18:30 TRT 2024
- */
+
 
 
 
@@ -19,13 +17,13 @@ import javax.swing.*;
 public class GuestPanel extends Panel {
     private final Panel pnlBookARoom;
     private final Panel pnlMyBookings;
-    private final Panel profilePanel;
+    private final Panel pnlProfile;
 
     public GuestPanel() {
         initComponents();
         pnlBookARoom = new BookARoomPanel();
         pnlMyBookings = new MyBookingsPanel();
-        profilePanel = new ProfilePanel();
+        pnlProfile = new ProfilePanel();
         super.prevCenterPanel = null;
         super.prevSelectedButton = null;
     }
@@ -43,7 +41,7 @@ public class GuestPanel extends Panel {
 
             case "Book a room" -> pnlBookARoom;
             case "My Bookings" -> pnlMyBookings;
-            case "Profile" -> profilePanel;
+            case "Profile" -> pnlProfile;
             default -> null;
         };
     }
@@ -60,6 +58,7 @@ public class GuestPanel extends Panel {
     public void addMouseListener(MouseListener ml) {
         pnlMyBookings.addMouseListener(ml);
         pnlBookARoom.addMouseListener(ml);
+        pnlProfile.addMouseListener(ml);
     }
 
 
