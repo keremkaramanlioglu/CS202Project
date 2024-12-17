@@ -127,6 +127,8 @@ new FormModel {
 						name: "tfCleaningDate"
 						"editable": false
 						"name": "dateChooser"
+						"cursor": &Cursor0 new java.awt.Cursor( 12 )
+						"text": "Choose a Date!"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 345
 						"y": 30
@@ -136,6 +138,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btnAdd"
 						"text": "Add"
+						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 15
 						"y": 125
@@ -145,6 +148,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btnDelete"
 						"text": "Delete"
+						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 120
 						"y": 125
@@ -196,6 +200,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JCheckBox" ) {
 						name: "checkBox1"
 						"text": "Completed"
+						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 30
 						"y": 70
@@ -217,6 +222,7 @@ new FormModel {
 							addElement( "Cleaning Date" )
 							addElement( "Status" )
 						}
+						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 25
 						"y": 23
@@ -238,6 +244,7 @@ new FormModel {
 							addElement( "Pending" )
 							addElement( "Completed" )
 						}
+						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 135
 						"y": 23
@@ -262,6 +269,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btnApply"
 						"text": "Apply"
+						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 25
 						"y": 125

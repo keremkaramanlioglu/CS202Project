@@ -74,11 +74,13 @@ public class BookARoomPanel extends Panel {
         btnBook = new JButton();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
-        0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
-        . BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
-        red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
-        beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+        . border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder
+        . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .
+        awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder( )) )
+        ;  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+        ;
         setLayout(new BorderLayout());
 
         //======== pnlReservableHotels ========
@@ -112,6 +114,7 @@ public class BookARoomPanel extends Panel {
                 tfCheckInDate.setName("dateChooser");
                 tfCheckInDate.setEditable(false);
                 tfCheckInDate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                tfCheckInDate.setText("Choose a Date!");
                 pnlDate.add(tfCheckInDate);
                 tfCheckInDate.setBounds(35, 80, 100, 40);
 
@@ -119,6 +122,7 @@ public class BookARoomPanel extends Panel {
                 tfCheckOutDate.setName("dateChooser");
                 tfCheckOutDate.setEditable(false);
                 tfCheckOutDate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                tfCheckOutDate.setText("Choose a Date!");
                 pnlDate.add(tfCheckOutDate);
                 tfCheckOutDate.setBounds(155, 80, 100, 40);
 

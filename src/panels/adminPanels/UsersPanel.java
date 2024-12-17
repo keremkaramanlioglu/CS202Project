@@ -79,6 +79,14 @@ public class UsersPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(900, 700));
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(
+        new javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e"
+        ,javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
+        ,new java.awt.Font("Dialo\u0067",java.awt.Font.BOLD,12)
+        ,java.awt.Color.red), getBorder())); addPropertyChangeListener(
+        new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+        ){if("borde\u0072".equals(e.getPropertyName()))throw new RuntimeException()
+        ;}});
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -95,7 +103,7 @@ public class UsersPanel extends Panel {
                     "Ssn", "First Name", "Last Name", "Birth Date", "Room ID", "E-Mail", "Phone No", "Gender", "Zip Code"
                 }
             ) {
-                final Class<?>[] columnTypes = new Class<?>[] {
+                Class<?>[] columnTypes = new Class<?>[] {
                     Integer.class, String.class, String.class, String.class, Integer.class, String.class, String.class, String.class, Integer.class
                 };
                 @Override
@@ -127,6 +135,7 @@ public class UsersPanel extends Panel {
                 tfBirthDate.setText("Choose a Date!");
                 tfBirthDate.setFont(new Font("Inter", Font.PLAIN, 11));
                 tfBirthDate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                tfBirthDate.setAction(null);
                 tfBirthDate.setName("dateChooser");
                 pnlSelection.add(tfBirthDate);
                 tfBirthDate.setBounds(15, 65, 80, 34);
@@ -149,6 +158,7 @@ public class UsersPanel extends Panel {
 
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
+                btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlSelection.add(btnUpdate);
                 btnUpdate.setBounds(375, 125, 100, 50);
 
@@ -237,6 +247,7 @@ public class UsersPanel extends Panel {
                     "Gender",
                     "Zip Code"
                 }));
+                cbColumnOption.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlFilter.add(cbColumnOption);
                 cbColumnOption.setBounds(45, 35, 120, 40);
 
@@ -252,6 +263,7 @@ public class UsersPanel extends Panel {
                     "between",
                     "contains"
                 }));
+                cbFilterOption.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlFilter.add(cbFilterOption);
                 cbFilterOption.setBounds(175, 35, 120, 40);
                 pnlFilter.add(tfFilterInput);
@@ -264,6 +276,7 @@ public class UsersPanel extends Panel {
 
                 //---- btnApplyFilter ----
                 btnApplyFilter.setText("Apply Filters");
+                btnApplyFilter.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlFilter.add(btnApplyFilter);
                 btnApplyFilter.setBounds(45, 150, 250, 40);
 

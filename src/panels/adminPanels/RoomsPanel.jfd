@@ -75,27 +75,30 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btnAdd"
 						"text": "Add"
+						"cursor": &Cursor0 new java.awt.Cursor( 12 )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 25
-						"y": 170
+						"x": 20
+						"y": 150
 						"width": 140
 						"height": 60
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btnDelete"
 						"text": "Delete"
+						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 170
-						"y": 170
+						"y": 150
 						"width": 140
 						"height": 60
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btnUpdate"
 						"text": "Update"
+						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 315
-						"y": 170
+						"x": 320
+						"y": 150
 						"width": 140
 						"height": 60
 					} )
@@ -203,6 +206,7 @@ new FormModel {
 							addElement( "Room Price" )
 							addElement( "Capacity" )
 						}
+						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 40
 						"y": 35
@@ -223,6 +227,7 @@ new FormModel {
 							addElement( "between" )
 							addElement( "contains" )
 						}
+						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 120
 						"height": 45
@@ -250,9 +255,10 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button1"
 						"text": "Apply"
+						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 45
-						"y": 170
+						"y": 150
 						"width": 235
 						"height": 60
 					} )
