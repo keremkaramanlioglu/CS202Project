@@ -25,17 +25,7 @@ public class HousekeepingPanel extends Panel {
     }
 
     @Override
-    public void setSelectedButton(JButton b) {
-
-    }
-
-    @Override
     public void reset() {
-
-    }
-
-    @Override
-    public void setCenterPanel(Panel panel) {
 
     }
 
@@ -63,21 +53,21 @@ public class HousekeepingPanel extends Panel {
         label3 = new JLabel();
         label4 = new JLabel();
         label5 = new JLabel();
+        checkBox1 = new JCheckBox();
         pnlFilter = new JPanel();
-        comboBox1 = new JComboBox();
-        comboBox2 = new JComboBox();
+        comboBox1 = new JComboBox<>();
+        comboBox2 = new JComboBox<>();
         textField6 = new JTextField();
         label1 = new JLabel();
 
         //======== this ========
         setPreferredSize(new Dimension(1920, 1080));
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
-        swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border
-        . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog"
-        ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder
-        ( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
-        .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException
-        ( ); }} );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border
+        .EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder.CENTER,javax
+        .swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,
+        12),java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans
+        .PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.
+        getPropertyName()))throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -99,7 +89,7 @@ public class HousekeepingPanel extends Panel {
                         {null, null, null, null, null, null},
                     },
                     new String[] {
-                        "schedule_id", "housekeeper_ssn", "receptionist_ssn", "room_id", "cleanin_date", "service_status"
+                        "Schedule ID", "Housekeeper SSN", "Receptionist SSN", "Room ID", "Cleaning Date", "Status"
                     }
                 ) {
                     Class<?>[] columnTypes = new Class<?>[] {
@@ -128,48 +118,53 @@ public class HousekeepingPanel extends Panel {
                 pnlSelection.setPreferredSize(new Dimension(400, 200));
                 pnlSelection.setLayout(null);
                 pnlSelection.add(textField1);
-                textField1.setBounds(15, 30, 90, textField1.getPreferredSize().height);
+                textField1.setBounds(30, 30, 100, 34);
                 pnlSelection.add(textField2);
-                textField2.setBounds(110, 30, 90, textField2.getPreferredSize().height);
+                textField2.setBounds(135, 30, 100, 34);
                 pnlSelection.add(textField3);
-                textField3.setBounds(205, 30, 90, textField3.getPreferredSize().height);
+                textField3.setBounds(240, 30, 100, 34);
                 pnlSelection.add(textField4);
-                textField4.setBounds(306, 29, 97, textField4.getPreferredSize().height);
+                textField4.setBounds(345, 30, 100, 34);
 
                 //---- button1 ----
                 button1.setText("Add");
                 pnlSelection.add(button1);
-                button1.setBounds(10, 155, 100, button1.getPreferredSize().height);
+                button1.setBounds(10, 140, 100, button1.getPreferredSize().height);
 
                 //---- button2 ----
                 button2.setText("Delete");
                 pnlSelection.add(button2);
-                button2.setBounds(120, 155, 103, button2.getPreferredSize().height);
+                button2.setBounds(120, 140, 103, button2.getPreferredSize().height);
 
                 //---- button3 ----
                 button3.setText("Update");
                 pnlSelection.add(button3);
-                button3.setBounds(230, 155, 100, button3.getPreferredSize().height);
+                button3.setBounds(235, 140, 100, button3.getPreferredSize().height);
 
                 //---- label2 ----
-                label2.setText("Room Id:");
+                label2.setText("Housekeeper SSN:");
                 pnlSelection.add(label2);
-                label2.setBounds(20, 6, 76, label2.getPreferredSize().height);
+                label2.setBounds(25, 10, 85, 24);
 
                 //---- label3 ----
-                label3.setText("text");
+                label3.setText("Recetionist SSN:");
                 pnlSelection.add(label3);
-                label3.setBounds(115, 6, 80, label3.getPreferredSize().height);
+                label3.setBounds(135, 15, 80, label3.getPreferredSize().height);
 
                 //---- label4 ----
-                label4.setText("text");
+                label4.setText("Room ID:");
                 pnlSelection.add(label4);
-                label4.setBounds(210, 6, 80, label4.getPreferredSize().height);
+                label4.setBounds(235, 15, 80, label4.getPreferredSize().height);
 
                 //---- label5 ----
-                label5.setText("text");
+                label5.setText("Cleaning Date:");
                 pnlSelection.add(label5);
-                label5.setBounds(310, 6, 91, label5.getPreferredSize().height);
+                label5.setBounds(340, 15, 91, label5.getPreferredSize().height);
+
+                //---- checkBox1 ----
+                checkBox1.setText("Completed");
+                pnlSelection.add(checkBox1);
+                checkBox1.setBounds(30, 70, 105, 32);
 
                 {
                     // compute preferred size
@@ -192,8 +187,33 @@ public class HousekeepingPanel extends Panel {
             {
                 pnlFilter.setPreferredSize(new Dimension(400, 200));
                 pnlFilter.setLayout(null);
+
+                //---- comboBox1 ----
+                comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "Schedule ID",
+                    "Housekeeper SSN",
+                    "Receptionist SSN",
+                    "Room ID",
+                    "Cleaning Date",
+                    "Status"
+                }));
                 pnlFilter.add(comboBox1);
                 comboBox1.setBounds(25, 23, 98, comboBox1.getPreferredSize().height);
+
+                //---- comboBox2 ----
+                comboBox2.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None",
+                    "==",
+                    "!=",
+                    "<",
+                    ">",
+                    "<=",
+                    ">=",
+                    "between",
+                    "contains",
+                    "Pending",
+                    "Completed"
+                }));
                 pnlFilter.add(comboBox2);
                 comboBox2.setBounds(135, 23, 105, comboBox2.getPreferredSize().height);
                 pnlFilter.add(textField6);
@@ -243,9 +263,10 @@ public class HousekeepingPanel extends Panel {
     private JLabel label3;
     private JLabel label4;
     private JLabel label5;
+    private JCheckBox checkBox1;
     private JPanel pnlFilter;
-    private JComboBox comboBox1;
-    private JComboBox comboBox2;
+    private JComboBox<String> comboBox1;
+    private JComboBox<String> comboBox2;
     private JTextField textField6;
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on

@@ -5,7 +5,6 @@ import panels.adminPanels.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicOptionPaneUI;
 
 public class AdminPanel extends Panel {
     private JButton prevSelectedButton;
@@ -29,16 +28,6 @@ public class AdminPanel extends Panel {
         prevCenterPanel = null;
     }
 
-//    @Override
-//    public void setSelectedButton(JButton button) {
-//        if (prevSelectedButton == button) return;
-//        if (prevSelectedButton != null) {
-//            prevSelectedButton.setBackground(MainPanel.sidePanelColor);
-//        }
-//        prevSelectedButton = button;
-//        button.setBackground(MainPanel.centerPanelColor);
-//    }
-
     @Override
     public void reset() {
         if(prevSelectedButton != null) prevSelectedButton.setBackground(MainPanel.sidePanelColor);
@@ -46,21 +35,8 @@ public class AdminPanel extends Panel {
         prevSelectedButton = null;
         if (prevCenterPanel != null) this.remove(prevCenterPanel);
         prevCenterPanel = null;
-        // other components needs reset too.
+        // TODO other components needs reset too.
     }
-
-//    @Override
-//    public void setCenterPanel(Panel panel) {
-//        if (prevCenterPanel == panel) return;
-//        if (prevCenterPanel != null) {
-//            prevCenterPanel.reset();
-//            this.remove(prevCenterPanel);
-//        }
-//        this.add(panel, BorderLayout.CENTER);
-//        prevCenterPanel = panel;
-//        this.revalidate();
-//        this.repaint();
-//    }
 
     @Override
     public Panel getPanelByName(String panelName) {
@@ -86,54 +62,6 @@ public class AdminPanel extends Panel {
         btnBack.addActionListener(l);
     }
 
-    private void btnRoomsMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnUsersMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnEmployeesMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnFinanceMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnBookingsMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnHousekeepingMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void btnBackMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    public JButton getBtnEmployees() {
-        return btnEmployees;
-    }
-
-    public JButton getBtnFinance() {
-        return btnFinance;
-    }
-
-    public JButton getBtnBookings() {
-        return btnBookings;
-    }
-
-    public JButton getBtnHousekeeping() {
-        return btnHousekeeping;
-    }
-
-    public JButton getBtnBack() {
-        return btnBack;
-    }
-
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
@@ -150,13 +78,6 @@ public class AdminPanel extends Panel {
 
         //======== this ========
         setBackground(new Color(0x666666));
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
-        . swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing
-        . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
-        Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
-        ) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
-        public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName (
-        ) )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== panel1 ========
@@ -173,12 +94,6 @@ public class AdminPanel extends Panel {
             btnRooms.setBorder(null);
             btnRooms.setFocusable(false);
             btnRooms.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnRooms.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    btnRoomsMouseClicked(e);
-                }
-            });
             panel1.add(btnRooms);
 
             //---- btnUsers ----
@@ -189,12 +104,6 @@ public class AdminPanel extends Panel {
             btnUsers.setPreferredSize(new Dimension(120, 40));
             btnUsers.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             btnUsers.setFocusable(false);
-            btnUsers.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    btnUsersMouseClicked(e);
-                }
-            });
             panel1.add(btnUsers);
 
             //---- btnEmployees ----
@@ -205,12 +114,6 @@ public class AdminPanel extends Panel {
             btnEmployees.setPreferredSize(new Dimension(120, 40));
             btnEmployees.setFocusable(false);
             btnEmployees.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnEmployees.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    btnEmployeesMouseClicked(e);
-                }
-            });
             panel1.add(btnEmployees);
 
             //---- btnFinance ----
@@ -221,12 +124,6 @@ public class AdminPanel extends Panel {
             btnFinance.setPreferredSize(new Dimension(120, 40));
             btnFinance.setFocusable(false);
             btnFinance.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnFinance.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    btnFinanceMouseClicked(e);
-                }
-            });
             panel1.add(btnFinance);
 
             //---- btnBookings ----
@@ -237,12 +134,6 @@ public class AdminPanel extends Panel {
             btnBookings.setPreferredSize(new Dimension(120, 40));
             btnBookings.setFocusable(false);
             btnBookings.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnBookings.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    btnBookingsMouseClicked(e);
-                }
-            });
             panel1.add(btnBookings);
 
             //---- btnHousekeeping ----
@@ -253,12 +144,6 @@ public class AdminPanel extends Panel {
             btnHousekeeping.setPreferredSize(new Dimension(120, 40));
             btnHousekeeping.setFocusable(false);
             btnHousekeeping.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnHousekeeping.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    btnHousekeepingMouseClicked(e);
-                }
-            });
             panel1.add(btnHousekeeping);
 
             //---- btnBack ----
@@ -269,12 +154,6 @@ public class AdminPanel extends Panel {
             btnBack.setPreferredSize(new Dimension(120, 40));
             btnBack.setFocusable(false);
             btnBack.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnBack.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    btnBackMouseClicked(e);
-                }
-            });
             panel1.add(btnBack);
         }
         add(panel1, BorderLayout.WEST);

@@ -19,18 +19,13 @@ public class UsersPanel extends Panel {
     public void addButtonListener(ActionListener al) {
 
     }
-    @Override
-    public void setSelectedButton(JButton b) {
 
-    }
     @Override
     public void reset() {
 
     }
-    @Override
-    public void setCenterPanel(Panel panel) {
 
-    }@Override
+    @Override
     public Panel getPanelByName(String panelName) {
         return null;
     } // comment
@@ -75,14 +70,6 @@ public class UsersPanel extends Panel {
         btnApplyFilter = new JButton();
 
         //======== this ========
-        setPreferredSize(new Dimension(900, 700));
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.
-        swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e",javax.swing.border
-        .TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dialo\u0067"
-        ,java.awt.Font.BOLD,12),java.awt.Color.red), getBorder
-        ())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java
-        .beans.PropertyChangeEvent e){if("borde\u0072".equals(e.getPropertyName()))throw new RuntimeException
-        ();}});
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -99,7 +86,7 @@ public class UsersPanel extends Panel {
                     "Ssn", "First Name", "Last Name", "Birth Date", "Room ID", "E-Mail", "Phone No", "Gender", "Zip Code"
                 }
             ) {
-                Class<?>[] columnTypes = new Class<?>[] {
+                final Class<?>[] columnTypes = new Class<?>[] {
                     Integer.class, String.class, String.class, String.class, Integer.class, String.class, String.class, String.class, Integer.class
                 };
                 @Override

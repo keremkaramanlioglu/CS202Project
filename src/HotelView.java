@@ -57,6 +57,7 @@ public class HotelView extends JFrame {
         this.activePanel = activePanel;
         this.setContentPane(activePanel);
         this.revalidate();
+        this.repaint();
     }
 
     public Panel getMainPanel() {
