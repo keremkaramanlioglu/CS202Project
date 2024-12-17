@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-public class Bookings {
+public class Booking {
     private int booking_id;
     private String c_ssn;
     private int room_id;
@@ -15,7 +15,7 @@ public class Bookings {
     private boolean c_check_in_status;
     private boolean c_check_out_status;
 
-    public Bookings(ResultSet rs) throws SQLException { // TODO : ADD TRY BLOCK
+    public Booking(ResultSet rs) throws SQLException { // TODO : ADD TRY BLOCK
         this.booking_id = rs.getInt("booking_id");
         this.c_ssn = rs.getString("c_ssn");
         this.room_id = rs.getInt("room_id");

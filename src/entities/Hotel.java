@@ -24,6 +24,16 @@ public class Hotel {
         this.zip_code = rs.getString("zip_code");
     }
 
+    public Hotel(String hotel_name, String hotel_phone, String hotel_email, double hotel_rating, String street, String no, String zip_code) {
+        this.hotel_name = hotel_name;
+        this.hotel_phone = hotel_phone;
+        this.hotel_email = hotel_email;
+        this.hotel_rating = hotel_rating;
+        this.street = street;
+        this.no = no;
+        this.zip_code = zip_code;
+    }
+
     public String getHotel_id() {
         return hotel_id;
     }
