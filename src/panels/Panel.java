@@ -3,6 +3,7 @@ package panels;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 
 public abstract class Panel extends JPanel {
     public Panel prevCenterPanel;
@@ -16,6 +17,7 @@ public abstract class Panel extends JPanel {
         prevSelectedButton = button;
         button.setBackground(MainPanel.centerPanelColor);
     }
+    public abstract void addMouseListener(MouseListener ml);
     public abstract void reset();
     public void setCenterPanel(Panel panel) {
         if (prevCenterPanel == panel) return;

@@ -8,6 +8,7 @@ import panels.Panel;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -25,6 +26,11 @@ public class RoomsPanel extends Panel {
         btnAdd.addActionListener(al);
         btnDelete.addActionListener(al);
         btnUpdate.addActionListener(al);
+    }
+
+    @Override
+    public void addMouseListener(MouseListener ml) {
+
     }
 
     @Override
