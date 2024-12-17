@@ -8,6 +8,7 @@ import panels.Panel;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import javax.swing.*;
 
 /**
@@ -20,6 +21,11 @@ public class FinancePanel extends Panel {
 
     @Override
     public void addButtonListener(ActionListener al) {
+
+    }
+
+    @Override
+    public void addMouseListener(MouseListener ml) {
 
     }
 

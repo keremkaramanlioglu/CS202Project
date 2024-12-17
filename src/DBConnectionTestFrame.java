@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.Objects;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.xml.transform.stream.StreamSource;
@@ -72,7 +73,7 @@ public class DBConnectionTestFrame extends JFrame {
         setForeground(SystemColor.textInactiveText);
         setTitle("Connect to a Database");
         setResizable(false);
-        setIconImage(new ImageIcon(getClass().getResource("/icons/MySQL.png")).getImage());
+        setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/MySQL.png"))).getImage());
         var contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 

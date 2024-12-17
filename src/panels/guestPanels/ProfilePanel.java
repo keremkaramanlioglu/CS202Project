@@ -8,6 +8,7 @@ import panels.Panel;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import javax.swing.*;
 
 /**
@@ -21,6 +22,11 @@ public class ProfilePanel extends Panel {
     @Override
     public void addButtonListener(ActionListener al) {
         // TODO add button listeners to components
+    }
+
+    @Override
+    public void addMouseListener(MouseListener ml) {
+
     }
 
     @Override

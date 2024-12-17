@@ -16,7 +16,6 @@ public class HotelDao {
     public void insertHotel(Hotel hotel) throws SQLException {
         String sql = "INSERT INTO Hotels (hotel_name, hotel_phone, " +
                 "hotel_email, hotel_rating, street, no, zip_code) VALUES(?, ?, ?, ?, ?, ?, ?)";
-        //con.setAutoCommit(false);
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(1, hotel.getHotel_name());
         stmt.setString(2, hotel.getHotel_phone());
@@ -48,7 +47,7 @@ public class HotelDao {
     public void updateCleaningSchedule(CleaningSchedule cleaningSchedule) {}
     public void deleteCleaningSchedule(CleaningSchedule cleaningSchedule) {}
 
-    public ArrayList<Room> getRooms(String filterColumn, String filterValue) {
+    public ArrayList<Room> getRooms(String filterColumn, String filterOption, String filterValue) {
         return null;
     }
     public ArrayList<Customer> getCustomers(String filterColumn, String filterValue) {

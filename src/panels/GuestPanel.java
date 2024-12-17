@@ -17,14 +17,14 @@ import javax.swing.*;
  * @author kerem
  */
 public class GuestPanel extends Panel {
-    private final Panel bookARoomPanel;
-    private final Panel myBookingsPanel;
+    private final Panel pnlBookARoom;
+    private final Panel pnlMyBookings;
     private final Panel profilePanel;
 
     public GuestPanel() {
         initComponents();
-        bookARoomPanel = new BookARoomPanel();
-        myBookingsPanel = new MyBookingsPanel();
+        pnlBookARoom = new BookARoomPanel();
+        pnlMyBookings = new MyBookingsPanel();
         profilePanel = new ProfilePanel();
         super.prevCenterPanel = null;
         super.prevSelectedButton = null;
@@ -40,8 +40,9 @@ public class GuestPanel extends Panel {
     @Override
     public Panel getPanelByName(String panelName) {
         return switch (panelName) {
-            case "Book a room" -> bookARoomPanel;
-            case "My Bookings" -> myBookingsPanel;
+
+            case "Book a room" -> pnlBookARoom;
+            case "My Bookings" -> pnlMyBookings;
             case "Profile" -> profilePanel;
             default -> null;
         };
@@ -53,6 +54,12 @@ public class GuestPanel extends Panel {
         btnProfile.addActionListener(l);
         btnMyBookings.addActionListener(l);
         btnBookARoom.addActionListener(l);
+    }
+
+    @Override
+    public void addMouseListener(MouseListener ml) {
+        pnlMyBookings.addMouseListener(ml);
+        pnlBookARoom.addMouseListener(ml);
     }
 
 

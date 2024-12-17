@@ -34,6 +34,11 @@ public class ReceptionistPanel extends Panel {
         // TODO add button listeners of recep. sub panels
     }
 
+    @Override
+    public void addMouseListener(MouseListener ml) {
+
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu

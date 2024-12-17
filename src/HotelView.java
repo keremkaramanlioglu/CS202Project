@@ -3,6 +3,7 @@ import panels.Panel;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.net.http.WebSocket;
 import javax.swing.*;
 
 
@@ -26,7 +27,6 @@ public class HotelView extends JFrame {
         setActivePanel(mainPanel);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setResizable(false);
         this.setPreferredSize(new Dimension(1000, 750));
         this.pack();
@@ -60,31 +60,16 @@ public class HotelView extends JFrame {
         this.repaint();
     }
 
-    public Panel getMainPanel() {
-        return mainPanel;
-    }
-
-    public Panel getAdminPanel() {
-        return adminPanel;
-    }
-
-    public Panel getGuestPanel() {
-        return guestPanel;
-    }
-
-    public Panel getHousekeeperPanel() {
-        return housekeeperPanel;
-    }
-
-    public Panel getReceptionistPanel() {
-        return receptionistPanel;
-    }
-
     public void addButtonListener(ActionListener listener) {
         mainPanel.addButtonListener(listener);
         adminPanel.addButtonListener(listener);
         guestPanel.addButtonListener(listener);
         housekeeperPanel.addButtonListener(listener);
         receptionistPanel.addButtonListener(listener);
+    }
+
+    public void addMouseListener(MouseListener listener) {
+        adminPanel.addMouseListener(listener);
+        guestPanel.addMouseListener(listener);
     }
 }

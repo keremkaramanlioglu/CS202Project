@@ -8,6 +8,7 @@ import panels.Panel;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -17,18 +18,25 @@ import javax.swing.table.*;
 public class UsersPanel extends Panel {
     @Override
     public void addButtonListener(ActionListener al) {
+        btnAdd.addActionListener(al);
+        btnUpdate.addActionListener(al);
+        btnDelete.addActionListener(al);
+        btnApplyFilter.addActionListener(al);
+    }
 
+    @Override
+    public void addMouseListener(MouseListener ml) {
+        tfBirthDate.addMouseListener(ml);
     }
 
     @Override
     public void reset() {
-
     }
 
     @Override
     public Panel getPanelByName(String panelName) {
         return null;
-    } // comment
+    }
 
     public UsersPanel() {
         initComponents();
@@ -36,7 +44,7 @@ public class UsersPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlData = new JScrollPane();
         tblUsers = new JTable();
         panel1 = new JPanel();
@@ -70,6 +78,7 @@ public class UsersPanel extends Panel {
         btnApplyFilter = new JButton();
 
         //======== this ========
+        setPreferredSize(new Dimension(900, 700));
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -107,32 +116,41 @@ public class UsersPanel extends Panel {
                 pnlSelection.setPreferredSize(new Dimension(350, 200));
                 pnlSelection.setLayout(null);
                 pnlSelection.add(tfLastName);
-                tfLastName.setBounds(15, 65, 80, 34);
+                tfLastName.setBounds(185, 20, 80, 34);
                 pnlSelection.add(tfRoomID);
-                tfRoomID.setBounds(15, 110, 80, 34);
+                tfRoomID.setBounds(100, 65, 80, 34);
                 pnlSelection.add(tfFirstName);
                 tfFirstName.setBounds(100, 20, 80, 34);
+
+                //---- tfBirthDate ----
+                tfBirthDate.setEditable(false);
+                tfBirthDate.setText("Choose a Date!");
+                tfBirthDate.setFont(new Font("Inter", Font.PLAIN, 11));
+                tfBirthDate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                tfBirthDate.setName("dateChooser");
                 pnlSelection.add(tfBirthDate);
-                tfBirthDate.setBounds(100, 65, 80, 34);
+                tfBirthDate.setBounds(15, 65, 80, 34);
                 pnlSelection.add(tfEmail);
-                tfEmail.setBounds(100, 110, 80, 34);
+                tfEmail.setBounds(185, 65, 80, 34);
                 pnlSelection.add(tfSsn);
                 tfSsn.setBounds(15, 20, 80, 34);
 
                 //---- btnAdd ----
                 btnAdd.setText("Add");
+                btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlSelection.add(btnAdd);
-                btnAdd.setBounds(230, 20, 100, 50);
+                btnAdd.setBounds(375, 15, 100, 50);
 
                 //---- btnDelete ----
                 btnDelete.setText("Delete");
+                btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlSelection.add(btnDelete);
-                btnDelete.setBounds(230, 75, 100, 50);
+                btnDelete.setBounds(375, 70, 100, 50);
 
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
                 pnlSelection.add(btnUpdate);
-                btnUpdate.setBounds(230, 130, 100, 50);
+                btnUpdate.setBounds(375, 125, 100, 50);
 
                 //---- lblSsn ----
                 lblSsn.setText("Ssn");
@@ -147,43 +165,43 @@ public class UsersPanel extends Panel {
                 //---- lblLastName ----
                 lblLastName.setText("Last Name");
                 pnlSelection.add(lblLastName);
-                lblLastName.setBounds(20, 50, 75, lblLastName.getPreferredSize().height);
+                lblLastName.setBounds(185, 5, 75, lblLastName.getPreferredSize().height);
 
                 //---- lblBirthDate ----
                 lblBirthDate.setText("Birth Date");
                 pnlSelection.add(lblBirthDate);
-                lblBirthDate.setBounds(105, 50, 75, 17);
+                lblBirthDate.setBounds(15, 50, 75, 17);
 
                 //---- lblRoomID ----
                 lblRoomID.setText("Room ID");
                 pnlSelection.add(lblRoomID);
-                lblRoomID.setBounds(20, 95, 75, 17);
+                lblRoomID.setBounds(100, 50, 75, 17);
 
                 //---- lblEmail ----
                 lblEmail.setText("E-mail");
                 pnlSelection.add(lblEmail);
-                lblEmail.setBounds(105, 95, 75, 17);
+                lblEmail.setBounds(185, 50, 75, 17);
                 pnlSelection.add(tfPhoneNo);
-                tfPhoneNo.setBounds(15, 155, 80, 34);
+                tfPhoneNo.setBounds(15, 110, 80, 34);
                 pnlSelection.add(tfGender);
-                tfGender.setBounds(100, 155, 80, 34);
+                tfGender.setBounds(100, 110, 80, 34);
 
                 //---- lblPhoneNo ----
                 lblPhoneNo.setText("Phone No");
                 pnlSelection.add(lblPhoneNo);
-                lblPhoneNo.setBounds(20, 140, 75, 17);
+                lblPhoneNo.setBounds(15, 95, 75, 17);
 
                 //---- lblGender ----
                 lblGender.setText("Gender");
                 pnlSelection.add(lblGender);
-                lblGender.setBounds(105, 140, 75, 17);
+                lblGender.setBounds(95, 95, 75, 17);
                 pnlSelection.add(tfZipCode);
-                tfZipCode.setBounds(55, 200, 80, 34);
+                tfZipCode.setBounds(185, 110, 80, 34);
 
                 //---- lblZipCode ----
                 lblZipCode.setText("Zip Code");
                 pnlSelection.add(lblZipCode);
-                lblZipCode.setBounds(60, 185, 75, 17);
+                lblZipCode.setBounds(185, 95, 75, 17);
 
                 {
                     // compute preferred size
@@ -271,7 +289,7 @@ public class UsersPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane pnlData;
     private JTable tblUsers;
     private JPanel panel1;
