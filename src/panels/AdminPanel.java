@@ -62,6 +62,13 @@ public class AdminPanel extends Panel {
         btnBack.addActionListener(l);
     }
 
+    @Override
+    public void addMouseListener(MouseListener l) {
+        pnlUsers.addMouseListener(l);
+        pnlBookings.addMouseListener(l);
+        pnlHousekeeping.addMouseListener(l);
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu

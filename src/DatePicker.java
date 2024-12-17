@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Objects;
 import javax.swing.*;
 
 class DatePicker {
@@ -9,9 +10,15 @@ class DatePicker {
     String day = "";
     JDialog d;
     JButton[] button = new JButton[49];
+    JFrame parent;
 
     public DatePicker(JFrame parent) {
+        this.parent = parent;
+    }
+
+    public void initiateDialog() {
         d = new JDialog();
+        ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/Calendar.png")));
         d.setModal(true);
         String[] header = { "Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat" };
         JPanel p1 = new JPanel(new GridLayout(7, 7));
@@ -53,6 +60,7 @@ class DatePicker {
             }
         });
         p2.add(next);
+        d.setIconImage(icon.getImage());
         d.add(p1, BorderLayout.CENTER);
         d.add(p2, BorderLayout.SOUTH);
         d.pack();
@@ -77,6 +85,7 @@ class DatePicker {
     }
 
     public String setPickedDate() {
+        initiateDialog();
         if (day.equals(""))
             return day;
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(
@@ -87,23 +96,23 @@ class DatePicker {
     }
 }
 
-class Picker {
-    public static void main(String[] args) {
-        JLabel label = new JLabel("Selected Date:");
-        final JTextField text = new JTextField(20);
-        JButton b = new JButton("popup");
-        JPanel p = new JPanel();
-        p.add(label);
-        p.add(text);
-        p.add(b);
-        final JFrame f = new JFrame();
-        f.getContentPane().add(p);
-        f.pack();
-        f.setVisible(true);
-        b.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                text.setText(new DatePicker(f).setPickedDate());
-            }
-        });
-    }
-}
+//class Picker {
+//    public static void main(String[] args) {
+//        JLabel label = new JLabel("Selected Date:");
+//        final JTextField text = new JTextField(20);
+//        JButton b = new JButton("popup");
+//        JPanel p = new JPanel();
+//        p.add(label);
+//        p.add(text);
+//        p.add(b);
+//        final JFrame f = new JFrame();
+//        f.getContentPane().add(p);
+//        f.pack();
+//        f.setVisible(true);
+//        b.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent ae) {
+//                text.setText(new DatePicker(f).setPickedDate());
+//            }
+//        });
+//    }
+//}

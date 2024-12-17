@@ -28,6 +28,11 @@ public class MainPanel extends Panel {
     }
 
     @Override
+    public void addMouseListener(MouseListener ml) {
+
+    }
+
+    @Override
     public void reset() {
     }
 

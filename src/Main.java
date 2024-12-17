@@ -52,8 +52,8 @@ public class Main {
 
         try {
             new HotelManager(new HotelView());
-            DBConnectionControl dbControl = new DBConnectionControl();
-            HotelDao hotelDao = new HotelDao(dbControl.getConnection());
+            //DBConnectionControl dbControl = new DBConnectionControl();
+            //HotelDao hotelDao = new HotelDao(dbControl.getConnection());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

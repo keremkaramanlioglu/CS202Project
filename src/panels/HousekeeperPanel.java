@@ -30,6 +30,11 @@ public class HousekeeperPanel extends Panel {
         btnBack.addActionListener(al);
     }
 
+    @Override
+    public void addMouseListener(MouseListener ml) {
+
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu

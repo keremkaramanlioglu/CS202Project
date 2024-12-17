@@ -9,6 +9,7 @@ import panels.Panel;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import javax.swing.*;
 
 /**
@@ -21,7 +22,15 @@ public class HousekeepingPanel extends Panel {
 
     @Override
     public void addButtonListener(ActionListener al) {
+        btnAdd.addActionListener(al);
+        btnDelete.addActionListener(al);
+        btnUpdate.addActionListener(al);
+        btnApply.addActionListener(al);
+    }
 
+    @Override
+    public void addMouseListener(MouseListener ml) {
+        tfCleaningDate.addMouseListener(ml);
     }
 
     @Override
@@ -42,13 +51,13 @@ public class HousekeepingPanel extends Panel {
         dataTable = new JTable();
         pnlControl = new JPanel();
         pnlSelection = new JPanel();
-        textField1 = new JTextField();
-        textField2 = new JTextField();
-        textField3 = new JTextField();
-        textField4 = new JTextField();
-        button1 = new JButton();
-        button2 = new JButton();
-        button3 = new JButton();
+        tfHousekeeperSsn = new JTextField();
+        tfReceptionistSsn = new JTextField();
+        tfRoomID = new JTextField();
+        tfCleaningDate = new JTextField();
+        btnAdd = new JButton();
+        btnDelete = new JButton();
+        btnUpdate = new JButton();
         label2 = new JLabel();
         label3 = new JLabel();
         label4 = new JLabel();
@@ -59,15 +68,16 @@ public class HousekeepingPanel extends Panel {
         comboBox2 = new JComboBox<>();
         textField6 = new JTextField();
         label1 = new JLabel();
+        btnApply = new JButton();
 
         //======== this ========
         setPreferredSize(new Dimension(1920, 1080));
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border
-        .EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder.CENTER,javax
-        .swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,
-        12),java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans
-        .PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.
-        getPropertyName()))throw new RuntimeException();}});
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
+        border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder. CENTER
+        ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069alog", java .awt . Font
+        . BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener(
+        new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order"
+        .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -117,29 +127,33 @@ public class HousekeepingPanel extends Panel {
             {
                 pnlSelection.setPreferredSize(new Dimension(400, 200));
                 pnlSelection.setLayout(null);
-                pnlSelection.add(textField1);
-                textField1.setBounds(30, 30, 100, 34);
-                pnlSelection.add(textField2);
-                textField2.setBounds(135, 30, 100, 34);
-                pnlSelection.add(textField3);
-                textField3.setBounds(240, 30, 100, 34);
-                pnlSelection.add(textField4);
-                textField4.setBounds(345, 30, 100, 34);
+                pnlSelection.add(tfHousekeeperSsn);
+                tfHousekeeperSsn.setBounds(30, 30, 100, 34);
+                pnlSelection.add(tfReceptionistSsn);
+                tfReceptionistSsn.setBounds(135, 30, 100, 34);
+                pnlSelection.add(tfRoomID);
+                tfRoomID.setBounds(240, 30, 100, 34);
 
-                //---- button1 ----
-                button1.setText("Add");
-                pnlSelection.add(button1);
-                button1.setBounds(10, 140, 100, button1.getPreferredSize().height);
+                //---- tfCleaningDate ----
+                tfCleaningDate.setEditable(false);
+                tfCleaningDate.setName("dateChooser");
+                pnlSelection.add(tfCleaningDate);
+                tfCleaningDate.setBounds(345, 30, 100, 34);
 
-                //---- button2 ----
-                button2.setText("Delete");
-                pnlSelection.add(button2);
-                button2.setBounds(120, 140, 103, button2.getPreferredSize().height);
+                //---- btnAdd ----
+                btnAdd.setText("Add");
+                pnlSelection.add(btnAdd);
+                btnAdd.setBounds(15, 125, 100, 60);
 
-                //---- button3 ----
-                button3.setText("Update");
-                pnlSelection.add(button3);
-                button3.setBounds(235, 140, 100, button3.getPreferredSize().height);
+                //---- btnDelete ----
+                btnDelete.setText("Delete");
+                pnlSelection.add(btnDelete);
+                btnDelete.setBounds(120, 125, 100, 60);
+
+                //---- btnUpdate ----
+                btnUpdate.setText("Update");
+                pnlSelection.add(btnUpdate);
+                btnUpdate.setBounds(225, 125, 100, 60);
 
                 //---- label2 ----
                 label2.setText("Housekeeper SSN:");
@@ -224,6 +238,11 @@ public class HousekeepingPanel extends Panel {
                 pnlFilter.add(label1);
                 label1.setBounds(25, 59, 215, 23);
 
+                //---- btnApply ----
+                btnApply.setText("Apply");
+                pnlFilter.add(btnApply);
+                btnApply.setBounds(25, 125, 215, 60);
+
                 {
                     // compute preferred size
                     Dimension preferredSize = new Dimension();
@@ -252,13 +271,13 @@ public class HousekeepingPanel extends Panel {
     private JTable dataTable;
     private JPanel pnlControl;
     private JPanel pnlSelection;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
+    private JTextField tfHousekeeperSsn;
+    private JTextField tfReceptionistSsn;
+    private JTextField tfRoomID;
+    private JTextField tfCleaningDate;
+    private JButton btnAdd;
+    private JButton btnDelete;
+    private JButton btnUpdate;
     private JLabel label2;
     private JLabel label3;
     private JLabel label4;
@@ -269,5 +288,6 @@ public class HousekeepingPanel extends Panel {
     private JComboBox<String> comboBox2;
     private JTextField textField6;
     private JLabel label1;
+    private JButton btnApply;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
