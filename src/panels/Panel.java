@@ -1,12 +1,32 @@
 package panels;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 public abstract class Panel extends JPanel {
+    public Panel prevCenterPanel;
+    public JButton prevSelectedButton;
     public abstract void addButtonListener(ActionListener al);
-    public abstract void setSelectedButton(JButton b);
+    public void setSelectedButton(JButton button) {
+        if (prevSelectedButton == button) return;
+        if (prevSelectedButton != null) {
+            prevSelectedButton.setBackground(MainPanel.sidePanelColor);
+        }
+        prevSelectedButton = button;
+        button.setBackground(MainPanel.centerPanelColor);
+    }
     public abstract void reset();
-    public abstract void setCenterPanel(Panel panel);
+    public void setCenterPanel(Panel panel) {
+        if (prevCenterPanel == panel) return;
+        if (prevCenterPanel != null) {
+            prevCenterPanel.reset();
+            this.remove(prevCenterPanel);
+        }
+        this.add(panel, BorderLayout.CENTER);
+        prevCenterPanel = panel;
+        this.revalidate();
+        this.repaint();
+    }
     public abstract Panel getPanelByName(String panelName);
 }
