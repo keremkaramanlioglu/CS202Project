@@ -41,11 +41,10 @@ public class UsersPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlData = new JScrollPane();
         tblUsers = new JTable();
-        pnlControl = new JPanel();
+        panel1 = new JPanel();
         pnlSelection = new JPanel();
         tfLastName = new JTextField();
         tfRoomID = new JTextField();
@@ -77,15 +76,15 @@ public class UsersPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(900, 700));
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(
-        0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder
-        .BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font.BOLD,12),java.awt.Color.
-        red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.
-        beans.PropertyChangeEvent e){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException();}});
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
+        EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing
+        . border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ),
+        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
+        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () ))
+        throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
-
         {
             pnlData.setPreferredSize(new Dimension(900, 450));
 
@@ -111,8 +110,9 @@ public class UsersPanel extends Panel {
         }
         add(pnlData, BorderLayout.CENTER);
 
-        //======== pnlControl ========
+        //======== panel1 ========
         {
+            panel1.setLayout(new BoxLayout(panel1, BoxLayout.X_AXIS));
 
             //======== pnlSelection ========
             {
@@ -212,7 +212,7 @@ public class UsersPanel extends Panel {
                     pnlSelection.setPreferredSize(preferredSize);
                 }
             }
-            pnlControl.add(pnlSelection);
+            panel1.add(pnlSelection);
 
             //======== pnlFilter ========
             {
@@ -276,18 +276,17 @@ public class UsersPanel extends Panel {
                     pnlFilter.setPreferredSize(preferredSize);
                 }
             }
-            pnlControl.add(pnlFilter);
+            panel1.add(pnlFilter);
         }
-        add(pnlControl, BorderLayout.SOUTH);
+        add(panel1, BorderLayout.SOUTH);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane pnlData;
     private JTable tblUsers;
-    private JPanel pnlControl;
+    private JPanel panel1;
     private JPanel pnlSelection;
     private JTextField tfLastName;
     private JTextField tfRoomID;
@@ -316,6 +315,5 @@ public class UsersPanel extends Panel {
     private JTextField tfFilterInput;
     private JLabel lblFilterInput;
     private JButton btnApplyFilter;
-
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
