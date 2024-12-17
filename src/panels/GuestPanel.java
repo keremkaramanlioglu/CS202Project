@@ -40,6 +40,7 @@ public class GuestPanel extends Panel {
     @Override
     public Panel getPanelByName(String panelName) {
         return switch (panelName) {
+
             case "Book a room" -> pnlBookARoom;
             case "My Bookings" -> pnlMyBookings;
             case "Profile" -> profilePanel;
