@@ -1,5 +1,9 @@
 package panels;
 
+import panels.guestPanels.BookARoomPanel;
+import panels.guestPanels.MyBookingsPanel;
+import panels.guestPanels.ProfilePanel;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -13,37 +17,56 @@ import javax.swing.*;
  * @author kerem
  */
 public class GuestPanel extends Panel {
-    private JButton prevSelectedButton;
+    private Panel bookARoomPanel;
+    private Panel myBookingsPanel;
+    private Panel profilePanel;
 
     public GuestPanel() {
         initComponents();
-        prevSelectedButton = null;
+        bookARoomPanel = new BookARoomPanel();
+        myBookingsPanel = new MyBookingsPanel();
+        profilePanel = new ProfilePanel();
+        super.prevCenterPanel = null;
+        super.prevSelectedButton = null;
     }
 
-    @Override
-    public void setSelectedButton(JButton button) {
-        if (prevSelectedButton == button) return;
-        if (prevSelectedButton != null) {
-            prevSelectedButton.setBackground(MainPanel.sidePanelColor);
-        }
-        prevSelectedButton = button;
-        button.setBackground(MainPanel.centerPanelColor);
-    }
+//    @Override
+//    public void setSelectedButton(JButton button) {
+//        if (prevSelectedButton == button) return;
+//        if (prevSelectedButton != null) {
+//            prevSelectedButton.setBackground(MainPanel.sidePanelColor);
+//        }
+//        prevSelectedButton = button;
+//        button.setBackground(MainPanel.centerPanelColor);
+//    }
 
     @Override
     public void reset() {
-        if(prevSelectedButton != null) prevSelectedButton.setBackground(MainPanel.sidePanelColor);
-        prevSelectedButton = null;
+        if(super.prevSelectedButton != null) super.prevSelectedButton.setBackground(MainPanel.sidePanelColor);
+        super.prevSelectedButton = null;
     }
 
-    @Override
-    public void setCenterPanel(Panel panel) {
-
-    }
+//    @Override
+//    public void setCenterPanel(Panel panel) {
+//        if (prevCenterPanel == panel) return;  // TODO maybe dont panel class absract for the functions that does the same thing
+//        if (prevCenterPanel != null) {
+//            prevCenterPanel.reset();
+//            this.remove(prevCenterPanel);
+//        }
+//        this.add(panel, BorderLayout.CENTER);
+//        prevCenterPanel = panel;
+//        this.revalidate();
+//        this.repaint();
+//    }
 
     @Override
     public Panel getPanelByName(String panelName) {
-        return null;
+        return switch (panelName) {
+            case "Book a room" -> bookARoomPanel;
+            case "My bookings" -> myBookingsPanel;
+            case "Profile" -> profilePanel;
+            default -> null;
+        };
     }
 
     @Override

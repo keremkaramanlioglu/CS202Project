@@ -4,15 +4,44 @@
 
 package panels.guestPanels;
 
+import panels.Panel;
+
 import java.awt.*;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
  * @author kerem
  */
-public class MyBookingsPanel extends JPanel {
+public class MyBookingsPanel extends Panel {
     public MyBookingsPanel() {
         initComponents();
+    }
+
+
+    @Override
+    public void addButtonListener(ActionListener al) {
+
+    }
+
+    @Override
+    public void setSelectedButton(JButton b) {
+
+    }
+
+    @Override
+    public void reset() {
+
+    }
+
+    @Override
+    public void setCenterPanel(Panel panel) {
+
+    }
+
+    @Override
+    public Panel getPanelByName(String panelName) {
+        return null;
     }
 
     private void initComponents() {
@@ -29,6 +58,7 @@ public class MyBookingsPanel extends JPanel {
         setLayout(new BorderLayout());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
+
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu

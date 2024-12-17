@@ -29,15 +29,15 @@ public class AdminPanel extends Panel {
         prevCenterPanel = null;
     }
 
-    @Override
-    public void setSelectedButton(JButton button) {
-        if (prevSelectedButton == button) return;
-        if (prevSelectedButton != null) {
-            prevSelectedButton.setBackground(MainPanel.sidePanelColor);
-        }
-        prevSelectedButton = button;
-        button.setBackground(MainPanel.centerPanelColor);
-    }
+//    @Override
+//    public void setSelectedButton(JButton button) {
+//        if (prevSelectedButton == button) return;
+//        if (prevSelectedButton != null) {
+//            prevSelectedButton.setBackground(MainPanel.sidePanelColor);
+//        }
+//        prevSelectedButton = button;
+//        button.setBackground(MainPanel.centerPanelColor);
+//    }
 
     @Override
     public void reset() {
@@ -49,18 +49,18 @@ public class AdminPanel extends Panel {
         // other components needs reset too.
     }
 
-    @Override
-    public void setCenterPanel(Panel panel) {
-        if (prevCenterPanel == panel) return;
-        if (prevCenterPanel != null) {
-            prevCenterPanel.reset();
-            this.remove(prevCenterPanel);
-        }
-        this.add(panel, BorderLayout.CENTER);
-        prevCenterPanel = panel;
-        this.revalidate();
-        this.repaint();
-    }
+//    @Override
+//    public void setCenterPanel(Panel panel) {
+//        if (prevCenterPanel == panel) return;
+//        if (prevCenterPanel != null) {
+//            prevCenterPanel.reset();
+//            this.remove(prevCenterPanel);
+//        }
+//        this.add(panel, BorderLayout.CENTER);
+//        prevCenterPanel = panel;
+//        this.revalidate();
+//        this.repaint();
+//    }
 
     @Override
     public Panel getPanelByName(String panelName) {
