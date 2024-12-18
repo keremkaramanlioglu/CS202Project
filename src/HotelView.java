@@ -1,9 +1,9 @@
 import panels.*;
 import panels.Panel;
+import panels.dbManagerPanels.QueryPanel;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.net.http.WebSocket;
 import javax.swing.*;
 
 
@@ -13,6 +13,7 @@ public class HotelView extends JFrame {
     private static Panel guestPanel;
     private static Panel housekeeperPanel;
     private static Panel receptionistPanel;
+    private static Panel dbManagerPanel;
     private Panel activePanel;
     public static Color sidePanelColor = new Color(0x333333);
     public static Color centerPanelColor = new Color(0x666666);
@@ -23,6 +24,7 @@ public class HotelView extends JFrame {
         guestPanel = new GuestPanel();
         receptionistPanel = new ReceptionistPanel();
         housekeeperPanel = new HousekeeperPanel();
+        dbManagerPanel = new DBManagerPanel();
         activePanel = null;
         setActivePanel(mainPanel);
 
@@ -40,6 +42,7 @@ public class HotelView extends JFrame {
             case "Guest" -> guestPanel;
             case "Receptionist" -> receptionistPanel;
             case "Housekeeper" -> housekeeperPanel;
+            case "DB Manager" -> dbManagerPanel;
             default -> mainPanel;
         };
     }
@@ -66,6 +69,7 @@ public class HotelView extends JFrame {
         guestPanel.addButtonListener(listener);
         housekeeperPanel.addButtonListener(listener);
         receptionistPanel.addButtonListener(listener);
+        dbManagerPanel.addButtonListener(listener);
     }
 
     public void addMouseListener(MouseListener listener) {

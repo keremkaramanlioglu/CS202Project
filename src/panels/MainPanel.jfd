@@ -40,7 +40,7 @@ new FormModel {
 				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 				"foreground": new java.awt.Color( 255, 255, 255, 255 )
 				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "btnRecepPanel2"
+					name: "btnDBManagerPanel"
 					"text": "DB Manager"
 					"preferredSize": &Dimension0 new java.awt.Dimension( 100, 40 )
 					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE

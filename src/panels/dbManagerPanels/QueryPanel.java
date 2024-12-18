@@ -2,17 +2,35 @@
  * Created by JFormDesigner on Wed Dec 18 14:44:39 TRT 2024
  */
 
-package panels.databaseManagerPanel;
+package panels.dbManagerPanels;
+
+import panels.Panel;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import javax.swing.*;
 
 /**
  * @author kutay
  */
-public class QueryPanel extends JPanel {
+public class QueryPanel extends panels.Panel {
     public QueryPanel() {
         initComponents();
+    }
+
+    @Override
+    public void addButtonListener(ActionListener al) {
+        btnExecute.addActionListener(al);
+    }@Override
+    public void addMouseListener(MouseListener ml) {
+
+    }@Override
+    public void reset() {
+        taQuery.setText("");
+    }@Override
+    public Panel getPanelByName(String panelName) {
+        return null;
     }
 
     private void initComponents() {

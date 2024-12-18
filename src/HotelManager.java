@@ -52,8 +52,8 @@ public class HotelManager {
             String command = e.getActionCommand();
             JButton button = (JButton) e.getSource();
             String[] sidePanelOptions = {"Rooms", "Users", "Employees", "Finance", "Bookings", "Housekeeping",
-                    "Book a room", "My Bookings", "Profile", "My Jobs"};
-            String [] mainPanelOptions = {"Admin", "Guest", "Housekeeper", "Receptionist", "Back"};
+                    "Book a room", "My Bookings", "Profile", "My Jobs", "Query Panel"};
+            String [] mainPanelOptions = {"Admin", "Guest", "Housekeeper", "Receptionist", "DB Manager","Back"};
             if (compare(command, sidePanelOptions)) {
                 Panel activePanel = hotelView.getActivePanel();
                 activePanel.setSelectedButton(button);

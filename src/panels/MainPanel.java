@@ -25,6 +25,7 @@ public class MainPanel extends Panel {
         btnGuestPanel.addActionListener(l);
         btnHousePanel.addActionListener(l);
         btnRecepPanel.addActionListener(l);
+        btnDBManagerPanel.addActionListener(l);
     }
 
     @Override
@@ -41,8 +42,8 @@ public class MainPanel extends Panel {
         return null;
     }
 
-    public JButton getBtnRecepPanel2() {
-        return btnRecepPanel2;
+    public JButton getBtnDBManagerPanel() {
+        return btnDBManagerPanel;
     }
 
     public JButton getBtnAdminPanel() {
@@ -67,7 +68,7 @@ public class MainPanel extends Panel {
         label1 = new JLabel();
         lblWelcome = new JLabel();
         sidePanel = new JPanel();
-        btnRecepPanel2 = new JButton();
+        btnDBManagerPanel = new JButton();
         btnAdminPanel = new JButton();
         btnGuestPanel = new JButton();
         btnHousePanel = new JButton();
@@ -76,12 +77,14 @@ public class MainPanel extends Panel {
         //======== this ========
         setBackground(new Color(0x666666));
         setForeground(Color.white);
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border
-        .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER ,javax
-        . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,
-        12 ) ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans
-        .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e.
-        getPropertyName () ) )throw new RuntimeException( ) ;} } );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
+        new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion"
+        , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+        , new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 )
+        , java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
+        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( )
+        ; }} );
         setLayout(new BorderLayout());
 
         //---- label1 ----
@@ -111,18 +114,18 @@ public class MainPanel extends Panel {
             sidePanel.setForeground(Color.white);
             sidePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 
-            //---- btnRecepPanel2 ----
-            btnRecepPanel2.setText("DB Manager");
-            btnRecepPanel2.setPreferredSize(new Dimension(100, 40));
-            btnRecepPanel2.setBorder(null);
-            btnRecepPanel2.setBackground(new Color(0x333333));
-            btnRecepPanel2.setForeground(Color.white);
-            btnRecepPanel2.setFocusable(false);
-            btnRecepPanel2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnRecepPanel2.setMaximumSize(new Dimension(106, 40));
-            btnRecepPanel2.setAlignmentY(0.0F);
-            btnRecepPanel2.setIconTextGap(0);
-            sidePanel.add(btnRecepPanel2);
+            //---- btnDBManagerPanel ----
+            btnDBManagerPanel.setText("DB Manager");
+            btnDBManagerPanel.setPreferredSize(new Dimension(100, 40));
+            btnDBManagerPanel.setBorder(null);
+            btnDBManagerPanel.setBackground(new Color(0x333333));
+            btnDBManagerPanel.setForeground(Color.white);
+            btnDBManagerPanel.setFocusable(false);
+            btnDBManagerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnDBManagerPanel.setMaximumSize(new Dimension(106, 40));
+            btnDBManagerPanel.setAlignmentY(0.0F);
+            btnDBManagerPanel.setIconTextGap(0);
+            sidePanel.add(btnDBManagerPanel);
 
             //---- btnAdminPanel ----
             btnAdminPanel.setText("Admin");
@@ -185,7 +188,7 @@ public class MainPanel extends Panel {
     private JLabel label1;
     private JLabel lblWelcome;
     private JPanel sidePanel;
-    private JButton btnRecepPanel2;
+    private JButton btnDBManagerPanel;
     private JButton btnAdminPanel;
     private JButton btnGuestPanel;
     private JButton btnHousePanel;
