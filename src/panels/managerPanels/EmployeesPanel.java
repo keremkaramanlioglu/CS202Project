@@ -42,7 +42,7 @@ public class EmployeesPanel extends Panel {
     public void setTableWithEmployees(ArrayList<Employee> emps) {
         // Define column names (adjust to match the fields in your Customer class)
         String[] columnNames = {"ssn", "firstname", "lastname", "type", "bd", "years", "hotel_id", "salary", "phone_num", "email", "gender", "street", "no", "apartment", "zip_code"};
-        table = new JTable();
+
         // Create a table model with column names
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
