@@ -21,8 +21,8 @@ public class MainPanel extends Panel {
     }
 
     public void addButtonListener(ActionListener l) {
-        btnManager.addActionListener(l);
-        btnCustomer.addActionListener(l);
+        btnAdminPanel.addActionListener(l);
+        btnGuestPanel.addActionListener(l);
         btnHousePanel.addActionListener(l);
         btnRecepPanel.addActionListener(l);
     }
@@ -53,6 +53,7 @@ public class MainPanel extends Panel {
         return null;
     }
 
+<<<<<<< HEAD
     private void btnAdminPanelMouseEntered(MouseEvent e) {
         // TODO add your code here
     }
@@ -128,6 +129,8 @@ public class MainPanel extends Panel {
     public JButton getBtnCustomer() {
         return btnCustomer;
     }
+=======
+>>>>>>> parent of 04a9bf0 (m)
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -136,20 +139,31 @@ public class MainPanel extends Panel {
         lblWelcome = new JLabel();
         sidePanel = new JPanel();
         btnDBManagerPanel = new JButton();
-        btnManager = new JButton();
-        btnCustomer = new JButton();
+        btnAdminPanel = new JButton();
+        btnGuestPanel = new JButton();
         btnHousePanel = new JButton();
         btnRecepPanel = new JButton();
 
         //======== this ========
         setBackground(new Color(0x666666));
         setForeground(Color.white);
+<<<<<<< HEAD
         setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .
         EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e" , javax. swing .border . TitledBorder. CENTER ,javax . swing
         . border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069al\u006fg", java .awt . Font. BOLD ,12 ) ,
         java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( )
         { @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062or\u0064er" .equals ( e. getPropertyName () ) )
         throw new RuntimeException( ) ;} } );
+=======
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
+        new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion"
+        , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+        , new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 )
+        , java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
+        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( )
+        ; }} );
+>>>>>>> parent of 04a9bf0 (m)
         setLayout(new BorderLayout());
 
         //---- label1 ----
@@ -180,8 +194,8 @@ public class MainPanel extends Panel {
             sidePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 
             //---- btnDBManagerPanel ----
-            btnDBManagerPanel.setText("Database Manager");
-            btnDBManagerPanel.setPreferredSize(new Dimension(120, 40));
+            btnDBManagerPanel.setText("DB Manager");
+            btnDBManagerPanel.setPreferredSize(new Dimension(100, 40));
             btnDBManagerPanel.setBorder(null);
             btnDBManagerPanel.setBackground(new Color(0x333333));
             btnDBManagerPanel.setForeground(Color.white);
@@ -192,36 +206,36 @@ public class MainPanel extends Panel {
             btnDBManagerPanel.setIconTextGap(0);
             sidePanel.add(btnDBManagerPanel);
 
-            //---- btnManager ----
-            btnManager.setText("Manager");
-            btnManager.setPreferredSize(new Dimension(120, 40));
-            btnManager.setBorder(null);
-            btnManager.setBackground(new Color(0x333333));
-            btnManager.setForeground(Color.white);
-            btnManager.setFocusable(false);
-            btnManager.setFocusPainted(false);
-            btnManager.setSelected(true);
-            btnManager.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnManager.setAlignmentY(0.0F);
-            btnManager.setIconTextGap(0);
-            btnManager.setActionCommand("Manager");
-            sidePanel.add(btnManager);
+            //---- btnAdminPanel ----
+            btnAdminPanel.setText("Admin");
+            btnAdminPanel.setPreferredSize(new Dimension(78, 40));
+            btnAdminPanel.setBorder(null);
+            btnAdminPanel.setBackground(new Color(0x333333));
+            btnAdminPanel.setForeground(Color.white);
+            btnAdminPanel.setFocusable(false);
+            btnAdminPanel.setFocusPainted(false);
+            btnAdminPanel.setSelected(true);
+            btnAdminPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnAdminPanel.setAlignmentY(0.0F);
+            btnAdminPanel.setIconTextGap(0);
+            btnAdminPanel.setActionCommand("Admin");
+            sidePanel.add(btnAdminPanel);
 
-            //---- btnCustomer ----
-            btnCustomer.setText("Customer");
-            btnCustomer.setPreferredSize(new Dimension(120, 40));
-            btnCustomer.setBorder(null);
-            btnCustomer.setBackground(new Color(0x333333));
-            btnCustomer.setForeground(Color.white);
-            btnCustomer.setFocusable(false);
-            btnCustomer.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnCustomer.setAlignmentY(0.0F);
-            btnCustomer.setIconTextGap(0);
-            sidePanel.add(btnCustomer);
+            //---- btnGuestPanel ----
+            btnGuestPanel.setText("Guest");
+            btnGuestPanel.setPreferredSize(new Dimension(78, 40));
+            btnGuestPanel.setBorder(null);
+            btnGuestPanel.setBackground(new Color(0x333333));
+            btnGuestPanel.setForeground(Color.white);
+            btnGuestPanel.setFocusable(false);
+            btnGuestPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnGuestPanel.setAlignmentY(0.0F);
+            btnGuestPanel.setIconTextGap(0);
+            sidePanel.add(btnGuestPanel);
 
             //---- btnHousePanel ----
             btnHousePanel.setText("Housekeeper");
-            btnHousePanel.setPreferredSize(new Dimension(120, 40));
+            btnHousePanel.setPreferredSize(new Dimension(100, 40));
             btnHousePanel.setBorder(null);
             btnHousePanel.setBackground(new Color(0x333333));
             btnHousePanel.setForeground(Color.white);
@@ -233,7 +247,7 @@ public class MainPanel extends Panel {
 
             //---- btnRecepPanel ----
             btnRecepPanel.setText("Receptionist");
-            btnRecepPanel.setPreferredSize(new Dimension(120, 40));
+            btnRecepPanel.setPreferredSize(new Dimension(100, 40));
             btnRecepPanel.setBorder(null);
             btnRecepPanel.setBackground(new Color(0x333333));
             btnRecepPanel.setForeground(Color.white);
@@ -254,8 +268,8 @@ public class MainPanel extends Panel {
     private JLabel lblWelcome;
     private JPanel sidePanel;
     private JButton btnDBManagerPanel;
-    private JButton btnManager;
-    private JButton btnCustomer;
+    private JButton btnAdminPanel;
+    private JButton btnGuestPanel;
     private JButton btnHousePanel;
     private JButton btnRecepPanel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on

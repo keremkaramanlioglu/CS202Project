@@ -1,10 +1,11 @@
-import entities.Employee;
 import entities.Hotel;
 
 import panels.Panel;
-import panels.managerPanels.FinancePanel;
+import panels.adminPanels.BookingsPanel;
+import panels.adminPanels.FinancePanel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -18,20 +19,16 @@ public class HotelManager {
     private final HotelView hotelView;
     private final DatePicker datePicker;
     private final DBConnectionControl dbConnectionControl;
-    private HotelDao hotelDao;
-    private final SSNPopUpMenu ssnPopUpMenu;
-    private String currSsn;
-    private Employee currEmployee;
+    private final HotelDao hotelDao;
 
     public HotelManager(HotelView hotelView, DBConnectionControl dbConnectionControl) throws SQLException {
         this.hotelView = hotelView;
-        this.currSsn = "";
         ButtonListener buttonListener = new ButtonListener();
         hotelView.addButtonListener(buttonListener);
         hotelView.addMouseListener(buttonListener);
         datePicker = new DatePicker(hotelView);
-        ssnPopUpMenu = new SSNPopUpMenu(hotelView);
         this.dbConnectionControl = dbConnectionControl;
+        this.hotelDao = new HotelDao(dbConnectionControl.getConnection());
     }
 
     private void connectionControl() {
@@ -40,95 +37,32 @@ public class HotelManager {
                 Icon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/connection-error.png")));
                 JOptionPane.showMessageDialog(hotelView,"Please connect to a database!", "Connection Lost", JOptionPane.QUESTION_MESSAGE, icon);
                 dbConnectionControl.reinitiate();
-            } else {
-                hotelDao = new HotelDao(dbConnectionControl.getConnection());
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
     }
 
-    private void setCurrSsn() throws SQLException {
-        currSsn = ssnPopUpMenu.getSsn();
-        if (currSsn.isEmpty()) {
-            JOptionPane.showMessageDialog(hotelView,"You can not continue without verifying your ssn!", "Empty Ssn!", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        setCurrEmployee();
-    }
-
-    private boolean isValidAction(String action) {
-        return switch (currEmployee.getEmp_type()) {
-            case "Manager" -> compare(action, new String[]{"Manager", "Customer", "Housekeeper", "Receptionist"});
-            case "Database Manager" -> true;
-            case "Receptionist" -> compare(action, new String[]{"Customer", "Receptionist"});
-            case "Housekeeper" -> compare(action, new String[]{"Customer", "Housekeeper"});
-            case "Customer" -> action.equals("Customer");
-            default -> false;
-        };
-    }
-
-    public boolean checkAction(String action) {
-        if (currEmployee == null && !action.equals("Back")) {
-            try {
-                setCurrSsn();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-            return false;
-        } else if (!action.equals("Back") && !isValidAction(action)) {
-            JOptionPane.showMessageDialog(hotelView,"Invalid action!", "Authority Error", JOptionPane.ERROR_MESSAGE);
-            try {
-                setCurrSsn();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-            return false;
-        }
-        return true;
-    }
-
-    private void setCurrEmployee() throws SQLException {
-        currEmployee = hotelDao.getEmployees("emp_ssn", "==", currSsn).getFirst();
-    }
-
-    public boolean compare(String s1, String[] strings) {
-        for (String str : strings) {
-            if (s1.equals(str)) return true;
-        }
-        return false;
-    }
-
 
     private class ButtonListener implements ActionListener, MouseListener {
         public void actionPerformed(ActionEvent e) {
 
-            connectionControl();
-
-            System.out.println("Curr Ssn: " + currSsn);
+            //connectionControl();
 
             String command = e.getActionCommand();
             JButton button = (JButton) e.getSource();
-
-
-            //if (currSsn.isEmpty() && !command.equals("Guest")) return;
-
             String[] sidePanelOptions = {"Rooms", "Users", "Employees", "Finance", "Bookings", "Housekeeping",
                     "Book a room", "My Bookings", "Profile", "My Jobs", "Query Panel"};
-            String [] mainPanelOptions = {"Manager", "Customer", "Housekeeper", "Receptionist", "Database Manager","Back"};
+            String [] mainPanelOptions = {"Admin", "Guest", "Housekeeper", "Receptionist", "DB Manager","Back"};
             if (compare(command, sidePanelOptions)) {
                 Panel activePanel = hotelView.getActivePanel();
                 activePanel.setSelectedButton(button);
-                activePanel.getCenterPanel().reset();
                 activePanel.setCenterPanel(activePanel.getPanelByName(command));
             } else if (compare(command, mainPanelOptions)) {
-                if (!checkAction(command)) return;
-                hotelView.getActivePanel().reset();
                 hotelView.setActivePanel(hotelView.getPanelByName(command));
             } else {
                 switch (command) {
                     case "Add":
-                        ((JButton) e.getSource()).getParent();
                         break;
                     case "Update":
                         break;
@@ -142,6 +76,13 @@ public class HotelManager {
                         break;
                 }
             }
+        }
+
+        private boolean compare(String s1, String[] strings) {
+            for (String str : strings) {
+                if (s1.equals(str)) return true;
+            }
+            return false;
         }
 
         @Override

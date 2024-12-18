@@ -1,7 +1,7 @@
 package panels;
 
-import panels.managerPanels.BookingsPanel;
-import panels.managerPanels.HousekeepingPanel;
+import panels.adminPanels.BookingsPanel;
+import panels.adminPanels.HousekeepingPanel;
 import panels.receptionistPanels.RoomsPanel;
 
 import java.awt.*;

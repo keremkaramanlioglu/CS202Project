@@ -1,5 +1,9 @@
+import entities.*;
+import panels.adminPanels.EmployeesPanel;
+
 import javax.swing.*;
 import java.sql.*;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws SQLException {

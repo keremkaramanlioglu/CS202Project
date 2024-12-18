@@ -1,6 +1,9 @@
 import entities.*;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class HotelDao {
@@ -63,16 +66,8 @@ public class HotelDao {
     public ArrayList<Customer> getCustomers(String filterColumn, String filterValue) {
         return null;
     }
-    public ArrayList<Employee> getEmployees(String filterColumn, String filterOption, String filterValue) throws SQLException {
-        String sql = "SELECT * FROM Employees WHERE Employees.emp_ssn = ?";
-        ArrayList<Employee> employees = new ArrayList<>();
-        stmt = con.prepareStatement(sql);
-        stmt.setString(1, filterValue);
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            employees.add(new Employee(rs));
-        }
-        return employees;
+    public ArrayList<Employee> getEmployees(String filterColumn, String filterValue) {
+        return null;
     }
     public ArrayList<Booking> getBookings(String filterColumn, String filterValue) {
         return null;

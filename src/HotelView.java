@@ -1,5 +1,6 @@
 import panels.*;
 import panels.Panel;
+import panels.dbManagerPanels.QueryPanel;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -8,8 +9,8 @@ import javax.swing.*;
 
 public class HotelView extends JFrame {
     private static Panel mainPanel;
-    private static Panel managerPanel;
-    private static Panel customerPanel;
+    private static Panel adminPanel;
+    private static Panel guestPanel;
     private static Panel housekeeperPanel;
     private static Panel receptionistPanel;
     private static Panel dbManagerPanel;
@@ -19,8 +20,8 @@ public class HotelView extends JFrame {
 
     public HotelView() {
         mainPanel = new MainPanel();
-        managerPanel = new ManagerPanel();
-        customerPanel = new CustomerPanel();
+        adminPanel = new AdminPanel();
+        guestPanel = new GuestPanel();
         receptionistPanel = new ReceptionistPanel();
         housekeeperPanel = new HousekeeperPanel();
         dbManagerPanel = new DBManagerPanel();
@@ -37,11 +38,11 @@ public class HotelView extends JFrame {
 
     public Panel getPanelByName(String name) {
         return switch (name) {
-            case "Manager" -> managerPanel;
-            case "Customer" -> customerPanel;
+            case "Admin" -> adminPanel;
+            case "Guest" -> guestPanel;
             case "Receptionist" -> receptionistPanel;
             case "Housekeeper" -> housekeeperPanel;
-            case "Database Manager" -> dbManagerPanel;
+            case "DB Manager" -> dbManagerPanel;
             default -> mainPanel;
         };
     }
@@ -64,16 +65,16 @@ public class HotelView extends JFrame {
 
     public void addButtonListener(ActionListener listener) {
         mainPanel.addButtonListener(listener);
-        managerPanel.addButtonListener(listener);
-        customerPanel.addButtonListener(listener);
+        adminPanel.addButtonListener(listener);
+        guestPanel.addButtonListener(listener);
         housekeeperPanel.addButtonListener(listener);
         receptionistPanel.addButtonListener(listener);
         dbManagerPanel.addButtonListener(listener);
     }
 
     public void addMouseListener(MouseListener listener) {
-        managerPanel.addMouseListener(listener);
-        customerPanel.addMouseListener(listener);
+        adminPanel.addMouseListener(listener);
+        guestPanel.addMouseListener(listener);
         receptionistPanel.addMouseListener(listener);
     }
 }

@@ -36,6 +36,9 @@ public class DBConnectionControl {
         port = dbConnectionTestFrame.getPort();
         url += hostName + ":" + port + "/" + dbName;
         con = DriverManager.getConnection(url, userName, password);
+        Hotel hotel = new Hotel(3, "Jupiter Hotel", "054394943940", "mars.hotel@gmail.com", 4.5, "Strike", "321", "99929");
+        HotelDao hotelDao = new HotelDao(con);
+        hotelDao.updateHotel(hotel);
         JOptionPane.showMessageDialog(null, "Connection Established!");
     }
 
@@ -59,17 +62,17 @@ public class DBConnectionControl {
                     }
                     break;
                 case "OK":
-                    try {
-                        if (con != null && !con.isClosed()) {
+//                    try {
+                        //if (con != null && !con.isClosed()) {
                             dbConnectionTestFrame.dispose();
                             dbConnectionTestFrame.setVisible(false);
                             parent.setVisible(true);
-                        } else {
-                            JOptionPane.showMessageDialog(dbConnectionTestFrame, "Connection Error", "Connection Error", JOptionPane.ERROR_MESSAGE);
-                        }
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
+                        //} else {
+                        //    JOptionPane.showMessageDialog(dbConnectionTestFrame, "Connection Error", "Connection Error", JOptionPane.ERROR_MESSAGE);
+                        //}
+//                    } catch (SQLException ex) {
+//                        throw new RuntimeException(ex);
+//                    }
             }
         }
     }
