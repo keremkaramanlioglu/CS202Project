@@ -24,8 +24,30 @@ public class DBManagerPanel extends Panel {
         super.prevCenterPanel = null;
     }
 
-    public JButton getBtnBack() {
-        return btnBack;
+    @Override
+    public void addButtonListener(ActionListener al) {
+        btnQueryPanel.addActionListener(al);
+        btnBack.addActionListener(al);
+        pnlQuery.addButtonListener(al);
+    }
+
+    @Override
+    public void addMouseListener(MouseListener ml) {
+
+    }
+
+    @Override
+    public void reset() {
+        if(prevSelectedButton != null) prevSelectedButton.setBackground(MainPanel.sidePanelColor);
+        if(prevCenterPanel != null) prevCenterPanel.reset();
+        prevSelectedButton = null;
+        if (prevCenterPanel != null) this.remove(prevCenterPanel);
+        prevCenterPanel = null;
+    }
+
+    @Override
+    public Panel getPanelByName(String panelName) {
+        return pnlQuery;
     }
 
     private void initComponents() {
@@ -95,27 +117,6 @@ public class DBManagerPanel extends Panel {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
-    @Override
-    public void addButtonListener(ActionListener al) {
-        btnQueryPanel.addActionListener(al);
-        btnBack.addActionListener(al);
-        pnlQuery.addButtonListener(al);
-    }
-
-    @Override
-    public void addMouseListener(MouseListener ml) {
-
-    }
-
-    @Override
-    public void reset() {
-
-    }
-
-    @Override
-    public Panel getPanelByName(String panelName) {
-        return pnlQuery;
-    }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu

@@ -35,6 +35,11 @@ public class MainPanel extends Panel {
 
     @Override
     public void reset() {
+        if(prevSelectedButton != null) prevSelectedButton.setBackground(MainPanel.sidePanelColor);
+        if(prevCenterPanel != null) prevCenterPanel.reset();
+        prevSelectedButton = null;
+        if (prevCenterPanel != null) this.remove(prevCenterPanel);
+        prevCenterPanel = null;
     }
 
     @Override
@@ -42,25 +47,6 @@ public class MainPanel extends Panel {
         return null;
     }
 
-    public JButton getBtnDBManagerPanel() {
-        return btnDBManagerPanel;
-    }
-
-    public JButton getBtnAdminPanel() {
-        return btnAdminPanel;
-    }
-
-    public JButton getBtnGuestPanel() {
-        return btnGuestPanel;
-    }
-
-    public JButton getBtnHousePanel() {
-        return btnHousePanel;
-    }
-
-    public JButton getBtnRecepPanel() {
-        return btnRecepPanel;
-    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
