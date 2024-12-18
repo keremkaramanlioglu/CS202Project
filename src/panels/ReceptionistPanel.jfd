@@ -23,6 +23,7 @@ new FormModel {
 					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 					"focusable": false
 					"cursor": new java.awt.Cursor( 12 )
+					"name": "side"
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnHousekeeping"
@@ -33,6 +34,7 @@ new FormModel {
 					"preferredSize": &Dimension0 new java.awt.Dimension( 120, 40 )
 					"focusable": false
 					"cursor": &Cursor0 new java.awt.Cursor( 12 )
+					"name": "side"
 					auxiliary() {
 						"JavaCodeGenerator.variableGetter": true
 						"JavaCodeGenerator.variableName": "btnHousekeeping"
@@ -47,6 +49,7 @@ new FormModel {
 					"preferredSize": #Dimension0
 					"focusable": false
 					"cursor": #Cursor0
+					"name": "side"
 					auxiliary() {
 						"JavaCodeGenerator.variableGetter": true
 					}

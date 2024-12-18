@@ -64,6 +64,14 @@ public class CustomerPanel extends Panel {
         pnlProfile.addMouseListener(ml);
     }
 
+    public JButton getBtnProfile() {
+        return btnProfile;
+    }
+
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -78,6 +86,12 @@ public class CustomerPanel extends Panel {
 
         //======== this ========
         setBackground(new Color(0x666666));
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
+        border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER
+        , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font
+        .BOLD ,12 ), java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
+        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order"
+        .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== pnlSide ========
@@ -95,6 +109,8 @@ public class CustomerPanel extends Panel {
             btnBookARoom.setFocusable(false);
             btnBookARoom.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             btnBookARoom.setHorizontalAlignment(SwingConstants.CENTER);
+            btnBookARoom.setActionCommand("Book a room");
+            btnBookARoom.setName("side");
             pnlSide.add(btnBookARoom);
 
             //---- btnMyBookings ----
@@ -105,6 +121,8 @@ public class CustomerPanel extends Panel {
             btnMyBookings.setPreferredSize(new Dimension(120, 40));
             btnMyBookings.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             btnMyBookings.setFocusable(false);
+            btnMyBookings.setActionCommand("My Bookings");
+            btnMyBookings.setName("side");
             pnlSide.add(btnMyBookings);
 
             //---- btnProfile ----
@@ -115,6 +133,8 @@ public class CustomerPanel extends Panel {
             btnProfile.setPreferredSize(new Dimension(120, 40));
             btnProfile.setFocusable(false);
             btnProfile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnProfile.setActionCommand("Profile");
+            btnProfile.setName("side");
             pnlSide.add(btnProfile);
 
             //---- btnBack ----

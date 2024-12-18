@@ -1,5 +1,6 @@
 import entities.*;
 
+import java.awt.print.Book;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -9,6 +10,13 @@ public class HotelDao {
 
     public HotelDao(Connection con) throws SQLException {
         this.con = con;
+    }
+
+    public boolean compare(String s1, String[] strings) {
+        for (String str : strings) {
+            if (s1.equals(str)) return true;
+        }
+        return false;
     }
 
     public void insertHotel(Hotel hotel) throws SQLException {
@@ -35,7 +43,7 @@ public class HotelDao {
         stmt.setString(6, hotel.getNo());
         stmt.setString(7, hotel.getZip_code());
         stmt.setInt(8, hotel.getHotel_id());
-        stmt.execute();
+        stmt.executeUpdate();
     }
     public void deleteHotel(Hotel hotel) {}
     public void insertRoom(Room room) {}
@@ -51,37 +59,259 @@ public class HotelDao {
     public void updateBooking(Booking booking) {}
     public void deleteBooking(Booking booking) {}
     public void insertParkingLot(ParkingLot parkingLot) {}
-    public void updateParkingLot(ParkingLot parkingLot) {}
-    public void deleteParkingLot(ParkingLot parkingLot) {}
-    public void insertCleaningSchedule(CleaningSchedule cleaningSchedule) {}
-    public void updateCleaningSchedule(CleaningSchedule cleaningSchedule) {}
-    public void deleteCleaningSchedule(CleaningSchedule cleaningSchedule) {}
+    public void updateParkingLot(ParkingLot parkingLot) throws SQLException {
+        String sql = "UPDATE ParkingLot SET hotel_id = ?, capacity = ?";
+        stmt = con.prepareStatement(sql);
+        stmt.setInt(1, parkingLot.getHotel_id());
+        stmt.setInt(2, parkingLot.getCapacity());
+        stmt.executeUpdate();
+    }
+    public void deleteParkingLot(ParkingLot parkingLot) throws SQLException {
+        String sql = "DELETE FROM ParkingLot WHERE park_id = ?";
+        stmt = con.prepareStatement(sql);
+        stmt.setInt(1, parkingLot.getPark_id());
+        stmt.executeUpdate();
+    }
+    public void insertCleaningSchedule(CleaningSchedule cleaningSchedule) throws SQLException {
+        String sql = "INSERT INTO CleaningSchedule (housekeeper_ssn, receptionist_ssn, " +
+                "room_id, cleaning_date, service_status) VALUES(?, ?, ?, ?, ?)";
+        stmt = con.prepareStatement(sql);
+        stmt.setString(1, cleaningSchedule.getHousekeeper_ssn());
+        stmt.setString(2, cleaningSchedule.getReceptionist_ssn());
+        stmt.setInt(3, cleaningSchedule.getRoom_id());
+        stmt.setDate(4, cleaningSchedule.getCleaning_date());
+        stmt.setString(5, cleaningSchedule.getService_status());
+        stmt.executeUpdate();
+    }
+    public void updateCleaningSchedule(CleaningSchedule cleaningSchedule) throws SQLException {
+        String sql = "UPDATE CleaningSchedule SET housekeeper_ssn = ?, receptionist_ssn = ?, room_id = ?, cleaning_date = ?, service_status = ? WHERE schedule_id = ?";
+        stmt = con.prepareStatement(sql);
+        stmt.setString(1, cleaningSchedule.getHousekeeper_ssn());
+        stmt.setString(2, cleaningSchedule.getReceptionist_ssn());
+        stmt.setInt(3, cleaningSchedule.getRoom_id());
+        stmt.setDate(4, cleaningSchedule.getCleaning_date());
+        stmt.setString(5, cleaningSchedule.getService_status());
+        stmt.setInt(6, cleaningSchedule.getSchedule_id());
+        stmt.executeUpdate();
+    }
+    public void deleteCleaningSchedule(CleaningSchedule cleaningSchedule) throws SQLException {
+        String sql = "DELETE FROM CleaningSchedule WHERE schedule_id = ?";
+        stmt = con.prepareStatement(sql);
+        stmt.setInt(1, cleaningSchedule.getSchedule_id());
+        stmt.executeUpdate();
+    }
 
-    public ArrayList<Room> getRooms(String filterColumn, String filterOption, String filterValue) {
-        return null;
-    }
-    public ArrayList<Customer> getCustomers(String filterColumn, String filterValue) {
-        return null;
-    }
-    public ArrayList<Employee> getEmployees(String filterColumn, String filterOption, String filterValue) throws SQLException {
-        String sql = "SELECT * FROM Employees WHERE Employees.emp_ssn = ?";
-        ArrayList<Employee> employees = new ArrayList<>();
+    public ArrayList<Room> getRooms(String filterColumn, String filterOption, String filterValue) throws SQLException {
+        String sql = "";
+        ArrayList<Room> rooms = new ArrayList<>();
+
+        if (filterOption.equals("None")) {
+            sql = "SELECT * FROM Rooms";
+        } else {
+            String column = "";
+            String where = "";
+            sql = "SELECT * FROM Rooms WHERE " + filterColumn + filterOption + " ?";
+        }
+
         stmt = con.prepareStatement(sql);
         stmt.setString(1, filterValue);
+
+        //System.out.println(stmt);
+
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            rooms.add(new Room(rs));
+        }
+        return rooms;
+    }
+
+    public ArrayList<Room> getRooms(String filterColumn, String filterOption, String filterValue, String filterValueUpper) throws SQLException {
+        String sql = "";
+        ArrayList<Room> rooms = new ArrayList<>();
+
+        if (filterOption.equals("None")) {
+            sql = "SELECT * FROM Rooms";
+        } else {
+            String column = "";
+            String where = "";
+            sql = "SELECT * FROM Rooms WHERE " + filterColumn + filterOption + " ? AND ?";
+        }
+
+        stmt = con.prepareStatement(sql);
+        stmt.setString(1, filterValue);
+        stmt.setString(2, filterValueUpper);
+
+        //System.out.println(stmt);
+
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            rooms.add(new Room(rs));
+        }
+        return rooms;
+    }
+
+    public ArrayList<Customer> getCustomers(String filterColumn, String filterOption, String filterValue) throws SQLException {
+
+        String sql = "";
+        ArrayList<Customer> customers = new ArrayList<>();
+
+        if (filterOption.equals("None")) {
+            sql = "SELECT * FROM Customers";
+        } else {
+            String cus = "c_";
+            if (!compare(filterColumn, new String[]{"zip_code"})) {
+                filterColumn = cus + filterColumn;
+            }
+
+            String column = "";
+            String where = "";
+            sql = "SELECT * FROM Customers WHERE " + filterColumn + filterOption + " ?";
+        }
+
+        stmt = con.prepareStatement(sql);
+        stmt.setString(1, filterValue);
+
+        //System.out.println(stmt);
+
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            customers.add(new Customer(rs));
+        }
+        return customers;
+
+    }
+    public ArrayList<Employee> getEmployees(String filterColumn, String filterOption, String filterValue) throws SQLException {
+        String sql = "";
+        ArrayList<Employee> employees = new ArrayList<>();
+
+        if (filterOption.equals("None")) {
+            sql = "SELECT * FROM Employees";
+        } else {
+            String emp = "emp_";
+            if (!compare(filterColumn, new String[]{"years", "street", "no", "apartment", "zip_code"})) {
+                filterColumn = emp + filterColumn;
+            }
+
+            String column = "";
+            String where = "";
+            sql = "SELECT * FROM Employees WHERE " + filterColumn + filterOption + " ?";
+        }
+
+        stmt = con.prepareStatement(sql);
+        stmt.setString(1, filterValue);
+
+        //System.out.println(stmt);
+
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
             employees.add(new Employee(rs));
         }
         return employees;
     }
-    public ArrayList<Booking> getBookings(String filterColumn, String filterValue) {
+
+    public ArrayList<Booking> getBookings(String filterColumn, String filterOption, String filterValue) throws SQLException {
+        String sql = "";
+        ArrayList<Booking> bookings = new ArrayList<>();
+
+        if (filterOption.equals("None")) {
+            sql = "SELECT * FROM Bookings";
+        } else {
+            String column = "";
+            String where = "";
+            sql = "SELECT * FROM Bookings WHERE " + filterColumn + filterOption + " ?";
+        }
+
+        stmt = con.prepareStatement(sql);
+        stmt.setString(1, filterValue);
+
+        //System.out.println(stmt);
+
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            bookings.add(new Booking(rs));
+        }
+        return bookings;
+    }
+
+    public ArrayList<Booking> getBookings(String filterColumn, String filterOption, String filterValue, String filterValueUpper) throws SQLException {
+        String sql = "";
+        ArrayList<Booking> bookings = new ArrayList<>();
+
+        if (filterOption.equals("None")) {
+            sql = "SELECT * FROM Bookings";
+        } else {
+            String column = "";
+            String where = "";
+            sql = "SELECT * FROM Bookings WHERE " + filterColumn + filterOption + " ? AND ?";
+        }
+
+        stmt = con.prepareStatement(sql);
+        stmt.setString(1, filterValue);
+        stmt.setString(2, filterValueUpper);
+
+        //System.out.println(stmt);
+
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            bookings.add(new Booking(rs));
+        }
+        return bookings;
+    }
+
+    public ArrayList<ParkingLot> getParkingLots(String filterColumn, String filterOption, String filterValue) throws SQLException {
         return null;
     }
-    public ArrayList<ParkingLot> getParkingLots(String filterColumn, String filterValue) {
-        return null;
+
+    public ArrayList<CleaningSchedule> getCleaningSchedules(String filterColumn, String filterOption, String filterValue) throws SQLException {
+        String sql = "";
+        ArrayList<CleaningSchedule> cs = new ArrayList<>();
+
+        if (filterOption.equals("None")) {
+            sql = "SELECT * FROM CleaningSchedule";
+        } else {
+            String column = "";
+            String where = "";
+            sql = "SELECT * FROM CleaningSchedule WHERE " + filterColumn + filterOption + " ?";
+        }
+
+        stmt = con.prepareStatement(sql);
+        stmt.setString(1, filterValue);
+
+        //System.out.println(stmt);
+
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            cs.add(new CleaningSchedule(rs));
+        }
+        return cs;
     }
-    public ArrayList<CleaningSchedule> getCleaningSchedules(String filterColumn, String filterValue) {
-        return null;
+
+    public ArrayList<CleaningSchedule> getCleaningSchedules(String filterColumn, String filterOption, String filterValue, String filterValueUpper) throws SQLException {
+        String sql = "";
+        ArrayList<CleaningSchedule> cs = new ArrayList<>();
+
+        if (filterOption.equals("None")) {
+            sql = "SELECT * FROM CleaningSchedule";
+        } else {
+            String column = "";
+            String where = "";
+            sql = "SELECT * FROM CleaningSchedule WHERE " + filterColumn + filterOption + "  ? AND ?";
+        }
+
+        stmt = con.prepareStatement(sql);
+        stmt.setString(1, filterValue);
+        stmt.setString(2, filterValueUpper);
+
+        //System.out.println(stmt);
+
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            cs.add(new CleaningSchedule(rs));
+        }
+        return cs;
     }
-    public void executeQuery(String query) {}
+
+    public void executeQuery(String query) {
+
+    }
 }

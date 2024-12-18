@@ -9,6 +9,9 @@ public abstract class Panel extends JPanel {
     public Panel prevCenterPanel;
     public JButton prevSelectedButton;
     public JTable dataTable = null;
+    public JComboBox<String> cbFilterColumn;
+    public JComboBox<String> cbFilterOption;
+    public JTextField tfFilterValue;
 
     public abstract void addButtonListener(ActionListener al);
 
@@ -51,6 +54,18 @@ public abstract class Panel extends JPanel {
             }
         } else JOptionPane.showMessageDialog(null, "No row selected!");
         return rowValues;
+    }
+
+    public String getSelectedFilterOption() {
+        return (String) cbFilterOption.getSelectedItem();
+    }
+
+    public String getSelectedFilterColumn() {
+        return (String) cbFilterColumn.getSelectedItem();
+    }
+
+    public String getSelectedFilterValue() {
+        return (String) tfFilterValue.getText();
     }
 
     public abstract Panel getPanelByName(String panelName);

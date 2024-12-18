@@ -20,7 +20,10 @@ public class EmployeesPanel extends Panel {
 
     @Override
     public void addButtonListener(ActionListener al) {
-
+        btnAdd.addActionListener(al);
+        btnDelete.addActionListener(al);
+        btnApplyFilter.addActionListener(al);
+        btnUpdate.addActionListener(al);
     }
 
     @Override
@@ -40,11 +43,14 @@ public class EmployeesPanel extends Panel {
 
     public EmployeesPanel() {
         initComponents();
+        super.cbFilterColumn = cbColumnOption;
+        super.cbFilterOption = cbFilterOption;
+        super.tfFilterValue = tfFilterInput;
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlData = new JScrollPane();
         tblEmployees = new JTable();
         pnlControl = new JPanel();
@@ -61,14 +67,14 @@ public class EmployeesPanel extends Panel {
         btnApplyFilter = new JButton();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
-        new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion"
-        , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
-        , new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 )
-        , java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
-        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-        ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( )
-        ; }} );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder (
+        new javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion"
+        , javax. swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM
+        , new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 )
+        ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener(
+        new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
+        ) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
+        ;} } );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -82,7 +88,7 @@ public class EmployeesPanel extends Panel {
                     {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                 },
                 new String[] {
-                    "Ssn", "First Name", "Last Name", "Type", "Birth Date", "Years", "Hotel ID", "Salary", "Phone No", "E-mail", "Gender", "Street", "No", "Apartment", "Zip Code"
+                    "ssn", "firstname", "lastname", "type", "bd", "years", "hotel_id", "salary", "phone_num", "email", "gender", "street", "no", "apartment", "zip_code"
                 }
             ) {
                 Class<?>[] columnTypes = new Class<?>[] {
@@ -110,18 +116,24 @@ public class EmployeesPanel extends Panel {
                 //---- btnAdd ----
                 btnAdd.setText("Add");
                 btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnAdd.setActionCommand("Employees");
+                btnAdd.setName("add");
                 pnlSelection.add(btnAdd);
                 btnAdd.setBounds(30, 125, 100, 50);
 
                 //---- btnDelete ----
                 btnDelete.setText("Delete");
                 btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnDelete.setActionCommand("Employees");
+                btnDelete.setName("delete");
                 pnlSelection.add(btnDelete);
                 btnDelete.setBounds(145, 125, 100, 50);
 
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
                 btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnUpdate.setActionCommand("Employees");
+                btnUpdate.setName("update");
                 pnlSelection.add(btnUpdate);
                 btnUpdate.setBounds(260, 125, 100, 50);
 
@@ -161,21 +173,21 @@ public class EmployeesPanel extends Panel {
 
                 //---- cbColumnOption ----
                 cbColumnOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "Ssn",
-                    "First Name",
-                    "Last Name",
-                    "Type",
-                    "Birth Date",
-                    "Years",
-                    "Hotel ID",
-                    "Salary",
-                    "Phone No",
-                    "E-Mail",
-                    "Gender",
-                    "Street",
-                    "No",
-                    "Apartment",
-                    "Zip Code"
+                    "ssn",
+                    "firstname",
+                    "lastname",
+                    "type",
+                    "bd",
+                    "years",
+                    "hotel_id",
+                    "salary",
+                    "phone_no",
+                    "email",
+                    "gender",
+                    "street",
+                    "no",
+                    "apartment",
+                    "zip_code"
                 }));
                 cbColumnOption.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlFilter.add(cbColumnOption);
@@ -184,7 +196,7 @@ public class EmployeesPanel extends Panel {
                 //---- cbFilterOption ----
                 cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
                     "None",
-                    "==",
+                    "=",
                     "!=",
                     "<",
                     ">",
@@ -207,6 +219,8 @@ public class EmployeesPanel extends Panel {
                 //---- btnApplyFilter ----
                 btnApplyFilter.setText("Apply Filters");
                 btnApplyFilter.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnApplyFilter.setActionCommand("Employees");
+                btnApplyFilter.setName("applyFilter");
                 pnlFilter.add(btnApplyFilter);
                 btnApplyFilter.setBounds(55, 145, 250, 40);
 
@@ -232,7 +246,7 @@ public class EmployeesPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane pnlData;
     private JTable tblEmployees;
     private JPanel pnlControl;

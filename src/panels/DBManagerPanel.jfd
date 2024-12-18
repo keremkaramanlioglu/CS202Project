@@ -23,6 +23,7 @@ new FormModel {
 					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 					"focusable": false
 					"cursor": new java.awt.Cursor( 12 )
+					"name": "side"
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnBack"

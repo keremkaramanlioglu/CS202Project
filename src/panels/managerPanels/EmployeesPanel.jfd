@@ -46,21 +46,21 @@ new FormModel {
 							add( null )
 						} )
 					}, new java.util.Vector {
-						add( "Ssn" )
-						add( "First Name" )
-						add( "Last Name" )
-						add( "Type" )
-						add( "Birth Date" )
-						add( "Years" )
-						add( "Hotel ID" )
-						add( "Salary" )
-						add( "Phone No" )
-						add( "E-mail" )
-						add( "Gender" )
-						add( "Street" )
-						add( "No" )
-						add( "Apartment" )
-						add( "Zip Code" )
+						add( "ssn" )
+						add( "firstname" )
+						add( "lastname" )
+						add( "type" )
+						add( "bd" )
+						add( "years" )
+						add( "hotel_id" )
+						add( "salary" )
+						add( "phone_num" )
+						add( "email" )
+						add( "gender" )
+						add( "street" )
+						add( "no" )
+						add( "apartment" )
+						add( "zip_code" )
 					}, new java.util.Vector {
 						add( class java.lang.Integer )
 						add( class java.lang.String )
@@ -126,6 +126,8 @@ new FormModel {
 						name: "btnAdd"
 						"text": "Add"
 						"cursor": &Cursor0 new java.awt.Cursor( 12 )
+						"actionCommand": "Employees"
+						"name": "add"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 30
 						"y": 125
@@ -136,6 +138,8 @@ new FormModel {
 						name: "btnDelete"
 						"text": "Delete"
 						"cursor": #Cursor0
+						"actionCommand": "Employees"
+						"name": "delete"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 50
@@ -146,6 +150,8 @@ new FormModel {
 						name: "btnUpdate"
 						"text": "Update"
 						"cursor": #Cursor0
+						"actionCommand": "Employees"
+						"name": "update"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 50
@@ -175,22 +181,22 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JComboBox" ) {
 						name: "cbColumnOption"
 						"model": new javax.swing.DefaultComboBoxModel {
-							selectedItem: "Ssn"
-							addElement( "Ssn" )
-							addElement( "First Name" )
-							addElement( "Last Name" )
-							addElement( "Type" )
-							addElement( "Birth Date" )
-							addElement( "Years" )
-							addElement( "Hotel ID" )
-							addElement( "Salary" )
-							addElement( "Phone No" )
-							addElement( "E-Mail" )
-							addElement( "Gender" )
-							addElement( "Street" )
-							addElement( "No" )
-							addElement( "Apartment" )
-							addElement( "Zip Code" )
+							selectedItem: "ssn"
+							addElement( "ssn" )
+							addElement( "firstname" )
+							addElement( "lastname" )
+							addElement( "type" )
+							addElement( "bd" )
+							addElement( "years" )
+							addElement( "hotel_id" )
+							addElement( "salary" )
+							addElement( "phone_no" )
+							addElement( "email" )
+							addElement( "gender" )
+							addElement( "street" )
+							addElement( "no" )
+							addElement( "apartment" )
+							addElement( "zip_code" )
 						}
 						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
@@ -204,7 +210,7 @@ new FormModel {
 						"model": new javax.swing.DefaultComboBoxModel {
 							selectedItem: "None"
 							addElement( "None" )
-							addElement( "==" )
+							addElement( "=" )
 							addElement( "!=" )
 							addElement( "<" )
 							addElement( ">" )
@@ -241,6 +247,8 @@ new FormModel {
 						name: "btnApplyFilter"
 						"text": "Apply Filters"
 						"cursor": #Cursor0
+						"actionCommand": "Employees"
+						"name": "applyFilter"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 250
 						"height": 40
