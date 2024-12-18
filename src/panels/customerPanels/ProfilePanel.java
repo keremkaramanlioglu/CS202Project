@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Wed Dec 11 20:10:58 TRT 2024
  */
 
-package panels.guestPanels;
+package panels.customerPanels;
 
 import panels.Panel;
 

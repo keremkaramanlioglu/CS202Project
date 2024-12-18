@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Wed Dec 11 17:07:20 TRT 2024
  */
 
-package panels.adminPanels;
+package panels.managerPanels;
 
 import java.awt.event.MouseListener;
 import java.util.*;

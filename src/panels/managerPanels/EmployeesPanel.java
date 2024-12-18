@@ -2,9 +2,8 @@
  * Created by JFormDesigner on Wed Dec 11 17:07:05 TRT 2024
  */
 
-package panels.adminPanels;
+package panels.managerPanels;
 
-import javax.swing.border.*;
 import javax.swing.table.*;
 import panels.Panel;
 
