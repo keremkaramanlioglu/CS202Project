@@ -149,7 +149,7 @@ new FormModel {
 						"name": "add"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 295
-						"y": 30
+						"y": 10
 						"width": 100
 						"height": 50
 					} )
@@ -163,7 +163,7 @@ new FormModel {
 						"width": 100
 						"height": 50
 						"x": 295
-						"y": 85
+						"y": 65
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btnUpdate"
@@ -174,8 +174,8 @@ new FormModel {
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 50
-						"x": 400
-						"y": 30
+						"x": 295
+						"y": 120
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "lblSsn"
@@ -279,17 +279,16 @@ new FormModel {
 						"x": 185
 						"y": 95
 					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "btnGetRow"
-						"text": "Get Row"
-						"cursor": #Cursor1
-						"actionCommand": "Users"
-						"name": "get row"
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "textArea1"
+						"text": "Please choose a row to update!"
+						"lineWrap": true
+						"wrapStyleWord": true
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
-						"height": 50
-						"x": 400
-						"y": 85
+						"height": 60
+						"x": 395
+						"y": 115
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
@@ -337,14 +336,6 @@ new FormModel {
 						"x": 175
 						"y": 35
 					} )
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "tfFilterInput"
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 45
-						"y": 100
-						"width": 250
-						"height": 40
-					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "lblFilterInput"
 						"text": "Filter Input"
@@ -362,8 +353,34 @@ new FormModel {
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 45
 						"y": 150
-						"width": 250
+						"width": 245
 						"height": 40
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "tfFilterValue"
+						"toolTipText": "Filter Input"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 115
+						"height": 40
+						"x": 45
+						"y": 105
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "tfFilterUpperValue"
+						"toolTipText": "Filter Input"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 115
+						"height": 40
+						"x": 175
+						"y": 105
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label8"
+						"text": "-"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 15
+						"x": 165
+						"y": 120
 					} )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {

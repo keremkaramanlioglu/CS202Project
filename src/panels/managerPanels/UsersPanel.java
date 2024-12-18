@@ -70,22 +70,19 @@ public class UsersPanel extends Panel {
         lblGender = new JLabel();
         tfZipCode = new JTextField();
         lblZipCode = new JLabel();
-        btnGetRow = new JButton();
+        textArea1 = new JTextArea();
         pnlFilter = new JPanel();
         cbColumnOption = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
-        tfFilterInput = new JTextField();
         lblFilterInput = new JLabel();
         btnApplyFilter = new JButton();
+        tfFilterValue = new JTextField();
+        tfFilterUpperValue = new JTextField();
+        label8 = new JLabel();
 
         //======== this ========
         setPreferredSize(new Dimension(900, 700));
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
-        EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER,javax.swing
-        .border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font.BOLD,12),
-        java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener()
-        {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order".equals(e.getPropertyName()))
-        throw new RuntimeException();}});
+
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -150,7 +147,7 @@ public class UsersPanel extends Panel {
                 btnAdd.setActionCommand("Users");
                 btnAdd.setName("add");
                 pnlSelection.add(btnAdd);
-                btnAdd.setBounds(295, 30, 100, 50);
+                btnAdd.setBounds(295, 10, 100, 50);
 
                 //---- btnDelete ----
                 btnDelete.setText("Delete");
@@ -158,7 +155,7 @@ public class UsersPanel extends Panel {
                 btnDelete.setActionCommand("Users");
                 btnDelete.setName("delete");
                 pnlSelection.add(btnDelete);
-                btnDelete.setBounds(295, 85, 100, 50);
+                btnDelete.setBounds(295, 65, 100, 50);
 
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
@@ -166,7 +163,7 @@ public class UsersPanel extends Panel {
                 btnUpdate.setActionCommand("Users");
                 btnUpdate.setName("update");
                 pnlSelection.add(btnUpdate);
-                btnUpdate.setBounds(400, 30, 100, 50);
+                btnUpdate.setBounds(295, 120, 100, 50);
 
                 //---- lblSsn ----
                 lblSsn.setText("Ssn");
@@ -219,13 +216,12 @@ public class UsersPanel extends Panel {
                 pnlSelection.add(lblZipCode);
                 lblZipCode.setBounds(185, 95, 75, 17);
 
-                //---- btnGetRow ----
-                btnGetRow.setText("Get Row");
-                btnGetRow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnGetRow.setActionCommand("Users");
-                btnGetRow.setName("get row");
-                pnlSelection.add(btnGetRow);
-                btnGetRow.setBounds(400, 85, 100, 50);
+                //---- textArea1 ----
+                textArea1.setText("Please choose a row to update!");
+                textArea1.setLineWrap(true);
+                textArea1.setWrapStyleWord(true);
+                pnlSelection.add(textArea1);
+                textArea1.setBounds(395, 115, 100, 60);
 
                 {
                     // compute preferred size
@@ -280,8 +276,6 @@ public class UsersPanel extends Panel {
                 cbFilterOption.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlFilter.add(cbFilterOption);
                 cbFilterOption.setBounds(175, 35, 120, 40);
-                pnlFilter.add(tfFilterInput);
-                tfFilterInput.setBounds(45, 100, 250, 40);
 
                 //---- lblFilterInput ----
                 lblFilterInput.setText("Filter Input");
@@ -294,7 +288,22 @@ public class UsersPanel extends Panel {
                 btnApplyFilter.setActionCommand("Users");
                 btnApplyFilter.setName("apply");
                 pnlFilter.add(btnApplyFilter);
-                btnApplyFilter.setBounds(45, 150, 250, 40);
+                btnApplyFilter.setBounds(45, 150, 245, 40);
+
+                //---- tfFilterValue ----
+                tfFilterValue.setToolTipText("Filter Input");
+                pnlFilter.add(tfFilterValue);
+                tfFilterValue.setBounds(45, 105, 115, 40);
+
+                //---- tfFilterUpperValue ----
+                tfFilterUpperValue.setToolTipText("Filter Input");
+                pnlFilter.add(tfFilterUpperValue);
+                tfFilterUpperValue.setBounds(175, 105, 115, 40);
+
+                //---- label8 ----
+                label8.setText("-");
+                pnlFilter.add(label8);
+                label8.setBounds(165, 120, 15, label8.getPreferredSize().height);
 
                 {
                     // compute preferred size
@@ -344,12 +353,14 @@ public class UsersPanel extends Panel {
     private JLabel lblGender;
     private JTextField tfZipCode;
     private JLabel lblZipCode;
-    private JButton btnGetRow;
+    private JTextArea textArea1;
     private JPanel pnlFilter;
     private JComboBox<String> cbColumnOption;
     private JComboBox<String> cbFilterOption;
-    private JTextField tfFilterInput;
     private JLabel lblFilterInput;
     private JButton btnApplyFilter;
+    private JTextField tfFilterValue;
+    private JTextField tfFilterUpperValue;
+    private JLabel label8;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

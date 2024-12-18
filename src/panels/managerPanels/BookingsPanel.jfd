@@ -258,16 +258,15 @@ new FormModel {
 						"x": 335
 						"y": 90
 					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "btnGetSelectedRow"
-						"text": "Get Row"
-						"actionCommand": "Bookings"
-						"font": new java.awt.Font( "Inter", 0, 13 )
-						"name": "get row"
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "textArea1"
+						"text": "Please choose a row to update!"
+						"lineWrap": true
+						"wrapStyleWord": true
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 450
+						"x": 465
 						"y": 145
-						"width": 140
+						"width": 100
 						"height": 60
 					} )
 				} )
@@ -337,7 +336,8 @@ new FormModel {
 						name: "tfFilterValue"
 						"toolTipText": "Filter Input"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"width": 125
+						"width": 115
+
 						"height": 40
 						"x": 5
 						"y": 100
@@ -355,20 +355,23 @@ new FormModel {
 						"y": 145
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "tfUpperValue"
+						name: "tfFilterUpperValue"
+						"toolTipText": "Filter Input"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 150
-						"y": 100
 						"width": 115
 						"height": 40
+						"x": 135
+						"y": 100
+
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label8"
 						"text": "-"
-						"font": new java.awt.Font( "Inter", 0, 14 )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 135
-						"y": 110
+						"x": 125
+						"y": 115
+						"width": 15
+
 					} )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {

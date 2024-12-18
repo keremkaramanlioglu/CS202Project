@@ -55,17 +55,22 @@ public class EmployeesPanel extends Panel {
         pnlFilter = new JPanel();
         cbColumnOption = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
-        tfFilterInput = new JTextField();
         lblFilterInput = new JLabel();
         btnApplyFilter = new JButton();
+        tfFilterValue = new JTextField();
+        tfFilterUpperValue = new JTextField();
+        label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-        EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing
-        . border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ),
-        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () ))
-        throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
+        new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion"
+        , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+        , new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 )
+        , java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
+        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( )
+        ; }} );
+
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -138,7 +143,8 @@ public class EmployeesPanel extends Panel {
                 textArea1.setSelectionColor(Color.black);
                 textArea1.setDisabledTextColor(Color.black);
                 pnlSelection.add(textArea1);
-                textArea1.setBounds(20, 45, 310, 75);
+                textArea1.setBounds(20, 55, 310, 75);
+
 
                 {
                     // compute preferred size
@@ -200,8 +206,6 @@ public class EmployeesPanel extends Panel {
                 cbFilterOption.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlFilter.add(cbFilterOption);
                 cbFilterOption.setBounds(185, 30, 120, 40);
-                pnlFilter.add(tfFilterInput);
-                tfFilterInput.setBounds(55, 95, 250, 40);
 
                 //---- lblFilterInput ----
                 lblFilterInput.setText("Filter Input");
@@ -214,7 +218,22 @@ public class EmployeesPanel extends Panel {
                 btnApplyFilter.setActionCommand("Employees");
                 btnApplyFilter.setName("apply");
                 pnlFilter.add(btnApplyFilter);
-                btnApplyFilter.setBounds(55, 145, 250, 40);
+                btnApplyFilter.setBounds(55, 145, 245, 40);
+
+                //---- tfFilterValue ----
+                tfFilterValue.setToolTipText("Filter Input");
+                pnlFilter.add(tfFilterValue);
+                tfFilterValue.setBounds(55, 100, 115, 40);
+
+                //---- tfFilterUpperValue ----
+                tfFilterUpperValue.setToolTipText("Filter Input");
+                pnlFilter.add(tfFilterUpperValue);
+                tfFilterUpperValue.setBounds(185, 100, 115, 40);
+
+                //---- label8 ----
+                label8.setText("-");
+                pnlFilter.add(label8);
+                label8.setBounds(175, 115, 15, label8.getPreferredSize().height);
 
                 {
                     // compute preferred size
@@ -250,8 +269,10 @@ public class EmployeesPanel extends Panel {
     private JPanel pnlFilter;
     private JComboBox<String> cbColumnOption;
     private JComboBox<String> cbFilterOption;
-    private JTextField tfFilterInput;
     private JLabel lblFilterInput;
     private JButton btnApplyFilter;
+    private JTextField tfFilterValue;
+    private JTextField tfFilterUpperValue;
+    private JLabel label8;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

@@ -46,24 +46,24 @@ public class HouseKeepingPanel extends JPanel {
         lblSsn = new JLabel();
         lblRoomNumber = new JLabel();
         lblTime = new JLabel();
-        btnGetRow = new JButton();
         tfStatus = new JTextField();
         lblStatus = new JLabel();
+        textArea1 = new JTextArea();
         pnlFilter = new JPanel();
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
         lblFilterValue = new JLabel();
-        tfFilterValue = new JTextField();
         btnApply = new JButton();
+        tfFilterValue = new JTextField();
+        tfFilterUpperValue = new JTextField();
+        label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax
-        . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-        .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt
-        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
-        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .
-        equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
+        0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
+        . BOTTOM, new java .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
+        red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
+        beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== pnlHouseKeeping ========
@@ -149,14 +149,6 @@ public class HouseKeepingPanel extends JPanel {
                 lblTime.setFont(new Font("Inter", Font.PLAIN, 12));
                 pnlSelection.add(lblTime);
                 lblTime.setBounds(225, 45, 100, 25);
-
-                //---- btnGetRow ----
-                btnGetRow.setText("Get Row");
-                btnGetRow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnGetRow.setActionCommand("Housekeeping");
-                btnGetRow.setName("get row");
-                pnlSelection.add(btnGetRow);
-                btnGetRow.setBounds(330, 125, 100, 60);
                 pnlSelection.add(tfStatus);
                 tfStatus.setBounds(330, 65, 100, 34);
 
@@ -165,6 +157,13 @@ public class HouseKeepingPanel extends JPanel {
                 lblStatus.setFont(new Font("Inter", Font.PLAIN, 12));
                 pnlSelection.add(lblStatus);
                 lblStatus.setBounds(330, 45, 100, 25);
+
+                //---- textArea1 ----
+                textArea1.setText("Please choose a row to update!");
+                textArea1.setLineWrap(true);
+                textArea1.setWrapStyleWord(true);
+                pnlSelection.add(textArea1);
+                textArea1.setBounds(330, 125, 100, 60);
 
                 {
                     // compute preferred size
@@ -222,11 +221,6 @@ public class HouseKeepingPanel extends JPanel {
                 pnlFilter.add(lblFilterValue);
                 lblFilterValue.setBounds(30, 90, 245, 30);
 
-                //---- tfFilterValue ----
-                tfFilterValue.setToolTipText("Filter Input");
-                pnlFilter.add(tfFilterValue);
-                tfFilterValue.setBounds(25, 115, 245, 40);
-
                 //---- btnApply ----
                 btnApply.setText("Apply");
                 btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -234,6 +228,21 @@ public class HouseKeepingPanel extends JPanel {
                 btnApply.setName("apply");
                 pnlFilter.add(btnApply);
                 btnApply.setBounds(25, 160, 245, 60);
+
+                //---- tfFilterValue ----
+                tfFilterValue.setToolTipText("Filter Input");
+                pnlFilter.add(tfFilterValue);
+                tfFilterValue.setBounds(25, 120, 115, 40);
+
+                //---- tfFilterUpperValue ----
+                tfFilterUpperValue.setToolTipText("Filter Input");
+                pnlFilter.add(tfFilterUpperValue);
+                tfFilterUpperValue.setBounds(155, 120, 115, 40);
+
+                //---- label8 ----
+                label8.setText("-");
+                pnlFilter.add(label8);
+                label8.setBounds(145, 135, 15, label8.getPreferredSize().height);
 
                 {
                     // compute preferred size
@@ -271,14 +280,16 @@ public class HouseKeepingPanel extends JPanel {
     private JLabel lblSsn;
     private JLabel lblRoomNumber;
     private JLabel lblTime;
-    private JButton btnGetRow;
     private JTextField tfStatus;
     private JLabel lblStatus;
+    private JTextArea textArea1;
     private JPanel pnlFilter;
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;
     private JLabel lblFilterValue;
-    private JTextField tfFilterValue;
     private JButton btnApply;
+    private JTextField tfFilterValue;
+    private JTextField tfFilterUpperValue;
+    private JLabel label8;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

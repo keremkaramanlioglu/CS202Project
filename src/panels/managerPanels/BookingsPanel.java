@@ -28,7 +28,6 @@ public class BookingsPanel extends Panel {
         btnDelete.addActionListener(al);
         btnUpdate.addActionListener(al);
         btnApply.addActionListener(al);
-        btnGetSelectedRow.addActionListener(al);
     }
 
     @Override
@@ -50,6 +49,12 @@ public class BookingsPanel extends Panel {
 
     public BookingsPanel() {
         initComponents();
+        super.cbFilterOption = cbFilterOption;
+        super.cbFilterColumn = cbFilterColumn;
+        super.prevCenterPanel = null;
+        super.prevSelectedButton = null;
+        super.tfFilterValue = tfFilterValue;
+        super.tfFilterUpperValue = tfFilterUpperValue;
         super.table = table;
     }
 
@@ -82,13 +87,14 @@ public class BookingsPanel extends Panel {
         tfEndDate = new JTextField();
         label5 = new JLabel();
         label7 = new JLabel();
-        btnGetSelectedRow = new JButton();
+        textArea1 = new JTextArea();
         panel2 = new JPanel();
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
         label6 = new JLabel();
         tfFilterValue = new JTextField();
         btnApply = new JButton();
+
         tfUpperValue = new JTextField();
         label8 = new JLabel();
 
@@ -230,13 +236,12 @@ public class BookingsPanel extends Panel {
                 panel3.add(label7);
                 label7.setBounds(335, 90, 100, 25);
 
-                //---- btnGetSelectedRow ----
-                btnGetSelectedRow.setText("Get Row");
-                btnGetSelectedRow.setActionCommand("Bookings");
-                btnGetSelectedRow.setFont(new Font("Inter", Font.PLAIN, 13));
-                btnGetSelectedRow.setName("get row");
-                panel3.add(btnGetSelectedRow);
-                btnGetSelectedRow.setBounds(450, 145, 140, 60);
+                //---- textArea1 ----
+                textArea1.setText("Please choose a row to update!");
+                textArea1.setLineWrap(true);
+                textArea1.setWrapStyleWord(true);
+                panel3.add(textArea1);
+                textArea1.setBounds(465, 145, 100, 60);
 
                 {
                     // compute preferred size
@@ -308,7 +313,7 @@ public class BookingsPanel extends Panel {
                 //---- tfFilterValue ----
                 tfFilterValue.setToolTipText("Filter Input");
                 panel2.add(tfFilterValue);
-                tfFilterValue.setBounds(5, 100, 125, 40);
+                tfFilterValue.setBounds(5, 100, 115, 40);
 
                 //---- btnApply ----
                 btnApply.setText("Apply");
@@ -325,6 +330,16 @@ public class BookingsPanel extends Panel {
                 label8.setFont(new Font("Inter", Font.PLAIN, 14));
                 panel2.add(label8);
                 label8.setBounds(new Rectangle(new Point(135, 110), label8.getPreferredSize()));
+
+                //---- tfFilterUpperValue ----
+                tfFilterUpperValue.setToolTipText("Filter Input");
+                panel2.add(tfFilterUpperValue);
+                tfFilterUpperValue.setBounds(135, 100, 115, 40);
+
+                //---- label8 ----
+                label8.setText("-");
+                panel2.add(label8);
+                label8.setBounds(125, 115, 15, label8.getPreferredSize().height);
 
                 {
                     // compute preferred size
@@ -370,14 +385,15 @@ public class BookingsPanel extends Panel {
     private JTextField tfEndDate;
     private JLabel label5;
     private JLabel label7;
-    private JButton btnGetSelectedRow;
+    private JTextArea textArea1;
     private JPanel panel2;
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;
     private JLabel label6;
     private JTextField tfFilterValue;
     private JButton btnApply;
-    private JTextField tfUpperValue;
+    private JTextField tfFilterUpperValue;
+
     private JLabel label8;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

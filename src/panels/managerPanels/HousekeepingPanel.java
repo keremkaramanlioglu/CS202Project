@@ -68,13 +68,15 @@ public class HousekeepingPanel extends Panel {
         label4 = new JLabel();
         label5 = new JLabel();
         checkBox1 = new JCheckBox();
-        btnGetRow = new JButton();
+        textArea1 = new JTextArea();
         pnlFilter = new JPanel();
         comboBox1 = new JComboBox<>();
         comboBox2 = new JComboBox<>();
-        textField6 = new JTextField();
         label1 = new JLabel();
         btnApply = new JButton();
+        tfFilterValue = new JTextField();
+        tfFilterUpperValue = new JTextField();
+        label8 = new JLabel();
 
         //======== this ========
         setPreferredSize(new Dimension(1920, 1080));
@@ -193,12 +195,12 @@ public class HousekeepingPanel extends Panel {
                 pnlSelection.add(checkBox1);
                 checkBox1.setBounds(30, 70, 105, 32);
 
-                //---- btnGetRow ----
-                btnGetRow.setText("Get Row");
-                btnGetRow.setActionCommand("Housekeeping");
-                btnGetRow.setName("get row");
-                pnlSelection.add(btnGetRow);
-                btnGetRow.setBounds(330, 125, 100, 60);
+                //---- textArea1 ----
+                textArea1.setText("Please choose a row to update!");
+                textArea1.setLineWrap(true);
+                textArea1.setWrapStyleWord(true);
+                pnlSelection.add(textArea1);
+                textArea1.setBounds(325, 125, 100, 60);
 
                 {
                     // compute preferred size
@@ -254,8 +256,6 @@ public class HousekeepingPanel extends Panel {
                 comboBox2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlFilter.add(comboBox2);
                 comboBox2.setBounds(135, 23, 105, comboBox2.getPreferredSize().height);
-                pnlFilter.add(textField6);
-                textField6.setBounds(25, 87, 215, textField6.getPreferredSize().height);
 
                 //---- label1 ----
                 label1.setText("Filter Value:");
@@ -269,6 +269,21 @@ public class HousekeepingPanel extends Panel {
                 btnApply.setName("apply");
                 pnlFilter.add(btnApply);
                 btnApply.setBounds(25, 125, 215, 60);
+
+                //---- tfFilterValue ----
+                tfFilterValue.setToolTipText("Filter Input");
+                pnlFilter.add(tfFilterValue);
+                tfFilterValue.setBounds(25, 80, 95, 40);
+
+                //---- tfFilterUpperValue ----
+                tfFilterUpperValue.setToolTipText("Filter Input");
+                pnlFilter.add(tfFilterUpperValue);
+                tfFilterUpperValue.setBounds(135, 80, 105, 40);
+
+                //---- label8 ----
+                label8.setText("-");
+                pnlFilter.add(label8);
+                label8.setBounds(125, 95, 15, label8.getPreferredSize().height);
 
                 {
                     // compute preferred size
@@ -310,12 +325,14 @@ public class HousekeepingPanel extends Panel {
     private JLabel label4;
     private JLabel label5;
     private JCheckBox checkBox1;
-    private JButton btnGetRow;
+    private JTextArea textArea1;
     private JPanel pnlFilter;
     private JComboBox<String> comboBox1;
     private JComboBox<String> comboBox2;
-    private JTextField textField6;
     private JLabel label1;
     private JButton btnApply;
+    private JTextField tfFilterValue;
+    private JTextField tfFilterUpperValue;
+    private JLabel label8;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

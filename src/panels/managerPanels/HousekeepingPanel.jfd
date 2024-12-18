@@ -181,15 +181,15 @@ new FormModel {
 						"width": 105
 						"height": 32
 					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "btnGetRow"
-						"text": "Get Row"
-						"actionCommand": "Housekeeping"
-						"name": "get row"
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "textArea1"
+						"text": "Please choose a row to update!"
+						"lineWrap": true
+						"wrapStyleWord": true
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 60
-						"x": 330
+						"x": 325
 						"y": 125
 					} )
 				} )
@@ -237,13 +237,6 @@ new FormModel {
 						"y": 23
 						"width": 105
 					} )
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField6"
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 25
-						"y": 87
-						"width": 215
-					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label1"
 						"text": "Filter Value:"
@@ -264,6 +257,32 @@ new FormModel {
 						"y": 125
 						"width": 215
 						"height": 60
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "tfFilterValue"
+						"toolTipText": "Filter Input"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 95
+						"height": 40
+						"x": 25
+						"y": 80
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "tfFilterUpperValue"
+						"toolTipText": "Filter Input"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 105
+						"height": 40
+						"x": 135
+						"y": 80
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label8"
+						"text": "-"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 15
+						"x": 125
+						"y": 95
 					} )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {

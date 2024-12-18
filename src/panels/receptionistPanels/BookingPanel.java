@@ -74,23 +74,24 @@ public class BookingPanel extends Panel {
         lblRoomID = new JLabel();
         lblPaymentStatus = new JLabel();
         lblPaymentMethod = new JLabel();
-        btnGetRow = new JButton();
+        textArea1 = new JTextArea();
         pnlFilter = new JPanel();
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
         lblFilterValue = new JLabel();
-        tfFilterValue = new JTextField();
         btnApply = new JButton();
         btnChooseDate = new JButton();
+        tfFilterValue = new JTextField();
+        tfFilterUpperValue = new JTextField();
+        label8 = new JLabel();
 
         //======== this ========
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax .
-        swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e" , javax. swing .border
-        . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069al\u006fg"
-        , java .awt . Font. BOLD ,12 ) ,java . awt. Color .red ) , getBorder
-        () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java
-        . beans. PropertyChangeEvent e) { if( "\u0062or\u0064er" .equals ( e. getPropertyName () ) )throw new RuntimeException
-        ( ) ;} } );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder
+        (0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing.border
+        .TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt
+        .Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void
+        propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException()
+        ;}});
         setLayout(new BorderLayout());
 
         //======== pnlBooking ========
@@ -219,13 +220,12 @@ public class BookingPanel extends Panel {
                 pnlSelection.add(lblPaymentMethod);
                 lblPaymentMethod.setBounds(330, 25, 100, 25);
 
-                //---- btnGetRow ----
-                btnGetRow.setText("Get Row");
-                btnGetRow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnGetRow.setActionCommand("Bookings");
-                btnGetRow.setName("get row");
-                pnlSelection.add(btnGetRow);
-                btnGetRow.setBounds(330, 135, 100, 60);
+                //---- textArea1 ----
+                textArea1.setText("Please choose a row to update!");
+                textArea1.setLineWrap(true);
+                textArea1.setWrapStyleWord(true);
+                pnlSelection.add(textArea1);
+                textArea1.setBounds(330, 135, 100, 60);
 
                 {
                     // compute preferred size
@@ -293,11 +293,6 @@ public class BookingPanel extends Panel {
                 pnlFilter.add(lblFilterValue);
                 lblFilterValue.setBounds(30, 85, 245, 30);
 
-                //---- tfFilterValue ----
-                tfFilterValue.setToolTipText("Filter Input");
-                pnlFilter.add(tfFilterValue);
-                tfFilterValue.setBounds(25, 110, 245, 40);
-
                 //---- btnApply ----
                 btnApply.setText("Apply");
                 btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -313,6 +308,21 @@ public class BookingPanel extends Panel {
                 btnChooseDate.setName("date picker");
                 pnlFilter.add(btnChooseDate);
                 btnChooseDate.setBounds(150, 150, 122, 60);
+
+                //---- tfFilterValue ----
+                tfFilterValue.setToolTipText("Filter Input");
+                pnlFilter.add(tfFilterValue);
+                tfFilterValue.setBounds(25, 110, 115, 40);
+
+                //---- tfFilterUpperValue ----
+                tfFilterUpperValue.setToolTipText("Filter Input");
+                pnlFilter.add(tfFilterUpperValue);
+                tfFilterUpperValue.setBounds(155, 110, 115, 40);
+
+                //---- label8 ----
+                label8.setText("-");
+                pnlFilter.add(label8);
+                label8.setBounds(145, 125, 15, label8.getPreferredSize().height);
 
                 {
                     // compute preferred size
@@ -360,13 +370,15 @@ public class BookingPanel extends Panel {
     private JLabel lblRoomID;
     private JLabel lblPaymentStatus;
     private JLabel lblPaymentMethod;
-    private JButton btnGetRow;
+    private JTextArea textArea1;
     private JPanel pnlFilter;
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;
     private JLabel lblFilterValue;
-    private JTextField tfFilterValue;
     private JButton btnApply;
     private JButton btnChooseDate;
+    private JTextField tfFilterValue;
+    private JTextField tfFilterUpperValue;
+    private JLabel label8;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
