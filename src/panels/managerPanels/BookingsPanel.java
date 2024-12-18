@@ -28,7 +28,6 @@ public class BookingsPanel extends Panel {
         btnDelete.addActionListener(al);
         btnUpdate.addActionListener(al);
         btnApply.addActionListener(al);
-
     }
 
     @Override
@@ -45,10 +44,9 @@ public class BookingsPanel extends Panel {
     public void setTableWithBookings(ArrayList<Booking> bookings) {
         // Define column names (adjust to match the fields in your Customer class)
         String[] columnNames = {"booking_id", "c_ssn", "room_id", "payment_status", "payment_method", "booking_start_date", "booking_end_date", "c_check_in_status", "c_check_out_status"};
-        table = new JTable();
+
         // Create a table model with column names
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-
         // Loop through the customers list and add each as a row to the model
         for ( Booking booking : bookings) {
             Object[] row = {
@@ -66,7 +64,11 @@ public class BookingsPanel extends Panel {
         }
 
         // Set the table model to the JTable
-        table.setModel(model);
+        table2.setModel(model);
+        table2.revalidate();
+        table2.repaint();
+        this.revalidate();
+        this.repaint();
     }
 
 
@@ -77,33 +79,17 @@ public class BookingsPanel extends Panel {
 
     public BookingsPanel() {
         initComponents();
-        super.table = table;
-    }
-
-    private void cbSelectColumn(ActionEvent e) {
-        if (((String)cbSelectColumn.getSelectedItem()).contains("Check")){
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "Checked in", "Checked out"}));
-        } else if (((String)cbSelectColumn.getSelectedItem()).equals("Payment Status")) {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "Completed", "Pending", "Canceled"}));
-        } else if (((String)cbSelectColumn.getSelectedItem()).equals("Payment Method")) {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "In Advance", "During Check-out"}));
-        } else if (((String)cbSelectColumn.getSelectedItem()).equals("None")) {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None"}));
-        } else {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "==", "!=", "<", ">", "<=", ">=", "between", "contains"}));
-        }
+        super.cbFilterOption = cbFilterOption;
+        super.cbFilterColumn = cbSelectColumn;
+        super.tfFilterUpperValue = tfFilterUpperValue;
+        super.tfFilterValue = tfFilterValue;
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         scrollPane1 = new JScrollPane();
-        table = new JTable();
+        table2 = new JTable();
         panel1 = new JPanel();
         panel3 = new JPanel();
         tfCSsn = new JTextField();
@@ -134,20 +120,21 @@ public class BookingsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(
-        0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder
-        .BOTTOM,new java.awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),java.awt.Color.
-        red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.
-        beans.PropertyChangeEvent e){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException();}});
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
+        ( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border
+        . TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
+        propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
+        ; }} );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
         {
             scrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-            //---- table ----
-            table.setPreferredSize(new Dimension(150, 400));
-            table.setModel(new DefaultTableModel(
+            //---- table2 ----
+            table2.setPreferredSize(new Dimension(150, 400));
+            table2.setModel(new DefaultTableModel(
                 new Object[][] {
                     {null, null, null, null, null, null, null, true, true},
                     {null, null, null, null, null, null, null, null, null},
@@ -164,7 +151,7 @@ public class BookingsPanel extends Panel {
                     return columnTypes[columnIndex];
                 }
             });
-            scrollPane1.setViewportView(table);
+            scrollPane1.setViewportView(table2);
         }
         add(scrollPane1, BorderLayout.CENTER);
 
@@ -303,40 +290,31 @@ public class BookingsPanel extends Panel {
 
                 //---- cbSelectColumn ----
                 cbSelectColumn.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None",
-                    "Book ID",
-                    "Customer SSN",
-                    "Room ID",
-                    "Payment Method",
-                    "Payment Status",
-                    "Start Date",
-                    "End Date",
-                    "Checked in",
-                    "Checked out"
+                    "booking_id",
+                    "c_ssn",
+                    "room_id",
+                    "payment_status",
+                    "payment_method",
+                    "booking_start_date",
+                    "booking_end_date",
+                    "c_check_in_status",
+                    "c_check_out_status"
                 }));
                 cbSelectColumn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                cbSelectColumn.addActionListener(e -> cbSelectColumn(e));
                 panel2.add(cbSelectColumn);
                 cbSelectColumn.setBounds(10, 20, 120, 45);
 
                 //---- cbFilterOption ----
                 cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
                     "None",
-                    "==",
+                    "=",
                     "!=",
                     "<",
                     ">",
                     "<=",
                     ">=",
                     "between",
-                    "contains",
-                    "Completed",
-                    "Pending",
-                    "Canceled",
-                    "In Advance",
-                    "During Check-out",
-                    "Checked in",
-                    "Checked out"
+                    "contains"
                 }));
                 cbFilterOption.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 panel2.add(cbFilterOption);
@@ -392,9 +370,9 @@ public class BookingsPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JScrollPane scrollPane1;
-    private JTable table;
+    private JTable table2;
     private JPanel panel1;
     private JPanel panel3;
     private JTextField tfCSsn;
