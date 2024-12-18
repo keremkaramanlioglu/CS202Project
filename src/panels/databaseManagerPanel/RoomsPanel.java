@@ -1,59 +1,24 @@
 /*
- * Created by JFormDesigner on Wed Dec 11 17:06:06 TRT 2024
+ * Created by JFormDesigner on Wed Dec 18 13:49:43 TRT 2024
  */
 
-package panels.adminPanels;
-
-import panels.Panel;
+package panels.databaseManagerPanel;
 
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import javax.swing.*;
 import javax.swing.table.*;
 
 /**
- * @author kerem
+ * @author kutay
  */
-public class RoomsPanel extends Panel {
-
+public class RoomsPanel extends JPanel {
     public RoomsPanel() {
         initComponents();
-    }
-
-    @Override
-    public void addButtonListener(ActionListener al) {
-        btnAdd.addActionListener(al);
-        btnDelete.addActionListener(al);
-        btnUpdate.addActionListener(al);
-    }
-
-    @Override
-    public void addMouseListener(MouseListener ml) {
-
-    }
-
-    @Override
-    public void reset() {
-        tfRoomNum.setText("");
-        tfRoomType.setText("");
-        tfFilterValue.setText("");
-        tfCapacity.setText("");
-        tfRoomSize.setText("");
-        tfRoomPrice.setText("");
-        cbFilterOption.setSelectedIndex(0);
-        cbSelectColumn.setSelectedIndex(0);
-    } // comment
-
-    @Override
-    public Panel getPanelByName(String panelName) {
-        return null;
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kutay Mumcu
-        scrollPane1 = new JScrollPane();
         table1 = new JTable();
         controlPanel = new JPanel();
         selectionPanel = new JPanel();
@@ -78,39 +43,33 @@ public class RoomsPanel extends Panel {
         button1 = new JButton();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-        EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing
-        . border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ),
-        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () ))
-        throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder( 0
+        , 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+        , new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,
+         getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
-        //======== scrollPane1 ========
-        {
-
-            //---- table1 ----
-            table1.setModel(new DefaultTableModel(
-                new Object[][] {
-                    {null, null, null, null, null, null, null},
-                    {null, null, null, null, null, null, null},
-                },
-                new String[] {
-                    "Room ID", "Hotel Id", "Room Number", "Room Type", "Room Size", "Room Price", "Capacity"
-                }
-            ) {
-                Class<?>[] columnTypes = new Class<?>[] {
-                    Integer.class, Integer.class, Integer.class, String.class, Float.class, Float.class, String.class
-                };
-                @Override
-                public Class<?> getColumnClass(int columnIndex) {
-                    return columnTypes[columnIndex];
-                }
-            });
-            table1.setPreferredSize(new Dimension(525, 400));
-            scrollPane1.setViewportView(table1);
-        }
-        add(scrollPane1, BorderLayout.CENTER);
+        //---- table1 ----
+        table1.setModel(new DefaultTableModel(
+            new Object[][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+            },
+            new String[] {
+                "Room ID", "Hotel Id", "Room Number", "Room Type", "Room Size", "Room Price", "Capacity"
+            }
+        ) {
+            Class<?>[] columnTypes = new Class<?>[] {
+                Integer.class, Integer.class, Integer.class, String.class, Float.class, Float.class, String.class
+            };
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return columnTypes[columnIndex];
+            }
+        });
+        table1.setPreferredSize(new Dimension(525, 400));
+        add(table1, BorderLayout.CENTER);
 
         //======== controlPanel ========
         {
@@ -280,7 +239,6 @@ public class RoomsPanel extends Panel {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Kutay Mumcu
-    private JScrollPane scrollPane1;
     private JTable table1;
     private JPanel controlPanel;
     private JPanel selectionPanel;
