@@ -1,16 +1,22 @@
 package panels;
 
+import panels.adminPanels.BookingsPanel;
+import panels.adminPanels.HousekeepingPanel;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 public class ReceptionistPanel extends Panel {
 
-    private JButton prevSelectedButton;
+    private final Panel pnlBookings;
+    private final Panel pnlHousekeeping;
 
     public ReceptionistPanel() {
         initComponents();
-        prevSelectedButton = null;
+        super.prevSelectedButton = null;
+        pnlBookings = new BookingsPanel();
+        pnlHousekeeping = new HousekeepingPanel();
     }
 
     @Override
@@ -22,7 +28,11 @@ public class ReceptionistPanel extends Panel {
     @Override
     public Panel getPanelByName(String panelName) {
         // TODO implement this panels sub panels
-        return null;
+        return switch (panelName) {
+            case "Bookings" -> pnlBookings;
+            case "Housekeeping" -> pnlHousekeeping;
+            default -> null;
+        };
     }
 
     @Override
@@ -31,12 +41,14 @@ public class ReceptionistPanel extends Panel {
         btnHousekeeping.addActionListener(l);
         btnRooms.addActionListener(l);
         btnBack.addActionListener(l);
-        // TODO add button listeners of recep. sub panels
+        pnlBookings.addButtonListener(l);
+        pnlHousekeeping.addButtonListener(l);
     }
 
     @Override
     public void addMouseListener(MouseListener ml) {
-
+        pnlBookings.addMouseListener(ml);
+        pnlHousekeeping.addMouseListener(ml);
     }
 
     private void initComponents() {

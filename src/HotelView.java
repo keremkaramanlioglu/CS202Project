@@ -31,7 +31,7 @@ public class HotelView extends JFrame {
         this.setPreferredSize(new Dimension(1000, 750));
         this.pack();
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        this.setVisible(false);
     }
 
     public Panel getPanelByName(String name) {
@@ -71,5 +71,6 @@ public class HotelView extends JFrame {
     public void addMouseListener(MouseListener listener) {
         adminPanel.addMouseListener(listener);
         guestPanel.addMouseListener(listener);
+        receptionistPanel.addMouseListener(listener);
     }
 }

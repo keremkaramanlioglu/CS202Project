@@ -14,8 +14,15 @@ public class DBConnectionControl {
     String port;
     Connection con;
     DBConnectionTestFrame dbConnectionTestFrame;
+    JFrame parent;
 
-    public DBConnectionControl() throws SQLException {
+    public DBConnectionControl(JFrame parent) throws SQLException {
+        this.dbConnectionTestFrame = new DBConnectionTestFrame();
+        dbConnectionTestFrame.addButtonListener(new ButtonListener());
+        this.parent = parent;
+    }
+
+    public void reinitiate() {
         this.dbConnectionTestFrame = new DBConnectionTestFrame();
         dbConnectionTestFrame.addButtonListener(new ButtonListener());
     }
@@ -39,6 +46,10 @@ public class DBConnectionControl {
         return this.con;
     }
 
+    public boolean isConnected() throws SQLException {
+        return (con.isValid(1));
+    }
+
     class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String command = e.getActionCommand();
@@ -51,8 +62,17 @@ public class DBConnectionControl {
                     }
                     break;
                 case "OK":
-                    dbConnectionTestFrame.dispose();
-                    dbConnectionTestFrame.setVisible(false);
+                    try {
+                        if (con != null && !con.isClosed()) {
+                            dbConnectionTestFrame.dispose();
+                            dbConnectionTestFrame.setVisible(false);
+                            parent.setVisible(true);
+                        } else {
+                            JOptionPane.showMessageDialog(dbConnectionTestFrame, "Connection Error", "Connection Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
             }
         }
     }

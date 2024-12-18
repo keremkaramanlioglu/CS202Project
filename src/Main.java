@@ -1,6 +1,7 @@
 import entities.*;
 import panels.adminPanels.EmployeesPanel;
 
+import javax.swing.*;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -51,11 +52,10 @@ public class Main {
 //        }
 
         try {
-            new HotelManager(new HotelView());
-            DBConnectionControl dbControl = new DBConnectionControl();
-            HotelDao hotelDao = new HotelDao(dbControl.getConnection());
+            HotelView hotelView = new HotelView();
+            new HotelManager(hotelView, new DBConnectionControl(hotelView));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 }
