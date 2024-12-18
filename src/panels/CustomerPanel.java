@@ -55,6 +55,7 @@ public class CustomerPanel extends Panel {
         btnProfile.addActionListener(l);
         btnMyBookings.addActionListener(l);
         btnBookARoom.addActionListener(l);
+        pnlMyBookings.addButtonListener(l);
     }
 
     @Override

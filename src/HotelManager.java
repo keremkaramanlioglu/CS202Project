@@ -140,6 +140,8 @@ public class HotelManager {
                     case "Show Revenue":
                         ((FinancePanel)hotelView.getActivePanel().getPanelByName("Finance")).setRevenue("111");
                         break;
+                    case "New Booking":
+                        hotelView.getActivePanel().setCenterPanel(hotelView.getActivePanel().getPanelByName("Book a room"));
                 }
             }
         }

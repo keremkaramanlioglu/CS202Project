@@ -78,7 +78,7 @@ new FormModel {
 					name: "btnNewBooking"
 					"text": "New Booking"
 					"cursor": #Cursor0
-					"actionCommand": "My Bookings"
+					"actionCommand": "New Booking"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"width": 225
 					"height": 75
