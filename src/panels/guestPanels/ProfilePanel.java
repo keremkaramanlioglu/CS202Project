@@ -41,7 +41,7 @@ public class ProfilePanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         lblfirstName = new JLabel();
         tfFirstName = new JTextField();
         lblLastName = new JLabel();
@@ -58,15 +58,16 @@ public class ProfilePanel extends Panel {
         tfGender = new JTextField();
         lblZipCode = new JLabel();
         tfZipCode = new JTextField();
+        btnEdit = new JButton();
+        btnConfirm = new JButton();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax
-        . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-        .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ), java. awt
-        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
-        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072" .
-        equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
+        EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing
+        . border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ),
+        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
+        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () ))
+        throw new RuntimeException( ); }} );
         setLayout(null);
 
         //---- lblfirstName ----
@@ -84,27 +85,27 @@ public class ProfilePanel extends Panel {
         //---- lblLastName ----
         lblLastName.setText("Last Name:");
         add(lblLastName);
-        lblLastName.setBounds(60, 180, 195, 22);
+        lblLastName.setBounds(60, 170, 195, 22);
 
         //---- tfLastName ----
         tfLastName.setEditable(false);
         add(tfLastName);
-        tfLastName.setBounds(55, 205, 200, 40);
+        tfLastName.setBounds(55, 195, 200, 40);
 
         //---- lblSsn ----
         lblSsn.setText("Ssn:");
         add(lblSsn);
-        lblSsn.setBounds(60, 315, 195, 22);
+        lblSsn.setBounds(60, 295, 195, 22);
 
         //---- tfSsn ----
         tfSsn.setEditable(false);
         add(tfSsn);
-        tfSsn.setBounds(55, 340, 200, 40);
+        tfSsn.setBounds(55, 320, 200, 40);
 
         //---- lblBirthDate ----
         lblBirthDate.setText("Birth Date:");
         add(lblBirthDate);
-        lblBirthDate.setBounds(60, 450, 195, 22);
+        lblBirthDate.setBounds(60, 420, 195, 22);
 
         //---- tfBirthDate ----
         tfBirthDate.setText("Choose a Date!");
@@ -113,7 +114,7 @@ public class ProfilePanel extends Panel {
         tfBirthDate.setEnabled(false);
         tfBirthDate.setEditable(false);
         add(tfBirthDate);
-        tfBirthDate.setBounds(55, 475, 200, 40);
+        tfBirthDate.setBounds(55, 445, 200, 40);
 
         //---- lblEmail ----
         lblEmail.setText("E-Mail:");
@@ -128,32 +129,42 @@ public class ProfilePanel extends Panel {
         //---- lblPhoneNumber ----
         lblPhoneNumber.setText("Phone Number:");
         add(lblPhoneNumber);
-        lblPhoneNumber.setBounds(380, 180, 200, 22);
+        lblPhoneNumber.setBounds(380, 170, 200, 22);
 
         //---- tfPhoneNumber ----
         tfPhoneNumber.setEditable(false);
         add(tfPhoneNumber);
-        tfPhoneNumber.setBounds(380, 205, 200, 40);
+        tfPhoneNumber.setBounds(380, 195, 200, 40);
 
         //---- lblGender ----
         lblGender.setText("Gender:");
         add(lblGender);
-        lblGender.setBounds(380, 315, 200, 22);
+        lblGender.setBounds(380, 295, 200, 22);
 
         //---- tfGender ----
         tfGender.setEditable(false);
         add(tfGender);
-        tfGender.setBounds(380, 340, 200, 40);
+        tfGender.setBounds(380, 320, 200, 40);
 
         //---- lblZipCode ----
         lblZipCode.setText("Zip Code:");
         add(lblZipCode);
-        lblZipCode.setBounds(385, 450, 195, 22);
+        lblZipCode.setBounds(385, 420, 195, 22);
 
         //---- tfZipCode ----
         tfZipCode.setEditable(false);
         add(tfZipCode);
-        tfZipCode.setBounds(380, 475, 200, 40);
+        tfZipCode.setBounds(380, 445, 200, 40);
+
+        //---- btnEdit ----
+        btnEdit.setText("Edit");
+        add(btnEdit);
+        btnEdit.setBounds(55, 540, 200, 40);
+
+        //---- btnConfirm ----
+        btnConfirm.setText("Confirm");
+        add(btnConfirm);
+        btnConfirm.setBounds(380, 540, 200, 40);
 
         {
             // compute preferred size
@@ -175,7 +186,7 @@ public class ProfilePanel extends Panel {
 
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JLabel lblfirstName;
     private JTextField tfFirstName;
     private JLabel lblLastName;
@@ -192,5 +203,7 @@ public class ProfilePanel extends Panel {
     private JTextField tfGender;
     private JLabel lblZipCode;
     private JTextField tfZipCode;
+    private JButton btnEdit;
+    private JButton btnConfirm;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

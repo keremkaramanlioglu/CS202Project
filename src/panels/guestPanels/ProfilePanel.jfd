@@ -32,7 +32,7 @@ new FormModel {
 				"width": 195
 				"height": 22
 				"x": 60
-				"y": 180
+				"y": 170
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "tfLastName"
@@ -41,7 +41,7 @@ new FormModel {
 				"width": 200
 				"height": 40
 				"x": 55
-				"y": 205
+				"y": 195
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblSsn"
@@ -50,7 +50,7 @@ new FormModel {
 				"width": 195
 				"height": 22
 				"x": 60
-				"y": 315
+				"y": 295
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "tfSsn"
@@ -59,7 +59,7 @@ new FormModel {
 				"width": 200
 				"height": 40
 				"x": 55
-				"y": 340
+				"y": 320
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblBirthDate"
@@ -68,7 +68,7 @@ new FormModel {
 				"width": 195
 				"height": 22
 				"x": 60
-				"y": 450
+				"y": 420
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "tfBirthDate"
@@ -81,7 +81,7 @@ new FormModel {
 				"width": 200
 				"height": 40
 				"x": 55
-				"y": 475
+				"y": 445
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblEmail"
@@ -108,7 +108,7 @@ new FormModel {
 				"width": 200
 				"height": 22
 				"x": 380
-				"y": 180
+				"y": 170
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "tfPhoneNumber"
@@ -117,7 +117,7 @@ new FormModel {
 				"width": 200
 				"height": 40
 				"x": 380
-				"y": 205
+				"y": 195
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblGender"
@@ -126,7 +126,7 @@ new FormModel {
 				"width": 200
 				"height": 22
 				"x": 380
-				"y": 315
+				"y": 295
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "tfGender"
@@ -135,7 +135,7 @@ new FormModel {
 				"width": 200
 				"height": 40
 				"x": 380
-				"y": 340
+				"y": 320
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblZipCode"
@@ -144,7 +144,7 @@ new FormModel {
 				"width": 195
 				"height": 22
 				"x": 385
-				"y": 450
+				"y": 420
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "tfZipCode"
@@ -153,7 +153,25 @@ new FormModel {
 				"width": 200
 				"height": 40
 				"x": 380
-				"y": 475
+				"y": 445
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnEdit"
+				"text": "Edit"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 55
+				"y": 540
+				"width": 200
+				"height": 40
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnConfirm"
+				"text": "Confirm"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 200
+				"height": 40
+				"x": 380
+				"y": 540
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 25, 10 )
