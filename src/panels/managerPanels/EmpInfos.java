@@ -7,18 +7,19 @@ package panels.managerPanels;
 import entities.Employee;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
  * @author kerem
  */
-public class EmpInfos extends JFrame {
-    public EmpInfos(ActionListener al) {
-        initComponents();
+public class EmpInfos {
+    public EmpInfos() {
     }
 
     public Employee getEmp() {
+        initComponents();
         return new Employee(new Object[]{tfSsn.getText(), tfFirstName.getText(), tfLastName.getText(),
         tfType.getText(), Double.parseDouble(tfSalary.getText()), tfEmail.getText(), tfGender.getText(), tfStreet.getText(),
         tfNo.getText(), tfApartment.getText(), tfZipcode.getText()});
@@ -41,6 +42,7 @@ public class EmpInfos extends JFrame {
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        frame = new JFrame();
         panel1 = new JPanel();
         label1 = new JLabel();
         label2 = new JLabel();
@@ -72,181 +74,194 @@ public class EmpInfos extends JFrame {
         tfNo = new JTextField();
         tfApartment = new JTextField();
         tfZipcode = new JTextField();
-        button1 = new JButton();
+        btnOK = new JButton();
         btnAdd = new JButton();
         btnDelete = new JButton();
         btnUpdate = new JButton();
 
-        //======== this ========
-        var contentPane = getContentPane();
-        contentPane.setLayout(new BorderLayout());
-
-        //======== panel1 ========
+        //======== frame ========
         {
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder( 0
-            , 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
-            , new java .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,
-            panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-            ) {if ("borde\u0072" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
-            panel1.setLayout(null);
+            var frameContentPane = frame.getContentPane();
+            frameContentPane.setLayout(new BorderLayout());
 
-            //---- label1 ----
-            label1.setText("emp_ssn:");
-            panel1.add(label1);
-            label1.setBounds(10, 10, 90, 35);
-
-            //---- label2 ----
-            label2.setText("firstname:");
-            panel1.add(label2);
-            label2.setBounds(10, 50, 90, 35);
-
-            //---- label3 ----
-            label3.setText("lastname:");
-            panel1.add(label3);
-            label3.setBounds(10, 90, 90, 35);
-
-            //---- label4 ----
-            label4.setText("type:");
-            panel1.add(label4);
-            label4.setBounds(10, 130, 90, 35);
-
-            //---- label5 ----
-            label5.setText("birthdate:");
-            panel1.add(label5);
-            label5.setBounds(10, 170, 90, 35);
-
-            //---- label6 ----
-            label6.setText("start date:");
-            panel1.add(label6);
-            label6.setBounds(10, 210, 90, 35);
-
-            //---- label7 ----
-            label7.setText("hotel_id:");
-            panel1.add(label7);
-            label7.setBounds(10, 250, 90, 35);
-
-            //---- label8 ----
-            label8.setText("salary:");
-            panel1.add(label8);
-            label8.setBounds(10, 285, 90, 35);
-
-            //---- label9 ----
-            label9.setText("phone_num:");
-            panel1.add(label9);
-            label9.setBounds(10, 320, 90, 35);
-
-            //---- label10 ----
-            label10.setText("email:");
-            panel1.add(label10);
-            label10.setBounds(10, 360, 90, 35);
-
-            //---- label11 ----
-            label11.setText("gender:");
-            panel1.add(label11);
-            label11.setBounds(10, 400, 90, 35);
-
-            //---- label12 ----
-            label12.setText("street:");
-            panel1.add(label12);
-            label12.setBounds(10, 440, 90, 35);
-
-            //---- label13 ----
-            label13.setText("no:");
-            panel1.add(label13);
-            label13.setBounds(10, 480, 90, 35);
-
-            //---- label14 ----
-            label14.setText("apartment:");
-            panel1.add(label14);
-            label14.setBounds(10, 515, 90, 35);
-
-            //---- label15 ----
-            label15.setText("zip_code:");
-            panel1.add(label15);
-            label15.setBounds(10, 565, 90, 35);
-            panel1.add(tfSsn);
-            tfSsn.setBounds(100, 10, 310, 35);
-            panel1.add(tfFirstName);
-            tfFirstName.setBounds(100, 50, 310, 35);
-            panel1.add(tfLastName);
-            tfLastName.setBounds(100, 90, 310, 35);
-            panel1.add(tfType);
-            tfType.setBounds(100, 130, 310, 35);
-            panel1.add(tfBD);
-            tfBD.setBounds(100, 170, 310, 35);
-            panel1.add(tfStartDate);
-            tfStartDate.setBounds(100, 210, 310, 35);
-            panel1.add(thHotelID);
-            thHotelID.setBounds(100, 250, 310, 35);
-            panel1.add(tfSalary);
-            tfSalary.setBounds(100, 285, 310, 35);
-            panel1.add(tfPhoneNum);
-            tfPhoneNum.setBounds(100, 325, 310, 35);
-            panel1.add(tfEmail);
-            tfEmail.setBounds(100, 360, 310, 35);
-            panel1.add(tfGender);
-            tfGender.setBounds(100, 400, 310, 35);
-            panel1.add(tfStreet);
-            tfStreet.setBounds(100, 440, 310, 35);
-            panel1.add(tfNo);
-            tfNo.setBounds(100, 480, 310, 35);
-            panel1.add(tfApartment);
-            tfApartment.setBounds(100, 520, 310, 35);
-            panel1.add(tfZipcode);
-            tfZipcode.setBounds(100, 565, 310, 35);
-
-            //---- button1 ----
-            button1.setText("OK");
-            panel1.add(button1);
-            button1.setBounds(425, 570, 158, 55);
-
-            //---- btnAdd ----
-            btnAdd.setText("Add");
-            btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnAdd.setActionCommand("Employees");
-            btnAdd.setName("add");
-            panel1.add(btnAdd);
-            btnAdd.setBounds(425, 515, 155, 50);
-
-            //---- btnDelete ----
-            btnDelete.setText("Delete");
-            btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnDelete.setActionCommand("Employees");
-            btnDelete.setName("delete");
-            panel1.add(btnDelete);
-            btnDelete.setBounds(425, 460, 155, 50);
-
-            //---- btnUpdate ----
-            btnUpdate.setText("Update");
-            btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnUpdate.setActionCommand("Employees");
-            btnUpdate.setName("update");
-            panel1.add(btnUpdate);
-            btnUpdate.setBounds(425, 405, 155, 50);
-
+            //======== panel1 ========
             {
-                // compute preferred size
-                Dimension preferredSize = new Dimension();
-                for(int i = 0; i < panel1.getComponentCount(); i++) {
-                    Rectangle bounds = panel1.getComponent(i).getBounds();
-                    preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-                    preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+                panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
+                swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border
+                . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dialo\u0067"
+                ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder
+                ( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
+                .beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .getPropertyName () )) throw new RuntimeException
+                ( ); }} );
+                panel1.setLayout(null);
+
+                //---- label1 ----
+                label1.setText("emp_ssn:");
+                panel1.add(label1);
+                label1.setBounds(10, 10, 90, 35);
+
+                //---- label2 ----
+                label2.setText("firstname:");
+                panel1.add(label2);
+                label2.setBounds(10, 50, 90, 35);
+
+                //---- label3 ----
+                label3.setText("lastname:");
+                panel1.add(label3);
+                label3.setBounds(10, 90, 90, 35);
+
+                //---- label4 ----
+                label4.setText("type:");
+                panel1.add(label4);
+                label4.setBounds(10, 130, 90, 35);
+
+                //---- label5 ----
+                label5.setText("birthdate:");
+                panel1.add(label5);
+                label5.setBounds(10, 170, 90, 35);
+
+                //---- label6 ----
+                label6.setText("start date:");
+                panel1.add(label6);
+                label6.setBounds(10, 210, 90, 35);
+
+                //---- label7 ----
+                label7.setText("hotel_id:");
+                panel1.add(label7);
+                label7.setBounds(10, 250, 90, 35);
+
+                //---- label8 ----
+                label8.setText("salary:");
+                panel1.add(label8);
+                label8.setBounds(10, 285, 90, 35);
+
+                //---- label9 ----
+                label9.setText("phone_num:");
+                panel1.add(label9);
+                label9.setBounds(10, 320, 90, 35);
+
+                //---- label10 ----
+                label10.setText("email:");
+                panel1.add(label10);
+                label10.setBounds(10, 360, 90, 35);
+
+                //---- label11 ----
+                label11.setText("gender:");
+                panel1.add(label11);
+                label11.setBounds(10, 400, 90, 35);
+
+                //---- label12 ----
+                label12.setText("street:");
+                panel1.add(label12);
+                label12.setBounds(10, 440, 90, 35);
+
+                //---- label13 ----
+                label13.setText("no:");
+                panel1.add(label13);
+                label13.setBounds(10, 480, 90, 35);
+
+                //---- label14 ----
+                label14.setText("apartment:");
+                panel1.add(label14);
+                label14.setBounds(10, 515, 90, 35);
+
+                //---- label15 ----
+                label15.setText("zip_code:");
+                panel1.add(label15);
+                label15.setBounds(10, 565, 90, 35);
+                panel1.add(tfSsn);
+                tfSsn.setBounds(100, 10, 310, 35);
+                panel1.add(tfFirstName);
+                tfFirstName.setBounds(100, 50, 310, 35);
+                panel1.add(tfLastName);
+                tfLastName.setBounds(100, 90, 310, 35);
+                panel1.add(tfType);
+                tfType.setBounds(100, 130, 310, 35);
+                panel1.add(tfBD);
+                tfBD.setBounds(100, 170, 310, 35);
+                panel1.add(tfStartDate);
+                tfStartDate.setBounds(100, 210, 310, 35);
+                panel1.add(thHotelID);
+                thHotelID.setBounds(100, 250, 310, 35);
+                panel1.add(tfSalary);
+                tfSalary.setBounds(100, 285, 310, 35);
+                panel1.add(tfPhoneNum);
+                tfPhoneNum.setBounds(100, 325, 310, 35);
+                panel1.add(tfEmail);
+                tfEmail.setBounds(100, 360, 310, 35);
+                panel1.add(tfGender);
+                tfGender.setBounds(100, 400, 310, 35);
+                panel1.add(tfStreet);
+                tfStreet.setBounds(100, 440, 310, 35);
+                panel1.add(tfNo);
+                tfNo.setBounds(100, 480, 310, 35);
+                panel1.add(tfApartment);
+                tfApartment.setBounds(100, 520, 310, 35);
+                panel1.add(tfZipcode);
+                tfZipcode.setBounds(100, 565, 310, 35);
+
+                //---- btnOK ----
+                btnOK.setText("OK");
+                panel1.add(btnOK);
+                btnOK.setBounds(425, 570, 158, 55);
+
+                //---- btnAdd ----
+                btnAdd.setText("Add");
+                btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnAdd.setActionCommand("Employees");
+                btnAdd.setName("add");
+                panel1.add(btnAdd);
+                btnAdd.setBounds(425, 515, 155, 50);
+
+                //---- btnDelete ----
+                btnDelete.setText("Delete");
+                btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnDelete.setActionCommand("Employees");
+                btnDelete.setName("delete");
+                panel1.add(btnDelete);
+                btnDelete.setBounds(425, 460, 155, 50);
+
+                //---- btnUpdate ----
+                btnUpdate.setText("Update");
+                btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnUpdate.setActionCommand("Employees");
+                btnUpdate.setName("update");
+                panel1.add(btnUpdate);
+                btnUpdate.setBounds(425, 405, 155, 50);
+
+                {
+                    // compute preferred size
+                    Dimension preferredSize = new Dimension();
+                    for(int i = 0; i < panel1.getComponentCount(); i++) {
+                        Rectangle bounds = panel1.getComponent(i).getBounds();
+                        preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+                        preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+                    }
+                    Insets insets = panel1.getInsets();
+                    preferredSize.width += insets.right;
+                    preferredSize.height += insets.bottom;
+                    panel1.setMinimumSize(preferredSize);
+                    panel1.setPreferredSize(preferredSize);
                 }
-                Insets insets = panel1.getInsets();
-                preferredSize.width += insets.right;
-                preferredSize.height += insets.bottom;
-                panel1.setMinimumSize(preferredSize);
-                panel1.setPreferredSize(preferredSize);
             }
+            btnOK.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (e.getActionCommand().equals("OK")) {
+                        frame.dispose();
+                    }
+                }
+            });
+            frameContentPane.add(panel1, BorderLayout.CENTER);
+            frame.pack();
+            frame.setLocationRelativeTo(frame.getOwner());
         }
-        contentPane.add(panel1, BorderLayout.CENTER);
-        pack();
-        setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    private JFrame frame;
     private JPanel panel1;
     private JLabel label1;
     private JLabel label2;
@@ -278,7 +293,7 @@ public class EmpInfos extends JFrame {
     private JTextField tfNo;
     private JTextField tfApartment;
     private JTextField tfZipcode;
-    private JButton button1;
+    private JButton btnOK;
     private JButton btnAdd;
     private JButton btnDelete;
     private JButton btnUpdate;
