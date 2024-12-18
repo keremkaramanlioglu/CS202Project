@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Locale;
 import java.util.Objects;
 import javax.swing.*;
 
@@ -134,7 +135,7 @@ class DatePicker {
         for (int x = 7; x < button.length; x++)
             button[x].setText("");
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(
-                "MMMM yyyy");
+                "MMMM yyyy", Locale.ENGLISH);
         java.util.Calendar cal = java.util.Calendar.getInstance();
         cal.set(year, month, 1);
         int dayOfWeek = cal.get(java.util.Calendar.DAY_OF_WEEK);
@@ -145,7 +146,7 @@ class DatePicker {
         d.setTitle("Date Picker");
     }
 
-    public String setPickedDate() {
+    public String getPickedDate() {
         initiateDialog();
         if (day.isEmpty())
             return day;

@@ -62,17 +62,17 @@ public class DBConnectionControl {
                     }
                     break;
                 case "OK":
-                    try {
-                        if (con != null && !con.isClosed()) {
+//                    try {
+                        //if (con != null && !con.isClosed()) {
                             dbConnectionTestFrame.dispose();
                             dbConnectionTestFrame.setVisible(false);
                             parent.setVisible(true);
-                        } else {
-                            JOptionPane.showMessageDialog(dbConnectionTestFrame, "Connection Error", "Connection Error", JOptionPane.ERROR_MESSAGE);
-                        }
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
+                        //} else {
+                        //    JOptionPane.showMessageDialog(dbConnectionTestFrame, "Connection Error", "Connection Error", JOptionPane.ERROR_MESSAGE);
+                        //}
+//                    } catch (SQLException ex) {
+//                        throw new RuntimeException(ex);
+//                    }
             }
         }
     }

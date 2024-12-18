@@ -30,19 +30,23 @@ public class HotelManager {
         this.hotelDao = new HotelDao(dbConnectionControl.getConnection());
     }
 
+    private void connectionControl() {
+        try {
+            if (!dbConnectionControl.isConnected()) {
+                Icon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/connection-error.png")));
+                JOptionPane.showMessageDialog(hotelView,"Please connect to a database!", "Connection Lost", JOptionPane.QUESTION_MESSAGE, icon);
+                dbConnectionControl.reinitiate();
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
 
     private class ButtonListener implements ActionListener, MouseListener {
         public void actionPerformed(ActionEvent e) {
-            try {
-                if (!dbConnectionControl.isConnected()) {
-                    Icon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/Disconnected.png")));
-                    JOptionPane.showMessageDialog(hotelView, "Please connect to database", "Connection Lost", JOptionPane.QUESTION_MESSAGE);
-                    JOptionPane.showMessageDialog(hotelView,"Please connect to database", "Connection Lost", JOptionPane.QUESTION_MESSAGE, icon);
-                    dbConnectionControl.reinitiate();
-                }
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+
+            //connectionControl();
 
             String command = e.getActionCommand();
             JButton button = (JButton) e.getSource();
@@ -81,11 +85,7 @@ public class HotelManager {
         @Override
         public void mouseClicked(MouseEvent e) {
             JTextField tf = (JTextField) e.getSource();
-            switch (tf.getName()) {
-                case "dateChooser":
-                    if (tf.isEnabled()) tf.setText(datePicker.setPickedDate());
-                    break;
-            }
+            if (tf.isEnabled()) tf.setText(datePicker.getPickedDate());
         }
 
         @Override
