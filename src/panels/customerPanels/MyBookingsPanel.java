@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Wed Dec 11 20:10:49 TRT 2024
  */
 
-package panels.guestPanels;
+package panels.customerPanels;
 
 import javax.swing.table.*;
 import panels.Panel;
