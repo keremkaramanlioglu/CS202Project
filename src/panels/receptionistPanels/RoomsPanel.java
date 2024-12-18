@@ -4,14 +4,18 @@
 
 package panels.receptionistPanels;
 
+import panels.Panel;
+
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import javax.swing.*;
 import javax.swing.table.*;
 
 /**
  * @author kutay
  */
-public class RoomsPanel extends JPanel {
+public class RoomsPanel extends Panel {
     public RoomsPanel() {
         initComponents();
     }
@@ -72,6 +76,20 @@ public class RoomsPanel extends JPanel {
         }
         add(panel1, BorderLayout.SOUTH);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
+    }
+
+    @Override
+    public void addButtonListener(ActionListener al) {
+
+    }@Override
+    public void addMouseListener(MouseListener ml) {
+
+    }@Override
+    public void reset() {
+
+    }@Override
+    public Panel getPanelByName(String panelName) {
+        return null;
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
