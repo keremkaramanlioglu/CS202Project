@@ -25,7 +25,11 @@ public class MainPanel extends Panel {
         btnCustomer.addActionListener(l);
         btnHousePanel.addActionListener(l);
         btnRecepPanel.addActionListener(l);
-        btnDBManagerPanel.addActionListener(l);
+    }
+
+    @Override
+    public void setSelectedButton(JButton b) {
+
     }
 
     @Override
@@ -35,16 +39,82 @@ public class MainPanel extends Panel {
 
     @Override
     public void reset() {
-        if(prevSelectedButton != null) prevSelectedButton.setBackground(MainPanel.sidePanelColor);
-        if(prevCenterPanel != null) prevCenterPanel.reset();
-        prevSelectedButton = null;
-        if (prevCenterPanel != null) this.remove(prevCenterPanel);
-        prevCenterPanel = null;
+        return;
+    }
+
+
+    @Override
+    public void setCenterPanel(Panel panel) {
+
     }
 
     @Override
     public Panel getPanelByName(String panelName) {
         return null;
+    }
+
+    private void btnAdminPanelMouseEntered(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void btnAdminPanelMouseExited(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void btnAdminPanelMouseClicked(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void btnGuestPanelMouseEntered(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void btnGuestPanelMouseExited(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void btnGuestPanelMouseClicked(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void btnHousePanelMouseEntered(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void btnHousePanelMouseExited(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void btnHousePanelMouseClicked(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void btnRecepPanelMouseEntered(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void btnRecepPanelMouseExited(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void btnRecepPanelMouseClicked(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    public JButton getBtnAdminPanel() {
+        return btnAdminPanel;
+    }
+
+    public JButton getBtnGuestPanel() {
+        return btnGuestPanel;
+    }
+
+    public JButton getBtnHousePanel() {
+        return btnHousePanel;
+    }
+
+    public JButton getBtnRecepPanel() {
+        return btnRecepPanel;
     }
 
     public JButton getBtnDBManagerPanel() {
@@ -58,15 +128,6 @@ public class MainPanel extends Panel {
     public JButton getBtnCustomer() {
         return btnCustomer;
     }
-
-    public JButton getBtnHousePanel() {
-        return btnHousePanel;
-    }
-
-    public JButton getBtnRecepPanel() {
-        return btnRecepPanel;
-    }
-
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -83,14 +144,12 @@ public class MainPanel extends Panel {
         //======== this ========
         setBackground(new Color(0x666666));
         setForeground(Color.white);
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(
-        new javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn"
-        ,javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
-        ,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12)
-        ,java.awt.Color.red), getBorder())); addPropertyChangeListener(
-        new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-        ){if("\u0062ord\u0065r".equals(e.getPropertyName()))throw new RuntimeException()
-        ;}});
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .
+        EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e" , javax. swing .border . TitledBorder. CENTER ,javax . swing
+        . border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069al\u006fg", java .awt . Font. BOLD ,12 ) ,
+        java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( )
+        { @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062or\u0064er" .equals ( e. getPropertyName () ) )
+        throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //---- label1 ----
