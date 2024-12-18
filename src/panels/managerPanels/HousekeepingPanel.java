@@ -45,21 +45,12 @@ public class HousekeepingPanel extends Panel {
     }
 
     private void comboBox1(ActionEvent e) {
-        if (((String)comboBox1.getSelectedItem()).equals("Status")) {
-            comboBox2.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "Pending", "Completed"}));
-        } else if (((String)comboBox1.getSelectedItem()).equals("None")) {
-            comboBox2.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None"}));
-        } else {
-            comboBox2.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "==", "!=", "<", ">", "<=", ">=", "between", "contains"}));
-        }
+        // TODO add your code here
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlData = new JPanel();
         scrollPane1 = new JScrollPane();
         dataTable = new JTable();
@@ -316,7 +307,7 @@ public class HousekeepingPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JPanel pnlData;
     private JScrollPane scrollPane1;
     private JTable dataTable;

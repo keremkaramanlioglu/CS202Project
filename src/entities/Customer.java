@@ -27,6 +27,18 @@ public class Customer {
         this.zip_code = rs.getString("zip_code");
     }
 
+    public Customer(Object[] obj) {
+        this.c_ssn = (String) obj[0];
+        this.c_firstname = (String) obj[1];
+        this.c_lastname = (String) obj[2];
+        this.c_bd = (Date) obj[3];
+        this.c_room_id = (int) obj[4];
+        this.c_email = (String) obj[5];
+        this.c_phone_num = (String) obj[6];
+        this.c_gender = (String) obj[7];
+        this.zip_code = (String) obj[8];
+    }
+
     public String getC_ssn() {
         return c_ssn;
     }

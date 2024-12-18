@@ -14,6 +14,12 @@ public class ParkingLot {
         this.capacity = rs.getInt("capacity");
     }
 
+    public ParkingLot(Object[] obj) {
+        this.park_id = (int)obj[0];
+        this.hotel_id = (int)obj[1];
+        this.capacity = (int)obj[2];
+    }
+
     public int getPark_id() {
         return park_id;
     }

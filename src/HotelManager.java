@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class HotelManager {
-    private Hotel hotel;
     private final HotelView hotelView;
     private final DatePicker datePicker;
     private final DBConnectionControl dbConnectionControl;
@@ -131,6 +130,7 @@ public class HotelManager {
             } else {
                 switch (command) {
                     case "Employees":
+                        Employee empl;
                         if (button.getName().equals("applyFilter")) {
                             Panel panel = hotelView.getActivePanel().getPanelByName(command);
                             System.out.println("entered");
@@ -142,6 +142,9 @@ public class HotelManager {
                             } catch (SQLException ex) {
                                 throw new RuntimeException(ex);
                             }
+                        } else if (button.getName().equals("getRow")) {
+                            Panel panel = hotelView.getActivePanel().getPanelByName(command);
+                            empl = new Employee(panel.getSelectedRow());
                         }
                         break;
                     case "Delete":

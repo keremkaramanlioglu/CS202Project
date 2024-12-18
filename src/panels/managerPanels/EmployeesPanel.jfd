@@ -17,11 +17,11 @@ new FormModel {
 							add( null )
 							add( null )
 							add( null )
+							add( "" )
 							add( null )
 							add( null )
 							add( null )
-							add( null )
-							add( null )
+							add( "" )
 							add( null )
 							add( null )
 							add( null )
@@ -46,21 +46,21 @@ new FormModel {
 							add( null )
 						} )
 					}, new java.util.Vector {
-						add( "Ssn" )
-						add( "First Name" )
-						add( "Last Name" )
-						add( "Type" )
-						add( "Birth Date" )
-						add( "Years" )
-						add( "Hotel ID" )
-						add( "Salary" )
-						add( "Phone No" )
-						add( "E-mail" )
-						add( "Gender" )
-						add( "Street" )
-						add( "No" )
-						add( "Apartment" )
-						add( "Zip Code" )
+						add( "ssn" )
+						add( "firstname" )
+						add( "lastname" )
+						add( "type" )
+						add( "bd" )
+						add( "years" )
+						add( "hotel_id" )
+						add( "salary" )
+						add( "phone_num" )
+						add( "email" )
+						add( "gender" )
+						add( "street" )
+						add( "no" )
+						add( "apartment" )
+						add( "zip_code" )
 					}, new java.util.Vector {
 						add( class java.lang.Integer )
 						add( class java.lang.String )
@@ -160,7 +160,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JTextArea" ) {
 						name: "textArea1"
-						"text": "Please choose an option to add, delete or update an employee:"
+						"text": "Please choose a row to delete or update an employee or press add to add new one:"
 						"opaque": false
 						"wrapStyleWord": true
 						"lineWrap": true
@@ -173,6 +173,7 @@ new FormModel {
 						"height": 75
 						"x": 20
 						"y": 55
+
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {

@@ -43,7 +43,7 @@ public class EmployeesPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlData = new JScrollPane();
         tblEmployees = new JTable();
         pnlControl = new JPanel();
@@ -70,6 +70,7 @@ public class EmployeesPanel extends Panel {
         new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
         ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( )
         ; }} );
+
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -79,11 +80,11 @@ public class EmployeesPanel extends Panel {
             //---- tblEmployees ----
             tblEmployees.setModel(new DefaultTableModel(
                 new Object[][] {
-                    {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                    {null, null, null, null, null, "", null, null, null, "", null, null, null, null, null},
                     {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                 },
                 new String[] {
-                    "Ssn", "First Name", "Last Name", "Type", "Birth Date", "Years", "Hotel ID", "Salary", "Phone No", "E-mail", "Gender", "Street", "No", "Apartment", "Zip Code"
+                    "ssn", "firstname", "lastname", "type", "bd", "years", "hotel_id", "salary", "phone_num", "email", "gender", "street", "no", "apartment", "zip_code"
                 }
             ) {
                 Class<?>[] columnTypes = new Class<?>[] {
@@ -133,7 +134,7 @@ public class EmployeesPanel extends Panel {
                 btnUpdate.setBounds(230, 125, 100, 50);
 
                 //---- textArea1 ----
-                textArea1.setText("Please choose an option to add, delete or update an employee:");
+                textArea1.setText("Please choose a row to delete or update an employee or press add to add new one:");
                 textArea1.setOpaque(false);
                 textArea1.setWrapStyleWord(true);
                 textArea1.setLineWrap(true);
@@ -143,6 +144,7 @@ public class EmployeesPanel extends Panel {
                 textArea1.setDisabledTextColor(Color.black);
                 pnlSelection.add(textArea1);
                 textArea1.setBounds(20, 55, 310, 75);
+
 
                 {
                     // compute preferred size
@@ -255,7 +257,7 @@ public class EmployeesPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane pnlData;
     private JTable tblEmployees;
     private JPanel pnlControl;

@@ -27,6 +27,18 @@ public class Booking {
         this.c_check_out_status = rs.getBoolean("c_check_out_status");
     }
 
+    public Booking(Object[] objs) throws SQLException {
+        this.booking_id = (Integer) objs[0];
+        this.c_ssn = (String) objs[1];
+        this.room_id = (Integer) objs[2];
+        this.payment_status = (String) objs[3];
+        this.payment_method = (String) objs[4];
+        this.booking_start_date = (Timestamp) objs[5];
+        this.booking_end_date = (Timestamp) objs[6];
+        this.c_check_in_status = (Boolean) objs[7];
+        this.c_check_out_status = (Boolean) objs[8];
+    }
+
     public int getBooking_id() {
         return booking_id;
     }
