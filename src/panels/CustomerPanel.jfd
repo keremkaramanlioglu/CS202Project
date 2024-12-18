@@ -24,6 +24,7 @@ new FormModel {
 					"focusable": false
 					"cursor": &Cursor0 new java.awt.Cursor( 12 )
 					"horizontalAlignment": 0
+					"actionCommand": "Book a room"
 					"name": "side"
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
@@ -35,6 +36,7 @@ new FormModel {
 					"preferredSize": new java.awt.Dimension( 120, 40 )
 					"cursor": #Cursor0
 					"focusable": false
+					"actionCommand": "My Bookings"
 					"name": "side"
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
@@ -46,6 +48,7 @@ new FormModel {
 					"preferredSize": &Dimension0 new java.awt.Dimension( 120, 40 )
 					"focusable": false
 					"cursor": &Cursor1 new java.awt.Cursor( 12 )
+					"actionCommand": "Profile"
 					"name": "side"
 					auxiliary() {
 						"JavaCodeGenerator.variableGetter": true

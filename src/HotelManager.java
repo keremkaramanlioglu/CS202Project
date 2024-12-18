@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -106,11 +107,12 @@ public class HotelManager {
 
             connectionControl();
 
-            System.out.println("Curr Ssn: " + currSsn);
+            //System.out.println("Curr Ssn: " + currSsn);
 
             String command = e.getActionCommand();
             JButton button = (JButton) e.getSource();
-            System.out.println(command);
+            //System.out.println(command);
+            //System.out.println(button.getName());
 
             //if (currSsn.isEmpty() && !command.equals("Guest")) return;
 
@@ -128,10 +130,22 @@ public class HotelManager {
                 hotelView.setActivePanel(hotelView.getPanelByName(command));
             } else {
                 switch (command) {
-                    case "Add":
-                        ((JButton) e.getSource()).getParent();
+                    case "Employees":
+                        if (button.getName().equals("applyFilter")) {
+                            Panel panel = hotelView.getActivePanel().getPanelByName(command);
+                            System.out.println("entered");
+                            try {
+                                ArrayList<Employee> emps = hotelDao.getEmployees(panel.getSelectedFilterColumn(), panel.getSelectedFilterOption(), panel.getSelectedFilterValue());
+                                for (Employee emp : emps) {
+                                    System.out.println(emp);
+                                }
+                            } catch (SQLException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                        }
                         break;
-                    case "Update":
+                    case "Bookings":
+                        System.out.println(button.getText());
                         break;
                     case "Delete":
                         break;
