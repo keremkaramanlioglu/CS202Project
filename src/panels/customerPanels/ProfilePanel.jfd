@@ -159,6 +159,7 @@ new FormModel {
 				name: "btnEdit"
 				"text": "Edit"
 				"actionCommand": "Profile_Edit"
+				"name": "edit"
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 55
 				"y": 540
@@ -170,6 +171,7 @@ new FormModel {
 				"text": "Confirm"
 				"actionCommand": "Profile_Confirm"
 				"enabled": false
+				"name": "confirm"
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 200
 				"height": 40

@@ -108,6 +108,7 @@ new FormModel {
 						"text": "Add"
 						"cursor": #Cursor0
 						"actionCommand": "Housekeeping"
+						"name": "add"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 15
 						"y": 125
@@ -119,6 +120,7 @@ new FormModel {
 						"text": "Delete"
 						"cursor": #Cursor0
 						"actionCommand": "Housekeeping"
+						"name": "delete"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 120
 						"y": 125
@@ -129,6 +131,7 @@ new FormModel {
 						name: "btnUpdate"
 						"text": "Update"
 						"actionCommand": "Housekeeping"
+						"name": "update"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 225
 						"y": 125
@@ -182,6 +185,7 @@ new FormModel {
 						name: "btnGetRow"
 						"text": "Get Row"
 						"actionCommand": "Housekeeping"
+						"name": "get row"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 60
@@ -254,6 +258,7 @@ new FormModel {
 						"text": "Apply"
 						"cursor": #Cursor0
 						"actionCommand": "Housekeeping"
+						"name": "apply"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 25
 						"y": 125

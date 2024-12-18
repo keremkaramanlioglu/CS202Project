@@ -84,14 +84,13 @@ public class BookingPanel extends Panel {
         btnChooseDate = new JButton();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
-        new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion"
-        , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
-        , new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 )
-        , java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
-        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-        ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
-        ; }} );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax .
+        swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e" , javax. swing .border
+        . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069al\u006fg"
+        , java .awt . Font. BOLD ,12 ) ,java . awt. Color .red ) , getBorder
+        () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java
+        . beans. PropertyChangeEvent e) { if( "\u0062or\u0064er" .equals ( e. getPropertyName () ) )throw new RuntimeException
+        ( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== pnlBooking ========
@@ -154,6 +153,7 @@ public class BookingPanel extends Panel {
                 btnAdd.setText("Add");
                 btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnAdd.setActionCommand("Bookings");
+                btnAdd.setName("add");
                 pnlSelection.add(btnAdd);
                 btnAdd.setBounds(15, 135, 100, 60);
 
@@ -161,6 +161,7 @@ public class BookingPanel extends Panel {
                 btnDelete.setText("Delete");
                 btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnDelete.setActionCommand("Bookings");
+                btnDelete.setName("delete");
                 pnlSelection.add(btnDelete);
                 btnDelete.setBounds(120, 135, 100, 60);
 
@@ -168,6 +169,7 @@ public class BookingPanel extends Panel {
                 btnUpdate.setText("Update");
                 btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnUpdate.setActionCommand("Bookings");
+                btnUpdate.setName("update");
                 pnlSelection.add(btnUpdate);
                 btnUpdate.setBounds(225, 135, 100, 60);
 
@@ -221,6 +223,7 @@ public class BookingPanel extends Panel {
                 btnGetRow.setText("Get Row");
                 btnGetRow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnGetRow.setActionCommand("Bookings");
+                btnGetRow.setName("get row");
                 pnlSelection.add(btnGetRow);
                 btnGetRow.setBounds(330, 135, 100, 60);
 
@@ -299,6 +302,7 @@ public class BookingPanel extends Panel {
                 btnApply.setText("Apply");
                 btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnApply.setActionCommand("Bookings");
+                btnApply.setName("apply");
                 pnlFilter.add(btnApply);
                 btnApply.setBounds(25, 150, 122, 60);
 
@@ -306,6 +310,7 @@ public class BookingPanel extends Panel {
                 btnChooseDate.setText("Choose Date");
                 btnChooseDate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnChooseDate.setActionCommand("Bookings");
+                btnChooseDate.setName("date picker");
                 pnlFilter.add(btnChooseDate);
                 btnChooseDate.setBounds(150, 150, 122, 60);
 

@@ -58,11 +58,11 @@ public class HouseKeepingPanel extends JPanel {
 
         //======== this ========
         setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax
+        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax
         . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-        .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+        .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt
         . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
-        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .
+        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .
         equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
@@ -106,6 +106,7 @@ public class HouseKeepingPanel extends JPanel {
                 btnAdd.setText("Add");
                 btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnAdd.setActionCommand("Housekeeping");
+                btnAdd.setName("add");
                 pnlSelection.add(btnAdd);
                 btnAdd.setBounds(15, 125, 100, 60);
 
@@ -113,6 +114,7 @@ public class HouseKeepingPanel extends JPanel {
                 btnDelete.setText("Delete");
                 btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnDelete.setActionCommand("Housekeeping");
+                btnDelete.setName("delete");
                 pnlSelection.add(btnDelete);
                 btnDelete.setBounds(120, 125, 100, 60);
 
@@ -120,6 +122,7 @@ public class HouseKeepingPanel extends JPanel {
                 btnUpdate.setText("Update");
                 btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnUpdate.setActionCommand("Housekeeping");
+                btnUpdate.setName("update");
                 pnlSelection.add(btnUpdate);
                 btnUpdate.setBounds(225, 125, 100, 60);
                 pnlSelection.add(tfSsn);
@@ -151,6 +154,7 @@ public class HouseKeepingPanel extends JPanel {
                 btnGetRow.setText("Get Row");
                 btnGetRow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnGetRow.setActionCommand("Housekeeping");
+                btnGetRow.setName("get row");
                 pnlSelection.add(btnGetRow);
                 btnGetRow.setBounds(330, 125, 100, 60);
                 pnlSelection.add(tfStatus);
@@ -227,6 +231,7 @@ public class HouseKeepingPanel extends JPanel {
                 btnApply.setText("Apply");
                 btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnApply.setActionCommand("Housekeeping");
+                btnApply.setName("apply");
                 pnlFilter.add(btnApply);
                 btnApply.setBounds(25, 160, 245, 60);
 

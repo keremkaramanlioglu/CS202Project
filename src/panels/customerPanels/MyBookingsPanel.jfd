@@ -68,6 +68,7 @@ new FormModel {
 					"text": "Cancel"
 					"cursor": &Cursor0 new java.awt.Cursor( 12 )
 					"actionCommand": "My Bookings"
+					"name": "cancel"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 90
 					"y": 60
@@ -79,6 +80,7 @@ new FormModel {
 					"text": "New Booking"
 					"cursor": #Cursor0
 					"actionCommand": "New Booking"
+					"name": "new booking"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"width": 225
 					"height": 75

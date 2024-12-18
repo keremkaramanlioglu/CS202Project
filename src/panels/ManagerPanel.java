@@ -74,9 +74,29 @@ public class ManagerPanel extends Panel {
         pnlFinance.addMouseListener(l);
     }
 
+    public JButton getBtnEmployees() {
+        return btnEmployees;
+    }
+
+    public JButton getBtnFinance() {
+        return btnFinance;
+    }
+
+    public JButton getBtnBookings() {
+        return btnBookings;
+    }
+
+    public JButton getBtnHousekeeping() {
+        return btnHousekeeping;
+    }
+
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         panel1 = new JPanel();
         btnRooms = new JButton();
         btnUsers = new JButton();
@@ -90,6 +110,13 @@ public class ManagerPanel extends Panel {
 
         //======== this ========
         setBackground(new Color(0x666666));
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
+        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax
+        . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
+        .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt
+        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
+        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .
+        equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== panel1 ========
@@ -106,6 +133,7 @@ public class ManagerPanel extends Panel {
             btnRooms.setBorder(null);
             btnRooms.setFocusable(false);
             btnRooms.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnRooms.setName("side");
             panel1.add(btnRooms);
 
             //---- btnUsers ----
@@ -116,6 +144,7 @@ public class ManagerPanel extends Panel {
             btnUsers.setPreferredSize(new Dimension(120, 40));
             btnUsers.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             btnUsers.setFocusable(false);
+            btnUsers.setName("side");
             panel1.add(btnUsers);
 
             //---- btnEmployees ----
@@ -126,6 +155,7 @@ public class ManagerPanel extends Panel {
             btnEmployees.setPreferredSize(new Dimension(120, 40));
             btnEmployees.setFocusable(false);
             btnEmployees.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnEmployees.setName("side");
             panel1.add(btnEmployees);
 
             //---- btnFinance ----
@@ -136,6 +166,7 @@ public class ManagerPanel extends Panel {
             btnFinance.setPreferredSize(new Dimension(120, 40));
             btnFinance.setFocusable(false);
             btnFinance.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnFinance.setName("side");
             panel1.add(btnFinance);
 
             //---- btnBookings ----
@@ -146,6 +177,7 @@ public class ManagerPanel extends Panel {
             btnBookings.setPreferredSize(new Dimension(120, 40));
             btnBookings.setFocusable(false);
             btnBookings.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnBookings.setName("side");
             panel1.add(btnBookings);
 
             //---- btnHousekeeping ----
@@ -156,6 +188,7 @@ public class ManagerPanel extends Panel {
             btnHousekeeping.setPreferredSize(new Dimension(120, 40));
             btnHousekeeping.setFocusable(false);
             btnHousekeeping.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnHousekeeping.setName("side");
             panel1.add(btnHousekeeping);
 
             //---- btnBack ----
@@ -190,7 +223,7 @@ public class ManagerPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JPanel panel1;
     private JButton btnRooms;
     private JButton btnUsers;

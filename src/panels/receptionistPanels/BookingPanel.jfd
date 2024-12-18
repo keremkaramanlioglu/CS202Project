@@ -143,6 +143,7 @@ new FormModel {
 						"text": "Add"
 						"cursor": &Cursor0 new java.awt.Cursor( 12 )
 						"actionCommand": "Bookings"
+						"name": "add"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 60
@@ -154,6 +155,7 @@ new FormModel {
 						"text": "Delete"
 						"cursor": #Cursor0
 						"actionCommand": "Bookings"
+						"name": "delete"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 60
@@ -165,6 +167,7 @@ new FormModel {
 						"text": "Update"
 						"cursor": #Cursor0
 						"actionCommand": "Bookings"
+						"name": "update"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 60
@@ -254,6 +257,7 @@ new FormModel {
 						"text": "Get Row"
 						"cursor": #Cursor0
 						"actionCommand": "Bookings"
+						"name": "get row"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 60
@@ -336,6 +340,7 @@ new FormModel {
 						"text": "Apply"
 						"cursor": #Cursor0
 						"actionCommand": "Bookings"
+						"name": "apply"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 122
 						"height": 60
@@ -347,6 +352,7 @@ new FormModel {
 						"text": "Choose Date"
 						"cursor": #Cursor0
 						"actionCommand": "Bookings"
+						"name": "date picker"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 122
 						"height": 60

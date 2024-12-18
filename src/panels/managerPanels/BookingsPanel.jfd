@@ -184,6 +184,8 @@ new FormModel {
 						name: "btnAdd"
 						"text": "Add"
 						"cursor": #Cursor0
+						"actionCommand": "Bookings"
+						"name": "add"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 140
 						"height": 60
@@ -194,6 +196,8 @@ new FormModel {
 						name: "btnDelete"
 						"text": "Delete"
 						"cursor": #Cursor0
+						"actionCommand": "Bookings"
+						"name": "delete"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 140
 						"height": 60
@@ -204,6 +208,8 @@ new FormModel {
 						name: "btnUpdate"
 						"text": "Update"
 						"cursor": #Cursor0
+						"actionCommand": "Bookings"
+						"name": "update"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 140
 						"height": 60
@@ -254,9 +260,10 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btnGetSelectedRow"
-						"text": "Get Selected Row"
-						"actionCommand": "getRow"
+						"text": "Get Row"
+						"actionCommand": "Bookings"
 						"font": new java.awt.Font( "Inter", 0, 13 )
+						"name": "get row"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 450
 						"y": 145
@@ -339,6 +346,8 @@ new FormModel {
 						name: "btnApply"
 						"text": "Apply"
 						"cursor": #Cursor0
+						"actionCommand": "Bookings"
+						"name": "apply"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 245
 						"height": 60

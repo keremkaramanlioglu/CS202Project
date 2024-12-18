@@ -34,6 +34,7 @@ new FormModel {
 					name: "btnExecute"
 					"text": "Execute"
 					"actionCommand": "Query"
+					"name": "execute"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 670
 					"y": 20

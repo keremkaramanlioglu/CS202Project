@@ -110,14 +110,14 @@ public class HotelManager {
 
             String command = e.getActionCommand();
             JButton button = (JButton) e.getSource();
-
+            System.out.println(command);
 
             //if (currSsn.isEmpty() && !command.equals("Guest")) return;
 
             String[] sidePanelOptions = {"Rooms", "Users", "Employees", "Finance", "Bookings", "Housekeeping",
                     "Book a room", "My Bookings", "Profile", "My Jobs", "Query Panel"};
             String [] mainPanelOptions = {"Manager", "Customer", "Housekeeper", "Receptionist", "Database Manager","Back"};
-            if (compare(command, sidePanelOptions)) {
+            if (compare(command, sidePanelOptions) && button.getName().equals("side")) {
                 Panel activePanel = hotelView.getActivePanel();
                 activePanel.setSelectedButton(button);
                 if (activePanel.getCenterPanel() != null) activePanel.getCenterPanel().reset();
@@ -149,6 +149,11 @@ public class HotelManager {
                         break;
                     case "Profile_Confirm":
                         ((ProfilePanel)hotelView.getActivePanel().getPanelByName("Profile")).pushConfirmButton();
+                        break;
+                    case "Bookings":
+                        if (button.getText().equals("Add")){
+                            System.out.println("h");
+                        }
                 }
             }
         }

@@ -66,10 +66,18 @@ public class CustomerPanel extends Panel {
         pnlProfile.addMouseListener(ml);
     }
 
+    public JButton getBtnProfile() {
+        return btnProfile;
+    }
+
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         pnlSide = new JPanel();
         btnBookARoom = new JButton();
         btnMyBookings = new JButton();
@@ -80,6 +88,12 @@ public class CustomerPanel extends Panel {
 
         //======== this ========
         setBackground(new Color(0x666666));
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border
+        . EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax
+        . swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,
+        12 ), java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans
+        . PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .
+        getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== pnlSide ========
@@ -97,6 +111,7 @@ public class CustomerPanel extends Panel {
             btnBookARoom.setFocusable(false);
             btnBookARoom.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             btnBookARoom.setHorizontalAlignment(SwingConstants.CENTER);
+            btnBookARoom.setName("side");
             pnlSide.add(btnBookARoom);
 
             //---- btnMyBookings ----
@@ -107,6 +122,7 @@ public class CustomerPanel extends Panel {
             btnMyBookings.setPreferredSize(new Dimension(120, 40));
             btnMyBookings.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             btnMyBookings.setFocusable(false);
+            btnMyBookings.setName("side");
             pnlSide.add(btnMyBookings);
 
             //---- btnProfile ----
@@ -117,6 +133,7 @@ public class CustomerPanel extends Panel {
             btnProfile.setPreferredSize(new Dimension(120, 40));
             btnProfile.setFocusable(false);
             btnProfile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnProfile.setName("side");
             pnlSide.add(btnProfile);
 
             //---- btnBack ----
@@ -150,7 +167,7 @@ public class CustomerPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JPanel pnlSide;
     private JButton btnBookARoom;
     private JButton btnMyBookings;

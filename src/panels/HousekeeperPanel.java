@@ -45,9 +45,13 @@ public class HousekeeperPanel extends Panel {
 
     }
 
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         panel1 = new JPanel();
         btnMyJobs = new JButton();
         btnBack = new JButton();
@@ -56,6 +60,13 @@ public class HousekeeperPanel extends Panel {
 
         //======== this ========
         setBackground(new Color(0x666666));
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.
+        swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border
+        .TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog"
+        ,java.awt.Font.BOLD,12),java.awt.Color.red), getBorder
+        ())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java
+        .beans.PropertyChangeEvent e){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException
+        ();}});
         setLayout(new BorderLayout());
 
         //======== panel1 ========
@@ -72,6 +83,7 @@ public class HousekeeperPanel extends Panel {
             btnMyJobs.setBorder(null);
             btnMyJobs.setFocusable(false);
             btnMyJobs.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnMyJobs.setName("side");
             panel1.add(btnMyJobs);
 
             //---- btnBack ----
@@ -106,7 +118,7 @@ public class HousekeeperPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JPanel panel1;
     private JButton btnMyJobs;
     private JButton btnBack;
