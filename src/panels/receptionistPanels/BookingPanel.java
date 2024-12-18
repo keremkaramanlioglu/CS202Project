@@ -13,7 +13,10 @@ public class BookingPanel extends Panel {
 
     @Override
     public void addButtonListener(ActionListener al) {
-
+        btnAdd.addActionListener(al);
+        btnApply.addActionListener(al);
+        btnUpdate.addActionListener(al);
+        btnDelete.addActionListener(al);
     }
 
     @Override
@@ -31,24 +34,6 @@ public class BookingPanel extends Panel {
         return null;
     }
 
-    private void cbSelectColumn(ActionEvent e) {
-        if (((String)cbSelectColumn.getSelectedItem()).contains("Check")){
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "Checked in", "Checked out"}));
-        } else if (((String)cbSelectColumn.getSelectedItem()).equals("Payment Status")) {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "Completed", "Pending", "Canceled"}));
-        } else if (((String)cbSelectColumn.getSelectedItem()).equals("Payment Method")) {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "In Advance", "During Check-out"}));
-        } else if (((String)cbSelectColumn.getSelectedItem()).equals("None")) {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None"}));
-        } else {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "==", "!=", "<", ">", "<=", ">=", "between", "contains"}));
-        }
-    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -263,7 +248,6 @@ public class BookingPanel extends Panel {
                     "Checked in",
                     "Checked out"
                 }));
-                cbSelectColumn.addActionListener(e -> cbSelectColumn(e));
                 pnlFilter.add(cbSelectColumn);
                 cbSelectColumn.setBounds(30, 25, 120, 45);
 

@@ -28,6 +28,7 @@ public class BookingsPanel extends Panel {
         btnDelete.addActionListener(al);
         btnUpdate.addActionListener(al);
         btnApply.addActionListener(al);
+
     }
 
     @Override
@@ -44,9 +45,10 @@ public class BookingsPanel extends Panel {
     public void setTableWithBookings(ArrayList<Booking> bookings) {
         // Define column names (adjust to match the fields in your Customer class)
         String[] columnNames = {"booking_id", "c_ssn", "room_id", "payment_status", "payment_method", "booking_start_date", "booking_end_date", "c_check_in_status", "c_check_out_status"};
-
+        table = new JTable();
         // Create a table model with column names
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
         // Loop through the customers list and add each as a row to the model
         for ( Booking booking : bookings) {
             Object[] row = {
@@ -64,11 +66,7 @@ public class BookingsPanel extends Panel {
         }
 
         // Set the table model to the JTable
-        table2.setModel(model);
-        table2.revalidate();
-        table2.repaint();
-        this.revalidate();
-        this.repaint();
+        table.setModel(model);
     }
 
 
@@ -79,15 +77,31 @@ public class BookingsPanel extends Panel {
 
     public BookingsPanel() {
         initComponents();
-        super.cbFilterOption = cbFilterOption;
-        super.cbFilterColumn = cbSelectColumn;
-        super.tfFilterUpperValue = tfFilterUpperValue;
-        super.tfFilterValue = tfFilterValue;
+        super.table = table;
+    }
+
+    private void cbSelectColumn(ActionEvent e) {
+        if (((String)cbSelectColumn.getSelectedItem()).contains("Check")){
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None", "Checked in", "Checked out"}));
+        } else if (((String)cbSelectColumn.getSelectedItem()).equals("Payment Status")) {
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None", "Completed", "Pending", "Canceled"}));
+        } else if (((String)cbSelectColumn.getSelectedItem()).equals("Payment Method")) {
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None", "In Advance", "During Check-out"}));
+        } else if (((String)cbSelectColumn.getSelectedItem()).equals("None")) {
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None"}));
+        } else {
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None", "==", "!=", "<", ">", "<=", ">=", "between", "contains"}));
+        }
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         scrollPane1 = new JScrollPane();
         table2 = new JTable();
         panel1 = new JPanel();
@@ -120,13 +134,13 @@ public class BookingsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
-        ( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border
-        . TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
-        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
-        propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
-        ; }} );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new
+        javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax
+        . swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java
+        . awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt
+        . Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .
+        PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .
+        equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -371,7 +385,7 @@ public class BookingsPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane scrollPane1;
     private JTable table2;
     private JPanel panel1;
