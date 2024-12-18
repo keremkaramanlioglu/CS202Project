@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -105,32 +106,46 @@ public class HotelManager {
 
             connectionControl();
 
-            System.out.println("Curr Ssn: " + currSsn);
+            //System.out.println("Curr Ssn: " + currSsn);
 
             String command = e.getActionCommand();
             JButton button = (JButton) e.getSource();
-
+            //System.out.println(command);
+            //System.out.println(button.getName());
 
             //if (currSsn.isEmpty() && !command.equals("Guest")) return;
 
             String[] sidePanelOptions = {"Rooms", "Users", "Employees", "Finance", "Bookings", "Housekeeping",
                     "Book a room", "My Bookings", "Profile", "My Jobs", "Query Panel"};
             String [] mainPanelOptions = {"Manager", "Customer", "Housekeeper", "Receptionist", "Database Manager","Back"};
-            if (compare(command, sidePanelOptions)) {
+            if (compare(command, sidePanelOptions) && button.getName().equals("side")) {
                 Panel activePanel = hotelView.getActivePanel();
                 activePanel.setSelectedButton(button);
                 if (activePanel.getCenterPanel() != null) activePanel.getCenterPanel().reset();
                 activePanel.setCenterPanel(activePanel.getPanelByName(command));
             } else if (compare(command, mainPanelOptions)) {
-                if (!command.equals("Customer")) if (!checkAction(command)) return;
+                //if (!command.equals("Customer")) if (!checkAction(command)) return;
                 hotelView.getActivePanel().reset();
                 hotelView.setActivePanel(hotelView.getPanelByName(command));
             } else {
+                System.out.println(command);
                 switch (command) {
-                    case "Add":
-                        ((JButton) e.getSource()).getParent();
+                    case "Employees":
+                        if (button.getName().equals("applyFilter")) {
+                            Panel panel = hotelView.getActivePanel().getPanelByName(command);
+                            System.out.println("entered");
+                            try {
+                                ArrayList<Employee> emps = hotelDao.getEmployees(panel.getSelectedFilterColumn(), panel.getSelectedFilterOption(), panel.getSelectedFilterValue());
+                                for (Employee emp : emps) {
+                                    System.out.println(emp);
+                                }
+                            } catch (SQLException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                        }
                         break;
-                    case "Update":
+                    case "Bookings":
+                        System.out.println(button.getText());
                         break;
                     case "Delete":
                         break;

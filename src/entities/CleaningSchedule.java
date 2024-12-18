@@ -1,5 +1,6 @@
 package entities;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -9,7 +10,7 @@ public class CleaningSchedule {
     private String housekeeper_ssn;
     private String receptionist_ssn;
     private int room_id;
-    private Timestamp cleaning_date;
+    private Date cleaning_date;
     private String service_status;
 
     public CleaningSchedule(ResultSet rs) throws SQLException {  // TODO : ADD TRY BLOCK
@@ -17,7 +18,7 @@ public class CleaningSchedule {
         this.housekeeper_ssn = rs.getString("housekeeper_ssn");
         this.receptionist_ssn = rs.getString("receptionist_ssn");
         this.room_id = rs.getInt("room_id");
-        this.cleaning_date = rs.getTimestamp("cleaning_date");
+        this.cleaning_date = rs.getDate("cleaning_date");
         this.service_status = rs.getString("service_status");
     }
 
@@ -53,11 +54,11 @@ public class CleaningSchedule {
         this.room_id = room_id;
     }
 
-    public Timestamp getCleaning_date() {
+    public Date getCleaning_date() {
         return cleaning_date;
     }
 
-    public void setCleaning_date(Timestamp cleaning_date) {
+    public void setCleaning_date(Date cleaning_date) {
         this.cleaning_date = cleaning_date;
     }
 

@@ -23,6 +23,7 @@ new FormModel {
 					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 					"focusable": false
 					"cursor": &Cursor0 new java.awt.Cursor( 12 )
+					"name": "side"
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnUsers"
@@ -33,6 +34,7 @@ new FormModel {
 					"preferredSize": new java.awt.Dimension( 120, 40 )
 					"cursor": #Cursor0
 					"focusable": false
+					"name": "side"
 					auxiliary() {
 						"JavaCodeGenerator.variableName": "btnUsers"
 					}
@@ -46,6 +48,7 @@ new FormModel {
 					"preferredSize": &Dimension0 new java.awt.Dimension( 120, 40 )
 					"focusable": false
 					"cursor": &Cursor1 new java.awt.Cursor( 12 )
+					"name": "side"
 					auxiliary() {
 						"JavaCodeGenerator.variableGetter": true
 						"JavaCodeGenerator.variableName": "btnEmployees"
@@ -60,6 +63,7 @@ new FormModel {
 					"preferredSize": #Dimension0
 					"focusable": false
 					"cursor": #Cursor1
+					"name": "side"
 					auxiliary() {
 						"JavaCodeGenerator.variableGetter": true
 						"JavaCodeGenerator.variableName": "btnFinance"
@@ -74,6 +78,7 @@ new FormModel {
 					"preferredSize": #Dimension0
 					"focusable": false
 					"cursor": #Cursor1
+					"name": "side"
 					auxiliary() {
 						"JavaCodeGenerator.variableGetter": true
 						"JavaCodeGenerator.variableName": "btnBookings"
@@ -88,6 +93,7 @@ new FormModel {
 					"preferredSize": #Dimension0
 					"focusable": false
 					"cursor": #Cursor1
+					"name": "side"
 					auxiliary() {
 						"JavaCodeGenerator.variableGetter": true
 						"JavaCodeGenerator.variableName": "btnHousekeeping"
