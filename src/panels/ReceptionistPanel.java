@@ -2,6 +2,7 @@ package panels;
 
 import panels.adminPanels.BookingsPanel;
 import panels.adminPanels.HousekeepingPanel;
+import panels.receptionistPanels.RoomsPanel;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -11,12 +12,14 @@ public class ReceptionistPanel extends Panel {
 
     private final Panel pnlBookings;
     private final Panel pnlHousekeeping;
+    private final Panel pnlRooms;
 
     public ReceptionistPanel() {
         initComponents();
         super.prevSelectedButton = null;
         pnlBookings = new BookingsPanel();
         pnlHousekeeping = new HousekeepingPanel();
+        pnlRooms = new RoomsPanel();
     }
 
     @Override
@@ -31,6 +34,7 @@ public class ReceptionistPanel extends Panel {
         return switch (panelName) {
             case "Bookings" -> pnlBookings;
             case "Housekeeping" -> pnlHousekeeping;
+            case "Rooms" -> pnlRooms;
             default -> null;
         };
     }
