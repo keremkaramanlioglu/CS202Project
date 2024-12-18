@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class HotelManager {
     private Hotel hotel;
@@ -34,7 +35,9 @@ public class HotelManager {
         public void actionPerformed(ActionEvent e) {
             try {
                 if (!dbConnectionControl.isConnected()) {
-                    JOptionPane.showMessageDialog(hotelView, "Please connect to database", "Error", JOptionPane.QUESTION_MESSAGE);
+                    Icon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/Disconnected.png")));
+                    JOptionPane.showMessageDialog(hotelView, "Please connect to database", "Connection Lost", JOptionPane.QUESTION_MESSAGE);
+                    JOptionPane.showMessageDialog(hotelView,"Please connect to database", "Connection Lost", JOptionPane.QUESTION_MESSAGE, icon);
                     dbConnectionControl.reinitiate();
                 }
             } catch (SQLException ex) {
