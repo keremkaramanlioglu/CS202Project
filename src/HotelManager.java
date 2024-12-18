@@ -119,10 +119,10 @@ public class HotelManager {
             if (compare(command, sidePanelOptions)) {
                 Panel activePanel = hotelView.getActivePanel();
                 activePanel.setSelectedButton(button);
-                activePanel.getCenterPanel().reset();
+                if (activePanel.getCenterPanel() != null) activePanel.getCenterPanel().reset();
                 activePanel.setCenterPanel(activePanel.getPanelByName(command));
             } else if (compare(command, mainPanelOptions)) {
-                if (!checkAction(command)) return;
+                if (!command.equals("Customer")) if (!checkAction(command)) return;
                 hotelView.getActivePanel().reset();
                 hotelView.setActivePanel(hotelView.getPanelByName(command));
             } else {
