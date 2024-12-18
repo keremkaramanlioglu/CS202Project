@@ -7,6 +7,7 @@ new FormModel {
 			name: "this"
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "pnlRooms"
+				"verticalScrollBarPolicy": 22
 				add( new FormComponent( "javax.swing.JTable" ) {
 					name: "tblrooms"
 					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {

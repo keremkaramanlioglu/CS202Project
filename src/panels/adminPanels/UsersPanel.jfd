@@ -9,6 +9,7 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "pnlData"
 				"preferredSize": new java.awt.Dimension( 900, 450 )
+				"verticalScrollBarPolicy": 22
 				add( new FormComponent( "javax.swing.JTable" ) {
 					name: "tblUsers"
 					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
