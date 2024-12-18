@@ -184,9 +184,9 @@ new FormModel {
 						"text": "Add"
 						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"width": 100
+						"width": 140
 						"height": 60
-						"x": 20
+						"x": 15
 						"y": 145
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
@@ -194,9 +194,9 @@ new FormModel {
 						"text": "Delete"
 						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"width": 100
+						"width": 140
 						"height": 60
-						"x": 125
+						"x": 160
 						"y": 145
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
@@ -204,9 +204,9 @@ new FormModel {
 						"text": "Update"
 						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"width": 100
+						"width": 140
 						"height": 60
-						"x": 230
+						"x": 305
 						"y": 145
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
@@ -255,10 +255,11 @@ new FormModel {
 						name: "btnGetSelectedRow"
 						"text": "Get Selected Row"
 						"actionCommand": "getRow"
+						"font": new java.awt.Font( "Inter", 0, 13 )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 335
+						"x": 450
 						"y": 145
-						"width": 100
+						"width": 140
 						"height": 60
 					} )
 				} )

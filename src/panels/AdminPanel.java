@@ -71,6 +71,7 @@ public class AdminPanel extends Panel {
         pnlUsers.addMouseListener(l);
         pnlBookings.addMouseListener(l);
         pnlHousekeeping.addMouseListener(l);
+        pnlFinance.addMouseListener(l);
     }
 
     private void initComponents() {

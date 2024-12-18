@@ -9,7 +9,9 @@ public abstract class Panel extends JPanel {
     public Panel prevCenterPanel;
     public JButton prevSelectedButton;
     public JTable dataTable = null;
+
     public abstract void addButtonListener(ActionListener al);
+
     public void setSelectedButton(JButton button) {
         if (prevSelectedButton == button) return;
         if (prevSelectedButton != null) {
@@ -18,6 +20,7 @@ public abstract class Panel extends JPanel {
         prevSelectedButton = button;
         button.setBackground(MainPanel.centerPanelColor);
     }
+
     public abstract void addMouseListener(MouseListener ml);
     public abstract void reset();
     public void setCenterPanel(Panel panel) {
@@ -31,9 +34,11 @@ public abstract class Panel extends JPanel {
         this.revalidate();
         this.repaint();
     }
+
     public Panel getCenterPanel() {
         return prevCenterPanel;
     }
+
     public Object[] getSelectedRow() {
         if (dataTable == null) return null;
         int rowIndex = dataTable.getSelectedRow();
@@ -47,5 +52,6 @@ public abstract class Panel extends JPanel {
         } else JOptionPane.showMessageDialog(null, "No row selected!");
         return rowValues;
     }
+
     public abstract Panel getPanelByName(String panelName);
 }

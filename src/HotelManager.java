@@ -2,6 +2,7 @@ import entities.Hotel;
 
 import panels.Panel;
 import panels.adminPanels.BookingsPanel;
+import panels.adminPanels.FinancePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -62,7 +63,6 @@ public class HotelManager {
             } else {
                 switch (command) {
                     case "Add":
-
                         break;
                     case "Update":
                         break;
@@ -70,6 +70,9 @@ public class HotelManager {
                         break;
                     case "getRow":
                         System.out.println(Arrays.toString(hotelView.getActivePanel().getCenterPanel().getSelectedRow()));
+                        break;
+                    case "Show Revenue":
+                        ((FinancePanel)hotelView.getActivePanel().getPanelByName("Finance")).setRevenue("111");
                         break;
                 }
             }
