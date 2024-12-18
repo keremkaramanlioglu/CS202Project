@@ -20,6 +20,8 @@ public class ReceptionistPanel extends Panel {
         pnlBookings = new BookingsPanel();
         pnlHousekeeping = new HousekeepingPanel();
         pnlRooms = new RoomsPanel();
+        super.prevCenterPanel = null;
+        super.prevSelectedButton = null;
     }
 
     @Override
