@@ -364,13 +364,14 @@ public class HotelDao {
         if (filterOption.equals("None")) {
             sql = "SELECT * FROM Bookings";
         } else {
+            if (!compare(filterColumn, new String[]{"booking_id", "room_id", "c_check_in_status", "c_check_out_status"})) {
+                filterValue = "'" + filterValue + "'";
+            }
             String column = "";
             String where = "";
             sql = "SELECT * FROM Bookings WHERE " + filterColumn + filterOption + filterValue;
         }
-        if (!compare(filterColumn, new String[]{"booking_id", "room_id", "c_check_in_status", "c_check_out_status"})) {
-            filterValue = "'" + filterValue + "'";
-        }
+
 
         stmt = con.prepareStatement(sql);
         //System.out.println(stmt);

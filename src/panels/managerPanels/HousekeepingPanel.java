@@ -6,11 +6,14 @@ package panels.managerPanels;
 
 import java.awt.event.*;
 import javax.swing.table.*;
+
+import entities.Employee;
 import panels.Panel;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -19,6 +22,43 @@ import javax.swing.*;
 public class HousekeepingPanel extends Panel {
     public HousekeepingPanel() {
         initComponents();
+    }
+
+    public void setTableWithEmployees(ArrayList<Employee> emps) {
+        // Define column names (adjust to match the fields in your Customer class)
+        String[] columnNames = {"ssn", "firstname", "lastname", "type", "bd", "years", "hotel_id", "salary", "phone_num", "email", "gender", "street", "no", "apartment", "zip_code"};
+
+        // Create a table model with column names
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+        // Loop through the customers list and add each as a row to the model
+        for ( Employee emp : emps) {
+            Object[] row = {
+                    emp.getEmp_ssn(),
+                    emp.getEmp_firstname(),
+                    emp.getEmp_lastname(),
+                    emp.getEmp_type(),
+                    emp.getEmp_bd(),
+                    emp.getYears(),
+                    emp.getEmp_hotel_id(),
+                    emp.getEmp_salary(),
+                    emp.getEmp_phone_num(),
+                    emp.getEmp_email(),
+                    emp.getEmp_gender(),
+                    emp.getStreet(),
+                    emp.getNo(),
+                    emp.getApartment(),
+                    emp.getZip_code()
+            };
+            model.addRow(row);
+        }
+
+        // Set the table model to the JTable
+        dataTable.setModel(model);
+        dataTable.revalidate();
+        dataTable.repaint();
+        this.revalidate();
+        this.repaint();
     }
 
     @Override
@@ -50,7 +90,7 @@ public class HousekeepingPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         pnlData = new JPanel();
         scrollPane1 = new JScrollPane();
         dataTable = new JTable();
@@ -80,12 +120,12 @@ public class HousekeepingPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(1920, 1080));
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
-        border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER
-        , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font
-        .BOLD ,12 ), java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
-        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r"
-        .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
+        border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder. CENTER
+        ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font
+        . BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener(
+        new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r"
+        .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -266,7 +306,7 @@ public class HousekeepingPanel extends Panel {
                 btnApply.setText("Apply");
                 btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnApply.setActionCommand("Housekeeping");
-                btnApply.setName("apply");
+                btnApply.setName("applyFilter");
                 pnlFilter.add(btnApply);
                 btnApply.setBounds(25, 125, 215, 60);
 
@@ -307,7 +347,7 @@ public class HousekeepingPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JPanel pnlData;
     private JScrollPane scrollPane1;
     private JTable dataTable;
