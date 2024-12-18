@@ -336,10 +336,14 @@ public class HotelDao {
             if (!compare(filterColumn, new String[]{"years", "street", "no", "apartment", "zip_code"})) {
                 filterColumn = emp + filterColumn;
             }
+            if (!filterColumn.equals("emp_salary") && !filterColumn.equals("emp_hotel_id")){
+                filterValue = "'" + filterValue + "'";
+            }
 
             String column = "";
             String where = "";
             sql = "SELECT * FROM Employees WHERE " + filterColumn + filterOption + filterValue;
+            System.out.println(sql);
         }
 
         stmt = con.prepareStatement(sql);
