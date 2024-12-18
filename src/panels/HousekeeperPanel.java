@@ -20,7 +20,10 @@ public class HousekeeperPanel extends Panel {
     @Override
     public void reset() {
         if(prevSelectedButton != null) prevSelectedButton.setBackground(MainPanel.sidePanelColor);
+        if(prevCenterPanel != null) prevCenterPanel.reset();
         prevSelectedButton = null;
+        if (prevCenterPanel != null) this.remove(prevCenterPanel);
+        prevCenterPanel = null;
     }
 
     @Override
