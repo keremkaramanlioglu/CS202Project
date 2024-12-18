@@ -83,11 +83,12 @@ public class BookingsPanel extends Panel {
         btnApply = new JButton();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(
-        0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder
-        .BOTTOM,new java.awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),java.awt.Color.
-        red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.
-        beans.PropertyChangeEvent e){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException();}});
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
+        ( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border
+        . TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt
+        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
+        propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( )
+        ; }} );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -175,18 +176,21 @@ public class BookingsPanel extends Panel {
                 //---- btnAdd ----
                 btnAdd.setText("Add");
                 btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnAdd.setActionCommand("Bookings");
                 panel3.add(btnAdd);
                 btnAdd.setBounds(15, 145, 140, 60);
 
                 //---- btnDelete ----
                 btnDelete.setText("Delete");
                 btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnDelete.setActionCommand("Bookings");
                 panel3.add(btnDelete);
                 btnDelete.setBounds(160, 145, 140, 60);
 
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
                 btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnUpdate.setActionCommand("Bookings");
                 panel3.add(btnUpdate);
                 btnUpdate.setBounds(305, 145, 140, 60);
 
@@ -218,7 +222,7 @@ public class BookingsPanel extends Panel {
 
                 //---- btnGetSelectedRow ----
                 btnGetSelectedRow.setText("Get Selected Row");
-                btnGetSelectedRow.setActionCommand("getRow");
+                btnGetSelectedRow.setActionCommand("Bookings");
                 btnGetSelectedRow.setFont(new Font("Inter", Font.PLAIN, 13));
                 panel3.add(btnGetSelectedRow);
                 btnGetSelectedRow.setBounds(450, 145, 140, 60);
@@ -296,6 +300,7 @@ public class BookingsPanel extends Panel {
                 //---- btnApply ----
                 btnApply.setText("Apply");
                 btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnApply.setActionCommand("Bookings");
                 panel2.add(btnApply);
                 btnApply.setBounds(5, 145, 245, 60);
 

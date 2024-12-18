@@ -53,6 +53,9 @@ public class EmployeesPanel extends Panel {
         btnDelete = new JButton();
         btnUpdate = new JButton();
         textArea1 = new JTextArea();
+        btnGetRow = new JButton();
+        textField1 = new JTextField();
+        label1 = new JLabel();
         pnlFilter = new JPanel();
         cbColumnOption = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
@@ -61,14 +64,11 @@ public class EmployeesPanel extends Panel {
         btnApplyFilter = new JButton();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
-        new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion"
-        , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
-        , new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 )
-        , java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
-        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-        ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( )
-        ; }} );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0
+        ,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
+        ,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt.Color.red),
+         getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+        ){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -110,20 +110,23 @@ public class EmployeesPanel extends Panel {
                 //---- btnAdd ----
                 btnAdd.setText("Add");
                 btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnAdd.setActionCommand("Employees");
                 pnlSelection.add(btnAdd);
-                btnAdd.setBounds(30, 125, 100, 50);
+                btnAdd.setBounds(20, 125, 100, 50);
 
                 //---- btnDelete ----
                 btnDelete.setText("Delete");
                 btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnDelete.setActionCommand("Employees");
                 pnlSelection.add(btnDelete);
-                btnDelete.setBounds(145, 125, 100, 50);
+                btnDelete.setBounds(125, 125, 100, 50);
 
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
                 btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnUpdate.setActionCommand("Employees");
                 pnlSelection.add(btnUpdate);
-                btnUpdate.setBounds(260, 125, 100, 50);
+                btnUpdate.setBounds(230, 125, 100, 50);
 
                 //---- textArea1 ----
                 textArea1.setText("Please choose an option to add, delete or update an employee:");
@@ -135,7 +138,24 @@ public class EmployeesPanel extends Panel {
                 textArea1.setSelectionColor(Color.black);
                 textArea1.setDisabledTextColor(Color.black);
                 pnlSelection.add(textArea1);
-                textArea1.setBounds(30, 55, 330, 75);
+                textArea1.setBounds(20, 55, 310, 75);
+
+                //---- btnGetRow ----
+                btnGetRow.setText("Get Row");
+                btnGetRow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnGetRow.setActionCommand("Employees");
+                pnlSelection.add(btnGetRow);
+                btnGetRow.setBounds(335, 125, 100, 50);
+
+                //---- textField1 ----
+                textField1.setEditable(false);
+                pnlSelection.add(textField1);
+                textField1.setBounds(335, 90, 100, 34);
+
+                //---- label1 ----
+                label1.setText("SSN");
+                pnlSelection.add(label1);
+                label1.setBounds(new Rectangle(new Point(370, 75), label1.getPreferredSize()));
 
                 {
                     // compute preferred size
@@ -207,6 +227,7 @@ public class EmployeesPanel extends Panel {
                 //---- btnApplyFilter ----
                 btnApplyFilter.setText("Apply Filters");
                 btnApplyFilter.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnApplyFilter.setActionCommand("Employees");
                 pnlFilter.add(btnApplyFilter);
                 btnApplyFilter.setBounds(55, 145, 250, 40);
 
@@ -241,6 +262,9 @@ public class EmployeesPanel extends Panel {
     private JButton btnDelete;
     private JButton btnUpdate;
     private JTextArea textArea1;
+    private JButton btnGetRow;
+    private JTextField textField1;
+    private JLabel label1;
     private JPanel pnlFilter;
     private JComboBox<String> cbColumnOption;
     private JComboBox<String> cbFilterOption;

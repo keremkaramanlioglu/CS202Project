@@ -74,11 +74,13 @@ public class BookARoomPanel extends Panel {
         btnBook = new JButton();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder( 0
-        , 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
-        , new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,
-         getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-        ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+        . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder
+        . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .
+        awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder( )) )
+        ;  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+        ;
         setLayout(new BorderLayout());
 
         //======== pnlReservableHotels ========
@@ -128,6 +130,7 @@ public class BookARoomPanel extends Panel {
                 //---- btnShowRooms ----
                 btnShowRooms.setText("Show Rooms");
                 btnShowRooms.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnShowRooms.setActionCommand("Book a room");
                 pnlDate.add(btnShowRooms);
                 btnShowRooms.setBounds(40, 160, 215, 60);
 
@@ -206,6 +209,7 @@ public class BookARoomPanel extends Panel {
                 //---- btnApply ----
                 btnApply.setText("Apply");
                 btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnApply.setActionCommand("Book a room");
                 pnlReservationInfo.add(btnApply);
                 btnApply.setBounds(45, 160, 215, 60);
 
@@ -240,6 +244,7 @@ public class BookARoomPanel extends Panel {
                 //---- btnBook ----
                 btnBook.setText("Book");
                 btnBook.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnBook.setActionCommand("Book a room");
                 pnlCommand.add(btnBook);
                 btnBook.setBounds(50, 115, 200, 60);
 

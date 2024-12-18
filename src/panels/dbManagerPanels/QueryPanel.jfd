@@ -33,6 +33,7 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnExecute"
 					"text": "Execute"
+					"actionCommand": "Query"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 670
 					"y": 20

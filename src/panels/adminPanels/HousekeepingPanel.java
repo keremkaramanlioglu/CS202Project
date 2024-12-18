@@ -45,7 +45,7 @@ public class HousekeepingPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         pnlData = new JPanel();
         scrollPane1 = new JScrollPane();
         dataTable = new JTable();
@@ -63,6 +63,7 @@ public class HousekeepingPanel extends Panel {
         label4 = new JLabel();
         label5 = new JLabel();
         checkBox1 = new JCheckBox();
+        btnGetRow = new JButton();
         pnlFilter = new JPanel();
         comboBox1 = new JComboBox<>();
         comboBox2 = new JComboBox<>();
@@ -72,13 +73,14 @@ public class HousekeepingPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(1920, 1080));
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax .
-        swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e" , javax. swing .border
-        . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dialo\u0067"
-        , java .awt . Font. BOLD ,12 ) ,java . awt. Color .red ) , getBorder
-        () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java
-        . beans. PropertyChangeEvent e) { if( "borde\u0072" .equals ( e. getPropertyName () ) )throw new RuntimeException
-        ( ) ;} } );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder (
+        new javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion"
+        , javax. swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM
+        , new java. awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,12 )
+        ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener(
+        new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
+        ) { if( "\u0062order" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
+        ;} } );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -93,10 +95,6 @@ public class HousekeepingPanel extends Panel {
                 //---- dataTable ----
                 dataTable.setModel(new DefaultTableModel(
                     new Object[][] {
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
                         {null, null, null, null, null, null},
                     },
                     new String[] {
@@ -146,17 +144,20 @@ public class HousekeepingPanel extends Panel {
                 //---- btnAdd ----
                 btnAdd.setText("Add");
                 btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnAdd.setActionCommand("Housekeeping");
                 pnlSelection.add(btnAdd);
                 btnAdd.setBounds(15, 125, 100, 60);
 
                 //---- btnDelete ----
                 btnDelete.setText("Delete");
                 btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnDelete.setActionCommand("Housekeeping");
                 pnlSelection.add(btnDelete);
                 btnDelete.setBounds(120, 125, 100, 60);
 
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
+                btnUpdate.setActionCommand("Housekeeping");
                 pnlSelection.add(btnUpdate);
                 btnUpdate.setBounds(225, 125, 100, 60);
 
@@ -185,6 +186,12 @@ public class HousekeepingPanel extends Panel {
                 checkBox1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlSelection.add(checkBox1);
                 checkBox1.setBounds(30, 70, 105, 32);
+
+                //---- btnGetRow ----
+                btnGetRow.setText("Get Row");
+                btnGetRow.setActionCommand("Housekeeping");
+                pnlSelection.add(btnGetRow);
+                btnGetRow.setBounds(330, 125, 100, 60);
 
                 {
                     // compute preferred size
@@ -249,6 +256,7 @@ public class HousekeepingPanel extends Panel {
                 //---- btnApply ----
                 btnApply.setText("Apply");
                 btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnApply.setActionCommand("Housekeeping");
                 pnlFilter.add(btnApply);
                 btnApply.setBounds(25, 125, 215, 60);
 
@@ -274,7 +282,7 @@ public class HousekeepingPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JPanel pnlData;
     private JScrollPane scrollPane1;
     private JTable dataTable;
@@ -292,6 +300,7 @@ public class HousekeepingPanel extends Panel {
     private JLabel label4;
     private JLabel label5;
     private JCheckBox checkBox1;
+    private JButton btnGetRow;
     private JPanel pnlFilter;
     private JComboBox<String> comboBox1;
     private JComboBox<String> comboBox2;
