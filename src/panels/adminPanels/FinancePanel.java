@@ -15,23 +15,33 @@ import javax.swing.*;
  * @author kerem
  */
 public class FinancePanel extends Panel {
+
+    private final String tfText = "Please Choose a Date";
+
     public FinancePanel() {
         initComponents();
     }
 
     @Override
     public void addButtonListener(ActionListener al) {
-
+        btnShowRevenue.addActionListener(al);
     }
 
     @Override
     public void addMouseListener(MouseListener ml) {
-
+        tfEndDate.addMouseListener(ml);
+        tfStartDate.addMouseListener(ml);
     }
 
     @Override
     public void reset() {
+        tfStartDate.setText(tfText);
+        tfEndDate.setText(tfText);
+        tfRevenue.setText("");
+    }
 
+    public void setRevenue(String revenue) {
+        tfRevenue.setText(revenue + "$");
     }
 
     @Override

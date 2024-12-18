@@ -41,12 +41,33 @@ public class MainPanel extends Panel {
         return null;
     }
 
+    public JButton getBtnRecepPanel2() {
+        return btnRecepPanel2;
+    }
+
+    public JButton getBtnAdminPanel() {
+        return btnAdminPanel;
+    }
+
+    public JButton getBtnGuestPanel() {
+        return btnGuestPanel;
+    }
+
+    public JButton getBtnHousePanel() {
+        return btnHousePanel;
+    }
+
+    public JButton getBtnRecepPanel() {
+        return btnRecepPanel;
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         label1 = new JLabel();
         lblWelcome = new JLabel();
         sidePanel = new JPanel();
+        btnRecepPanel2 = new JButton();
         btnAdminPanel = new JButton();
         btnGuestPanel = new JButton();
         btnHousePanel = new JButton();
@@ -55,6 +76,12 @@ public class MainPanel extends Panel {
         //======== this ========
         setBackground(new Color(0x666666));
         setForeground(Color.white);
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border
+        .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER ,javax
+        . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,
+        12 ) ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans
+        .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e.
+        getPropertyName () ) )throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //---- label1 ----
@@ -83,6 +110,19 @@ public class MainPanel extends Panel {
             sidePanel.setBorder(null);
             sidePanel.setForeground(Color.white);
             sidePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+
+            //---- btnRecepPanel2 ----
+            btnRecepPanel2.setText("DB Manager");
+            btnRecepPanel2.setPreferredSize(new Dimension(100, 40));
+            btnRecepPanel2.setBorder(null);
+            btnRecepPanel2.setBackground(new Color(0x333333));
+            btnRecepPanel2.setForeground(Color.white);
+            btnRecepPanel2.setFocusable(false);
+            btnRecepPanel2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnRecepPanel2.setMaximumSize(new Dimension(106, 40));
+            btnRecepPanel2.setAlignmentY(0.0F);
+            btnRecepPanel2.setIconTextGap(0);
+            sidePanel.add(btnRecepPanel2);
 
             //---- btnAdminPanel ----
             btnAdminPanel.setText("Admin");
@@ -145,6 +185,7 @@ public class MainPanel extends Panel {
     private JLabel label1;
     private JLabel lblWelcome;
     private JPanel sidePanel;
+    private JButton btnRecepPanel2;
     private JButton btnAdminPanel;
     private JButton btnGuestPanel;
     private JButton btnHousePanel;
