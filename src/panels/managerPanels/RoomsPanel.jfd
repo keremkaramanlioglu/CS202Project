@@ -213,7 +213,8 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JComboBox" ) {
 						name: "cbSelectColumn"
 						"model": new javax.swing.DefaultComboBoxModel {
-							selectedItem: "Room Id"
+							selectedItem: "None"
+							addElement( "None" )
 							addElement( "Room Id" )
 							addElement( "Hotel ID" )
 							addElement( "Room Number" )

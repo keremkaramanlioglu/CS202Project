@@ -195,7 +195,8 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JComboBox" ) {
 						name: "comboBox1"
 						"model": new javax.swing.DefaultComboBoxModel {
-							selectedItem: "Schedule ID"
+							selectedItem: "None"
+							addElement( "None" )
 							addElement( "Schedule ID" )
 							addElement( "Housekeeper SSN" )
 							addElement( "Receptionist SSN" )
@@ -204,6 +205,7 @@ new FormModel {
 							addElement( "Status" )
 						}
 						"cursor": #Cursor0
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "comboBox1", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 25
 						"y": 23

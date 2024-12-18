@@ -205,7 +205,8 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JComboBox" ) {
 						name: "cbColumnOption"
 						"model": new javax.swing.DefaultComboBoxModel {
-							selectedItem: "Ssn"
+							selectedItem: "None"
+							addElement( "None" )
 							addElement( "Ssn" )
 							addElement( "First Name" )
 							addElement( "Last Name" )

@@ -5,6 +5,7 @@
 package panels.receptionistPanels;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -14,6 +15,19 @@ import javax.swing.table.*;
 public class HouseKeepingPanel extends JPanel {
     public HouseKeepingPanel() {
         initComponents();
+    }
+
+    private void cbSelectColumn(ActionEvent e) {
+        if (((String)cbSelectColumn.getSelectedItem()).equals("Status")) {
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None", "Pending", "Completed"}));
+        } else if (((String)cbSelectColumn.getSelectedItem()).equals("None")) {
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None"}));
+        } else {
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None", "==", "!=", "<", ">", "<=", ">=", "between", "contains"}));
+        }
     }
 
     private void initComponents() {
@@ -43,12 +57,13 @@ public class HouseKeepingPanel extends JPanel {
         btnApply = new JButton();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border
-        .EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder.CENTER,javax
-        .swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,
-        12),java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans
-        .PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.
-        getPropertyName()))throw new RuntimeException();}});
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
+        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax
+        . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
+        .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
+        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .
+        equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== pnlHouseKeeping ========
@@ -171,11 +186,13 @@ public class HouseKeepingPanel extends JPanel {
 
                 //---- cbSelectColumn ----
                 cbSelectColumn.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None",
                     "House Keeper SSN",
                     "Room Number",
                     "Time",
                     "Status"
                 }));
+                cbSelectColumn.addActionListener(e -> cbSelectColumn(e));
                 pnlFilter.add(cbSelectColumn);
                 cbSelectColumn.setBounds(30, 30, 120, 45);
 
@@ -190,13 +207,8 @@ public class HouseKeepingPanel extends JPanel {
                     ">=",
                     "between",
                     "contains",
-                    "Completed",
                     "Pending",
-                    "Canceled",
-                    "In Advance",
-                    "During Check-out",
-                    "Checked in",
-                    "Checked out"
+                    "Completed"
                 }));
                 pnlFilter.add(cbFilterOption);
                 cbFilterOption.setBounds(150, 30, 120, 45);

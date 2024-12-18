@@ -269,7 +269,8 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JComboBox" ) {
 						name: "cbSelectColumn"
 						"model": new javax.swing.DefaultComboBoxModel {
-							selectedItem: "Book ID"
+							selectedItem: "None"
+							addElement( "None" )
 							addElement( "Book ID" )
 							addElement( "Customer SSN" )
 							addElement( "Room ID" )
@@ -281,6 +282,7 @@ new FormModel {
 							addElement( "Checked out" )
 						}
 						"cursor": #Cursor0
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cbSelectColumn", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 120
 						"height": 45
