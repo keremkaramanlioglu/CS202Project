@@ -1,8 +1,8 @@
 package panels;
 
-import panels.guestPanels.BookARoomPanel;
-import panels.guestPanels.MyBookingsPanel;
-import panels.guestPanels.ProfilePanel;
+import panels.customerPanels.BookARoomPanel;
+import panels.customerPanels.MyBookingsPanel;
+import panels.customerPanels.ProfilePanel;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -14,12 +14,12 @@ import javax.swing.*;
 /**
  * @author kerem
  */
-public class GuestPanel extends Panel {
+public class CustomerPanel extends Panel {
     private final Panel pnlBookARoom;
     private final Panel pnlMyBookings;
     private final Panel pnlProfile;
 
-    public GuestPanel() {
+    public CustomerPanel() {
         initComponents();
         pnlBookARoom = new BookARoomPanel();
         pnlMyBookings = new MyBookingsPanel();

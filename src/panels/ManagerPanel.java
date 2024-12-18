@@ -1,12 +1,12 @@
 package panels;
 
-import panels.adminPanels.*;
+import panels.managerPanels.*;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class AdminPanel extends Panel {
+public class ManagerPanel extends Panel {
     private final Panel pnlRooms;
     private final Panel pnlUsers;
     private final Panel pnlHousekeeping;
@@ -14,7 +14,7 @@ public class AdminPanel extends Panel {
     private final Panel pnlFinance;
     private final Panel pnlBookings;
 
-    public AdminPanel() {
+    public ManagerPanel() {
         initComponents();
         pnlRooms = new RoomsPanel();
         pnlUsers = new UsersPanel();

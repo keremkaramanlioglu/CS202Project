@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Wed Dec 11 17:07:20 TRT 2024
  */
 
-package panels.adminPanels;
+package panels.managerPanels;
 
 import java.awt.event.MouseListener;
 import java.util.*;
@@ -174,20 +174,23 @@ public class BookingsPanel extends Panel {
                 cbCheckout.setBounds(20, 105, 100, 34);
 
                 //---- btnAdd ----
-                btnAdd.setText("Add");
+                btnAdd.setText(" Add");
                 btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnAdd.setActionCommand(" Users");
                 panel3.add(btnAdd);
                 btnAdd.setBounds(15, 145, 140, 60);
 
                 //---- btnDelete ----
                 btnDelete.setText("Delete");
                 btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnDelete.setActionCommand("Users");
                 panel3.add(btnDelete);
                 btnDelete.setBounds(160, 145, 140, 60);
 
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
                 btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnUpdate.setActionCommand("Users");
                 panel3.add(btnUpdate);
                 btnUpdate.setBounds(305, 145, 140, 60);
 
@@ -219,7 +222,7 @@ public class BookingsPanel extends Panel {
 
                 //---- btnGetSelectedRow ----
                 btnGetSelectedRow.setText("Get Selected Row");
-                btnGetSelectedRow.setActionCommand("getRow");
+                btnGetSelectedRow.setActionCommand("Users");
                 btnGetSelectedRow.setFont(new Font("Inter", Font.PLAIN, 13));
                 panel3.add(btnGetSelectedRow);
                 btnGetSelectedRow.setBounds(450, 145, 140, 60);
@@ -297,6 +300,7 @@ public class BookingsPanel extends Panel {
                 //---- btnApply ----
                 btnApply.setText("Apply");
                 btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnApply.setActionCommand("Users");
                 panel2.add(btnApply);
                 btnApply.setBounds(5, 145, 245, 60);
 

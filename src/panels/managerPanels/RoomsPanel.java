@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Wed Dec 11 17:06:06 TRT 2024
  */
 
-package panels.adminPanels;
+package panels.managerPanels;
 
 import panels.Panel;
 

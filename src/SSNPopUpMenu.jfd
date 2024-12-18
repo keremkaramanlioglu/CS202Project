@@ -1,0 +1,53 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.5" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+			name: "this"
+			"alwaysOnTop": true
+			"defaultCloseOperation": 2
+			"modal": true
+			"title": "SSN Menu"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Please enter your ssn before continue:"
+				"font": new java.awt.Font( "JetBrains Mono Medium", 1, 16 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 25
+				"y": 5
+				"width": 495
+				"height": 90
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "tfSsn"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 25
+				"y": 90
+				"width": 550
+				"height": 50
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnOK"
+				"text": "OK"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 440
+				"y": 170
+				"width": 153
+				"height": 45
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnCancel"
+				"text": "Cancel"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 285
+				"y": 170
+				"width": 153
+				"height": 45
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 620, 275 )
+		} )
+	}
+}

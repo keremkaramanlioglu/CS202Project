@@ -1,7 +1,7 @@
 package panels;
 
-import panels.adminPanels.BookingsPanel;
-import panels.adminPanels.HousekeepingPanel;
+import panels.managerPanels.BookingsPanel;
+import panels.managerPanels.HousekeepingPanel;
 import panels.receptionistPanels.RoomsPanel;
 
 import java.awt.*;
@@ -20,6 +20,8 @@ public class ReceptionistPanel extends Panel {
         pnlBookings = new BookingsPanel();
         pnlHousekeeping = new HousekeepingPanel();
         pnlRooms = new RoomsPanel();
+        super.prevCenterPanel = null;
+        super.prevSelectedButton = null;
     }
 
     @Override
