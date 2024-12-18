@@ -9,25 +9,38 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.Arrays;
 
 public class HotelManager {
     private Hotel hotel;
     private final HotelView hotelView;
     private final DatePicker datePicker;
+    private final DBConnectionControl dbConnectionControl;
+    private final HotelDao hotelDao;
 
-
-    public HotelManager(HotelView hotelView) {
+    public HotelManager(HotelView hotelView, DBConnectionControl dbConnectionControl) throws SQLException {
         this.hotelView = hotelView;
         ButtonListener buttonListener = new ButtonListener();
         hotelView.addButtonListener(buttonListener);
         hotelView.addMouseListener(buttonListener);
         datePicker = new DatePicker(hotelView);
+        this.dbConnectionControl = dbConnectionControl;
+        this.hotelDao = new HotelDao(dbConnectionControl.getConnection());
     }
 
 
     private class ButtonListener implements ActionListener, MouseListener {
         public void actionPerformed(ActionEvent e) {
+            try {
+                if (!dbConnectionControl.isConnected()) {
+                    JOptionPane.showMessageDialog(hotelView, "Please connect to database", "Error", JOptionPane.QUESTION_MESSAGE);
+                    dbConnectionControl.reinitiate();
+                }
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+
             String command = e.getActionCommand();
             JButton button = (JButton) e.getSource();
             String[] sidePanelOptions = {"Rooms", "Users", "Employees", "Finance", "Bookings", "Housekeeping",
