@@ -70,6 +70,7 @@ public class UsersPanel extends Panel {
         lblGender = new JLabel();
         tfZipCode = new JTextField();
         lblZipCode = new JLabel();
+        textArea1 = new JTextArea();
         pnlFilter = new JPanel();
         cbColumnOption = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
@@ -81,13 +82,14 @@ public class UsersPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(900, 700));
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
-        javax.swing.border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax
-        .swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java
-        .awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt
-        .Color.red), getBorder())); addPropertyChangeListener(new java.beans.
-        PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".
-        equals(e.getPropertyName()))throw new RuntimeException();}});
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
+        new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e"
+        , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+        , new java .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 )
+        , java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
+        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("borde\u0072" .equals (e .getPropertyName () )) throw new RuntimeException( )
+        ; }} );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -152,7 +154,7 @@ public class UsersPanel extends Panel {
                 btnAdd.setActionCommand("Users");
                 btnAdd.setName("add");
                 pnlSelection.add(btnAdd);
-                btnAdd.setBounds(330, 15, 100, 50);
+                btnAdd.setBounds(295, 10, 100, 50);
 
                 //---- btnDelete ----
                 btnDelete.setText("Delete");
@@ -160,7 +162,7 @@ public class UsersPanel extends Panel {
                 btnDelete.setActionCommand("Users");
                 btnDelete.setName("delete");
                 pnlSelection.add(btnDelete);
-                btnDelete.setBounds(330, 70, 100, 50);
+                btnDelete.setBounds(295, 65, 100, 50);
 
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
@@ -168,7 +170,7 @@ public class UsersPanel extends Panel {
                 btnUpdate.setActionCommand("Users");
                 btnUpdate.setName("update");
                 pnlSelection.add(btnUpdate);
-                btnUpdate.setBounds(330, 125, 100, 50);
+                btnUpdate.setBounds(295, 120, 100, 50);
 
                 //---- lblSsn ----
                 lblSsn.setText("Ssn");
@@ -220,6 +222,13 @@ public class UsersPanel extends Panel {
                 lblZipCode.setText("Zip Code");
                 pnlSelection.add(lblZipCode);
                 lblZipCode.setBounds(185, 95, 75, 17);
+
+                //---- textArea1 ----
+                textArea1.setText("Please choose a row to update!");
+                textArea1.setLineWrap(true);
+                textArea1.setWrapStyleWord(true);
+                pnlSelection.add(textArea1);
+                textArea1.setBounds(395, 115, 100, 60);
 
                 {
                     // compute preferred size
@@ -351,6 +360,7 @@ public class UsersPanel extends Panel {
     private JLabel lblGender;
     private JTextField tfZipCode;
     private JLabel lblZipCode;
+    private JTextArea textArea1;
     private JPanel pnlFilter;
     private JComboBox<String> cbColumnOption;
     private JComboBox<String> cbFilterOption;

@@ -70,6 +70,7 @@ public class RoomsPanel extends Panel {
         label3 = new JLabel();
         label4 = new JLabel();
         label5 = new JLabel();
+        textArea1 = new JTextArea();
         filterPanel = new JPanel();
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
@@ -80,13 +81,13 @@ public class RoomsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
-        .border.EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder
-        .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.
-        awt.Font.BOLD,12),java.awt.Color.red), getBorder()))
-        ; addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-        ){if("\u0062ord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}})
-        ;
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax
+        .swing.border.EmptyBorder(0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing
+        .border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.
+        Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),java.awt.Color.red
+        ), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override
+        public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062or\u0064er".equals(e.getPropertyName(
+        )))throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -199,6 +200,13 @@ public class RoomsPanel extends Panel {
                 label5.setText("Capacity:");
                 selectionPanel.add(label5);
                 label5.setBounds(440, 35, 90, 25);
+
+                //---- textArea1 ----
+                textArea1.setText("Please choose a row to update!");
+                textArea1.setLineWrap(true);
+                textArea1.setWrapStyleWord(true);
+                selectionPanel.add(textArea1);
+                textArea1.setBounds(435, 150, 100, 60);
 
                 {
                     // compute preferred size
@@ -319,6 +327,7 @@ public class RoomsPanel extends Panel {
     private JLabel label3;
     private JLabel label4;
     private JLabel label5;
+    private JTextArea textArea1;
     private JPanel filterPanel;
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;

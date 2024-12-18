@@ -162,6 +162,17 @@ new FormModel {
 						"x": 330
 						"y": 45
 					} )
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "textArea1"
+						"text": "Please choose a row to update!"
+						"lineWrap": true
+						"wrapStyleWord": true
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 100
+						"height": 60
+						"x": 330
+						"y": 125
+					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "pnlFilter"

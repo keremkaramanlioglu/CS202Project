@@ -48,6 +48,7 @@ public class HouseKeepingPanel extends JPanel {
         lblTime = new JLabel();
         tfStatus = new JTextField();
         lblStatus = new JLabel();
+        textArea1 = new JTextArea();
         pnlFilter = new JPanel();
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
@@ -58,12 +59,11 @@ public class HouseKeepingPanel extends JPanel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
-        EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder.CENTER,javax.swing
-        .border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),
-        java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener()
-        {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.getPropertyName()))
-        throw new RuntimeException();}});
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
+        0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
+        . BOTTOM, new java .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
+        red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
+        beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== pnlHouseKeeping ========
@@ -157,6 +157,13 @@ public class HouseKeepingPanel extends JPanel {
                 lblStatus.setFont(new Font("Inter", Font.PLAIN, 12));
                 pnlSelection.add(lblStatus);
                 lblStatus.setBounds(330, 45, 100, 25);
+
+                //---- textArea1 ----
+                textArea1.setText("Please choose a row to update!");
+                textArea1.setLineWrap(true);
+                textArea1.setWrapStyleWord(true);
+                pnlSelection.add(textArea1);
+                textArea1.setBounds(330, 125, 100, 60);
 
                 {
                     // compute preferred size
@@ -275,6 +282,7 @@ public class HouseKeepingPanel extends JPanel {
     private JLabel lblTime;
     private JTextField tfStatus;
     private JLabel lblStatus;
+    private JTextArea textArea1;
     private JPanel pnlFilter;
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;

@@ -148,8 +148,8 @@ new FormModel {
 						"actionCommand": "Users"
 						"name": "add"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 330
-						"y": 15
+						"x": 295
+						"y": 10
 						"width": 100
 						"height": 50
 					} )
@@ -162,8 +162,8 @@ new FormModel {
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 50
-						"x": 330
-						"y": 70
+						"x": 295
+						"y": 65
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btnUpdate"
@@ -174,8 +174,8 @@ new FormModel {
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 50
-						"x": 330
-						"y": 125
+						"x": 295
+						"y": 120
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "lblSsn"
@@ -278,6 +278,17 @@ new FormModel {
 						"height": 17
 						"x": 185
 						"y": 95
+					} )
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "textArea1"
+						"text": "Please choose a row to update!"
+						"lineWrap": true
+						"wrapStyleWord": true
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 100
+						"height": 60
+						"x": 395
+						"y": 115
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {

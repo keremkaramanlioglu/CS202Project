@@ -74,6 +74,7 @@ public class BookingPanel extends Panel {
         lblRoomID = new JLabel();
         lblPaymentStatus = new JLabel();
         lblPaymentMethod = new JLabel();
+        textArea1 = new JTextArea();
         pnlFilter = new JPanel();
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
@@ -85,11 +86,12 @@ public class BookingPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(
-        0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder
-        .BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt.Color.
-        red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.
-        beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}});
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder
+        (0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing.border
+        .TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt
+        .Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void
+        propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException()
+        ;}});
         setLayout(new BorderLayout());
 
         //======== pnlBooking ========
@@ -217,6 +219,13 @@ public class BookingPanel extends Panel {
                 lblPaymentMethod.setFont(new Font("Inter", Font.PLAIN, 12));
                 pnlSelection.add(lblPaymentMethod);
                 lblPaymentMethod.setBounds(330, 25, 100, 25);
+
+                //---- textArea1 ----
+                textArea1.setText("Please choose a row to update!");
+                textArea1.setLineWrap(true);
+                textArea1.setWrapStyleWord(true);
+                pnlSelection.add(textArea1);
+                textArea1.setBounds(330, 135, 100, 60);
 
                 {
                     // compute preferred size
@@ -361,6 +370,7 @@ public class BookingPanel extends Panel {
     private JLabel lblRoomID;
     private JLabel lblPaymentStatus;
     private JLabel lblPaymentMethod;
+    private JTextArea textArea1;
     private JPanel pnlFilter;
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;
