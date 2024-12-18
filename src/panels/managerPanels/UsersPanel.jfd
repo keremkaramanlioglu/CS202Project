@@ -146,6 +146,7 @@ new FormModel {
 						"text": "Add"
 						"cursor": #Cursor0
 						"actionCommand": "Users"
+						"name": "add"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 295
 						"y": 30
@@ -157,6 +158,7 @@ new FormModel {
 						"text": "Delete"
 						"cursor": #Cursor0
 						"actionCommand": "Users"
+						"name": "delete"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 50
@@ -168,6 +170,7 @@ new FormModel {
 						"text": "Update"
 						"cursor": &Cursor1 new java.awt.Cursor( 12 )
 						"actionCommand": "Users"
+						"name": "update"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 50
@@ -281,6 +284,7 @@ new FormModel {
 						"text": "Get Row"
 						"cursor": #Cursor1
 						"actionCommand": "Users"
+						"name": "get row"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 50
@@ -354,6 +358,7 @@ new FormModel {
 						"text": "Apply Filters"
 						"cursor": #Cursor1
 						"actionCommand": "Users"
+						"name": "apply"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 45
 						"y": 150

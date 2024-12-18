@@ -55,6 +55,8 @@ public class CustomerPanel extends Panel {
         btnProfile.addActionListener(l);
         btnMyBookings.addActionListener(l);
         btnBookARoom.addActionListener(l);
+        pnlMyBookings.addButtonListener(l);
+        pnlProfile.addButtonListener(l);
     }
 
     @Override
@@ -75,7 +77,7 @@ public class CustomerPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         pnlSide = new JPanel();
         btnBookARoom = new JButton();
         btnMyBookings = new JButton();
@@ -86,12 +88,13 @@ public class CustomerPanel extends Panel {
 
         //======== this ========
         setBackground(new Color(0x666666));
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
-        border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER
-        , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font
-        .BOLD ,12 ), java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
-        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order"
-        .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+        . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder
+        . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .
+        awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder( )) )
+        ;  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+        ;
         setLayout(new BorderLayout());
 
         //======== pnlSide ========
@@ -109,7 +112,6 @@ public class CustomerPanel extends Panel {
             btnBookARoom.setFocusable(false);
             btnBookARoom.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             btnBookARoom.setHorizontalAlignment(SwingConstants.CENTER);
-            btnBookARoom.setActionCommand("Book a room");
             btnBookARoom.setName("side");
             pnlSide.add(btnBookARoom);
 
@@ -121,7 +123,6 @@ public class CustomerPanel extends Panel {
             btnMyBookings.setPreferredSize(new Dimension(120, 40));
             btnMyBookings.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             btnMyBookings.setFocusable(false);
-            btnMyBookings.setActionCommand("My Bookings");
             btnMyBookings.setName("side");
             pnlSide.add(btnMyBookings);
 
@@ -133,7 +134,6 @@ public class CustomerPanel extends Panel {
             btnProfile.setPreferredSize(new Dimension(120, 40));
             btnProfile.setFocusable(false);
             btnProfile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnProfile.setActionCommand("Profile");
             btnProfile.setName("side");
             pnlSide.add(btnProfile);
 
@@ -168,7 +168,7 @@ public class CustomerPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JPanel pnlSide;
     private JButton btnBookARoom;
     private JButton btnMyBookings;

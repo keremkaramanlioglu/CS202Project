@@ -4,6 +4,7 @@
 
 package panels.managerPanels;
 
+import java.awt.event.*;
 import java.awt.event.MouseListener;
 import java.util.*;
 import javax.swing.table.*;
@@ -50,6 +51,25 @@ public class BookingsPanel extends Panel {
         super.dataTable = table;
     }
 
+    private void cbSelectColumn(ActionEvent e) {
+        if (((String)cbSelectColumn.getSelectedItem()).contains("Check")){
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None", "Checked in", "Checked out"}));
+        } else if (((String)cbSelectColumn.getSelectedItem()).equals("Payment Status")) {
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None", "Completed", "Pending", "Canceled"}));
+        } else if (((String)cbSelectColumn.getSelectedItem()).equals("Payment Method")) {
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None", "In Advance", "During Check-out"}));
+        } else if (((String)cbSelectColumn.getSelectedItem()).equals("None")) {
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None"}));
+        } else {
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None", "==", "!=", "<", ">", "<=", ">=", "between", "contains"}));
+        }
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kutay Mumcu
@@ -83,11 +103,12 @@ public class BookingsPanel extends Panel {
         btnApply = new JButton();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(
-        0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder
-        .BOTTOM,new java.awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),java.awt.Color.
-        red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.
-        beans.PropertyChangeEvent e){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException();}});
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
+        ( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border
+        . TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt
+        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
+        propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException( )
+        ; }} );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -175,18 +196,24 @@ public class BookingsPanel extends Panel {
                 //---- btnAdd ----
                 btnAdd.setText("Add");
                 btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnAdd.setActionCommand("Bookings");
+                btnAdd.setName("add");
                 panel3.add(btnAdd);
                 btnAdd.setBounds(15, 145, 140, 60);
 
                 //---- btnDelete ----
                 btnDelete.setText("Delete");
                 btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnDelete.setActionCommand("Bookings");
+                btnDelete.setName("delete");
                 panel3.add(btnDelete);
                 btnDelete.setBounds(160, 145, 140, 60);
 
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
                 btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnUpdate.setActionCommand("Bookings");
+                btnUpdate.setName("update");
                 panel3.add(btnUpdate);
                 btnUpdate.setBounds(305, 145, 140, 60);
 
@@ -217,9 +244,10 @@ public class BookingsPanel extends Panel {
                 label7.setBounds(335, 90, 100, 25);
 
                 //---- btnGetSelectedRow ----
-                btnGetSelectedRow.setText("Get Selected Row");
-                btnGetSelectedRow.setActionCommand("getRow");
+                btnGetSelectedRow.setText("Get Row");
+                btnGetSelectedRow.setActionCommand("Bookings");
                 btnGetSelectedRow.setFont(new Font("Inter", Font.PLAIN, 13));
+                btnGetSelectedRow.setName("get row");
                 panel3.add(btnGetSelectedRow);
                 btnGetSelectedRow.setBounds(450, 145, 140, 60);
 
@@ -246,6 +274,7 @@ public class BookingsPanel extends Panel {
 
                 //---- cbSelectColumn ----
                 cbSelectColumn.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None",
                     "Book ID",
                     "Customer SSN",
                     "Room ID",
@@ -257,6 +286,7 @@ public class BookingsPanel extends Panel {
                     "Checked out"
                 }));
                 cbSelectColumn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                cbSelectColumn.addActionListener(e -> cbSelectColumn(e));
                 panel2.add(cbSelectColumn);
                 cbSelectColumn.setBounds(10, 20, 120, 45);
 
@@ -296,6 +326,8 @@ public class BookingsPanel extends Panel {
                 //---- btnApply ----
                 btnApply.setText("Apply");
                 btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnApply.setActionCommand("Bookings");
+                btnApply.setName("apply");
                 panel2.add(btnApply);
                 btnApply.setBounds(5, 145, 245, 60);
 

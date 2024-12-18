@@ -4,6 +4,7 @@
 
 package panels.managerPanels;
 
+import java.awt.event.*;
 import javax.swing.table.*;
 import panels.Panel;
 
@@ -43,6 +44,19 @@ public class HousekeepingPanel extends Panel {
         return null;
     }
 
+    private void comboBox1(ActionEvent e) {
+        if (((String)comboBox1.getSelectedItem()).equals("Status")) {
+            comboBox2.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None", "Pending", "Completed"}));
+        } else if (((String)comboBox1.getSelectedItem()).equals("None")) {
+            comboBox2.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None"}));
+        } else {
+            comboBox2.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None", "==", "!=", "<", ">", "<=", ">=", "between", "contains"}));
+        }
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kutay Mumcu
@@ -73,14 +87,12 @@ public class HousekeepingPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(1920, 1080));
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder (
-        new javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion"
-        , javax. swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM
-        , new java. awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,12 )
-        ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener(
-        new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
-        ) { if( "\u0062order" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
-        ;} } );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border
+        . EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder. CENTER, javax
+        . swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,
+        12 ), java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans
+        . PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .
+        getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -145,6 +157,7 @@ public class HousekeepingPanel extends Panel {
                 btnAdd.setText("Add");
                 btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnAdd.setActionCommand("Housekeeping");
+                btnAdd.setName("add");
                 pnlSelection.add(btnAdd);
                 btnAdd.setBounds(15, 125, 100, 60);
 
@@ -152,12 +165,14 @@ public class HousekeepingPanel extends Panel {
                 btnDelete.setText("Delete");
                 btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnDelete.setActionCommand("Housekeeping");
+                btnDelete.setName("delete");
                 pnlSelection.add(btnDelete);
                 btnDelete.setBounds(120, 125, 100, 60);
 
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
                 btnUpdate.setActionCommand("Housekeeping");
+                btnUpdate.setName("update");
                 pnlSelection.add(btnUpdate);
                 btnUpdate.setBounds(225, 125, 100, 60);
 
@@ -190,6 +205,7 @@ public class HousekeepingPanel extends Panel {
                 //---- btnGetRow ----
                 btnGetRow.setText("Get Row");
                 btnGetRow.setActionCommand("Housekeeping");
+                btnGetRow.setName("get row");
                 pnlSelection.add(btnGetRow);
                 btnGetRow.setBounds(330, 125, 100, 60);
 
@@ -217,6 +233,7 @@ public class HousekeepingPanel extends Panel {
 
                 //---- comboBox1 ----
                 comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None",
                     "Schedule ID",
                     "Housekeeper SSN",
                     "Receptionist SSN",
@@ -225,6 +242,7 @@ public class HousekeepingPanel extends Panel {
                     "Status"
                 }));
                 comboBox1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                comboBox1.addActionListener(e -> comboBox1(e));
                 pnlFilter.add(comboBox1);
                 comboBox1.setBounds(25, 23, 98, comboBox1.getPreferredSize().height);
 
@@ -257,6 +275,7 @@ public class HousekeepingPanel extends Panel {
                 btnApply.setText("Apply");
                 btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnApply.setActionCommand("Housekeeping");
+                btnApply.setName("apply");
                 pnlFilter.add(btnApply);
                 btnApply.setBounds(25, 125, 215, 60);
 

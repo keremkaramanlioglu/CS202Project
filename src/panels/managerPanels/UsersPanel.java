@@ -80,12 +80,12 @@ public class UsersPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(900, 700));
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
-        . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder
-        . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .
-        awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder( )) )
-        ;  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-        ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing
+        . border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder
+        . CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .
+        awt . Font. BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) )
+        ;  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
+        ) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } )
         ;
         setLayout(new BorderLayout());
 
@@ -101,7 +101,7 @@ public class UsersPanel extends Panel {
                     {null, null, null, null, null, null, null, null, null},
                 },
                 new String[] {
-                    "Ssn", "First Name", "Last Name", "Birth Date", "Room ID", "E-Mail", "Phone No", "Gender", "Zip Code"
+                    "ssn", "firstname", "lastname", "bd", "room_id", "email", "phone_num", "gender", "zip_code"
                 }
             ) {
                 Class<?>[] columnTypes = new Class<?>[] {
@@ -149,6 +149,7 @@ public class UsersPanel extends Panel {
                 btnAdd.setText("Add");
                 btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnAdd.setActionCommand("Users");
+                btnAdd.setName("add");
                 pnlSelection.add(btnAdd);
                 btnAdd.setBounds(295, 30, 100, 50);
 
@@ -156,6 +157,7 @@ public class UsersPanel extends Panel {
                 btnDelete.setText("Delete");
                 btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnDelete.setActionCommand("Users");
+                btnDelete.setName("delete");
                 pnlSelection.add(btnDelete);
                 btnDelete.setBounds(295, 85, 100, 50);
 
@@ -163,6 +165,7 @@ public class UsersPanel extends Panel {
                 btnUpdate.setText("Update");
                 btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnUpdate.setActionCommand("Users");
+                btnUpdate.setName("update");
                 pnlSelection.add(btnUpdate);
                 btnUpdate.setBounds(400, 30, 100, 50);
 
@@ -221,6 +224,7 @@ public class UsersPanel extends Panel {
                 btnGetRow.setText("Get Row");
                 btnGetRow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnGetRow.setActionCommand("Users");
+                btnGetRow.setName("get row");
                 pnlSelection.add(btnGetRow);
                 btnGetRow.setBounds(400, 85, 100, 50);
 
@@ -289,6 +293,7 @@ public class UsersPanel extends Panel {
                 btnApplyFilter.setText("Apply Filters");
                 btnApplyFilter.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnApplyFilter.setActionCommand("Users");
+                btnApplyFilter.setName("apply");
                 pnlFilter.add(btnApplyFilter);
                 btnApplyFilter.setBounds(45, 150, 250, 40);
 

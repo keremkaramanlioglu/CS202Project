@@ -87,6 +87,7 @@ public class DBManagerPanel extends Panel {
             btnQueryPanel.setBorder(null);
             btnQueryPanel.setFocusable(false);
             btnQueryPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnQueryPanel.setActionCommand("Query Panel");
             btnQueryPanel.setName("side");
             panel1.add(btnQueryPanel);
 

@@ -83,6 +83,7 @@ new FormModel {
 						"text": "Show Rooms"
 						"cursor": #Cursor0
 						"actionCommand": "Book a room"
+						"name": "show rooms"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 40
 						"y": 160
@@ -199,6 +200,7 @@ new FormModel {
 						"text": "Apply"
 						"cursor": #Cursor0
 						"actionCommand": "Book a room"
+						"name": "apply"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 215
 						"height": 60
@@ -213,6 +215,7 @@ new FormModel {
 						name: "btnResetFilters"
 						"text": "Reset Filters"
 						"cursor": #Cursor0
+						"name": "reset filters"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 200
 						"height": 60
@@ -224,6 +227,7 @@ new FormModel {
 						"text": "Book"
 						"cursor": #Cursor0
 						"actionCommand": "Book a room"
+						"name": "book"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 200
 						"height": 60

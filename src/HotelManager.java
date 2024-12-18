@@ -2,6 +2,7 @@ import entities.Employee;
 import entities.Hotel;
 
 import panels.Panel;
+import panels.customerPanels.ProfilePanel;
 import panels.managerPanels.FinancePanel;
 
 import javax.swing.*;
@@ -124,11 +125,10 @@ public class HotelManager {
                 if (activePanel.getCenterPanel() != null) activePanel.getCenterPanel().reset();
                 activePanel.setCenterPanel(activePanel.getPanelByName(command));
             } else if (compare(command, mainPanelOptions)) {
-                //if (!command.equals("Customer")) if (!checkAction(command)) return;
+                if (!command.equals("Customer")) if (!checkAction(command)) return;
                 hotelView.getActivePanel().reset();
                 hotelView.setActivePanel(hotelView.getPanelByName(command));
             } else {
-                System.out.println(command);
                 switch (command) {
                     case "Employees":
                         if (button.getName().equals("applyFilter")) {
@@ -155,6 +155,19 @@ public class HotelManager {
                     case "Show Revenue":
                         ((FinancePanel)hotelView.getActivePanel().getPanelByName("Finance")).setRevenue("111");
                         break;
+                    case "New Booking":
+                        hotelView.getActivePanel().setCenterPanel(hotelView.getActivePanel().getPanelByName("Book a room"));
+                        break;
+                    case "Profile_Edit":
+                        ((ProfilePanel)hotelView.getActivePanel().getPanelByName("Profile")).pushEditButton();
+                        break;
+                    case "Profile_Confirm":
+                        ((ProfilePanel)hotelView.getActivePanel().getPanelByName("Profile")).pushConfirmButton();
+                        break;
+                    case "Bookings":
+                        if (button.getText().equals("Add")){
+                            System.out.println("h");
+                        }
                 }
             }
         }
