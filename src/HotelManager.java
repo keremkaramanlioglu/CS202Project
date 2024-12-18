@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class HotelManager {
-    private Hotel hotel;
     private final HotelView hotelView;
     private final DatePicker datePicker;
     private final DBConnectionControl dbConnectionControl;
@@ -91,7 +90,7 @@ public class HotelManager {
     }
 
     private void setCurrEmployee() throws SQLException {
-        currEmployee = hotelDao.getEmployees("emp_ssn", "==", currSsn).getFirst();
+        currEmployee = hotelDao.getEmployees("ssn", "=", currSsn).getFirst();
     }
 
     public boolean compare(String s1, String[] strings) {
@@ -125,12 +124,13 @@ public class HotelManager {
                 if (activePanel.getCenterPanel() != null) activePanel.getCenterPanel().reset();
                 activePanel.setCenterPanel(activePanel.getPanelByName(command));
             } else if (compare(command, mainPanelOptions)) {
-                if (!command.equals("Customer")) if (!checkAction(command)) return;
+                //if (!command.equals("Customer")) if (!checkAction(command)) return;
                 hotelView.getActivePanel().reset();
                 hotelView.setActivePanel(hotelView.getPanelByName(command));
             } else {
                 switch (command) {
                     case "Employees":
+                        Employee empl;
                         if (button.getName().equals("applyFilter")) {
                             Panel panel = hotelView.getActivePanel().getPanelByName(command);
                             System.out.println("entered");
@@ -142,10 +142,10 @@ public class HotelManager {
                             } catch (SQLException ex) {
                                 throw new RuntimeException(ex);
                             }
+                        } else if (button.getName().equals("getRow")) {
+                            Panel panel = hotelView.getActivePanel().getPanelByName(command);
+                            empl = new Employee(panel.getSelectedRow());
                         }
-                        break;
-                    case "Bookings":
-                        System.out.println(button.getText());
                         break;
                     case "Delete":
                         break;

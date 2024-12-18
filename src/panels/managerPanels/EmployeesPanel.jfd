@@ -160,7 +160,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JTextArea" ) {
 						name: "textArea1"
-						"text": "Please choose an option to add, delete or update an employee:"
+						"text": "Please choose a row to delete or update an employee or press add to add new one:"
 						"opaque": false
 						"wrapStyleWord": true
 						"lineWrap": true
@@ -172,35 +172,7 @@ new FormModel {
 						"width": 310
 						"height": 75
 						"x": 20
-						"y": 55
-					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "btnGetRow"
-						"text": "Get Row"
-						"cursor": #Cursor0
-						"actionCommand": "Employees"
-						"name": "get row"
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"width": 100
-						"height": 50
-						"x": 335
-						"y": 125
-					} )
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField1"
-						"editable": false
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 335
-						"y": 90
-						"width": 100
-						"height": 34
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label1"
-						"text": "SSN"
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 370
-						"y": 75
+						"y": 45
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {

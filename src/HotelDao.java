@@ -45,8 +45,15 @@ public class HotelDao {
         stmt.setInt(8, hotel.getHotel_id());
         stmt.executeUpdate();
     }
-    public void deleteHotel(Hotel hotel) {}
-    public void insertRoom(Room room) {}
+    public void deleteHotel(Hotel hotel) throws SQLException {
+        String sql = "DELETE FROM Hotels WHERE hotel_id = ?";
+        stmt = con.prepareStatement(sql);
+        stmt.setInt(1, hotel.getHotel_id());
+        stmt.executeUpdate();
+    }
+    public void insertRoom(Room room) {
+
+    }
     public void updateRoom(Room room) {}
     public void deleteRoom(Room room) {}
     public void insertCustomer(Customer customer) {}
@@ -79,7 +86,7 @@ public class HotelDao {
         stmt.setString(1, cleaningSchedule.getHousekeeper_ssn());
         stmt.setString(2, cleaningSchedule.getReceptionist_ssn());
         stmt.setInt(3, cleaningSchedule.getRoom_id());
-        stmt.setDate(4, cleaningSchedule.getCleaning_date());
+        stmt.setTimestamp(4, cleaningSchedule.getCleaning_date());
         stmt.setString(5, cleaningSchedule.getService_status());
         stmt.executeUpdate();
     }
@@ -89,7 +96,7 @@ public class HotelDao {
         stmt.setString(1, cleaningSchedule.getHousekeeper_ssn());
         stmt.setString(2, cleaningSchedule.getReceptionist_ssn());
         stmt.setInt(3, cleaningSchedule.getRoom_id());
-        stmt.setDate(4, cleaningSchedule.getCleaning_date());
+        stmt.setTimestamp(4, cleaningSchedule.getCleaning_date());
         stmt.setString(5, cleaningSchedule.getService_status());
         stmt.setInt(6, cleaningSchedule.getSchedule_id());
         stmt.executeUpdate();

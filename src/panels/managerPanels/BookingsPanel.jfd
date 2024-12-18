@@ -337,7 +337,7 @@ new FormModel {
 						name: "tfFilterValue"
 						"toolTipText": "Filter Input"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"width": 245
+						"width": 125
 						"height": 40
 						"x": 5
 						"y": 100
@@ -353,6 +353,22 @@ new FormModel {
 						"height": 60
 						"x": 5
 						"y": 145
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "tfUpperValue"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 150
+						"y": 100
+						"width": 115
+						"height": 40
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label8"
+						"text": "-"
+						"font": new java.awt.Font( "Inter", 0, 14 )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 135
+						"y": 110
 					} )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {

@@ -39,6 +39,24 @@ public class Employee {
         this.zip_code = rs.getString("zip_code");
     }
 
+    public Employee(Object[] obj) {
+        this.emp_ssn = (String) obj[0];
+        this.emp_firstname = (String) obj[1];
+        this.emp_lastname = (String) obj[2];
+        this.emp_type = (String) obj[3];
+        this.emp_bd = (String) obj[4];
+        this.years = (Date) obj[5];
+        this.emp_hotel_id = (int) obj[6];
+        this.emp_salary = (double) obj[7];
+        this.emp_phone_num = (String) obj[8];
+        this.emp_email = (String) obj[9];
+        this.emp_gender = (String) obj[10];
+        this.street = (String) obj[11];
+        this.no = (String) obj[12];
+        this.apartment = (String) obj[13];
+        this.zip_code = (String) obj[14];
+    }
+
     public String getEmp_ssn() {
         return emp_ssn;
     }

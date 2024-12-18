@@ -35,6 +35,17 @@ public class Hotel {
         this.zip_code = zip_code;
     }
 
+    public Hotel(Object[] obj) {
+        this.hotel_id = (int)obj[0];
+        this.hotel_name = (String)obj[1];
+        this.hotel_phone = (String)obj[2];
+        this.hotel_email = (String)obj[3];
+        this.hotel_rating = (double)obj[4];
+        this.street = (String)obj[5];
+        this.no = (String)obj[6];
+        this.zip_code = (String)obj[7];
+    }
+
     public int getHotel_id() {
         return hotel_id;
     }

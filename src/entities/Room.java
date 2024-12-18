@@ -22,6 +22,16 @@ public class Room {
         this.room_capacity = rs.getString("room_capacity");
     }
 
+    public Room(Object[] obj) {
+        this.room_id = (int)obj[0];
+        this.hotel_id = (int)obj[1];
+        this.room_num = (String)obj[2];
+        this.room_type = (String)obj[3];
+        this.room_size = (int)obj[4];
+        this.room_price = (double)obj[5];
+        this.room_capacity = (String)obj[6];
+    }
+
     public int getRoom_id() {
         return room_id;
     }

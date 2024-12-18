@@ -10,7 +10,7 @@ public class CleaningSchedule {
     private String housekeeper_ssn;
     private String receptionist_ssn;
     private int room_id;
-    private Date cleaning_date;
+    private Timestamp cleaning_date;
     private String service_status;
 
     public CleaningSchedule(ResultSet rs) throws SQLException {  // TODO : ADD TRY BLOCK
@@ -18,8 +18,17 @@ public class CleaningSchedule {
         this.housekeeper_ssn = rs.getString("housekeeper_ssn");
         this.receptionist_ssn = rs.getString("receptionist_ssn");
         this.room_id = rs.getInt("room_id");
-        this.cleaning_date = rs.getDate("cleaning_date");
+        this.cleaning_date = rs.getTimestamp("cleaning_date");
         this.service_status = rs.getString("service_status");
+    }
+
+    public CleaningSchedule(Object[] obj) {
+        this.schedule_id = (Integer) obj[0];
+        this.housekeeper_ssn = (String) obj[1];
+        this.receptionist_ssn = (String) obj[2];
+        this.room_id = (Integer) obj[3];
+        this.cleaning_date = (Timestamp) obj[4];
+        this.service_status = (String) obj[5];
     }
 
     public int getSchedule_id() {
@@ -54,11 +63,11 @@ public class CleaningSchedule {
         this.room_id = room_id;
     }
 
-    public Date getCleaning_date() {
+    public Timestamp getCleaning_date() {
         return cleaning_date;
     }
 
-    public void setCleaning_date(Date cleaning_date) {
+    public void setCleaning_date(Timestamp cleaning_date) {
         this.cleaning_date = cleaning_date;
     }
 

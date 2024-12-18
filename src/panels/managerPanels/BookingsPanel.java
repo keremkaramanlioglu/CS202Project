@@ -8,6 +8,8 @@ import java.awt.event.*;
 import java.awt.event.MouseListener;
 import java.util.*;
 import javax.swing.table.*;
+
+import entities.Booking;
 import panels.Panel;
 
 import java.awt.*;
@@ -48,12 +50,13 @@ public class BookingsPanel extends Panel {
 
     public BookingsPanel() {
         initComponents();
-        super.dataTable = table;
+        super.table = table;
     }
 
     private void cbSelectColumn(ActionEvent e) {
         // TODO add your code here
     }
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -86,15 +89,15 @@ public class BookingsPanel extends Panel {
         label6 = new JLabel();
         tfFilterValue = new JTextField();
         btnApply = new JButton();
+        tfUpperValue = new JTextField();
+        label8 = new JLabel();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.
-        swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border
-        .TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog"
-        ,java.awt.Font.BOLD,12),java.awt.Color.red), getBorder
-        ())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java
-        .beans.PropertyChangeEvent e){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException
-        ();}});
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder (
+        0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder
+        . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .
+        red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java .
+        beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -105,8 +108,6 @@ public class BookingsPanel extends Panel {
             table.setPreferredSize(new Dimension(150, 400));
             table.setModel(new DefaultTableModel(
                 new Object[][] {
-                    {null, null, null, null, null, null, null, true, true},
-                    {null, null, null, null, null, null, null, null, null},
                 },
                 new String[] {
                     "booking_id", "c_ssn", "room_id", "payment_status", "payment_method", "booking_start_date", "booking_end_date", "c_check_in_status", "c_check_out_status"
@@ -307,7 +308,7 @@ public class BookingsPanel extends Panel {
                 //---- tfFilterValue ----
                 tfFilterValue.setToolTipText("Filter Input");
                 panel2.add(tfFilterValue);
-                tfFilterValue.setBounds(5, 100, 245, 40);
+                tfFilterValue.setBounds(5, 100, 125, 40);
 
                 //---- btnApply ----
                 btnApply.setText("Apply");
@@ -316,6 +317,14 @@ public class BookingsPanel extends Panel {
                 btnApply.setName("apply");
                 panel2.add(btnApply);
                 btnApply.setBounds(5, 145, 245, 60);
+                panel2.add(tfUpperValue);
+                tfUpperValue.setBounds(150, 100, 115, 40);
+
+                //---- label8 ----
+                label8.setText("-");
+                label8.setFont(new Font("Inter", Font.PLAIN, 14));
+                panel2.add(label8);
+                label8.setBounds(new Rectangle(new Point(135, 110), label8.getPreferredSize()));
 
                 {
                     // compute preferred size
@@ -368,5 +377,7 @@ public class BookingsPanel extends Panel {
     private JLabel label6;
     private JTextField tfFilterValue;
     private JButton btnApply;
+    private JTextField tfUpperValue;
+    private JLabel label8;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
