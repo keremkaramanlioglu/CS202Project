@@ -22,6 +22,8 @@ public class ProfilePanel extends Panel {
 
     @Override
     public void addButtonListener(ActionListener al) {
+        btnConfirm.addActionListener(al);
+        btnEdit.addActionListener(al);
     }
 
     @Override
@@ -38,13 +40,33 @@ public class ProfilePanel extends Panel {
     public Panel getPanelByName(String panelName) {
         return null;
     }
-
-    private void btnEdit(ActionEvent e) {
+    
+    public void pushEditButton() {
         btnConfirm.setEnabled(true);
+        tfFirstName.setEditable(true);
+        tfLastName.setEditable(true);
+        tfSsn.setEditable(true);
+        tfBirthDate.setEnabled(true);
+        tfEmail.setEditable(true);
+        tfPhoneNumber.setEditable(true);
+        tfGender.setEditable(true);
+        tfZipCode.setEditable(true);
     }
 
-    private void btnConfirm(ActionEvent e) {
+    public void pushConfirmButton() {
         btnConfirm.setEnabled(false);
+        tfFirstName.setEditable(false);
+        tfLastName.setEditable(false);
+        tfSsn.setEditable(false);
+        tfBirthDate.setEditable(false);
+        tfEmail.setEditable(false);
+        tfPhoneNumber.setEditable(false);
+        tfGender.setEditable(false);
+        tfZipCode.setEditable(false);
+    }
+
+    private void btnEdit(ActionEvent e) {
+        // TODO add your code here
     }
 
     private void initComponents() {
@@ -70,11 +92,13 @@ public class ProfilePanel extends Panel {
         btnConfirm = new JButton();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
-        0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
-        . BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
-        red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
-        beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+        . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder
+        . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .
+        awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder( )) )
+        ;  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+        ;
         setLayout(null);
 
         //---- lblfirstName ----
@@ -165,16 +189,14 @@ public class ProfilePanel extends Panel {
 
         //---- btnEdit ----
         btnEdit.setText("Edit");
-        btnEdit.setActionCommand("Profile");
-        btnEdit.addActionListener(e -> btnEdit(e));
+        btnEdit.setActionCommand("Profile_Edit");
         add(btnEdit);
         btnEdit.setBounds(55, 540, 200, 40);
 
         //---- btnConfirm ----
         btnConfirm.setText("Confirm");
-        btnConfirm.setActionCommand("Profile");
+        btnConfirm.setActionCommand("Profile_Confirm");
         btnConfirm.setEnabled(false);
-        btnConfirm.addActionListener(e -> btnConfirm(e));
         add(btnConfirm);
         btnConfirm.setBounds(380, 540, 200, 40);
 

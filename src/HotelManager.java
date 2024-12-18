@@ -2,6 +2,7 @@ import entities.Employee;
 import entities.Hotel;
 
 import panels.Panel;
+import panels.customerPanels.ProfilePanel;
 import panels.managerPanels.FinancePanel;
 
 import javax.swing.*;
@@ -142,6 +143,12 @@ public class HotelManager {
                         break;
                     case "New Booking":
                         hotelView.getActivePanel().setCenterPanel(hotelView.getActivePanel().getPanelByName("Book a room"));
+                        break;
+                    case "Profile_Edit":
+                        ((ProfilePanel)hotelView.getActivePanel().getPanelByName("Profile")).pushEditButton();
+                        break;
+                    case "Profile_Confirm":
+                        ((ProfilePanel)hotelView.getActivePanel().getPanelByName("Profile")).pushConfirmButton();
                 }
             }
         }
