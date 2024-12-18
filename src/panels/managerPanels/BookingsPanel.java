@@ -8,8 +8,6 @@ import java.awt.event.*;
 import java.awt.event.MouseListener;
 import java.util.*;
 import javax.swing.table.*;
-
-import entities.Booking;
 import panels.Panel;
 
 import java.awt.*;
@@ -49,23 +47,37 @@ public class BookingsPanel extends Panel {
 
     public BookingsPanel() {
         initComponents();
+        super.table = table;
         super.cbFilterOption = cbFilterOption;
         super.cbFilterColumn = cbFilterColumn;
         super.prevCenterPanel = null;
         super.prevSelectedButton = null;
         super.tfFilterValue = tfFilterValue;
         super.tfFilterUpperValue = tfFilterUpperValue;
-        super.table = table;
     }
 
     private void cbSelectColumn(ActionEvent e) {
-        // TODO add your code here
+        if (((String)cbSelectColumn.getSelectedItem()).contains("Check")){
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None", "Checked in", "Checked out"}));
+        } else if (((String)cbSelectColumn.getSelectedItem()).equals("Payment Status")) {
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None", "Completed", "Pending", "Canceled"}));
+        } else if (((String)cbSelectColumn.getSelectedItem()).equals("Payment Method")) {
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None", "In Advance", "During Check-out"}));
+        } else if (((String)cbSelectColumn.getSelectedItem()).equals("None")) {
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None"}));
+        } else {
+            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "None", "==", "!=", "<", ">", "<=", ">=", "between", "contains"}));
+        }
     }
-
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         scrollPane1 = new JScrollPane();
         table = new JTable();
         panel1 = new JPanel();
@@ -94,16 +106,17 @@ public class BookingsPanel extends Panel {
         label6 = new JLabel();
         tfFilterValue = new JTextField();
         btnApply = new JButton();
-
-        tfUpperValue = new JTextField();
+        tfFilterUpperValue = new JTextField();
         label8 = new JLabel();
 
         //======== this ========
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder (
-        0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder
-        . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .
-        red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java .
-        beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
+        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax
+        . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
+        .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ), java. awt
+        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
+        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072" .
+        equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -114,6 +127,8 @@ public class BookingsPanel extends Panel {
             table.setPreferredSize(new Dimension(150, 400));
             table.setModel(new DefaultTableModel(
                 new Object[][] {
+                    {null, null, null, null, null, null, null, true, true},
+                    {null, null, null, null, null, null, null, null, null},
                 },
                 new String[] {
                     "booking_id", "c_ssn", "room_id", "payment_status", "payment_method", "booking_start_date", "booking_end_date", "c_check_in_status", "c_check_out_status"
@@ -322,14 +337,6 @@ public class BookingsPanel extends Panel {
                 btnApply.setName("apply");
                 panel2.add(btnApply);
                 btnApply.setBounds(5, 145, 245, 60);
-                panel2.add(tfUpperValue);
-                tfUpperValue.setBounds(150, 100, 115, 40);
-
-                //---- label8 ----
-                label8.setText("-");
-                label8.setFont(new Font("Inter", Font.PLAIN, 14));
-                panel2.add(label8);
-                label8.setBounds(new Rectangle(new Point(135, 110), label8.getPreferredSize()));
 
                 //---- tfFilterUpperValue ----
                 tfFilterUpperValue.setToolTipText("Filter Input");
@@ -363,7 +370,7 @@ public class BookingsPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JScrollPane scrollPane1;
     private JTable table;
     private JPanel panel1;
@@ -393,7 +400,6 @@ public class BookingsPanel extends Panel {
     private JTextField tfFilterValue;
     private JButton btnApply;
     private JTextField tfFilterUpperValue;
-
     private JLabel label8;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

@@ -45,7 +45,6 @@ public class HotelDao {
         stmt.setInt(8, hotel.getHotel_id());
         stmt.executeUpdate();
     }
-    public void deleteHotel(Hotel hotel) {}
     public void insertRoom(Room room) throws SQLException {
         String sql = "INSERT INTO Rooms (hotel_id, room_num, room_type, room_size, room_price, room_capacity) VALUES(?, ?, ?, ?, ?, ?, ?)";
         stmt = con.prepareStatement(sql);
