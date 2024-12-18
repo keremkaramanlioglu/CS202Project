@@ -29,9 +29,9 @@ public class DBConnectionControl {
         port = dbConnectionTestFrame.getPort();
         url += hostName + ":" + port + "/" + dbName;
         con = DriverManager.getConnection(url, userName, password);
-        Hotel hotel = new Hotel("Mars Hotel", "054394943940", "mars.hotel@gmail.com", 4.5, "Strike", "321", "99929");
+        Hotel hotel = new Hotel(3, "Jupiter Hotel", "054394943940", "mars.hotel@gmail.com", 4.5, "Strike", "321", "99929");
         HotelDao hotelDao = new HotelDao(con);
-        hotelDao.insertHotel(hotel);
+        hotelDao.updateHotel(hotel);
         JOptionPane.showMessageDialog(null, "Connection Established!");
     }
 

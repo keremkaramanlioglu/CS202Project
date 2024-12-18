@@ -5,11 +5,13 @@ import javax.swing.*;
 
 class DatePicker {
     int month = java.util.Calendar.getInstance().get(java.util.Calendar.MONTH);
-    int year = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);;
+    int year = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
     JLabel l = new JLabel("", JLabel.CENTER);
     String day = "";
     JDialog d;
+    JDialog years;
     JButton[] button = new JButton[49];
+    JButton[] buttonYears = new JButton[16];
     JFrame parent;
 
     public DatePicker(JFrame parent) {
@@ -17,49 +19,55 @@ class DatePicker {
     }
 
     public void initiateDialog() {
-        d = new JDialog();
+        d = new JDialog(parent, "Date Picker", true);
         ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/Calendar.png")));
-        d.setModal(true);
+
         String[] header = { "Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat" };
         JPanel p1 = new JPanel(new GridLayout(7, 7));
         p1.setPreferredSize(new Dimension(430, 120));
+
+        l = new JLabel("", JLabel.CENTER);
+        l.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        l.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                if (e.getButton() == MouseEvent.BUTTON1) {
+                    initiateYearsDialog();
+                }
+            }
+        });
 
         for (int x = 0; x < button.length; x++) {
             final int selection = x;
             button[x] = new JButton();
             button[x].setFocusPainted(false);
             button[x].setBackground(Color.white);
-            if (x > 6)
-                button[x].addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent ae) {
-                        day = button[selection].getActionCommand();
-                        d.dispose();
-                    }
+            if (x > 6) {
+                button[x].addActionListener(ae -> {
+                    day = button[selection].getActionCommand();
+                    d.dispose();
                 });
-            if (x < 7) {
+            } else {
                 button[x].setText(header[x]);
                 button[x].setForeground(Color.red);
             }
             p1.add(button[x]);
         }
+
         JPanel p2 = new JPanel(new GridLayout(1, 3));
         JButton previous = new JButton("<< Previous");
-        previous.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                month--;
-                displayDate();
-            }
+        previous.addActionListener(ae -> {
+            month--;
+            displayDate();
+        });
+        JButton next = new JButton("Next >>");
+        next.addActionListener(ae -> {
+            month++;
+            displayDate();
         });
         p2.add(previous);
         p2.add(l);
-        JButton next = new JButton("Next >>");
-        next.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                month++;
-                displayDate();
-            }
-        });
         p2.add(next);
+
         d.setIconImage(icon.getImage());
         d.add(p1, BorderLayout.CENTER);
         d.add(p2, BorderLayout.SOUTH);
@@ -67,6 +75,59 @@ class DatePicker {
         d.setLocationRelativeTo(parent);
         displayDate();
         d.setVisible(true);
+    }
+
+
+    public void initiateYearsDialog() {
+        years = new JDialog(d, "Select Year", true);
+        JPanel p1 = new JPanel(new GridLayout(4, 4));
+        p1.setPreferredSize(new Dimension(430, 120));
+
+        buttonYears = new JButton[16];
+        for (int x = 0; x < buttonYears.length; x++) {
+            final int selection = x;
+            buttonYears[x] = new JButton();
+            buttonYears[x].setFocusPainted(false);
+            buttonYears[x].setBackground(Color.white);
+            buttonYears[x].addActionListener(ae -> {
+                year = Integer.parseInt(buttonYears[selection].getActionCommand());
+                years.dispose();
+                displayDate();
+            });
+            p1.add(buttonYears[x]);
+        }
+
+        JPanel p2 = new JPanel(new GridLayout(1, 3));
+        JButton previous = new JButton("<< Previous");
+        previous.addActionListener(ae -> {
+            year -= 16;
+            displayYears();
+        });
+        JButton next = new JButton("Next >>");
+        next.addActionListener(ae -> {
+            if (year + 16 >= java.util.Calendar.getInstance().get(java.util.Calendar.YEAR))
+                year += (java.util.Calendar.getInstance().get(java.util.Calendar.YEAR) - year);
+            else
+                year += 16;
+            displayYears();
+        });
+        p2.add(previous);
+        p2.add(new JLabel());
+        p2.add(next);
+
+        years.add(p1, BorderLayout.CENTER);
+        years.add(p2, BorderLayout.SOUTH);
+        years.pack();
+        years.setLocationRelativeTo(d);
+        displayYears();
+        years.setVisible(true);
+    }
+
+
+    public void displayYears() {
+        for (int x = 0; x < buttonYears.length; x++) {
+            buttonYears[x].setText(year - (buttonYears.length - 1 - x) + "");
+        }
     }
 
     public void displayDate() {
@@ -86,7 +147,7 @@ class DatePicker {
 
     public String setPickedDate() {
         initiateDialog();
-        if (day.equals(""))
+        if (day.isEmpty())
             return day;
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(
                 "dd-MM-yyyy");
@@ -96,23 +157,3 @@ class DatePicker {
     }
 }
 
-//class Picker {
-//    public static void main(String[] args) {
-//        JLabel label = new JLabel("Selected Date:");
-//        final JTextField text = new JTextField(20);
-//        JButton b = new JButton("popup");
-//        JPanel p = new JPanel();
-//        p.add(label);
-//        p.add(text);
-//        p.add(b);
-//        final JFrame f = new JFrame();
-//        f.getContentPane().add(p);
-//        f.pack();
-//        f.setVisible(true);
-//        b.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent ae) {
-//                text.setText(new DatePicker(f).setPickedDate());
-//            }
-//        });
-//    }
-//}

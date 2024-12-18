@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 public abstract class Panel extends JPanel {
     public Panel prevCenterPanel;
     public JButton prevSelectedButton;
+    public JTable dataTable = null;
     public abstract void addButtonListener(ActionListener al);
     public void setSelectedButton(JButton button) {
         if (prevSelectedButton == button) return;
@@ -29,6 +30,22 @@ public abstract class Panel extends JPanel {
         prevCenterPanel = panel;
         this.revalidate();
         this.repaint();
+    }
+    public Panel getCenterPanel() {
+        return prevCenterPanel;
+    }
+    public Object[] getSelectedRow() {
+        if (dataTable == null) return null;
+        int rowIndex = dataTable.getSelectedRow();
+        int columnCount = dataTable.getColumnCount();
+        Object[] rowValues = new Object[columnCount];
+
+        if (rowIndex != -1) {
+            for (int col = 0; col < columnCount; col++) {
+                rowValues[col] = dataTable.getValueAt(rowIndex, col);
+            }
+        } else JOptionPane.showMessageDialog(null, "No row selected!");
+        return rowValues;
     }
     public abstract Panel getPanelByName(String panelName);
 }
