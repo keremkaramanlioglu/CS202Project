@@ -384,7 +384,7 @@ public class HotelDao {
     }
 
     public ArrayList<Booking> getBookings(String filterColumn, String filterOption, String filterValue, String filterValueUpper) throws SQLException {
-        String sql = "";
+        String sql = "SELECT * FROM Bookings";
         ArrayList<Booking> bookings = new ArrayList<>();
 
         if (filterOption.equals("None")) {
@@ -396,9 +396,6 @@ public class HotelDao {
         }
 
         stmt = con.prepareStatement(sql);
-        stmt.setString(1, filterValue);
-        stmt.setString(2, filterValueUpper);
-
         //System.out.println(stmt);
 
         ResultSet rs = stmt.executeQuery();
