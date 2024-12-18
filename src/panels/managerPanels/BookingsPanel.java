@@ -8,6 +8,8 @@ import java.awt.event.*;
 import java.awt.event.MouseListener;
 import java.util.*;
 import javax.swing.table.*;
+
+import entities.Booking;
 import panels.Panel;
 
 import java.awt.*;
@@ -26,6 +28,7 @@ public class BookingsPanel extends Panel {
         btnDelete.addActionListener(al);
         btnUpdate.addActionListener(al);
         btnApply.addActionListener(al);
+
     }
 
     @Override
@@ -39,6 +42,33 @@ public class BookingsPanel extends Panel {
         // TODO reset the components
     }
 
+    public void setTableWithBookings(ArrayList<Booking> bookings) {
+        // Define column names (adjust to match the fields in your Customer class)
+        String[] columnNames = {"booking_id", "c_ssn", "room_id", "payment_status", "payment_method", "booking_start_date", "booking_end_date", "c_check_in_status", "c_check_out_status"};
+        table = new JTable();
+        // Create a table model with column names
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+        // Loop through the customers list and add each as a row to the model
+        for ( Booking booking : bookings) {
+            Object[] row = {
+                    booking.getBooking_id(),
+                    booking.getC_ssn(),
+                    booking.getRoom_id(),
+                    booking.getPayment_status(),
+                    booking.getPayment_method(),
+                    booking.getBooking_start_date(),
+                    booking.getBooking_end_date(),
+                    booking.isC_check_in_status(),
+                    booking.isC_check_out_status()
+            };
+            model.addRow(row);
+        }
+
+        // Set the table model to the JTable
+        table.setModel(model);
+    }
+
 
     @Override
     public Panel getPanelByName(String panelName) {
@@ -48,12 +78,6 @@ public class BookingsPanel extends Panel {
     public BookingsPanel() {
         initComponents();
         super.table = table;
-        super.cbFilterOption = cbFilterOption;
-        super.cbFilterColumn = cbFilterColumn;
-        super.prevCenterPanel = null;
-        super.prevSelectedButton = null;
-        super.tfFilterValue = tfFilterValue;
-        super.tfFilterUpperValue = tfFilterUpperValue;
     }
 
     private void cbSelectColumn(ActionEvent e) {
@@ -77,7 +101,7 @@ public class BookingsPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         scrollPane1 = new JScrollPane();
         table = new JTable();
         panel1 = new JPanel();
@@ -110,13 +134,11 @@ public class BookingsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax
-        . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-        .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ), java. awt
-        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
-        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072" .
-        equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(
+        0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder
+        .BOTTOM,new java.awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),java.awt.Color.
+        red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.
+        beans.PropertyChangeEvent e){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -252,11 +274,11 @@ public class BookingsPanel extends Panel {
                 label7.setBounds(335, 90, 100, 25);
 
                 //---- textArea1 ----
-                textArea1.setText("Please choose a row to update!");
+                textArea1.setText("Please choose a row to update or delete!");
                 textArea1.setLineWrap(true);
                 textArea1.setWrapStyleWord(true);
                 panel3.add(textArea1);
-                textArea1.setBounds(465, 145, 100, 60);
+                textArea1.setBounds(460, 30, 100, 60);
 
                 {
                     // compute preferred size
@@ -370,7 +392,7 @@ public class BookingsPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane scrollPane1;
     private JTable table;
     private JPanel panel1;

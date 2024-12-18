@@ -47,32 +47,6 @@ public abstract class Panel extends JPanel {
         return prevCenterPanel;
     }
 
-    public void setTableWithCustomers(ArrayList<Booking> bookings) {
-        // Define column names (adjust to match the fields in your Customer class)
-        String[] columnNames = {"booking_id", "c_ssn", "room_id", "payment_status", "payment_method", "booking_start_date", "booking_end_date", "c_check_in_status", "c_check_out_status"};
-        table = new JTable();
-        // Create a table model with column names
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-
-        // Loop through the customers list and add each as a row to the model
-        for (Booking booking : bookings) {
-            Object[] row = {
-                    booking.getBooking_id(),
-                    booking.getC_ssn(),
-                    booking.getRoom_id(),
-                    booking.getPayment_status(),
-                    booking.getPayment_method(),
-                    booking.getBooking_start_date(),
-                    booking.getBooking_end_date(),
-                    booking.isC_check_in_status(),
-                    booking.isC_check_out_status()
-            };
-            model.addRow(row);
-        }
-
-        // Set the table model to the JTable
-        table.setModel(model);
-    }
 
     public Object[] getSelectedRow() {
         if (table == null) return null;

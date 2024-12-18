@@ -45,6 +45,7 @@ public class HotelDao {
         stmt.setInt(8, hotel.getHotel_id());
         stmt.executeUpdate();
     }
+
     public void insertRoom(Room room) throws SQLException {
         String sql = "INSERT INTO Rooms (hotel_id, room_num, room_type, room_size, room_price, room_capacity) VALUES(?, ?, ?, ?, ?, ?, ?)";
         stmt = con.prepareStatement(sql);
@@ -319,12 +320,16 @@ public class HotelDao {
         }
         return customers;
 
-    }
+    }                                                   //Salary
     public ArrayList<Employee> getEmployees(String filterColumn, String filterOption, String filterValue) throws SQLException {
-        String sql = "";
+        String sql = "SELECT * FROM Employees";
         ArrayList<Employee> employees = new ArrayList<>();
+        System.out.println(filterColumn +" "+ filterOption +" "+ filterValue);
+
+        System.out.println(filterOption.equals("None"));
 
         if (filterOption.equals("None")) {
+            System.out.println("Entered");
             sql = "SELECT * FROM Employees";
         } else {
             String emp = "emp_";
@@ -334,11 +339,10 @@ public class HotelDao {
 
             String column = "";
             String where = "";
-            sql = "SELECT * FROM Employees WHERE " + filterColumn + filterOption + " ?";
+            sql = "SELECT * FROM Employees WHERE " + filterColumn + filterOption + filterValue;
         }
 
         stmt = con.prepareStatement(sql);
-        stmt.setString(1, filterValue);
 
         //System.out.println(stmt);
 

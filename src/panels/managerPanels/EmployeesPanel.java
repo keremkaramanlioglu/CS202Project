@@ -5,11 +5,15 @@
 package panels.managerPanels;
 
 import javax.swing.table.*;
+
+import entities.Booking;
+import entities.Employee;
 import panels.Panel;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -19,7 +23,10 @@ public class EmployeesPanel extends Panel {
 
     @Override
     public void addButtonListener(ActionListener al) {
-
+        btnUpdate.addActionListener(al);
+        btnApplyFilter.addActionListener(al);
+        btnDelete.addActionListener(al);
+        btnAdd.addActionListener(al);
     }
 
     @Override
@@ -32,6 +39,43 @@ public class EmployeesPanel extends Panel {
 
     }
 
+    public void setTableWithEmployees(ArrayList<Employee> emps) {
+        // Define column names (adjust to match the fields in your Customer class)
+        String[] columnNames = {"ssn", "firstname", "lastname", "type", "bd", "years", "hotel_id", "salary", "phone_num", "email", "gender", "street", "no", "apartment", "zip_code"};
+        table = new JTable();
+        // Create a table model with column names
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+        // Loop through the customers list and add each as a row to the model
+        for ( Employee emp : emps) {
+            Object[] row = {
+                    emp.getEmp_ssn(),
+                    emp.getEmp_firstname(),
+                    emp.getEmp_lastname(),
+                    emp.getEmp_type(),
+                    emp.getEmp_bd(),
+                    emp.getYears(),
+                    emp.getEmp_hotel_id(),
+                    emp.getEmp_salary(),
+                    emp.getEmp_phone_num(),
+                    emp.getEmp_email(),
+                    emp.getEmp_gender(),
+                    emp.getStreet(),
+                    emp.getNo(),
+                    emp.getApartment(),
+                    emp.getZip_code()
+            };
+            model.addRow(row);
+        }
+
+        // Set the table model to the JTable
+        tblEmployees.setModel(model);
+        tblEmployees.revalidate();
+        tblEmployees.repaint();
+        this.revalidate();
+        this.repaint();
+    }
+
     @Override
     public Panel getPanelByName(String panelName) {
         return null;
@@ -39,11 +83,15 @@ public class EmployeesPanel extends Panel {
 
     public EmployeesPanel() {
         initComponents();
+        super.cbFilterColumn = cbColumnOption;
+        super.cbFilterOption = cbFilterOption;
+        super.tfFilterValue = tfFilterValue;
+        super.tfFilterUpperValue = tfFilterUpperValue;
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlData = new JScrollPane();
         tblEmployees = new JTable();
         pnlControl = new JPanel();
@@ -62,13 +110,13 @@ public class EmployeesPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
-        swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border
-        . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg"
-        ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder
-        ( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
-        .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException
-        ( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+        . border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder
+        . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .
+        awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder( )) )
+        ;  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+        ;
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -168,21 +216,21 @@ public class EmployeesPanel extends Panel {
                 //---- cbColumnOption ----
                 cbColumnOption.setModel(new DefaultComboBoxModel<>(new String[] {
                     "None",
-                    "Ssn",
-                    "First Name",
-                    "Last Name",
-                    "Type",
-                    "Birth Date",
-                    "Years",
-                    "Hotel ID",
-                    "Salary",
-                    "Phone No",
-                    "E-Mail",
-                    "Gender",
-                    "Street",
-                    "No",
-                    "Apartment",
-                    "Zip Code"
+                    "ssn",
+                    "firstname",
+                    "lastname",
+                    "type",
+                    "bd",
+                    "years",
+                    "hotel_id",
+                    "salary",
+                    "phone_num",
+                    "email",
+                    "gender",
+                    "street",
+                    "no",
+                    "apartment",
+                    "zip_code"
                 }));
                 cbColumnOption.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlFilter.add(cbColumnOption);
@@ -191,7 +239,7 @@ public class EmployeesPanel extends Panel {
                 //---- cbFilterOption ----
                 cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
                     "None",
-                    "==",
+                    "=",
                     "!=",
                     "<",
                     ">",
@@ -213,7 +261,7 @@ public class EmployeesPanel extends Panel {
                 btnApplyFilter.setText("Apply Filters");
                 btnApplyFilter.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnApplyFilter.setActionCommand("Employees");
-                btnApplyFilter.setName("apply");
+                btnApplyFilter.setName("applyFilter");
                 pnlFilter.add(btnApplyFilter);
                 btnApplyFilter.setBounds(55, 145, 245, 40);
 
@@ -254,7 +302,7 @@ public class EmployeesPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane pnlData;
     private JTable tblEmployees;
     private JPanel pnlControl;

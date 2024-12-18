@@ -173,7 +173,6 @@ new FormModel {
 						"height": 75
 						"x": 20
 						"y": 55
-
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
@@ -184,21 +183,21 @@ new FormModel {
 						"model": new javax.swing.DefaultComboBoxModel {
 							selectedItem: "None"
 							addElement( "None" )
-							addElement( "Ssn" )
-							addElement( "First Name" )
-							addElement( "Last Name" )
-							addElement( "Type" )
-							addElement( "Birth Date" )
-							addElement( "Years" )
-							addElement( "Hotel ID" )
-							addElement( "Salary" )
-							addElement( "Phone No" )
-							addElement( "E-Mail" )
-							addElement( "Gender" )
-							addElement( "Street" )
-							addElement( "No" )
-							addElement( "Apartment" )
-							addElement( "Zip Code" )
+							addElement( "ssn" )
+							addElement( "firstname" )
+							addElement( "lastname" )
+							addElement( "type" )
+							addElement( "bd" )
+							addElement( "years" )
+							addElement( "hotel_id" )
+							addElement( "salary" )
+							addElement( "phone_num" )
+							addElement( "email" )
+							addElement( "gender" )
+							addElement( "street" )
+							addElement( "no" )
+							addElement( "apartment" )
+							addElement( "zip_code" )
 						}
 						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
@@ -212,7 +211,7 @@ new FormModel {
 						"model": new javax.swing.DefaultComboBoxModel {
 							selectedItem: "None"
 							addElement( "None" )
-							addElement( "==" )
+							addElement( "=" )
 							addElement( "!=" )
 							addElement( "<" )
 							addElement( ">" )
@@ -242,7 +241,7 @@ new FormModel {
 						"text": "Apply Filters"
 						"cursor": #Cursor0
 						"actionCommand": "Employees"
-						"name": "apply"
+						"name": "applyFilter"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 245
 						"height": 40
