@@ -199,18 +199,6 @@ new FormModel {
 						"x": 440
 						"y": 35
 					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "btnGetRow"
-						"text": "Get Row"
-						"cursor": #Cursor0
-						"actionCommand": "Rooms"
-						"name": "get row"
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"width": 130
-						"height": 60
-						"x": 440
-						"y": 150
-					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "filterPanel"

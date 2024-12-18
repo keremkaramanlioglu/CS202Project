@@ -70,7 +70,6 @@ public class RoomsPanel extends Panel {
         label3 = new JLabel();
         label4 = new JLabel();
         label5 = new JLabel();
-        btnGetRow = new JButton();
         filterPanel = new JPanel();
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
@@ -81,12 +80,13 @@ public class RoomsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-        EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing
-        . border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ),
-        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () ))
-        throw new RuntimeException( ); }} );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
+        .border.EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder
+        .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.
+        awt.Font.BOLD,12),java.awt.Color.red), getBorder()))
+        ; addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+        ){if("\u0062ord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}})
+        ;
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -199,14 +199,6 @@ public class RoomsPanel extends Panel {
                 label5.setText("Capacity:");
                 selectionPanel.add(label5);
                 label5.setBounds(440, 35, 90, 25);
-
-                //---- btnGetRow ----
-                btnGetRow.setText("Get Row");
-                btnGetRow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnGetRow.setActionCommand("Rooms");
-                btnGetRow.setName("get row");
-                selectionPanel.add(btnGetRow);
-                btnGetRow.setBounds(440, 150, 130, 60);
 
                 {
                     // compute preferred size
@@ -327,7 +319,6 @@ public class RoomsPanel extends Panel {
     private JLabel label3;
     private JLabel label4;
     private JLabel label5;
-    private JButton btnGetRow;
     private JPanel filterPanel;
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;

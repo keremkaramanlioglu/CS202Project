@@ -148,8 +148,8 @@ new FormModel {
 						"actionCommand": "Users"
 						"name": "add"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 295
-						"y": 30
+						"x": 330
+						"y": 15
 						"width": 100
 						"height": 50
 					} )
@@ -162,8 +162,8 @@ new FormModel {
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 50
-						"x": 295
-						"y": 85
+						"x": 330
+						"y": 70
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btnUpdate"
@@ -174,8 +174,8 @@ new FormModel {
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 50
-						"x": 400
-						"y": 30
+						"x": 330
+						"y": 125
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "lblSsn"
@@ -278,18 +278,6 @@ new FormModel {
 						"height": 17
 						"x": 185
 						"y": 95
-					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "btnGetRow"
-						"text": "Get Row"
-						"cursor": #Cursor1
-						"actionCommand": "Users"
-						"name": "get row"
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"width": 100
-						"height": 50
-						"x": 400
-						"y": 85
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {

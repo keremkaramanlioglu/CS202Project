@@ -46,7 +46,6 @@ public class HouseKeepingPanel extends JPanel {
         lblSsn = new JLabel();
         lblRoomNumber = new JLabel();
         lblTime = new JLabel();
-        btnGetRow = new JButton();
         tfStatus = new JTextField();
         lblStatus = new JLabel();
         pnlFilter = new JPanel();
@@ -59,12 +58,12 @@ public class HouseKeepingPanel extends JPanel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.
-        border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER
-        ,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font
-        .BOLD,12),java.awt.Color.red), getBorder())); addPropertyChangeListener(
-        new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order"
-        .equals(e.getPropertyName()))throw new RuntimeException();}});
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
+        EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder.CENTER,javax.swing
+        .border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),
+        java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener()
+        {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.getPropertyName()))
+        throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
         //======== pnlHouseKeeping ========
@@ -150,14 +149,6 @@ public class HouseKeepingPanel extends JPanel {
                 lblTime.setFont(new Font("Inter", Font.PLAIN, 12));
                 pnlSelection.add(lblTime);
                 lblTime.setBounds(225, 45, 100, 25);
-
-                //---- btnGetRow ----
-                btnGetRow.setText("Get Row");
-                btnGetRow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnGetRow.setActionCommand("Housekeeping");
-                btnGetRow.setName("get row");
-                pnlSelection.add(btnGetRow);
-                btnGetRow.setBounds(330, 125, 100, 60);
                 pnlSelection.add(tfStatus);
                 tfStatus.setBounds(330, 65, 100, 34);
 
@@ -282,7 +273,6 @@ public class HouseKeepingPanel extends JPanel {
     private JLabel lblSsn;
     private JLabel lblRoomNumber;
     private JLabel lblTime;
-    private JButton btnGetRow;
     private JTextField tfStatus;
     private JLabel lblStatus;
     private JPanel pnlFilter;

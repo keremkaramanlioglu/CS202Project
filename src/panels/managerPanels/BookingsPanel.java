@@ -26,7 +26,6 @@ public class BookingsPanel extends Panel {
         btnDelete.addActionListener(al);
         btnUpdate.addActionListener(al);
         btnApply.addActionListener(al);
-        btnGetSelectedRow.addActionListener(al);
     }
 
     @Override
@@ -100,7 +99,6 @@ public class BookingsPanel extends Panel {
         tfEndDate = new JTextField();
         label5 = new JLabel();
         label7 = new JLabel();
-        btnGetSelectedRow = new JButton();
         panel2 = new JPanel();
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
@@ -111,13 +109,13 @@ public class BookingsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
-        swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border
-        . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg"
-        ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder
-        ( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
-        .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException
-        ( ); }} );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax
+        .swing.border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing
+        .border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.
+        Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt.Color.red
+        ), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override
+        public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName(
+        )))throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -251,14 +249,6 @@ public class BookingsPanel extends Panel {
                 label7.setFont(new Font("Inter", Font.PLAIN, 12));
                 panel3.add(label7);
                 label7.setBounds(335, 90, 100, 25);
-
-                //---- btnGetSelectedRow ----
-                btnGetSelectedRow.setText("Get Row");
-                btnGetSelectedRow.setActionCommand("Bookings");
-                btnGetSelectedRow.setFont(new Font("Inter", Font.PLAIN, 13));
-                btnGetSelectedRow.setName("get row");
-                panel3.add(btnGetSelectedRow);
-                btnGetSelectedRow.setBounds(450, 145, 140, 60);
 
                 {
                     // compute preferred size
@@ -394,7 +384,6 @@ public class BookingsPanel extends Panel {
     private JTextField tfEndDate;
     private JLabel label5;
     private JLabel label7;
-    private JButton btnGetSelectedRow;
     private JPanel panel2;
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;

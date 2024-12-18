@@ -252,18 +252,6 @@ new FormModel {
 						"x": 330
 						"y": 25
 					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "btnGetRow"
-						"text": "Get Row"
-						"cursor": #Cursor0
-						"actionCommand": "Bookings"
-						"name": "get row"
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"width": 100
-						"height": 60
-						"x": 330
-						"y": 135
-					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "pnlFilter"

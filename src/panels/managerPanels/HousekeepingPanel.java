@@ -77,7 +77,6 @@ public class HousekeepingPanel extends Panel {
         label4 = new JLabel();
         label5 = new JLabel();
         checkBox1 = new JCheckBox();
-        btnGetRow = new JButton();
         pnlFilter = new JPanel();
         comboBox1 = new JComboBox<>();
         comboBox2 = new JComboBox<>();
@@ -89,12 +88,13 @@ public class HousekeepingPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(1920, 1080));
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
-        EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER,javax.swing
-        .border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font.BOLD,12),
-        java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener()
-        {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order".equals(e.getPropertyName()))
-        throw new RuntimeException();}});
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax .
+        swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e" , javax. swing .border
+        . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069al\u006fg"
+        , java .awt . Font. BOLD ,12 ) ,java . awt. Color .red ) , getBorder
+        () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java
+        . beans. PropertyChangeEvent e) { if( "\u0062or\u0064er" .equals ( e. getPropertyName () ) )throw new RuntimeException
+        ( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -203,13 +203,6 @@ public class HousekeepingPanel extends Panel {
                 checkBox1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlSelection.add(checkBox1);
                 checkBox1.setBounds(30, 70, 105, 32);
-
-                //---- btnGetRow ----
-                btnGetRow.setText("Get Row");
-                btnGetRow.setActionCommand("Housekeeping");
-                btnGetRow.setName("get row");
-                pnlSelection.add(btnGetRow);
-                btnGetRow.setBounds(330, 125, 100, 60);
 
                 {
                     // compute preferred size
@@ -334,7 +327,6 @@ public class HousekeepingPanel extends Panel {
     private JLabel label4;
     private JLabel label5;
     private JCheckBox checkBox1;
-    private JButton btnGetRow;
     private JPanel pnlFilter;
     private JComboBox<String> comboBox1;
     private JComboBox<String> comboBox2;

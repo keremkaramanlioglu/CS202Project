@@ -181,17 +181,6 @@ new FormModel {
 						"width": 105
 						"height": 32
 					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "btnGetRow"
-						"text": "Get Row"
-						"actionCommand": "Housekeeping"
-						"name": "get row"
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"width": 100
-						"height": 60
-						"x": 330
-						"y": 125
-					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "pnlFilter"
