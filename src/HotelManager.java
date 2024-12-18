@@ -3,6 +3,7 @@ import entities.Hotel;
 
 import panels.Panel;
 import panels.customerPanels.ProfilePanel;
+import panels.managerPanels.EmployeesPanel;
 import panels.managerPanels.FinancePanel;
 
 import javax.swing.*;
@@ -132,10 +133,13 @@ public class HotelManager {
                     case "Employees":
                         Employee empl;
                         if (button.getName().equals("applyFilter")) {
-                            Panel panel = hotelView.getActivePanel().getPanelByName(command);
+                            EmployeesPanel panel = (EmployeesPanel) hotelView.getActivePanel().getPanelByName(command);
                             System.out.println("entered");
                             try {
+                                System.out.println(panel.getSelectedFilterOption().equals("None"));
+                                System.out.println(panel.getSelectedFilterColumn() + " " + panel.getSelectedFilterColumn() + " " + panel.getSelectedFilterColumn());
                                 ArrayList<Employee> emps = hotelDao.getEmployees(panel.getSelectedFilterColumn(), panel.getSelectedFilterOption(), panel.getSelectedFilterValue());
+                                panel.setTableWithEmployees(emps);
                                 for (Employee emp : emps) {
                                     System.out.println(emp);
                                 }

@@ -29,9 +29,9 @@ public class HotelView extends JFrame {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
-        this.setPreferredSize(new Dimension(1000, 750));
-        this.pack();
-        this.setLocationRelativeTo(null);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //this.pack();
+        //this.setLocationRelativeTo(null);
         this.setVisible(false);
     }
 
