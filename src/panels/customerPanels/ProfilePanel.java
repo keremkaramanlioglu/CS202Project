@@ -4,6 +4,7 @@
 
 package panels.customerPanels;
 
+import java.awt.event.*;
 import panels.Panel;
 
 import java.awt.*;
@@ -21,7 +22,6 @@ public class ProfilePanel extends Panel {
 
     @Override
     public void addButtonListener(ActionListener al) {
-        // TODO add button listeners to components
     }
 
     @Override
@@ -37,6 +37,14 @@ public class ProfilePanel extends Panel {
     @Override
     public Panel getPanelByName(String panelName) {
         return null;
+    }
+
+    private void btnEdit(ActionEvent e) {
+        btnConfirm.setEnabled(true);
+    }
+
+    private void btnConfirm(ActionEvent e) {
+        btnConfirm.setEnabled(false);
     }
 
     private void initComponents() {
@@ -62,12 +70,11 @@ public class ProfilePanel extends Panel {
         btnConfirm = new JButton();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
-        border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER
-        , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font
-        .BOLD ,12 ), java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
-        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r"
-        .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
+        0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
+        . BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
+        red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
+        beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(null);
 
         //---- lblfirstName ----
@@ -159,12 +166,15 @@ public class ProfilePanel extends Panel {
         //---- btnEdit ----
         btnEdit.setText("Edit");
         btnEdit.setActionCommand("Profile");
+        btnEdit.addActionListener(e -> btnEdit(e));
         add(btnEdit);
         btnEdit.setBounds(55, 540, 200, 40);
 
         //---- btnConfirm ----
         btnConfirm.setText("Confirm");
         btnConfirm.setActionCommand("Profile");
+        btnConfirm.setEnabled(false);
+        btnConfirm.addActionListener(e -> btnConfirm(e));
         add(btnConfirm);
         btnConfirm.setBounds(380, 540, 200, 40);
 
