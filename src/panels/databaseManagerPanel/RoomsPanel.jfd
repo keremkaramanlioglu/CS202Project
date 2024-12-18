@@ -5,54 +5,10 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "this"
-			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "scrollPane1"
-				add( new FormComponent( "javax.swing.JTable" ) {
-					name: "table1"
-					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
-						add( new java.util.Vector {
-							add( null )
-							add( null )
-							add( null )
-							add( null )
-							add( null )
-							add( null )
-							add( null )
-						} )
-						add( new java.util.Vector {
-							add( null )
-							add( null )
-							add( null )
-							add( null )
-							add( null )
-							add( null )
-							add( null )
-						} )
-					}, new java.util.Vector {
-						add( "Room ID" )
-						add( "Hotel Id" )
-						add( "Room Number" )
-						add( "Room Type" )
-						add( "Room Size" )
-						add( "Room Price" )
-						add( "Capacity" )
-					}, new java.util.Vector {
-						add( class java.lang.Integer )
-						add( class java.lang.Integer )
-						add( class java.lang.Integer )
-						add( class java.lang.String )
-						add( class java.lang.Float )
-						add( class java.lang.Float )
-						add( class java.lang.String )
-					}, new java.util.Vector {
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-					}, new java.util.Vector {
+			add( new FormComponent( "javax.swing.JTable" ) {
+				name: "table1"
+				"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+					add( new java.util.Vector {
 						add( null )
 						add( null )
 						add( null )
@@ -61,8 +17,49 @@ new FormModel {
 						add( null )
 						add( null )
 					} )
-					"preferredSize": new java.awt.Dimension( 525, 400 )
+					add( new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					} )
+				}, new java.util.Vector {
+					add( "Room ID" )
+					add( "Hotel Id" )
+					add( "Room Number" )
+					add( "Room Type" )
+					add( "Room Size" )
+					add( "Room Price" )
+					add( "Capacity" )
+				}, new java.util.Vector {
+					add( class java.lang.Integer )
+					add( class java.lang.Integer )
+					add( class java.lang.Integer )
+					add( class java.lang.String )
+					add( class java.lang.Float )
+					add( class java.lang.Float )
+					add( class java.lang.String )
+				}, new java.util.Vector {
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+				}, new java.util.Vector {
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
+					add( null )
 				} )
+				"preferredSize": new java.awt.Dimension( 525, 400 )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
 			} )
@@ -268,8 +265,8 @@ new FormModel {
 				"value": "South"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 100, 0 )
-			"size": new java.awt.Dimension( 1000, 750 )
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 900, 700 )
 		} )
 	}
 }
