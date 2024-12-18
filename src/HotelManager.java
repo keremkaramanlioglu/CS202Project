@@ -1,9 +1,11 @@
+import entities.Booking;
 import entities.Employee;
 import entities.Hotel;
 
 import panels.Panel;
 import panels.customerPanels.ProfilePanel;
 import panels.managerPanels.EmpInfos;
+import panels.managerPanels.BookingsPanel;
 import panels.managerPanels.EmployeesPanel;
 import panels.managerPanels.FinancePanel;
 
@@ -153,6 +155,24 @@ public class HotelManager {
                             System.out.println(empl);
                         }
                         break;
+                    case "Bookings":
+                        Booking booking;
+                        if (button.getName().equals("apply")) {
+                            BookingsPanel panel = (BookingsPanel) hotelView.getActivePanel().getPanelByName(command);
+                            System.out.println("entered");
+                            try {
+                                System.out.println(panel.getSelectedFilterOption().equals("None"));
+                                System.out.println(panel.getSelectedFilterColumn() + " " + panel.getSelectedFilterOption() + " " + panel.getSelectedFilterValue());
+                                ArrayList<Booking> bookings = hotelDao.getBookings(panel.getSelectedFilterColumn(), panel.getSelectedFilterOption(), panel.getSelectedFilterValue());
+                                panel.setTableWithBookings(bookings);
+                                for (Booking book : bookings) {
+                                    System.out.println(book);
+                                }
+                            }catch (SQLException ex){
+                                throw new RuntimeException(ex);
+                            }
+                        }
+                        break;
                     case "Delete":
                         break;
                     case "getRow":
@@ -169,11 +189,6 @@ public class HotelManager {
                         break;
                     case "Profile_Confirm":
                         ((ProfilePanel)hotelView.getActivePanel().getPanelByName("Profile")).pushConfirmButton();
-                        break;
-                    case "Bookings":
-                        if (button.getText().equals("Add")){
-                            System.out.println("h");
-                        }
                 }
             }
         }

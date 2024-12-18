@@ -9,7 +9,7 @@ new FormModel {
 				name: "scrollPane1"
 				"verticalScrollBarPolicy": 22
 				add( new FormComponent( "javax.swing.JTable" ) {
-					name: "table"
+					name: "table2"
 					"preferredSize": new java.awt.Dimension( 150, 400 )
 					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
 						add( new java.util.Vector {
@@ -275,20 +275,18 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JComboBox" ) {
 						name: "cbSelectColumn"
 						"model": new javax.swing.DefaultComboBoxModel {
-							selectedItem: "None"
-							addElement( "None" )
-							addElement( "Book ID" )
-							addElement( "Customer SSN" )
-							addElement( "Room ID" )
-							addElement( "Payment Method" )
-							addElement( "Payment Status" )
-							addElement( "Start Date" )
-							addElement( "End Date" )
-							addElement( "Checked in" )
-							addElement( "Checked out" )
+							selectedItem: "booking_id"
+							addElement( "booking_id" )
+							addElement( "c_ssn" )
+							addElement( "room_id" )
+							addElement( "payment_status" )
+							addElement( "payment_method" )
+							addElement( "booking_start_date" )
+							addElement( "booking_end_date" )
+							addElement( "c_check_in_status" )
+							addElement( "c_check_out_status" )
 						}
 						"cursor": #Cursor0
-						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cbSelectColumn", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 120
 						"height": 45
@@ -300,7 +298,7 @@ new FormModel {
 						"model": new javax.swing.DefaultComboBoxModel {
 							selectedItem: "None"
 							addElement( "None" )
-							addElement( "==" )
+							addElement( "=" )
 							addElement( "!=" )
 							addElement( "<" )
 							addElement( ">" )
@@ -308,13 +306,6 @@ new FormModel {
 							addElement( ">=" )
 							addElement( "between" )
 							addElement( "contains" )
-							addElement( "Completed" )
-							addElement( "Pending" )
-							addElement( "Canceled" )
-							addElement( "In Advance" )
-							addElement( "During Check-out" )
-							addElement( "Checked in" )
-							addElement( "Checked out" )
 						}
 						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
