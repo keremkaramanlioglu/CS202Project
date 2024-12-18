@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Hotel {
-    private String hotel_id;
+    private int hotel_id;
     private String hotel_name;
     private String hotel_phone;
     private String hotel_email;
@@ -14,7 +14,7 @@ public class Hotel {
     private String zip_code;
 
     public Hotel(ResultSet rs) throws SQLException {  // TODO : ADD TRY BLOCK
-        this.hotel_id = rs.getString("hotel_id");
+        this.hotel_id = rs.getInt("hotel_id");
         this.hotel_name = rs.getString("hotel_name");
         this.hotel_phone = rs.getString("hotel_phone");
         this.hotel_email = rs.getString("hotel_email");
@@ -24,7 +24,8 @@ public class Hotel {
         this.zip_code = rs.getString("zip_code");
     }
 
-    public Hotel(String hotel_name, String hotel_phone, String hotel_email, double hotel_rating, String street, String no, String zip_code) {
+    public Hotel(int hotel_id, String hotel_name, String hotel_phone, String hotel_email, double hotel_rating, String street, String no, String zip_code) {
+        this.hotel_id = hotel_id;
         this.hotel_name = hotel_name;
         this.hotel_phone = hotel_phone;
         this.hotel_email = hotel_email;
@@ -34,11 +35,11 @@ public class Hotel {
         this.zip_code = zip_code;
     }
 
-    public String getHotel_id() {
+    public int getHotel_id() {
         return hotel_id;
     }
 
-    public void setHotel_id(String hotel_id) {
+    public void setHotel_id(int hotel_id) {
         this.hotel_id = hotel_id;
     }
 

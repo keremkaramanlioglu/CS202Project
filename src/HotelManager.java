@@ -1,6 +1,7 @@
 import entities.Hotel;
 
 import panels.Panel;
+import panels.adminPanels.BookingsPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Arrays;
 
 public class HotelManager {
     private Hotel hotel;
@@ -40,10 +42,14 @@ public class HotelManager {
             } else {
                 switch (command) {
                     case "Add":
+
                         break;
                     case "Update":
                         break;
                     case "Delete":
+                        break;
+                    case "getRow":
+                        System.out.println(Arrays.toString(hotelView.getActivePanel().getCenterPanel().getSelectedRow()));
                         break;
                 }
             }
@@ -61,7 +67,7 @@ public class HotelManager {
             JTextField tf = (JTextField) e.getSource();
             switch (tf.getName()) {
                 case "dateChooser":
-                    if (tf.isEditable()) tf.setText(datePicker.setPickedDate());
+                    if (tf.isEnabled()) tf.setText(datePicker.setPickedDate());
                     break;
             }
         }

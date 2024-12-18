@@ -7,8 +7,6 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class AdminPanel extends Panel {
-    private JButton prevSelectedButton;
-    private Panel prevCenterPanel;
     private final Panel pnlRooms;
     private final Panel pnlUsers;
     private final Panel pnlHousekeeping;
@@ -24,8 +22,8 @@ public class AdminPanel extends Panel {
         pnlEmployees = new EmployeesPanel();
         pnlFinance = new FinancePanel();
         pnlBookings = new BookingsPanel();
-        prevSelectedButton = null;
-        prevCenterPanel = null;
+        super.prevSelectedButton = null;
+        super.prevCenterPanel = null;
     }
 
     @Override
@@ -53,6 +51,12 @@ public class AdminPanel extends Panel {
 
     @Override
     public void addButtonListener(ActionListener l) {
+        pnlBookings.addButtonListener(l);
+        pnlUsers.addButtonListener(l);
+        pnlHousekeeping.addButtonListener(l);
+        pnlEmployees.addButtonListener(l);
+        pnlFinance.addButtonListener(l);
+        pnlRooms.addButtonListener(l);
         btnHousekeeping.addActionListener(l);
         btnFinance.addActionListener(l);
         btnBookings.addActionListener(l);

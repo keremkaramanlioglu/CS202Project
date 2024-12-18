@@ -73,9 +73,10 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "tfBirthDate"
 				"text": "Choose a Date!"
-				"editable": false
 				"name": "dateChooser"
 				"cursor": new java.awt.Cursor( 12 )
+				"enabled": false
+				"editable": false
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 200
 				"height": 40

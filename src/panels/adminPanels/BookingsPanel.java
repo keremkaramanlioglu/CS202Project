@@ -25,6 +25,7 @@ public class BookingsPanel extends Panel {
         btnDelete.addActionListener(al);
         btnUpdate.addActionListener(al);
         btnApply.addActionListener(al);
+        btnGetSelectedRow.addActionListener(al);
     }
 
     @Override
@@ -38,6 +39,7 @@ public class BookingsPanel extends Panel {
         // TODO reset the components
     }
 
+
     @Override
     public Panel getPanelByName(String panelName) {
         return null;
@@ -45,13 +47,14 @@ public class BookingsPanel extends Panel {
 
     public BookingsPanel() {
         initComponents();
+        super.dataTable = table;
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         scrollPane1 = new JScrollPane();
-        table1 = new JTable();
+        table = new JTable();
         panel1 = new JPanel();
         panel3 = new JPanel();
         tfCSsn = new JTextField();
@@ -71,6 +74,7 @@ public class BookingsPanel extends Panel {
         tfEndDate = new JTextField();
         label5 = new JLabel();
         label7 = new JLabel();
+        btnGetSelectedRow = new JButton();
         panel2 = new JPanel();
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
@@ -80,20 +84,20 @@ public class BookingsPanel extends Panel {
 
         //======== this ========
         setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
-        javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax
+        javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax
         .swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java
-        .awt.Font("D\u0069alog",java.awt.Font.BOLD,12),java.awt
+        .awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),java.awt
         .Color.red), getBorder())); addPropertyChangeListener(new java.beans.
-        PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order".
+        PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062or\u0064er".
         equals(e.getPropertyName()))throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
         {
 
-            //---- table1 ----
-            table1.setPreferredSize(new Dimension(150, 400));
-            table1.setModel(new DefaultTableModel(
+            //---- table ----
+            table.setPreferredSize(new Dimension(150, 400));
+            table.setModel(new DefaultTableModel(
                 new Object[][] {
                     {null, null, null, null, null, null, null, false, false},
                     {null, null, null, null, null, null, null, null, null},
@@ -110,7 +114,7 @@ public class BookingsPanel extends Panel {
                     return columnTypes[columnIndex];
                 }
             });
-            scrollPane1.setViewportView(table1);
+            scrollPane1.setViewportView(table);
         }
         add(scrollPane1, BorderLayout.CENTER);
 
@@ -213,6 +217,12 @@ public class BookingsPanel extends Panel {
                 panel3.add(label7);
                 label7.setBounds(335, 90, 100, 25);
 
+                //---- btnGetSelectedRow ----
+                btnGetSelectedRow.setText("Get Selected Row");
+                btnGetSelectedRow.setActionCommand("getRow");
+                panel3.add(btnGetSelectedRow);
+                btnGetSelectedRow.setBounds(335, 145, 100, 60);
+
                 {
                     // compute preferred size
                     Dimension preferredSize = new Dimension();
@@ -313,7 +323,7 @@ public class BookingsPanel extends Panel {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane scrollPane1;
-    private JTable table1;
+    private JTable table;
     private JPanel panel1;
     private JPanel panel3;
     private JTextField tfCSsn;
@@ -333,6 +343,7 @@ public class BookingsPanel extends Panel {
     private JTextField tfEndDate;
     private JLabel label5;
     private JLabel label7;
+    private JButton btnGetSelectedRow;
     private JPanel panel2;
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;

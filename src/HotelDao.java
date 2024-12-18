@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class HotelDao {
     Connection con;
+    PreparedStatement stmt;
 
     public HotelDao(Connection con) throws SQLException {
         this.con = con;
@@ -16,7 +17,7 @@ public class HotelDao {
     public void insertHotel(Hotel hotel) throws SQLException {
         String sql = "INSERT INTO Hotels (hotel_name, hotel_phone, " +
                 "hotel_email, hotel_rating, street, no, zip_code) VALUES(?, ?, ?, ?, ?, ?, ?)";
-        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt = con.prepareStatement(sql);
         stmt.setString(1, hotel.getHotel_name());
         stmt.setString(2, hotel.getHotel_phone());
         stmt.setString(3, hotel.getHotel_email());
@@ -26,7 +27,19 @@ public class HotelDao {
         stmt.setString(7, hotel.getZip_code());
         stmt.executeUpdate();
     }
-    public void updateHotel(Hotel hotel) {}
+    public void updateHotel(Hotel hotel) throws SQLException {
+        String sql = "UPDATE Hotels SET hotel_name = ?, hotel_phone = ?, hotel_email = ?, hotel_rating = ?, street = ?, no = ?, zip_code = ? WHERE hotel_id = ?";
+        stmt = con.prepareStatement(sql);
+        stmt.setString(1, hotel.getHotel_name());
+        stmt.setString(2, hotel.getHotel_phone());
+        stmt.setString(3, hotel.getHotel_email());
+        stmt.setDouble(4, hotel.getHotel_rating());
+        stmt.setString(5, hotel.getStreet());
+        stmt.setString(6, hotel.getNo());
+        stmt.setString(7, hotel.getZip_code());
+        stmt.setInt(8, hotel.getHotel_id());
+        stmt.execute();
+    }
     public void deleteHotel(Hotel hotel) {}
     public void insertRoom(Room room) {}
     public void updateRoom(Room room) {}

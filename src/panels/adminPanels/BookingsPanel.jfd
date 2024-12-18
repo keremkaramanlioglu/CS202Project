@@ -8,7 +8,7 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "scrollPane1"
 				add( new FormComponent( "javax.swing.JTable" ) {
-					name: "table1"
+					name: "table"
 					"preferredSize": new java.awt.Dimension( 150, 400 )
 					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
 						add( new java.util.Vector {
@@ -250,6 +250,16 @@ new FormModel {
 						"height": 25
 						"x": 335
 						"y": 90
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btnGetSelectedRow"
+						"text": "Get Selected Row"
+						"actionCommand": "getRow"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 335
+						"y": 145
+						"width": 100
+						"height": 60
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
