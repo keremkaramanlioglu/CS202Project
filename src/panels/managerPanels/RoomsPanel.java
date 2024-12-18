@@ -70,6 +70,7 @@ public class RoomsPanel extends Panel {
         label3 = new JLabel();
         label4 = new JLabel();
         label5 = new JLabel();
+        btnGetRow = new JButton();
         filterPanel = new JPanel();
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
@@ -78,11 +79,12 @@ public class RoomsPanel extends Panel {
         button1 = new JButton();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
-        0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
-        . BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
-        red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
-        beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .
+        EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder. CENTER ,javax . swing
+        . border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,
+        java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( )
+        { @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName () ) )
+        throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -125,20 +127,23 @@ public class RoomsPanel extends Panel {
                 //---- btnAdd ----
                 btnAdd.setText("Add");
                 btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnAdd.setActionCommand("Rooms");
                 selectionPanel.add(btnAdd);
-                btnAdd.setBounds(20, 150, 140, 60);
+                btnAdd.setBounds(20, 150, 130, 60);
 
                 //---- btnDelete ----
                 btnDelete.setText("Delete");
                 btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnDelete.setActionCommand("Rooms");
                 selectionPanel.add(btnDelete);
-                btnDelete.setBounds(170, 150, 140, 60);
+                btnDelete.setBounds(160, 150, 130, 60);
 
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
                 btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnUpdate.setActionCommand("Rooms");
                 selectionPanel.add(btnUpdate);
-                btnUpdate.setBounds(320, 150, 140, 60);
+                btnUpdate.setBounds(300, 150, 130, 60);
 
                 //---- tfRoomType ----
                 tfRoomType.setToolTipText("Room Type");
@@ -189,6 +194,13 @@ public class RoomsPanel extends Panel {
                 label5.setText("Capacity:");
                 selectionPanel.add(label5);
                 label5.setBounds(440, 35, 90, 25);
+
+                //---- btnGetRow ----
+                btnGetRow.setText("Get Row");
+                btnGetRow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnGetRow.setActionCommand("Rooms");
+                selectionPanel.add(btnGetRow);
+                btnGetRow.setBounds(440, 150, 130, 60);
 
                 {
                     // compute preferred size
@@ -297,6 +309,7 @@ public class RoomsPanel extends Panel {
     private JLabel label3;
     private JLabel label4;
     private JLabel label5;
+    private JButton btnGetRow;
     private JPanel filterPanel;
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;

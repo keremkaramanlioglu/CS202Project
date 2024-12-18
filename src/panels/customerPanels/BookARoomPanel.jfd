@@ -82,6 +82,7 @@ new FormModel {
 						name: "btnShowRooms"
 						"text": "Show Rooms"
 						"cursor": #Cursor0
+						"actionCommand": "Book a room"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 40
 						"y": 160
@@ -197,6 +198,7 @@ new FormModel {
 						name: "btnApply"
 						"text": "Apply"
 						"cursor": #Cursor0
+						"actionCommand": "Book a room"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 215
 						"height": 60
@@ -221,6 +223,7 @@ new FormModel {
 						name: "btnBook"
 						"text": "Book"
 						"cursor": #Cursor0
+						"actionCommand": "Book a room"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 200
 						"height": 60

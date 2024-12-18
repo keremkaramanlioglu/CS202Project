@@ -6,24 +6,245 @@ new FormModel {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "scrollPane1"
+				name: "pnlHouseKeeping"
 				"verticalScrollBarPolicy": 22
 				add( new FormComponent( "javax.swing.JTable" ) {
-					name: "table1"
+					name: "tblHouseKeeping"
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+					}, new java.util.Vector {
+						add( "House Keeper SSN" )
+						add( "Room Number" )
+						add( "Time" )
+						add( "Status" )
+					}, new java.util.Vector {
+						add( class java.lang.Integer )
+						add( class java.lang.String )
+						add( class java.lang.String )
+						add( class java.lang.String )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					} )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) ) {
-				name: "panel1"
+				name: "pnlControl"
 				"preferredSize": new java.awt.Dimension( 0, 250 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
-					name: "panel2"
+					name: "pnlSelection"
 					"preferredSize": new java.awt.Dimension( 450, 0 )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btnAdd"
+						"text": "Add"
+						"cursor": &Cursor0 new java.awt.Cursor( 12 )
+						"actionCommand": "Housekeeping"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 100
+						"height": 60
+						"x": 15
+						"y": 125
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btnDelete"
+						"text": "Delete"
+						"cursor": #Cursor0
+						"actionCommand": "Housekeeping"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 100
+						"height": 60
+						"x": 120
+						"y": 125
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btnUpdate"
+						"text": "Update"
+						"cursor": #Cursor0
+						"actionCommand": "Housekeeping"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 100
+						"height": 60
+						"x": 225
+						"y": 125
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "tfSsn"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 100
+						"height": 34
+						"x": 15
+						"y": 65
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "tfTime"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 100
+						"height": 34
+						"x": 225
+						"y": 65
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "tfRoomNumber"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 100
+						"height": 34
+						"x": 120
+						"y": 65
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "lblSsn"
+						"text": "House Keeper SSN:"
+						"font": new java.awt.Font( "Inter", 1, 10 )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 100
+						"height": 25
+						"x": 15
+						"y": 45
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "lblRoomNumber"
+						"text": "Room Number:"
+						"font": new java.awt.Font( "Inter", 0, 12 )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 100
+						"height": 25
+						"x": 120
+						"y": 45
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "lblTime"
+						"text": "Time:"
+						"font": &Font0 new java.awt.Font( "Inter", 0, 12 )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 100
+						"height": 25
+						"x": 225
+						"y": 45
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btnGetRow"
+						"text": "Get Row"
+						"cursor": #Cursor0
+						"actionCommand": "Housekeeping"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 100
+						"height": 60
+						"x": 330
+						"y": 125
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "tfStatus"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 100
+						"height": 34
+						"x": 330
+						"y": 65
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "lblStatus"
+						"text": "Status"
+						"font": #Font0
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 100
+						"height": 25
+						"x": 330
+						"y": 45
+					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
-					name: "panel3"
+					name: "pnlFilter"
 					"preferredSize": new java.awt.Dimension( 450, 0 )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "cbSelectColumn"
+						"model": new javax.swing.DefaultComboBoxModel {
+							selectedItem: "House Keeper SSN"
+							addElement( "House Keeper SSN" )
+							addElement( "Room Number" )
+							addElement( "Time" )
+							addElement( "Status" )
+						}
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 120
+						"height": 45
+						"x": 30
+						"y": 30
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "cbFilterOption"
+						"model": new javax.swing.DefaultComboBoxModel {
+							selectedItem: "None"
+							addElement( "None" )
+							addElement( "==" )
+							addElement( "!=" )
+							addElement( "<" )
+							addElement( ">" )
+							addElement( "<=" )
+							addElement( ">=" )
+							addElement( "between" )
+							addElement( "contains" )
+							addElement( "Completed" )
+							addElement( "Pending" )
+							addElement( "Canceled" )
+							addElement( "In Advance" )
+							addElement( "During Check-out" )
+							addElement( "Checked in" )
+							addElement( "Checked out" )
+						}
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 120
+						"height": 45
+						"x": 150
+						"y": 30
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "lblFilterValue"
+						"text": "Filter Value:"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 245
+						"height": 30
+						"x": 30
+						"y": 90
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "tfFilterValue"
+						"toolTipText": "Filter Input"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 245
+						"height": 40
+						"x": 25
+						"y": 115
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btnApply"
+						"text": "Apply"
+						"cursor": #Cursor0
+						"actionCommand": "Housekeeping"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 245
+						"height": 60
+						"x": 25
+						"y": 160
+					} )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "South"

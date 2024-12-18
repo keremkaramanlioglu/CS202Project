@@ -29,6 +29,7 @@ new FormModel {
 				name: "btnShowRevenue"
 				"text": "Show Revenue"
 				"cursor": new java.awt.Cursor( 12 )
+				"actionCommand": "Finance"
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 300
 				"y": 240

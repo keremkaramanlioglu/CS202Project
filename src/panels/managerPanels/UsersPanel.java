@@ -70,6 +70,7 @@ public class UsersPanel extends Panel {
         lblGender = new JLabel();
         tfZipCode = new JTextField();
         lblZipCode = new JLabel();
+        btnGetRow = new JButton();
         pnlFilter = new JPanel();
         cbColumnOption = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
@@ -79,13 +80,13 @@ public class UsersPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(900, 700));
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax
-        .swing.border.EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing
-        .border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.
-        Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt.Color.red
-        ), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override
-        public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.getPropertyName(
-        )))throw new RuntimeException();}});
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+        . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder
+        . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .
+        awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder( )) )
+        ;  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+        ;
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -147,20 +148,23 @@ public class UsersPanel extends Panel {
                 //---- btnAdd ----
                 btnAdd.setText("Add");
                 btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnAdd.setActionCommand("Users");
                 pnlSelection.add(btnAdd);
-                btnAdd.setBounds(375, 15, 100, 50);
+                btnAdd.setBounds(295, 30, 100, 50);
 
                 //---- btnDelete ----
                 btnDelete.setText("Delete");
                 btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnDelete.setActionCommand("Users");
                 pnlSelection.add(btnDelete);
-                btnDelete.setBounds(375, 70, 100, 50);
+                btnDelete.setBounds(295, 85, 100, 50);
 
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
                 btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnUpdate.setActionCommand("Users");
                 pnlSelection.add(btnUpdate);
-                btnUpdate.setBounds(375, 125, 100, 50);
+                btnUpdate.setBounds(400, 30, 100, 50);
 
                 //---- lblSsn ----
                 lblSsn.setText("Ssn");
@@ -212,6 +216,13 @@ public class UsersPanel extends Panel {
                 lblZipCode.setText("Zip Code");
                 pnlSelection.add(lblZipCode);
                 lblZipCode.setBounds(185, 95, 75, 17);
+
+                //---- btnGetRow ----
+                btnGetRow.setText("Get Row");
+                btnGetRow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnGetRow.setActionCommand("Users");
+                pnlSelection.add(btnGetRow);
+                btnGetRow.setBounds(400, 85, 100, 50);
 
                 {
                     // compute preferred size
@@ -277,6 +288,7 @@ public class UsersPanel extends Panel {
                 //---- btnApplyFilter ----
                 btnApplyFilter.setText("Apply Filters");
                 btnApplyFilter.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnApplyFilter.setActionCommand("Users");
                 pnlFilter.add(btnApplyFilter);
                 btnApplyFilter.setBounds(45, 150, 250, 40);
 
@@ -328,6 +340,7 @@ public class UsersPanel extends Panel {
     private JLabel lblGender;
     private JTextField tfZipCode;
     private JLabel lblZipCode;
+    private JButton btnGetRow;
     private JPanel pnlFilter;
     private JComboBox<String> cbColumnOption;
     private JComboBox<String> cbFilterOption;

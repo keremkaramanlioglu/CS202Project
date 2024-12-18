@@ -54,6 +54,7 @@ public class BookingPanel extends Panel {
         lblRoomID = new JLabel();
         lblPaymentStatus = new JLabel();
         lblPaymentMethod = new JLabel();
+        btnGetRow = new JButton();
         pnlFilter = new JPanel();
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
@@ -63,13 +64,13 @@ public class BookingPanel extends Panel {
         btnChooseDate = new JButton();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
-        .border.EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder
-        .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.
-        awt.Font.BOLD,12),java.awt.Color.red), getBorder()))
-        ; addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-        ){if("\u0062ord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}})
-        ;
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax
+        .swing.border.EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing
+        .border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.
+        Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt.Color.red
+        ), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override
+        public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.getPropertyName(
+        )))throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
         //======== pnlBooking ========
@@ -131,18 +132,21 @@ public class BookingPanel extends Panel {
                 //---- btnAdd ----
                 btnAdd.setText("Add");
                 btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnAdd.setActionCommand("Bookings");
                 pnlSelection.add(btnAdd);
                 btnAdd.setBounds(15, 135, 100, 60);
 
                 //---- btnDelete ----
                 btnDelete.setText("Delete");
                 btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnDelete.setActionCommand("Bookings");
                 pnlSelection.add(btnDelete);
                 btnDelete.setBounds(120, 135, 100, 60);
 
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
                 btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnUpdate.setActionCommand("Bookings");
                 pnlSelection.add(btnUpdate);
                 btnUpdate.setBounds(225, 135, 100, 60);
 
@@ -191,6 +195,13 @@ public class BookingPanel extends Panel {
                 lblPaymentMethod.setFont(new Font("Inter", Font.PLAIN, 12));
                 pnlSelection.add(lblPaymentMethod);
                 lblPaymentMethod.setBounds(330, 25, 100, 25);
+
+                //---- btnGetRow ----
+                btnGetRow.setText("Get Row");
+                btnGetRow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnGetRow.setActionCommand("Bookings");
+                pnlSelection.add(btnGetRow);
+                btnGetRow.setBounds(330, 135, 100, 60);
 
                 {
                     // compute preferred size
@@ -264,12 +275,14 @@ public class BookingPanel extends Panel {
                 //---- btnApply ----
                 btnApply.setText("Apply");
                 btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnApply.setActionCommand("Bookings");
                 pnlFilter.add(btnApply);
                 btnApply.setBounds(25, 150, 122, 60);
 
                 //---- btnChooseDate ----
                 btnChooseDate.setText("Choose Date");
                 btnChooseDate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnChooseDate.setActionCommand("Bookings");
                 pnlFilter.add(btnChooseDate);
                 btnChooseDate.setBounds(150, 150, 122, 60);
 
@@ -319,6 +332,7 @@ public class BookingPanel extends Panel {
     private JLabel lblRoomID;
     private JLabel lblPaymentStatus;
     private JLabel lblPaymentMethod;
+    private JButton btnGetRow;
     private JPanel pnlFilter;
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;

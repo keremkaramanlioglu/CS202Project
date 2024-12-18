@@ -145,9 +145,10 @@ new FormModel {
 						name: "btnAdd"
 						"text": "Add"
 						"cursor": #Cursor0
+						"actionCommand": "Users"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 375
-						"y": 15
+						"x": 295
+						"y": 30
 						"width": 100
 						"height": 50
 					} )
@@ -155,21 +156,23 @@ new FormModel {
 						name: "btnDelete"
 						"text": "Delete"
 						"cursor": #Cursor0
+						"actionCommand": "Users"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 50
-						"x": 375
-						"y": 70
+						"x": 295
+						"y": 85
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btnUpdate"
 						"text": "Update"
 						"cursor": &Cursor1 new java.awt.Cursor( 12 )
+						"actionCommand": "Users"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 50
-						"x": 375
-						"y": 125
+						"x": 400
+						"y": 30
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "lblSsn"
@@ -273,6 +276,17 @@ new FormModel {
 						"x": 185
 						"y": 95
 					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btnGetRow"
+						"text": "Get Row"
+						"cursor": #Cursor1
+						"actionCommand": "Users"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 100
+						"height": 50
+						"x": 400
+						"y": 85
+					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "pnlFilter"
@@ -339,6 +353,7 @@ new FormModel {
 						name: "btnApplyFilter"
 						"text": "Apply Filters"
 						"cursor": #Cursor1
+						"actionCommand": "Users"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 45
 						"y": 150
