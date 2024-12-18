@@ -12,6 +12,7 @@ public abstract class Panel extends JPanel {
     public JComboBox<String> cbFilterColumn;
     public JComboBox<String> cbFilterOption;
     public JTextField tfFilterValue;
+    public JTextField tfFilterUpperValue;
 
     public abstract void addButtonListener(ActionListener al);
 

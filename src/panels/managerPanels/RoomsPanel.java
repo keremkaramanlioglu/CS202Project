@@ -74,18 +74,19 @@ public class RoomsPanel extends Panel {
         filterPanel = new JPanel();
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
-        tfFilterValue = new JTextField();
         label6 = new JLabel();
         button1 = new JButton();
+        tfFilterValue = new JTextField();
+        tfFilterUpperValue = new JTextField();
+        label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
-        swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border
-        . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog"
-        ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder
-        ( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
-        .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException
-        ( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
+        EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing
+        . border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ),
+        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
+        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () ))
+        throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -259,11 +260,6 @@ public class RoomsPanel extends Panel {
                 filterPanel.add(cbFilterOption);
                 cbFilterOption.setBounds(165, 35, 120, 45);
 
-                //---- tfFilterValue ----
-                tfFilterValue.setToolTipText("Filter Input");
-                filterPanel.add(tfFilterValue);
-                tfFilterValue.setBounds(45, 110, 235, 40);
-
                 //---- label6 ----
                 label6.setText("Filter Value:");
                 filterPanel.add(label6);
@@ -274,7 +270,22 @@ public class RoomsPanel extends Panel {
                 button1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 button1.setName("apply");
                 filterPanel.add(button1);
-                button1.setBounds(45, 150, 235, 60);
+                button1.setBounds(40, 150, 245, 60);
+
+                //---- tfFilterValue ----
+                tfFilterValue.setToolTipText("Filter Input");
+                filterPanel.add(tfFilterValue);
+                tfFilterValue.setBounds(40, 110, 115, 40);
+
+                //---- tfFilterUpperValue ----
+                tfFilterUpperValue.setToolTipText("Filter Input");
+                filterPanel.add(tfFilterUpperValue);
+                tfFilterUpperValue.setBounds(170, 110, 115, 40);
+
+                //---- label8 ----
+                label8.setText("-");
+                filterPanel.add(label8);
+                label8.setBounds(160, 125, 15, label8.getPreferredSize().height);
 
                 {
                     // compute preferred size
@@ -320,8 +331,10 @@ public class RoomsPanel extends Panel {
     private JPanel filterPanel;
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;
-    private JTextField tfFilterValue;
     private JLabel label6;
     private JButton button1;
+    private JTextField tfFilterValue;
+    private JTextField tfFilterUpperValue;
+    private JLabel label8;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

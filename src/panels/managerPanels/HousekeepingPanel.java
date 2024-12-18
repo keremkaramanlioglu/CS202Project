@@ -81,18 +81,20 @@ public class HousekeepingPanel extends Panel {
         pnlFilter = new JPanel();
         comboBox1 = new JComboBox<>();
         comboBox2 = new JComboBox<>();
-        textField6 = new JTextField();
         label1 = new JLabel();
         btnApply = new JButton();
+        tfFilterValue = new JTextField();
+        tfFilterUpperValue = new JTextField();
+        label8 = new JLabel();
 
         //======== this ========
         setPreferredSize(new Dimension(1920, 1080));
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border
-        . EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder. CENTER, javax
-        . swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,
-        12 ), java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans
-        . PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .
-        getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
+        EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER,javax.swing
+        .border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font.BOLD,12),
+        java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener()
+        {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order".equals(e.getPropertyName()))
+        throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -263,8 +265,6 @@ public class HousekeepingPanel extends Panel {
                 comboBox2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlFilter.add(comboBox2);
                 comboBox2.setBounds(135, 23, 105, comboBox2.getPreferredSize().height);
-                pnlFilter.add(textField6);
-                textField6.setBounds(25, 87, 215, textField6.getPreferredSize().height);
 
                 //---- label1 ----
                 label1.setText("Filter Value:");
@@ -278,6 +278,21 @@ public class HousekeepingPanel extends Panel {
                 btnApply.setName("apply");
                 pnlFilter.add(btnApply);
                 btnApply.setBounds(25, 125, 215, 60);
+
+                //---- tfFilterValue ----
+                tfFilterValue.setToolTipText("Filter Input");
+                pnlFilter.add(tfFilterValue);
+                tfFilterValue.setBounds(25, 80, 95, 40);
+
+                //---- tfFilterUpperValue ----
+                tfFilterUpperValue.setToolTipText("Filter Input");
+                pnlFilter.add(tfFilterUpperValue);
+                tfFilterUpperValue.setBounds(135, 80, 105, 40);
+
+                //---- label8 ----
+                label8.setText("-");
+                pnlFilter.add(label8);
+                label8.setBounds(125, 95, 15, label8.getPreferredSize().height);
 
                 {
                     // compute preferred size
@@ -323,8 +338,10 @@ public class HousekeepingPanel extends Panel {
     private JPanel pnlFilter;
     private JComboBox<String> comboBox1;
     private JComboBox<String> comboBox2;
-    private JTextField textField6;
     private JLabel label1;
     private JButton btnApply;
+    private JTextField tfFilterValue;
+    private JTextField tfFilterUpperValue;
+    private JLabel label8;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

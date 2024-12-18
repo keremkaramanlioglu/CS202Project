@@ -49,6 +49,12 @@ public class BookingsPanel extends Panel {
     public BookingsPanel() {
         initComponents();
         super.dataTable = table;
+        super.cbFilterOption = cbFilterOption;
+        super.cbFilterColumn = cbFilterColumn;
+        super.prevCenterPanel = null;
+        super.prevSelectedButton = null;
+        super.tfFilterValue = tfFilterValue;
+        super.tfFilterUpperValue = tfFilterUpperValue;
     }
 
     private void cbSelectColumn(ActionEvent e) {
@@ -101,14 +107,17 @@ public class BookingsPanel extends Panel {
         label6 = new JLabel();
         tfFilterValue = new JTextField();
         btnApply = new JButton();
+        tfFilterUpperValue = new JTextField();
+        label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
-        ( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border
-        . TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt
-        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
-        propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException( )
-        ; }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
+        swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border
+        . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg"
+        ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder
+        ( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
+        .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException
+        ( ); }} );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -321,7 +330,7 @@ public class BookingsPanel extends Panel {
                 //---- tfFilterValue ----
                 tfFilterValue.setToolTipText("Filter Input");
                 panel2.add(tfFilterValue);
-                tfFilterValue.setBounds(5, 100, 245, 40);
+                tfFilterValue.setBounds(5, 100, 115, 40);
 
                 //---- btnApply ----
                 btnApply.setText("Apply");
@@ -330,6 +339,16 @@ public class BookingsPanel extends Panel {
                 btnApply.setName("apply");
                 panel2.add(btnApply);
                 btnApply.setBounds(5, 145, 245, 60);
+
+                //---- tfFilterUpperValue ----
+                tfFilterUpperValue.setToolTipText("Filter Input");
+                panel2.add(tfFilterUpperValue);
+                tfFilterUpperValue.setBounds(135, 100, 115, 40);
+
+                //---- label8 ----
+                label8.setText("-");
+                panel2.add(label8);
+                label8.setBounds(125, 115, 15, label8.getPreferredSize().height);
 
                 {
                     // compute preferred size
@@ -382,5 +401,7 @@ public class BookingsPanel extends Panel {
     private JLabel label6;
     private JTextField tfFilterValue;
     private JButton btnApply;
+    private JTextField tfFilterUpperValue;
+    private JLabel label8;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

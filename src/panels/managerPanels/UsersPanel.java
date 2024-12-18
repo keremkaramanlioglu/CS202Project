@@ -74,19 +74,20 @@ public class UsersPanel extends Panel {
         pnlFilter = new JPanel();
         cbColumnOption = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
-        tfFilterInput = new JTextField();
         lblFilterInput = new JLabel();
         btnApplyFilter = new JButton();
+        tfFilterValue = new JTextField();
+        tfFilterUpperValue = new JTextField();
+        label8 = new JLabel();
 
         //======== this ========
         setPreferredSize(new Dimension(900, 700));
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing
-        . border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder
-        . CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .
-        awt . Font. BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) )
-        ;  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
-        ) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } )
-        ;
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder
+        (0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder.CENTER,javax.swing.border
+        .TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt
+        .Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void
+        propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.getPropertyName()))throw new RuntimeException()
+        ;}});
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -281,8 +282,6 @@ public class UsersPanel extends Panel {
                 cbFilterOption.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlFilter.add(cbFilterOption);
                 cbFilterOption.setBounds(175, 35, 120, 40);
-                pnlFilter.add(tfFilterInput);
-                tfFilterInput.setBounds(45, 100, 250, 40);
 
                 //---- lblFilterInput ----
                 lblFilterInput.setText("Filter Input");
@@ -295,7 +294,22 @@ public class UsersPanel extends Panel {
                 btnApplyFilter.setActionCommand("Users");
                 btnApplyFilter.setName("apply");
                 pnlFilter.add(btnApplyFilter);
-                btnApplyFilter.setBounds(45, 150, 250, 40);
+                btnApplyFilter.setBounds(45, 150, 245, 40);
+
+                //---- tfFilterValue ----
+                tfFilterValue.setToolTipText("Filter Input");
+                pnlFilter.add(tfFilterValue);
+                tfFilterValue.setBounds(45, 105, 115, 40);
+
+                //---- tfFilterUpperValue ----
+                tfFilterUpperValue.setToolTipText("Filter Input");
+                pnlFilter.add(tfFilterUpperValue);
+                tfFilterUpperValue.setBounds(175, 105, 115, 40);
+
+                //---- label8 ----
+                label8.setText("-");
+                pnlFilter.add(label8);
+                label8.setBounds(165, 120, 15, label8.getPreferredSize().height);
 
                 {
                     // compute preferred size
@@ -349,8 +363,10 @@ public class UsersPanel extends Panel {
     private JPanel pnlFilter;
     private JComboBox<String> cbColumnOption;
     private JComboBox<String> cbFilterOption;
-    private JTextField tfFilterInput;
     private JLabel lblFilterInput;
     private JButton btnApplyFilter;
+    private JTextField tfFilterValue;
+    private JTextField tfFilterUpperValue;
+    private JLabel label8;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

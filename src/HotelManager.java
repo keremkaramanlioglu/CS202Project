@@ -91,7 +91,7 @@ public class HotelManager {
     }
 
     private void setCurrEmployee() throws SQLException {
-        currEmployee = hotelDao.getEmployees("emp_ssn", "==", currSsn).getFirst();
+        currEmployee = hotelDao.getEmployees("ssn", "=", currSsn).getFirst();
     }
 
     public boolean compare(String s1, String[] strings) {
@@ -125,7 +125,7 @@ public class HotelManager {
                 if (activePanel.getCenterPanel() != null) activePanel.getCenterPanel().reset();
                 activePanel.setCenterPanel(activePanel.getPanelByName(command));
             } else if (compare(command, mainPanelOptions)) {
-                if (!command.equals("Customer")) if (!checkAction(command)) return;
+                //if (!command.equals("Customer")) if (!checkAction(command)) return;
                 hotelView.getActivePanel().reset();
                 hotelView.setActivePanel(hotelView.getPanelByName(command));
             } else {
@@ -143,9 +143,6 @@ public class HotelManager {
                                 throw new RuntimeException(ex);
                             }
                         }
-                        break;
-                    case "Bookings":
-                        System.out.println(button.getText());
                         break;
                     case "Delete":
                         break;
