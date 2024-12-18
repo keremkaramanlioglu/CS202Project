@@ -4,6 +4,7 @@ import entities.Hotel;
 
 import panels.Panel;
 import panels.customerPanels.ProfilePanel;
+import panels.managerPanels.EmpInfos;
 import panels.managerPanels.BookingsPanel;
 import panels.managerPanels.EmployeesPanel;
 import panels.managerPanels.FinancePanel;
@@ -148,9 +149,10 @@ public class HotelManager {
                             } catch (SQLException ex) {
                                 throw new RuntimeException(ex);
                             }
-                        } else if (button.getName().equals("getRow")) {
-                            Panel panel = hotelView.getActivePanel().getPanelByName(command);
-                            empl = new Employee(panel.getSelectedRow());
+                        } else if (button.getName().equals("add")) {
+                            EmpInfos empInfos = new EmpInfos();
+                            empl = empInfos.getEmp();
+                            System.out.println(empl);
                         }
                         break;
                     case "Bookings":
