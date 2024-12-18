@@ -52,27 +52,12 @@ public class BookingsPanel extends Panel {
     }
 
     private void cbSelectColumn(ActionEvent e) {
-        if (((String)cbSelectColumn.getSelectedItem()).contains("Check")){
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "Checked in", "Checked out"}));
-        } else if (((String)cbSelectColumn.getSelectedItem()).equals("Payment Status")) {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "Completed", "Pending", "Canceled"}));
-        } else if (((String)cbSelectColumn.getSelectedItem()).equals("Payment Method")) {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "In Advance", "During Check-out"}));
-        } else if (((String)cbSelectColumn.getSelectedItem()).equals("None")) {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None"}));
-        } else {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "==", "!=", "<", ">", "<=", ">=", "between", "contains"}));
-        }
+        // TODO add your code here
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         scrollPane1 = new JScrollPane();
         table = new JTable();
         panel1 = new JPanel();
@@ -103,12 +88,13 @@ public class BookingsPanel extends Panel {
         btnApply = new JButton();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
-        ( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border
-        . TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt
-        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
-        propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException( )
-        ; }} );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing
+        . border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e" , javax. swing .border . TitledBorder
+        . CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069al\u006fg", java .
+        awt . Font. BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) )
+        ;  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
+        ) { if( "\u0062or\u0064er" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } )
+        ;
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -353,7 +339,7 @@ public class BookingsPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane scrollPane1;
     private JTable table;
     private JPanel panel1;
