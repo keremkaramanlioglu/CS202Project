@@ -2,12 +2,10 @@ import entities.Booking;
 import entities.Employee;
 import entities.Hotel;
 
+import panels.HousekeeperPanel;
 import panels.Panel;
 import panels.customerPanels.ProfilePanel;
-import panels.managerPanels.EmpInfos;
-import panels.managerPanels.BookingsPanel;
-import panels.managerPanels.EmployeesPanel;
-import panels.managerPanels.FinancePanel;
+import panels.managerPanels.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -171,6 +169,28 @@ public class HotelManager {
                             }catch (SQLException ex){
                                 throw new RuntimeException(ex);
                             }
+                        }
+                        break;
+                    case "Housekeeping":
+                        Employee houseKeeper;
+                        if (button.getName().equals("applyFilter")) {
+                            HousekeepingPanel panel = (HousekeepingPanel) hotelView.getActivePanel().getPanelByName(command);
+                            System.out.println("entered");
+                            try {
+                                System.out.println(panel.getSelectedFilterOption().equals("None"));
+                                System.out.println(panel.getSelectedFilterColumn() + " " + panel.getSelectedFilterColumn() + " " + panel.getSelectedFilterColumn());
+                                ArrayList<Employee> houseKeepers = hotelDao.getEmployees(panel.getSelectedFilterColumn(), panel.getSelectedFilterOption(), panel.getSelectedFilterValue());
+                                panel.setTableWithEmployees(houseKeepers);
+                                for (Employee hk : houseKeepers) {
+                                    System.out.println(hk);
+                                }
+                            } catch (SQLException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                        } else if (button.getName().equals("add")) {
+                            EmpInfos empInfos = new EmpInfos();
+                            empl = empInfos.getEmp();
+                            System.out.println(empl);
                         }
                         break;
                     case "Delete":
