@@ -10,6 +10,7 @@ import panels.Panel;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.util.Objects;
 import javax.swing.*;
 
 /**
@@ -53,7 +54,19 @@ public class ProfilePanel extends Panel {
 
     @Override
     public Object[] getEntity() {
-        return new Object[0];
+
+        Object[] fieldValues = new Object[9];
+
+
+        fieldValues[0] = (tfSsn.getText().trim());
+        fieldValues[1] = (tfFirstName.getText().trim());
+        fieldValues[2] = tfLastName.getText().trim();
+        fieldValues[3] =  tfBirthDate.getText().trim();
+        fieldValues[4] = null;
+        fieldValues[5] = tfEmail.getText().trim();
+        fieldValues[6] = tfPhoneNumber.getText().trim();
+        fieldValues[7] = tfGender.getText().trim();
+        fieldValues[8] = tfZipCode.getText().trim();
     }
 
     @Override

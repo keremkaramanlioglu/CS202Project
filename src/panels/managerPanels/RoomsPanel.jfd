@@ -236,13 +236,13 @@ new FormModel {
 						"model": new javax.swing.DefaultComboBoxModel {
 							selectedItem: "None"
 							addElement( "None" )
-							addElement( "Room Id" )
-							addElement( "Hotel ID" )
-							addElement( "Room Number" )
-							addElement( "Room Type" )
-							addElement( "Room Size" )
-							addElement( "Room Price" )
-							addElement( "Capacity" )
+							addElement( "room_id" )
+							addElement( "hotel_id" )
+							addElement( "room_num" )
+							addElement( "room_type" )
+							addElement( "room_size" )
+							addElement( "room_price" )
+							addElement( "capacity" )
 						}
 						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
@@ -256,7 +256,7 @@ new FormModel {
 						"model": new javax.swing.DefaultComboBoxModel {
 							selectedItem: "None"
 							addElement( "None" )
-							addElement( "==" )
+							addElement( "=" )
 							addElement( "!=" )
 							addElement( "<" )
 							addElement( ">" )
