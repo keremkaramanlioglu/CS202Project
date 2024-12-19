@@ -46,6 +46,11 @@ public class RoomsPanel extends Panel {
     } // comment
 
     @Override
+    public Object[] getEntity() {
+        return new Object[0];
+    }
+
+    @Override
     public Panel getPanelByName(String panelName) {
         return null;
     }

@@ -17,22 +17,9 @@ public class HouseKeepingPanel extends JPanel {
         initComponents();
     }
 
-    private void cbSelectColumn(ActionEvent e) {
-        if (((String)cbSelectColumn.getSelectedItem()).equals("Status")) {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "Pending", "Completed"}));
-        } else if (((String)cbSelectColumn.getSelectedItem()).equals("None")) {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None"}));
-        } else {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "==", "!=", "<", ">", "<=", ">=", "between", "contains"}));
-        }
-    }
-
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlHouseKeeping = new JScrollPane();
         tblHouseKeeping = new JTable();
         pnlControl = new JPanel();
@@ -59,11 +46,13 @@ public class HouseKeepingPanel extends JPanel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
-        0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
-        . BOTTOM, new java .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
-        red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
-        beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
+        . swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing
+        . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
+        Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
+        ) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
+        public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName (
+        ) )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== pnlHouseKeeping ========
@@ -77,7 +66,7 @@ public class HouseKeepingPanel extends JPanel {
                     {null, null, null, null},
                 },
                 new String[] {
-                    "House Keeper SSN", "Room Number", "Time", "Status"
+                    "housekeeper_ssn", "room_num", "cleaning_date", "service_status"
                 }
             ) {
                 Class<?>[] columnTypes = new Class<?>[] {
@@ -189,29 +178,25 @@ public class HouseKeepingPanel extends JPanel {
 
                 //---- cbSelectColumn ----
                 cbSelectColumn.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None",
-                    "House Keeper SSN",
-                    "Room Number",
-                    "Time",
-                    "Status"
+                    "housekeeper_ssn",
+                    "room_num",
+                    "cleaning_date",
+                    "service_status"
                 }));
-                cbSelectColumn.addActionListener(e -> cbSelectColumn(e));
                 pnlFilter.add(cbSelectColumn);
                 cbSelectColumn.setBounds(30, 30, 120, 45);
 
                 //---- cbFilterOption ----
                 cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
                     "None",
-                    "==",
+                    "=",
                     "!=",
                     "<",
                     ">",
                     "<=",
                     ">=",
                     "between",
-                    "contains",
-                    "Pending",
-                    "Completed"
+                    "contains"
                 }));
                 pnlFilter.add(cbFilterOption);
                 cbFilterOption.setBounds(150, 30, 120, 45);
@@ -266,7 +251,7 @@ public class HouseKeepingPanel extends JPanel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane pnlHouseKeeping;
     private JTable tblHouseKeeping;
     private JPanel pnlControl;

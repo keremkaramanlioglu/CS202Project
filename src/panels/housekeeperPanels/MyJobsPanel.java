@@ -33,7 +33,14 @@ public class MyJobsPanel extends Panel {
     @Override
     public void reset() {
 
-    }@Override
+    }
+
+    @Override
+    public Object[] getEntity() {
+        return new Object[0];
+    }
+
+    @Override
     public Panel getPanelByName(String panelName) {
         return null;
     }

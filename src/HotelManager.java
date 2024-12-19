@@ -1,9 +1,7 @@
 import entities.Booking;
 import entities.CleaningSchedule;
 import entities.Employee;
-import entities.Hotel;
 
-import panels.HousekeeperPanel;
 import panels.Panel;
 import panels.customerPanels.ProfilePanel;
 import panels.managerPanels.*;
@@ -119,7 +117,7 @@ public class HotelManager {
             //if (currSsn.isEmpty() && !command.equals("Guest")) return;
 
             String[] sidePanelOptions = {"Rooms", "Users", "Employees", "Finance", "Bookings", "Housekeeping",
-                    "Book a room", "My Bookings", "Profile", "My Jobs", "Query Panel"};
+                    "Book a room", "My Bookings", "Profile", "My Jobs", "Query Panel",  "Customer"};
             String [] mainPanelOptions = {"Manager", "Customer", "Housekeeper", "Receptionist", "Database Manager","Back"};
             if (compare(command, sidePanelOptions) && button.getName().equals("side")) {
                 Panel activePanel = hotelView.getActivePanel();
@@ -155,30 +153,45 @@ public class HotelManager {
                         }
                         break;
                     case "Bookings":
-                        Booking booking;
-                        if (button.getName().equals("apply")) {
-                            BookingsPanel panel = (BookingsPanel) hotelView.getActivePanel().getPanelByName(command);
-                            System.out.println("entered");
+                        Booking booking1;
+                        BookingsPanel pnlBookings = (BookingsPanel) hotelView.getActivePanel().getPanelByName(command);
+                        if (button.getName().equals("applyFilter")) {
+                            //System.out.println("entered");
                             try {
-                                System.out.println(panel.getSelectedFilterOption().equals("None"));
-                                System.out.println(panel.getSelectedFilterColumn() + " " + panel.getSelectedFilterOption() + " " + panel.getSelectedFilterValue());
-                                ArrayList<Booking> bookings = hotelDao.getBookings(panel.getSelectedFilterColumn(), panel.getSelectedFilterOption(), panel.getSelectedFilterValue());
-                                panel.setTableWithBookings(bookings);
-                                for (Booking book : bookings) {
-                                    System.out.println(book);
-                                }
+                                //System.out.println(panel.getSelectedFilterOption().equals("None"));
+                                //System.out.println(panel.getSelectedFilterColumn() + " " + panel.getSelectedFilterOption() + " " + panel.getSelectedFilterValue());
+                                ArrayList<Booking> bookings = hotelDao.getBookings(pnlBookings.getSelectedFilterColumn(), pnlBookings.getSelectedFilterOption(), pnlBookings.getSelectedFilterValue());
+                                pnlBookings.setTableWithBookings(bookings);
                             }catch (SQLException ex){
                                 throw new RuntimeException(ex);
                             }
+                        } else if (button.getName().equals("add")) {
+                            Object[] obj = pnlBookings.getEntity();
+                            if (obj != null) {
+                                booking1 = new Booking(pnlBookings.getEntity());
+                                try {
+                                    hotelDao.insertBooking(booking1);
+                                } catch (SQLException ex) {
+                                    var yesOrNo = JOptionPane.showConfirmDialog(hotelView,ex.getMessage(), "Authority Error", JOptionPane.YES_NO_CANCEL_OPTION);
+                                    if (yesOrNo == JOptionPane.YES_OPTION) {
+                                    }
+                                }
+                            }
+                            System.out.println("add");
+//                            try {
+//                                hotelDao.insertBooking(booking2);
+//                            } catch (SQLException ex) {
+//                                throw new RuntimeException(ex);
+//                            }
                         }
                         break;
                     case "Housekeeping":
                         CleaningSchedule cleaningSchedule;
                         int currHotelId = currEmployee.getEmp_hotel_id();
                         if (button.getName().equals("applyFilter")) {
-                            HousekeepingPanel panel = (HousekeepingPanel) hotelView.getActivePanel().getPanelByName(command);
-                            System.out.println("entered");
+                            //System.out.println("entered");
                             try {
+
                                 System.out.println(panel.getSelectedFilterOption().equals("None"));
                                 System.out.println(panel.getSelectedFilterColumn() + " " + panel.getSelectedFilterColumn() + " " + panel.getSelectedFilterColumn());
                                 ArrayList<CleaningSchedule> schedules = hotelDao.getCleaningSchedules(currHotelId, panel.getSelectedFilterColumn(), panel.getSelectedFilterOption(), panel.getSelectedFilterValue());
@@ -195,7 +208,31 @@ public class HotelManager {
                             System.out.println(empl);
                         }
                         break;
-                    case "Delete":
+                    case "Receptionist":
+                        BookingsPanel pnlRcp = (BookingsPanel) hotelView.getActivePanel().getPanelByName(command);
+                        Booking booking2;
+                        if (button.getName().equals("applyFilter")) {
+                            System.out.println("entered");
+                            try {
+                                //System.out.println(pnlRcp.getSelectedFilterOption().equals("None"));
+                                //System.out.println(pnlRcp.getSelectedFilterColumn() + " " + pnlRcp.getSelectedFilterOption() + " " + pnlRcp.getSelectedFilterValue());
+                                ArrayList<Booking> bookings = hotelDao.getBookings(pnlRcp.getSelectedFilterColumn(), pnlRcp.getSelectedFilterOption(), pnlRcp.getSelectedFilterValue());
+                                pnlRcp.setTableWithBookings(bookings);
+                                for (Booking book : bookings) {
+                                    System.out.println(book);
+                                }
+                            } catch (SQLException ex){
+                                throw new RuntimeException(ex);
+                            }
+                        } else if (button.getName().equals("add")) {
+                            booking2 = new Booking(pnlRcp.getEntity());
+                            System.out.println("add");
+//                            try {
+//                                hotelDao.insertBooking(booking2);
+//                            } catch (SQLException ex) {
+//                                throw new RuntimeException(ex);
+//                            }
+                        }
                         break;
                     case "getRow":
                         System.out.println(Arrays.toString(hotelView.getActivePanel().getCenterPanel().getSelectedRow()));

@@ -95,22 +95,6 @@ new FormModel {
 						"height": 34
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "tfPaymentStatus"
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 230
-						"y": 55
-						"width": 100
-						"height": 34
-					} )
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "tfPaymentMethod"
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"x": 335
-						"y": 55
-						"width": 100
-						"height": 34
-					} )
-					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "tfRoomID"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 125
@@ -269,6 +253,33 @@ new FormModel {
 						"width": 100
 						"height": 60
 					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "cbPaymentStatus"
+						"model": new javax.swing.DefaultComboBoxModel {
+							selectedItem: "Pending"
+							addElement( "Pending" )
+							addElement( "Completed" )
+							addElement( "Canceled" )
+						}
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 100
+						"height": 34
+						"x": 230
+						"y": 55
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "cbPaymentMethod"
+						"model": new javax.swing.DefaultComboBoxModel {
+							selectedItem: "In Advance"
+							addElement( "In Advance" )
+							addElement( "During Check-out" )
+						}
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 100
+						"height": 34
+						"x": 335
+						"y": 55
+					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "panel2"
@@ -337,7 +348,7 @@ new FormModel {
 						"text": "Apply"
 						"cursor": #Cursor0
 						"actionCommand": "Bookings"
-						"name": "apply"
+						"name": "applyFilter"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 245
 						"height": 60

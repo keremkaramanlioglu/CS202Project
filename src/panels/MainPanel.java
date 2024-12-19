@@ -43,6 +43,11 @@ public class MainPanel extends Panel {
     }
 
     @Override
+    public Object[] getEntity() {
+        return new Object[0];
+    }
+
+    @Override
     public Panel getPanelByName(String panelName) {
         return null;
     }

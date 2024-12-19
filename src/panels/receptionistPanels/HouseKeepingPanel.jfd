@@ -24,10 +24,10 @@ new FormModel {
 							add( null )
 						} )
 					}, new java.util.Vector {
-						add( "House Keeper SSN" )
-						add( "Room Number" )
-						add( "Time" )
-						add( "Status" )
+						add( "housekeeper_ssn" )
+						add( "room_num" )
+						add( "cleaning_date" )
+						add( "service_status" )
 					}, new java.util.Vector {
 						add( class java.lang.Integer )
 						add( class java.lang.String )
@@ -180,14 +180,12 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JComboBox" ) {
 						name: "cbSelectColumn"
 						"model": new javax.swing.DefaultComboBoxModel {
-							selectedItem: "None"
-							addElement( "None" )
-							addElement( "House Keeper SSN" )
-							addElement( "Room Number" )
-							addElement( "Time" )
-							addElement( "Status" )
+							selectedItem: "housekeeper_ssn"
+							addElement( "housekeeper_ssn" )
+							addElement( "room_num" )
+							addElement( "cleaning_date" )
+							addElement( "service_status" )
 						}
-						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cbSelectColumn", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 120
 						"height": 45
@@ -199,7 +197,7 @@ new FormModel {
 						"model": new javax.swing.DefaultComboBoxModel {
 							selectedItem: "None"
 							addElement( "None" )
-							addElement( "==" )
+							addElement( "=" )
 							addElement( "!=" )
 							addElement( "<" )
 							addElement( ">" )
@@ -207,8 +205,6 @@ new FormModel {
 							addElement( ">=" )
 							addElement( "between" )
 							addElement( "contains" )
-							addElement( "Pending" )
-							addElement( "Completed" )
 						}
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 120

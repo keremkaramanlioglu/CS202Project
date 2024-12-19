@@ -28,7 +28,14 @@ public class QueryPanel extends panels.Panel {
     }@Override
     public void reset() {
         taQuery.setText("");
-    }@Override
+    }
+
+    @Override
+    public Object[] getEntity() {
+        return new Object[0];
+    }
+
+    @Override
     public Panel getPanelByName(String panelName) {
         return null;
     }

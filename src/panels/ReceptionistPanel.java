@@ -2,6 +2,7 @@ package panels;
 
 import panels.managerPanels.BookingsPanel;
 import panels.managerPanels.HousekeepingPanel;
+import panels.receptionistPanels.AddCustomerPanel;
 import panels.receptionistPanels.RoomsPanel;
 
 import java.awt.*;
@@ -13,13 +14,14 @@ public class ReceptionistPanel extends Panel {
     private final Panel pnlBookings;
     private final Panel pnlHousekeeping;
     private final Panel pnlRooms;
+    private final Panel pnlAddCustomers;
 
     public ReceptionistPanel() {
         initComponents();
-        super.prevSelectedButton = null;
         pnlBookings = new BookingsPanel();
         pnlHousekeeping = new HousekeepingPanel();
         pnlRooms = new RoomsPanel();
+        pnlAddCustomers = new AddCustomerPanel();
         super.prevCenterPanel = null;
         super.prevSelectedButton = null;
     }
@@ -34,12 +36,18 @@ public class ReceptionistPanel extends Panel {
     }
 
     @Override
+    public Object[] getEntity() {
+        return new Object[0];
+    }
+
+    @Override
     public Panel getPanelByName(String panelName) {
         // TODO implement this panels sub panels
         return switch (panelName) {
             case "Bookings" -> pnlBookings;
             case "Housekeeping" -> pnlHousekeeping;
             case "Rooms" -> pnlRooms;
+            case "Customer" -> pnlAddCustomers;
             default -> null;
         };
     }
@@ -52,12 +60,14 @@ public class ReceptionistPanel extends Panel {
         btnBack.addActionListener(l);
         pnlBookings.addButtonListener(l);
         pnlHousekeeping.addButtonListener(l);
+        pnlAddCustomers.addButtonListener(l);
     }
 
     @Override
     public void addMouseListener(MouseListener ml) {
         pnlBookings.addMouseListener(ml);
         pnlHousekeeping.addMouseListener(ml);
+        pnlAddCustomers.addMouseListener(ml);
     }
 
     public JButton getBtnHousekeeping() {
@@ -79,19 +89,19 @@ public class ReceptionistPanel extends Panel {
         btnBookings = new JButton();
         btnHousekeeping = new JButton();
         btnRooms = new JButton();
+        btnAddCustomer = new JButton();
         btnBack = new JButton();
         pnlHeader = new JPanel();
         label1 = new JLabel();
 
         //======== this ========
         setBackground(new Color(0x666666));
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
-        .border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder
-        .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.
-        awt.Font.BOLD,12),java.awt.Color.red), getBorder()))
-        ; addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-        ){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}})
-        ;
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border
+        .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder. CENTER ,javax
+        . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,
+        12 ) ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans
+        .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e.
+        getPropertyName () ) )throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== pnlSide ========
@@ -133,6 +143,18 @@ public class ReceptionistPanel extends Panel {
             btnRooms.setName("side");
             pnlSide.add(btnRooms);
 
+            //---- btnAddCustomer ----
+            btnAddCustomer.setText("Add Customer");
+            btnAddCustomer.setPreferredSize(new Dimension(120, 40));
+            btnAddCustomer.setBackground(new Color(0x333333));
+            btnAddCustomer.setForeground(Color.white);
+            btnAddCustomer.setBorder(null);
+            btnAddCustomer.setFocusable(false);
+            btnAddCustomer.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnAddCustomer.setName("side");
+            btnAddCustomer.setActionCommand("Customer");
+            pnlSide.add(btnAddCustomer);
+
             //---- btnBack ----
             btnBack.setText("Back");
             btnBack.setBackground(new Color(0x333333));
@@ -170,6 +192,7 @@ public class ReceptionistPanel extends Panel {
     private JButton btnBookings;
     private JButton btnHousekeeping;
     private JButton btnRooms;
+    private JButton btnAddCustomer;
     private JButton btnBack;
     private JPanel pnlHeader;
     private JLabel label1;
