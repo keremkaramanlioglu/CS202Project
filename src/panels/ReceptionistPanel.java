@@ -3,6 +3,7 @@ package panels;
 import panels.managerPanels.BookingsPanel;
 import panels.managerPanels.HousekeepingPanel;
 import panels.receptionistPanels.AddCustomerPanel;
+import panels.receptionistPanels.HouseKeepingPanel;
 import panels.receptionistPanels.RoomsPanel;
 
 import java.awt.*;
@@ -19,7 +20,7 @@ public class ReceptionistPanel extends Panel {
     public ReceptionistPanel() {
         initComponents();
         pnlBookings = new BookingsPanel();
-        pnlHousekeeping = new HousekeepingPanel();
+        pnlHousekeeping = new HouseKeepingPanel();
         pnlRooms = new RoomsPanel();
         pnlAddCustomers = new AddCustomerPanel();
         super.prevCenterPanel = null;
@@ -67,6 +68,7 @@ public class ReceptionistPanel extends Panel {
         pnlBookings.addButtonListener(l);
         pnlHousekeeping.addButtonListener(l);
         pnlAddCustomers.addButtonListener(l);
+        pnlRooms.addButtonListener(l);
     }
 
     @Override

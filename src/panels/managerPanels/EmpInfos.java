@@ -69,7 +69,7 @@ public class EmpInfos {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         frame = new JFrame();
         panel1 = new JPanel();
         label1 = new JLabel();
@@ -103,9 +103,6 @@ public class EmpInfos {
         tfApartment = new JTextField();
         tfZipcode = new JTextField();
         btnOK = new JButton();
-        btnAdd = new JButton();
-        btnDelete = new JButton();
-        btnUpdate = new JButton();
 
         //======== frame ========
         {
@@ -114,13 +111,13 @@ public class EmpInfos {
 
             //======== panel1 ========
             {
-                panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
-                swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border
-                . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dialo\u0067"
-                ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder
-                ( )) ); panel1. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
-                .beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .getPropertyName () )) throw new RuntimeException
-                ( ); }} );
+                panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax .
+                swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border
+                . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog"
+                , java .awt . Font. BOLD ,12 ) ,java . awt. Color .red ) ,panel1. getBorder
+                () ) ); panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java
+                . beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException
+                ( ) ;} } );
                 panel1.setLayout(null);
 
                 //---- label1 ----
@@ -230,32 +227,10 @@ public class EmpInfos {
 
                 //---- btnOK ----
                 btnOK.setText("OK");
+                btnOK.setActionCommand("Employees");
+                btnOK.setName("ok");
                 panel1.add(btnOK);
                 btnOK.setBounds(425, 570, 158, 55);
-
-                //---- btnAdd ----
-                btnAdd.setText("Add");
-                btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnAdd.setActionCommand("Employees");
-                btnAdd.setName("add");
-                panel1.add(btnAdd);
-                btnAdd.setBounds(425, 515, 155, 50);
-
-                //---- btnDelete ----
-                btnDelete.setText("Delete");
-                btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnDelete.setActionCommand("Employees");
-                btnDelete.setName("delete");
-                panel1.add(btnDelete);
-                btnDelete.setBounds(425, 460, 155, 50);
-
-                //---- btnUpdate ----
-                btnUpdate.setText("Update");
-                btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnUpdate.setActionCommand("Employees");
-                btnUpdate.setName("update");
-                panel1.add(btnUpdate);
-                btnUpdate.setBounds(425, 405, 155, 50);
 
                 {
                     // compute preferred size
@@ -272,14 +247,6 @@ public class EmpInfos {
                     panel1.setPreferredSize(preferredSize);
                 }
             }
-            btnOK.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (e.getActionCommand().equals("OK")) {
-                        frame.dispose();
-                    }
-                }
-            });
             frameContentPane.add(panel1, BorderLayout.CENTER);
             frame.pack();
             frame.setLocationRelativeTo(frame.getOwner());
@@ -288,8 +255,8 @@ public class EmpInfos {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
-    public JFrame frame;
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    private JFrame frame;
     private JPanel panel1;
     private JLabel label1;
     private JLabel label2;
@@ -322,8 +289,5 @@ public class EmpInfos {
     private JTextField tfApartment;
     private JTextField tfZipcode;
     private JButton btnOK;
-    private JButton btnAdd;
-    private JButton btnDelete;
-    private JButton btnUpdate;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

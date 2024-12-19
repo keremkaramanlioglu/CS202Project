@@ -58,7 +58,7 @@ new FormModel {
 						name: "btnAdd"
 						"text": "Add"
 						"cursor": &Cursor0 new java.awt.Cursor( 12 )
-						"actionCommand": "Housekeeping"
+						"actionCommand": "houseKeeping"
 						"name": "add"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
@@ -70,7 +70,7 @@ new FormModel {
 						name: "btnDelete"
 						"text": "Delete"
 						"cursor": #Cursor0
-						"actionCommand": "Housekeeping"
+						"actionCommand": "houseKeeping"
 						"name": "delete"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
@@ -82,7 +82,7 @@ new FormModel {
 						name: "btnUpdate"
 						"text": "Update"
 						"cursor": #Cursor0
-						"actionCommand": "Housekeeping"
+						"actionCommand": "houseKeeping"
 						"name": "update"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
@@ -232,7 +232,7 @@ new FormModel {
 						name: "btnApply"
 						"text": "Apply"
 						"cursor": #Cursor0
-						"actionCommand": "HouseKeeping"
+						"actionCommand": "houseKeeping"
 						"name": "applyFilter"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 245

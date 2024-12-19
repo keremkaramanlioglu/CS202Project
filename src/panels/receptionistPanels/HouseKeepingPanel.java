@@ -142,12 +142,12 @@ public class HouseKeepingPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
-        border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER
-        ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font
-        . BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener(
-        new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r"
-        .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border
+        . EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder. CENTER, javax
+        . swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,
+        12 ), java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans
+        . PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .
+        getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== pnlHouseKeeping ========
@@ -189,7 +189,7 @@ public class HouseKeepingPanel extends Panel {
                 //---- btnAdd ----
                 btnAdd.setText("Add");
                 btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnAdd.setActionCommand("Housekeeping");
+                btnAdd.setActionCommand("houseKeeping");
                 btnAdd.setName("add");
                 pnlSelection.add(btnAdd);
                 btnAdd.setBounds(15, 125, 100, 60);
@@ -197,7 +197,7 @@ public class HouseKeepingPanel extends Panel {
                 //---- btnDelete ----
                 btnDelete.setText("Delete");
                 btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnDelete.setActionCommand("Housekeeping");
+                btnDelete.setActionCommand("houseKeeping");
                 btnDelete.setName("delete");
                 pnlSelection.add(btnDelete);
                 btnDelete.setBounds(120, 125, 100, 60);
@@ -205,7 +205,7 @@ public class HouseKeepingPanel extends Panel {
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
                 btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnUpdate.setActionCommand("Housekeeping");
+                btnUpdate.setActionCommand("houseKeeping");
                 btnUpdate.setName("update");
                 pnlSelection.add(btnUpdate);
                 btnUpdate.setBounds(225, 125, 100, 60);
@@ -314,7 +314,7 @@ public class HouseKeepingPanel extends Panel {
                 //---- btnApply ----
                 btnApply.setText("Apply");
                 btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnApply.setActionCommand("HouseKeeping");
+                btnApply.setActionCommand("houseKeeping");
                 btnApply.setName("applyFilter");
                 pnlFilter.add(btnApply);
                 btnApply.setBounds(25, 160, 245, 60);
