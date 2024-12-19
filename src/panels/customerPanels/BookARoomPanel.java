@@ -23,13 +23,17 @@ public class BookARoomPanel extends Panel {
     
     public BookARoomPanel() {
         initComponents();
-        super.table = tblData;
-        super.model = tableModel;
+
         initTable();
+    }
+    // TODO write a hotelDao function that takes these filters
+    public String[] getFilters() {
+        return new String[]{String.valueOf(tfCheckInDate.getText()), String.valueOf(tfCheckOutDate.getText()), String.valueOf(tfHotelName.getText()),
+        String.valueOf(tfCity.getText()), String.valueOf(tfRoomType.getText()), String.valueOf(tfNumberOfPeople.getText())};
     }
 
     private void initTable() {
-        super.model = new DefaultTableModel(
+        tableModel = new DefaultTableModel(
                 new Object[][] {
                 },
                 new String[] {
@@ -44,21 +48,23 @@ public class BookARoomPanel extends Panel {
                 return columnTypes[columnIndex];
             }
         };
-        table.setModel(model);
-        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        tblData.setModel(tableModel);
+        tblData.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                Object[] fields = new Object[table.getColumnCount()];
-                int selectedRow = table.getSelectedRow();
+                Object[] fields = new Object[tblData.getColumnCount()];
+                int selectedRow = tblData.getSelectedRow();
 
                 if (selectedRow != -1) {
                     for (int i = 0; i < fields.length; i++) {
-                        fields[i] = table.getValueAt(selectedRow, i + 1);
+                        fields[i] = tblData.getValueAt(selectedRow, i + 1);
                     }
                 }
                 setFields(fields);
             }
         });
+        super.table = tblData;
+        super.model = tableModel;
     }
 
     @Override
@@ -104,7 +110,7 @@ public class BookARoomPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlReservableHotels = new JScrollPane();
         tblData = new JTable();
         pnlControl = new JPanel();
@@ -130,13 +136,13 @@ public class BookARoomPanel extends Panel {
         btnBook = new JButton();
 
         //======== this ========
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new
-        javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e" , javax
-        . swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java
-        . awt .Font ( "Dialo\u0067", java .awt . Font. BOLD ,12 ) ,java . awt
-        . Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .
-        PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "borde\u0072" .
-        equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
+        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax
+        . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
+        .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
+        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .
+        equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== pnlReservableHotels ========
@@ -337,7 +343,7 @@ public class BookARoomPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane pnlReservableHotels;
     private JTable tblData;
     private JPanel pnlControl;

@@ -49,7 +49,7 @@ public class Main {
 
         try {
             HotelView hotelView = new HotelView();
-            new HotelManager(hotelView, new DBConnectionControl(hotelView));
+            new HotelManager(hotelView, null);
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null, e.getMessage());
             e.printStackTrace();

@@ -28,6 +28,7 @@ public class HotelManager {
 
     public HotelManager(HotelView hotelView, DBConnectionControl dbConnectionControl) throws SQLException {
         this.hotelView = hotelView;
+        hotelView.setVisible(true);
         this.currSsn = "";
         ButtonListener buttonListener = new ButtonListener();
         hotelView.addButtonListener(buttonListener);
@@ -106,7 +107,7 @@ public class HotelManager {
     private class ButtonListener implements ActionListener, MouseListener {
         public void actionPerformed(ActionEvent e) {
 
-            connectionControl();
+            //connectionControl();
 
             //System.out.println("Curr Ssn: " + currSsn);
 
@@ -127,16 +128,17 @@ public class HotelManager {
                 if (activePanel.getCenterPanel() != null) activePanel.getCenterPanel().reset();
                 activePanel.setCenterPanel(activePanel.getPanelByName(command));
             } else if (compare(command, mainPanelOptions)) {
-                if (!command.equals("Customer")) if (!checkAction(command)) return;
+                //if (!command.equals("Customer")) if (!checkAction(command)) return;
                 hotelView.getActivePanel().reset();
                 hotelView.setActivePanel(hotelView.getPanelByName(command));
             } else {
                 switch (name) {
                     case "add":
-
                         break;
                     case "update":
+                        break;
                     case "delete":
+                        break;
                     case "applyFilter":
                         if (command.equals("Bookings")){ //from both
                             System.out.println("filter button pressed in booking panel");
