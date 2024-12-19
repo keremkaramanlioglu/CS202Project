@@ -15,9 +15,9 @@ public class ParkingLot {
     }
 
     public ParkingLot(Object[] obj) {
-        this.park_id = (int)obj[0];
-        this.hotel_id = (int)obj[1];
-        this.capacity = (int)obj[2];
+        this.park_id = Integer.parseInt(String.valueOf(obj[0]));
+        this.hotel_id = Integer.parseInt(String.valueOf(obj[1]));
+        this.capacity = Integer.parseInt(String.valueOf(obj[2]));
     }
 
     public int getPark_id() {

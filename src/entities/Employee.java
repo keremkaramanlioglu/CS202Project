@@ -9,7 +9,7 @@ public class Employee {
     private String emp_firstname;
     private String emp_lastname;
     private String emp_type;
-    private String emp_bd;
+    private Date emp_bd;
     private Date years;
     private int emp_hotel_id;
     private double emp_salary;
@@ -26,7 +26,7 @@ public class Employee {
         this.emp_firstname = rs.getString("emp_firstname");
         this.emp_lastname = rs.getString("emp_lastname");
         this.emp_type = rs.getString("emp_type");
-        this.emp_bd = rs.getString("emp_bd");
+        this.emp_bd = rs.getDate("emp_bd");
         this.years = rs.getDate("years");
         this.emp_hotel_id = rs.getInt("emp_hotel_id");
         this.emp_salary = rs.getDouble("emp_salary");
@@ -40,21 +40,21 @@ public class Employee {
     }
 
     public Employee(Object[] obj) {
-        this.emp_ssn = (String) obj[0];
-        this.emp_firstname = (String) obj[1];
-        this.emp_lastname = (String) obj[2];
-        this.emp_type = (String) obj[3];
-        this.emp_bd = (String) obj[4];
-        this.years = (Date) obj[5];
-        this.emp_hotel_id = (int) obj[6];
-        this.emp_salary = (double) obj[7];
-        this.emp_phone_num = (String) obj[8];
-        this.emp_email = (String) obj[9];
-        this.emp_gender = (String) obj[10];
-        this.street = (String) obj[11];
-        this.no = (String) obj[12];
-        this.apartment = (String) obj[13];
-        this.zip_code = (String) obj[14];
+        this.emp_ssn = String.valueOf(obj[0]);
+        this.emp_firstname = String.valueOf(obj[1]);
+        this.emp_lastname = String.valueOf(obj[2]);
+        this.emp_type = String.valueOf(obj[3]);
+        this.emp_bd = Date.valueOf(String.valueOf(obj[4]));
+        this.years = Date.valueOf(String.valueOf(obj[5]));
+        this.emp_hotel_id = Integer.parseInt(String.valueOf(obj[6]));
+        this.emp_salary = Double.parseDouble(String.valueOf(obj[7]));
+        this.emp_phone_num = String.valueOf(obj[8]);
+        this.emp_email = String.valueOf(obj[9]);
+        this.emp_gender = String.valueOf(obj[10]);
+        this.street = String.valueOf(obj[11]);
+        this.no = String.valueOf(obj[12]);
+        this.apartment = String.valueOf(obj[13]);
+        this.zip_code = String.valueOf(obj[14]);
     }
 
     public String getEmp_ssn() {
@@ -89,11 +89,11 @@ public class Employee {
         this.emp_type = emp_type;
     }
 
-    public String getEmp_bd() {
+    public Date getEmp_bd() {
         return emp_bd;
     }
 
-    public void setEmp_bd(String emp_bd) {
+    public void setEmp_bd(Date emp_bd) {
         this.emp_bd = emp_bd;
     }
 
