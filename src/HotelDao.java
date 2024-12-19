@@ -772,35 +772,45 @@ public class HotelDao {
         ArrayList<Object[]> availableRooms = new ArrayList<>();
 
         // SQL sorgusu: Otel ID'si ve tarih aralığında rezervasyonu olmayan odaları seç
-        String sql = "SELECT r.room_id, r.room_num, r.room_type, r.room_size, r.room_price, r.room_capacity " +
-                "FROM Rooms r " +
-                "WHERE r.hotel_id = ? AND NOT EXISTS (" +
+        String sql = "SELECT r.room_num, r.room_size, r.room_capacity, r.room_price, r.room_type, cs.service_status " +
+                "FROM Rooms r, CleaningSchedule cs" +
+                "LEFT JOIN CleaningSchedule cs ON cs.room_id = r.room_id " +
+                "WHERE r.hotel_id = ? " +
+                "AND NOT EXISTS ( " +
                 "   SELECT 1 FROM Bookings b " +
                 "   WHERE b.room_id = r.room_id " +
                 "   AND ((b.booking_start_date BETWEEN ? AND ?) " +
                 "   OR (b.booking_end_date BETWEEN ? AND ?) " +
-                "   OR (b.booking_start_date <= ? AND b.booking_end_date >= ?))" +
-                ")";
+                "   OR (b.booking_start_date <= ? AND b.booking_end_date >= ?)) " +
+                ") " +
+                "AND NOT EXISTS ( " +
+                "   SELECT 1 FROM CleaningSchedule cs2 " +
+                "   WHERE cs2.room_id = r.room_id " +
+                "   AND cs2.service_status = 'Pending' " +
+                "   AND cs2.cleaning_date BETWEEN ? AND ?)";
+
 
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             // Set query parameters
             stmt.setInt(1, hotelID);
-            stmt.setDate(2, new java.sql.Date(startDate.getTime()));
-            stmt.setDate(3, new java.sql.Date(endDate.getTime()));
-            stmt.setDate(4, new java.sql.Date(startDate.getTime()));
-            stmt.setDate(5, new java.sql.Date(endDate.getTime()));
-            stmt.setDate(6, new java.sql.Date(startDate.getTime()));
-            stmt.setDate(7, new java.sql.Date(endDate.getTime()));
+            stmt.setDate(2, startDate);
+            stmt.setDate(3, endDate);
+            stmt.setDate(4, startDate);
+            stmt.setDate(5, endDate);
+            stmt.setDate(6, startDate);
+            stmt.setDate(7, endDate);
+            stmt.setDate(8, startDate);
+            stmt.setDate(9, endDate);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 // Collect available rooms into an ArrayList<Object[]>
                 while (rs.next()) {
                     Object[] row = new Object[6];
-                    row[0] = rs.getInt("room_id");
-                    row[1] = rs.getString("room_num");
-                    row[2] = rs.getString("room_type");
-                    row[3] = rs.getInt("room_size");
-                    row[4] = rs.getDouble("room_price");
+                    row[0] = rs.getInt("room_num");
+                    row[1] = rs.getString("room_size");
+                    row[2] = rs.getString("room_capacity");
+                    row[3] = rs.getInt("room_price");
+                    row[4] = rs.getDouble("room_type");
                     row[5] = rs.getString("room_capacity");
                     availableRooms.add(row);
                 }
