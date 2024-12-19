@@ -1,0 +1,174 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.5" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblfirstName"
+				"text": "First Name:"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 150
+				"y": 50
+				"width": 200
+				"height": 22
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "tfFirstName"
+				"editable": false
+				"selectionColor": new java.awt.Color( 102, 102, 102, 255 )
+				"foreground": new java.awt.Color( 51, 51, 51, 255 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 165
+				"y": 80
+				"width": 200
+				"height": 40
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblLastName"
+				"text": "Last Name:"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 195
+				"height": 22
+				"x": 160
+				"y": 175
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "tfLastName"
+				"editable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 200
+				"height": 40
+				"x": 170
+				"y": 200
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblSsn"
+				"text": "Ssn:"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 195
+				"height": 22
+				"x": 150
+				"y": 295
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "tfSsn"
+				"editable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 200
+				"height": 40
+				"x": 170
+				"y": 315
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblBirthDate"
+				"text": "Birth Date:"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 195
+				"height": 22
+				"x": 155
+				"y": 420
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "tfBirthDate"
+				"text": "Choose a Date!"
+				"name": "dateChooser"
+				"cursor": new java.awt.Cursor( 12 )
+				"enabled": false
+				"editable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 200
+				"height": 40
+				"x": 170
+				"y": 440
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblEmail"
+				"text": "E-Mail:"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 200
+				"height": 22
+				"x": 610
+				"y": 40
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "tfEmail"
+				"editable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 200
+				"height": 40
+				"x": 625
+				"y": 70
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblPhoneNumber"
+				"text": "Phone Number:"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 200
+				"height": 22
+				"x": 605
+				"y": 175
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "tfPhoneNumber"
+				"editable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 200
+				"height": 40
+				"x": 630
+				"y": 195
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblGender"
+				"text": "Gender:"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 200
+				"height": 22
+				"x": 605
+				"y": 295
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "tfGender"
+				"editable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 200
+				"height": 40
+				"x": 635
+				"y": 315
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblZipCode"
+				"text": "Zip Code:"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 195
+				"height": 22
+				"x": 605
+				"y": 415
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "tfZipCode"
+				"editable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 200
+				"height": 40
+				"x": 635
+				"y": 435
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnAdd"
+				"text": "Add"
+				"actionCommand": "Profile_Edit"
+				"name": "edit"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 370
+				"y": 530
+				"width": 200
+				"height": 40
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 25, 10 )
+			"size": new java.awt.Dimension( 900, 700 )
+		} )
+	}
+}

@@ -62,6 +62,8 @@ public abstract class Panel extends JPanel {
         return rowValues;
     }
 
+    public abstract Object[] getEntity();
+
     public String getSelectedFilterOption() {
         return (String) cbFilterOption.getSelectedItem();
     }

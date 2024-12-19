@@ -39,6 +39,11 @@ public class EmployeesPanel extends Panel {
 
     }
 
+    @Override
+    public Object[] getEntity() {
+        return new Object[0];
+    }
+
     public void setTableWithEmployees(ArrayList<Employee> emps) {
         // Define column names (adjust to match the fields in your Customer class)
         String[] columnNames = {"ssn", "firstname", "lastname", "type", "bd", "years", "hotel_id", "salary", "phone_num", "email", "gender", "street", "no", "apartment", "zip_code"};

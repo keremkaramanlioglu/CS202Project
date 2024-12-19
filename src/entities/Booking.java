@@ -1,8 +1,12 @@
 package entities;
 
+import javax.swing.*;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Booking {
     private int booking_id;
@@ -27,16 +31,49 @@ public class Booking {
         this.c_check_out_status = rs.getBoolean("c_check_out_status");
     }
 
-    public Booking(Object[] objs) throws SQLException {
-        this.booking_id = (Integer) objs[0];
-        this.c_ssn = (String) objs[1];
-        this.room_id = (Integer) objs[2];
-        this.payment_status = (String) objs[3];
-        this.payment_method = (String) objs[4];
-        this.booking_start_date = (Timestamp) objs[5];
-        this.booking_end_date = (Timestamp) objs[6];
-        this.c_check_in_status = (Boolean) objs[7];
-        this.c_check_out_status = (Boolean) objs[8];
+    public Booking(Object[] objs) {
+        if (objs.length == 9) {
+            this.booking_id = (Integer) objs[0];
+            this.c_ssn = (String) objs[1];
+            this.room_id = (Integer) objs[2];
+            this.payment_status = (String) objs[3];
+            this.payment_method = (String) objs[4];
+            this.booking_start_date = (Timestamp) objs[5];
+            this.booking_end_date = (Timestamp) objs[6];
+            this.c_check_in_status = (Boolean) objs[7];
+            this.c_check_out_status = (Boolean) objs[8];
+        } else {
+            this.c_ssn = (String) objs[0];
+            this.room_id = (Integer) objs[1];
+            this.payment_status = (String) objs[2];
+            this.payment_method = (String) objs[3];
+            this.booking_start_date = toTimestamp((String)objs[4]);
+            this.booking_end_date = toTimestamp((String) objs[5]);
+            this.c_check_in_status = (Boolean) objs[6];
+            this.c_check_out_status = (Boolean) objs[7];
+        }
+    }
+
+    private Timestamp toTimestamp(String dateString) {
+        // Define the date format of the input string
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Timestamp timestamp = null;
+
+        try {
+            // Parse the input string to a java.util.Date object
+            java.util.Date parsedDate = dateFormat.parse(dateString);
+
+            // Convert java.util.Date to java.sql.Timestamp
+            timestamp = new Timestamp(parsedDate.getTime());
+
+            // Print the result
+            //System.out.println("Input String: " + dateString +" And It data type is"+ dateString.getClass());
+            //System.out.println("Converted Timestamp: "+ timestamp +" And It data type is "+ timestamp.getClass());
+
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return timestamp;
     }
 
     public int getBooking_id() {

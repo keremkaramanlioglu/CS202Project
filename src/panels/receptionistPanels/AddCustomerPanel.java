@@ -2,28 +2,27 @@
  * Created by JFormDesigner on Wed Dec 11 20:10:58 TRT 2024
  */
 
-package panels.customerPanels;
+package panels.receptionistPanels;
 
-import java.awt.event.*;
 import panels.Panel;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
-import javax.swing.*;
 
 /**
  * @author kerem
  */
-public class ProfilePanel extends Panel {
-    public ProfilePanel() {
+public class AddCustomerPanel extends Panel {
+    public AddCustomerPanel() {
         initComponents();
     }
 
     @Override
     public void addButtonListener(ActionListener al) {
-        btnConfirm.addActionListener(al);
-        btnEdit.addActionListener(al);
+        btnAdd.addActionListener(al);
     }
 
     @Override
@@ -45,38 +44,12 @@ public class ProfilePanel extends Panel {
     public Panel getPanelByName(String panelName) {
         return null;
     }
-    
-    public void pushEditButton() {
-        btnConfirm.setEnabled(true);
-        tfFirstName.setEditable(true);
-        tfLastName.setEditable(true);
-        tfSsn.setEditable(true);
-        tfBirthDate.setEnabled(true);
-        tfEmail.setEditable(true);
-        tfPhoneNumber.setEditable(true);
-        tfGender.setEditable(true);
-        tfZipCode.setEditable(true);
-    }
 
-    public void pushConfirmButton() {
-        btnConfirm.setEnabled(false);
-        tfFirstName.setEditable(false);
-        tfLastName.setEditable(false);
-        tfSsn.setEditable(false);
-        tfBirthDate.setEditable(false);
-        tfEmail.setEditable(false);
-        tfPhoneNumber.setEditable(false);
-        tfGender.setEditable(false);
-        tfZipCode.setEditable(false);
-    }
 
-    private void btnEdit(ActionEvent e) {
-        // TODO add your code here
-    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         lblfirstName = new JLabel();
         tfFirstName = new JTextField();
         lblLastName = new JLabel();
@@ -93,56 +66,53 @@ public class ProfilePanel extends Panel {
         tfGender = new JTextField();
         lblZipCode = new JLabel();
         tfZipCode = new JTextField();
-        btnEdit = new JButton();
-        btnConfirm = new JButton();
+        btnAdd = new JButton();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(
-        new javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e"
-        ,javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
-        ,new java.awt.Font("Dialo\u0067",java.awt.Font.BOLD,12)
-        ,java.awt.Color.red), getBorder())); addPropertyChangeListener(
-        new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-        ){if("borde\u0072".equals(e.getPropertyName()))throw new RuntimeException()
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder
+        (0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border.TitledBorder.CENTER,javax.swing.border
+        .TitledBorder.BOTTOM,new java.awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),java.awt
+        .Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void
+        propertyChange(java.beans.PropertyChangeEvent e){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException()
         ;}});
         setLayout(null);
 
         //---- lblfirstName ----
         lblfirstName.setText("First Name:");
         add(lblfirstName);
-        lblfirstName.setBounds(55, 50, 200, 22);
+        lblfirstName.setBounds(150, 50, 200, 22);
 
         //---- tfFirstName ----
         tfFirstName.setEditable(false);
         tfFirstName.setSelectionColor(new Color(0x666666));
         tfFirstName.setForeground(new Color(0x333333));
         add(tfFirstName);
-        tfFirstName.setBounds(55, 75, 200, 40);
+        tfFirstName.setBounds(165, 80, 200, 40);
 
         //---- lblLastName ----
         lblLastName.setText("Last Name:");
         add(lblLastName);
-        lblLastName.setBounds(60, 170, 195, 22);
+        lblLastName.setBounds(160, 175, 195, 22);
 
         //---- tfLastName ----
         tfLastName.setEditable(false);
         add(tfLastName);
-        tfLastName.setBounds(55, 195, 200, 40);
+        tfLastName.setBounds(170, 200, 200, 40);
 
         //---- lblSsn ----
         lblSsn.setText("Ssn:");
         add(lblSsn);
-        lblSsn.setBounds(60, 295, 195, 22);
+        lblSsn.setBounds(150, 295, 195, 22);
 
         //---- tfSsn ----
         tfSsn.setEditable(false);
         add(tfSsn);
-        tfSsn.setBounds(55, 320, 200, 40);
+        tfSsn.setBounds(170, 315, 200, 40);
 
         //---- lblBirthDate ----
         lblBirthDate.setText("Birth Date:");
         add(lblBirthDate);
-        lblBirthDate.setBounds(60, 420, 195, 22);
+        lblBirthDate.setBounds(155, 420, 195, 22);
 
         //---- tfBirthDate ----
         tfBirthDate.setText("Choose a Date!");
@@ -151,62 +121,54 @@ public class ProfilePanel extends Panel {
         tfBirthDate.setEnabled(false);
         tfBirthDate.setEditable(false);
         add(tfBirthDate);
-        tfBirthDate.setBounds(55, 445, 200, 40);
+        tfBirthDate.setBounds(170, 440, 200, 40);
 
         //---- lblEmail ----
         lblEmail.setText("E-Mail:");
         add(lblEmail);
-        lblEmail.setBounds(380, 50, 200, 22);
+        lblEmail.setBounds(610, 40, 200, 22);
 
         //---- tfEmail ----
         tfEmail.setEditable(false);
         add(tfEmail);
-        tfEmail.setBounds(380, 75, 200, 40);
+        tfEmail.setBounds(625, 70, 200, 40);
 
         //---- lblPhoneNumber ----
         lblPhoneNumber.setText("Phone Number:");
         add(lblPhoneNumber);
-        lblPhoneNumber.setBounds(380, 170, 200, 22);
+        lblPhoneNumber.setBounds(605, 175, 200, 22);
 
         //---- tfPhoneNumber ----
         tfPhoneNumber.setEditable(false);
         add(tfPhoneNumber);
-        tfPhoneNumber.setBounds(380, 195, 200, 40);
+        tfPhoneNumber.setBounds(630, 195, 200, 40);
 
         //---- lblGender ----
         lblGender.setText("Gender:");
         add(lblGender);
-        lblGender.setBounds(380, 295, 200, 22);
+        lblGender.setBounds(605, 295, 200, 22);
 
         //---- tfGender ----
         tfGender.setEditable(false);
         add(tfGender);
-        tfGender.setBounds(380, 320, 200, 40);
+        tfGender.setBounds(635, 315, 200, 40);
 
         //---- lblZipCode ----
         lblZipCode.setText("Zip Code:");
         add(lblZipCode);
-        lblZipCode.setBounds(385, 420, 195, 22);
+        lblZipCode.setBounds(605, 415, 195, 22);
 
         //---- tfZipCode ----
         tfZipCode.setEditable(false);
         add(tfZipCode);
-        tfZipCode.setBounds(380, 445, 200, 40);
+        tfZipCode.setBounds(635, 435, 200, 40);
 
-        //---- btnEdit ----
-        btnEdit.setText("Edit");
-        btnEdit.setActionCommand("Profile_Edit");
-        btnEdit.setName("edit");
-        add(btnEdit);
-        btnEdit.setBounds(55, 540, 200, 40);
-
-        //---- btnConfirm ----
-        btnConfirm.setText("Confirm");
-        btnConfirm.setActionCommand("Profile_Confirm");
-        btnConfirm.setEnabled(false);
-        btnConfirm.setName("confirm");
-        add(btnConfirm);
-        btnConfirm.setBounds(380, 540, 200, 40);
+        //---- btnAdd ----
+        btnAdd.setText("Add");
+        btnAdd.setActionCommand("Profile_Edit");
+        btnAdd.setName("edit");
+        add(btnAdd);
+        btnAdd.setBounds(370, 530, 200, 40);
 
         {
             // compute preferred size
@@ -228,7 +190,7 @@ public class ProfilePanel extends Panel {
 
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JLabel lblfirstName;
     private JTextField tfFirstName;
     private JLabel lblLastName;
@@ -245,7 +207,6 @@ public class ProfilePanel extends Panel {
     private JTextField tfGender;
     private JLabel lblZipCode;
     private JTextField tfZipCode;
-    private JButton btnEdit;
-    private JButton btnConfirm;
+    private JButton btnAdd;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

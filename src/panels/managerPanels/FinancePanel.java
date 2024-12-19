@@ -40,6 +40,11 @@ public class FinancePanel extends Panel {
         tfRevenue.setText("");
     }
 
+    @Override
+    public Object[] getEntity() {
+        return new Object[0];
+    }
+
     public void setRevenue(String revenue) {
         tfRevenue.setText(revenue + "$");
     }

@@ -6,6 +6,9 @@ package panels.managerPanels;
 
 import java.awt.event.*;
 import java.awt.event.MouseListener;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.table.*;
 
@@ -42,10 +45,37 @@ public class BookingsPanel extends Panel {
         // TODO reset the components
     }
 
+
+    @Override
+    public Object[] getEntity() {
+        if (!tfCheck()) {
+            JOptionPane.showMessageDialog(this, "Please enter all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+
+        return new Object[] {
+                tfCSsn.getText(),
+                Integer.parseInt(tfRoomID.getText()),
+                Objects.requireNonNull(cbPaymentStatus.getSelectedItem()).toString(),
+                Objects.requireNonNull(cbPaymentMethod.getSelectedItem()).toString(),
+                tfStartDate.getText(),
+                tfEndDate.getText(),
+                cbCheckin.isSelected(),
+                cbCheckout.isSelected()
+        };
+    }
+
+
+    private boolean tfCheck() {
+        return !tfCSsn.getText().isEmpty() && !tfRoomID.getText().isEmpty()
+                 && !tfStartDate.getText().isEmpty() && !tfEndDate.getText().isEmpty();
+    }
+
     public void setTableWithBookings(ArrayList<Booking> bookings) {
         // Define column names (adjust to match the fields in your Customer class)
         String[] columnNames = {"booking_id", "c_ssn", "room_id", "payment_status", "payment_method", "booking_start_date", "booking_end_date", "c_check_in_status", "c_check_out_status"};
-        table = new JTable();
+
         // Create a table model with column names
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
@@ -66,7 +96,11 @@ public class BookingsPanel extends Panel {
         }
 
         // Set the table model to the JTable
-        table.setModel(model);
+        table2.setModel(model);
+        table2.revalidate();
+        table2.repaint();
+        this.revalidate();
+        this.repaint();
     }
 
 
@@ -77,27 +111,12 @@ public class BookingsPanel extends Panel {
 
     public BookingsPanel() {
         initComponents();
-        super.table = table;
+        super.cbFilterColumn = cbSelectColumn;
+        super.cbFilterOption = cbFilterOption;
+        super.tfFilterValue = tfFilterValue;
+        super.tfFilterUpperValue = tfFilterUpperValue;
     }
 
-    private void cbSelectColumn(ActionEvent e) {
-        if (((String)cbSelectColumn.getSelectedItem()).contains("Check")){
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "Checked in", "Checked out"}));
-        } else if (((String)cbSelectColumn.getSelectedItem()).equals("Payment Status")) {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "Completed", "Pending", "Canceled"}));
-        } else if (((String)cbSelectColumn.getSelectedItem()).equals("Payment Method")) {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "In Advance", "During Check-out"}));
-        } else if (((String)cbSelectColumn.getSelectedItem()).equals("None")) {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None"}));
-        } else {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "==", "!=", "<", ">", "<=", ">=", "between", "contains"}));
-        }
-    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -107,8 +126,6 @@ public class BookingsPanel extends Panel {
         panel1 = new JPanel();
         panel3 = new JPanel();
         tfCSsn = new JTextField();
-        tfPaymentStatus = new JTextField();
-        tfPaymentMethod = new JTextField();
         tfRoomID = new JTextField();
         label1 = new JLabel();
         label2 = new JLabel();
@@ -124,6 +141,8 @@ public class BookingsPanel extends Panel {
         label5 = new JLabel();
         label7 = new JLabel();
         textArea1 = new JTextArea();
+        cbPaymentStatus = new JComboBox<>();
+        cbPaymentMethod = new JComboBox<>();
         panel2 = new JPanel();
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
@@ -134,13 +153,13 @@ public class BookingsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new
-        javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax
-        . swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java
-        . awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt
-        . Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .
-        PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .
-        equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax .
+        swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e" , javax. swing .border
+        . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dialo\u0067"
+        , java .awt . Font. BOLD ,12 ) ,java . awt. Color .red ) , getBorder
+        () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java
+        . beans. PropertyChangeEvent e) { if( "borde\u0072" .equals ( e. getPropertyName () ) )throw new RuntimeException
+        ( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -180,10 +199,6 @@ public class BookingsPanel extends Panel {
                 panel3.setLayout(null);
                 panel3.add(tfCSsn);
                 tfCSsn.setBounds(20, 55, 100, 34);
-                panel3.add(tfPaymentStatus);
-                tfPaymentStatus.setBounds(230, 55, 100, 34);
-                panel3.add(tfPaymentMethod);
-                tfPaymentMethod.setBounds(335, 55, 100, 34);
                 panel3.add(tfRoomID);
                 tfRoomID.setBounds(125, 55, 100, 34);
 
@@ -282,6 +297,23 @@ public class BookingsPanel extends Panel {
                 panel3.add(textArea1);
                 textArea1.setBounds(460, 30, 100, 60);
 
+                //---- cbPaymentStatus ----
+                cbPaymentStatus.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "Pending",
+                    "Completed",
+                    "Canceled"
+                }));
+                panel3.add(cbPaymentStatus);
+                cbPaymentStatus.setBounds(230, 55, 100, 34);
+
+                //---- cbPaymentMethod ----
+                cbPaymentMethod.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "In Advance",
+                    "During Check-out"
+                }));
+                panel3.add(cbPaymentMethod);
+                cbPaymentMethod.setBounds(335, 55, 100, 34);
+
                 {
                     // compute preferred size
                     Dimension preferredSize = new Dimension();
@@ -349,7 +381,7 @@ public class BookingsPanel extends Panel {
                 btnApply.setText("Apply");
                 btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnApply.setActionCommand("Bookings");
-                btnApply.setName("apply");
+                btnApply.setName("applyFilter");
                 panel2.add(btnApply);
                 btnApply.setBounds(5, 145, 245, 60);
 
@@ -391,8 +423,6 @@ public class BookingsPanel extends Panel {
     private JPanel panel1;
     private JPanel panel3;
     private JTextField tfCSsn;
-    private JTextField tfPaymentStatus;
-    private JTextField tfPaymentMethod;
     private JTextField tfRoomID;
     private JLabel label1;
     private JLabel label2;
@@ -408,6 +438,8 @@ public class BookingsPanel extends Panel {
     private JLabel label5;
     private JLabel label7;
     private JTextArea textArea1;
+    private JComboBox<String> cbPaymentStatus;
+    private JComboBox<String> cbPaymentMethod;
     private JPanel panel2;
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;

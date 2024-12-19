@@ -27,6 +27,11 @@ public class HousekeeperPanel extends Panel {
     }
 
     @Override
+    public Object[] getEntity() {
+        return new Object[0];
+    }
+
+    @Override
     public Panel getPanelByName(String panelName) {
         return switch (panelName) {
             case "My Jobs" -> MyJobsPanel;
