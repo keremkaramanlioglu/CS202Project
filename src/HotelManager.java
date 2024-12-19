@@ -230,6 +230,31 @@ public class HotelManager {
                             ProfilePanel profile = (ProfilePanel)activePanel.getPanelByName("Profile");
                             profile.pushEditButton();
                         }
+                        break;
+                    case "show rooms":
+                        if (command.equals("Book a room")){
+                            System.out.println("show available rooms button pressed in rooms panel by customer");
+                        }
+                        break;
+                    case "reset filters":
+                        if (command.equals("Book a room")){
+                            System.out.println("reset filter button pressed in rooms panel by customer");
+                        }
+                        break;
+                    case "book":
+                        if (command.equals("Book a room")){
+                            System.out.println("book button pressed in booking panel by customer");
+                        }
+                        break;
+                    case "cancel":
+                        if (command.equals("My Bookings")){
+                            System.out.println("cancel button pressed in my booking panel by customer");
+                        }
+                        break;
+                    case "new booking":
+                        if (command.equals("My Bookings")){
+                            System.out.println("new booking button pressed in my booking panel by customer");
+                        }
                 }
             }
         }
