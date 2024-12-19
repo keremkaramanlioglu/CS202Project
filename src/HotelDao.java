@@ -45,7 +45,6 @@ public class HotelDao {
         stmt.setInt(8, hotel.getHotel_id());
         stmt.executeUpdate();
     }
-
     public void insertRoom(Room room) throws SQLException {
         String sql = "INSERT INTO Rooms (hotel_id, room_num, room_type, room_size, room_price, room_capacity) VALUES(?, ?, ?, ?, ?, ?, ?)";
         stmt = con.prepareStatement(sql);
@@ -161,8 +160,8 @@ public class HotelDao {
         stmt.setInt(2, booking.getRoom_id());
         stmt.setString(3, booking.getPayment_status());
         stmt.setString(4, booking.getPayment_method());
-        stmt.setTimestamp(5, booking.getBooking_start_date());
-        stmt.setTimestamp(6, booking.getBooking_end_date());
+        stmt.setDate(5, booking.getBooking_start_date());
+        stmt.setDate(6, booking.getBooking_end_date());
         stmt.setBoolean(7, booking.isC_check_in_status());
         stmt.setBoolean(8, booking.isC_check_out_status());
         stmt.executeUpdate();
@@ -174,8 +173,8 @@ public class HotelDao {
         stmt.setInt(2, booking.getRoom_id());
         stmt.setString(3, booking.getPayment_status());
         stmt.setString(4, booking.getPayment_method());
-        stmt.setTimestamp(5, booking.getBooking_start_date());
-        stmt.setTimestamp(6, booking.getBooking_end_date());
+        stmt.setDate(5, booking.getBooking_start_date());
+        stmt.setDate(6, booking.getBooking_end_date());
         stmt.setBoolean(7, booking.isC_check_in_status());
         stmt.setBoolean(8, booking.isC_check_out_status());
         stmt.executeUpdate();
@@ -265,7 +264,6 @@ public class HotelDao {
         }
         return rooms;
     }
-
     public ArrayList<Room> getRooms(String filterColumn, String filterOption, String filterValue, String filterValueUpper) throws SQLException {
         String sql = "";
         ArrayList<Room> rooms = new ArrayList<>();
@@ -290,7 +288,6 @@ public class HotelDao {
         }
         return rooms;
     }
-
     public ArrayList<Customer> getCustomers(String filterColumn, String filterOption, String filterValue) throws SQLException {
 
         String sql = "";
@@ -356,7 +353,6 @@ public class HotelDao {
         }
         return employees;
     }
-
     public ArrayList<Booking> getBookings(String filterColumn, String filterOption, String filterValue) throws SQLException {
         String sql = "SELECT * FROM Bookings";
         ArrayList<Booking> bookings = new ArrayList<>();
@@ -382,7 +378,6 @@ public class HotelDao {
         }
         return bookings;
     }
-
     public ArrayList<Booking> getBookings(String filterColumn, String filterOption, String filterValue, String filterValueUpper) throws SQLException {
         String sql = "SELECT * FROM Bookings";
         ArrayList<Booking> bookings = new ArrayList<>();
@@ -404,11 +399,9 @@ public class HotelDao {
         }
         return bookings;
     }
-
     public ArrayList<ParkingLot> getParkingLots(String filterColumn, String filterOption, String filterValue) throws SQLException {
         return null;
     }
-
     public ArrayList<CleaningSchedule> getCleaningSchedules(int hotelID, String filterColumn, String filterOption, String filterValue) throws SQLException {
         System.out.println(hotelID);
         String sql = "SELECT DISTINCT cs.schedule_id, cs.housekeeper_ssn, cs.receptionist_ssn, cs.room_id, cs.cleaning_date, cs.service_status " +
@@ -444,7 +437,6 @@ public class HotelDao {
         }
         return cleaningSchedules;
     }
-
     public ArrayList<CleaningSchedule> getCleaningSchedules(String filterColumn, String filterOption, String filterValue, String filterValueUpper) throws SQLException {
         String sql = "";
         ArrayList<CleaningSchedule> cs = new ArrayList<>();
@@ -469,7 +461,6 @@ public class HotelDao {
         }
         return cs;
     }
-
     public void executeQuery(String query) {
 
     }

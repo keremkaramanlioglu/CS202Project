@@ -14,8 +14,8 @@ public class Booking {
     private int room_id;
     private String payment_status;
     private String payment_method;
-    private Timestamp booking_start_date;
-    private Timestamp booking_end_date;
+    private Date booking_start_date;
+    private Date booking_end_date;
     private boolean c_check_in_status;
     private boolean c_check_out_status;
 
@@ -25,32 +25,32 @@ public class Booking {
         this.room_id = rs.getInt("room_id");
         this.payment_status = rs.getString("payment_status");
         this.payment_method = rs.getString("payment_method");
-        this.booking_start_date = rs.getTimestamp("booking_start_date");
-        this.booking_end_date = rs.getTimestamp("booking_end_date");
+        this.booking_start_date = rs.getDate("booking_start_date");
+        this.booking_end_date = rs.getDate("booking_end_date");
         this.c_check_in_status = rs.getBoolean("c_check_in_status");
         this.c_check_out_status = rs.getBoolean("c_check_out_status");
     }
 
     public Booking(Object[] objs) {
         if (objs.length == 9) {
-            this.booking_id = (Integer) objs[0];
-            this.c_ssn = (String) objs[1];
-            this.room_id = (Integer) objs[2];
-            this.payment_status = (String) objs[3];
-            this.payment_method = (String) objs[4];
-            this.booking_start_date = (Timestamp) objs[5];
-            this.booking_end_date = (Timestamp) objs[6];
-            this.c_check_in_status = (Boolean) objs[7];
-            this.c_check_out_status = (Boolean) objs[8];
+            this.booking_id = Integer.parseInt(String.valueOf(objs[0]));
+            this.c_ssn =  String.valueOf(objs[1]);
+            this.room_id = Integer.parseInt(String.valueOf(objs[2]));
+            this.payment_status = String.valueOf(objs[3]);
+            this.payment_method = String.valueOf(objs[4]);
+            this.booking_start_date = Date.valueOf(String.valueOf(objs[5]));
+            this.booking_end_date = Date.valueOf(String.valueOf(objs[6]));
+            this.c_check_in_status = Boolean.parseBoolean(String.valueOf(objs[7]));
+            this.c_check_out_status = Boolean.parseBoolean(String.valueOf(objs[8]));
         } else {
-            this.c_ssn = (String) objs[0];
-            this.room_id = (Integer) objs[1];
-            this.payment_status = (String) objs[2];
-            this.payment_method = (String) objs[3];
-            this.booking_start_date = toTimestamp((String)objs[4]);
-            this.booking_end_date = toTimestamp((String) objs[5]);
-            this.c_check_in_status = (Boolean) objs[6];
-            this.c_check_out_status = (Boolean) objs[7];
+            this.c_ssn =  String.valueOf(objs[0]);
+            this.room_id = Integer.parseInt(String.valueOf(objs[1]));
+            this.payment_status = String.valueOf(objs[2]);
+            this.payment_method = String.valueOf(objs[3]);
+            this.booking_start_date = Date.valueOf(String.valueOf(objs[4]));
+            this.booking_end_date = Date.valueOf(String.valueOf(objs[5]));
+            this.c_check_in_status = Boolean.parseBoolean(String.valueOf(objs[6]));
+            this.c_check_out_status = Boolean.parseBoolean(String.valueOf(objs[7]));
         }
     }
 
@@ -116,19 +116,19 @@ public class Booking {
         this.payment_method = payment_method;
     }
 
-    public Timestamp getBooking_start_date() {
+    public Date getBooking_start_date() {
         return booking_start_date;
     }
 
-    public void setBooking_start_date(Timestamp booking_start_date) {
+    public void setBooking_start_date(Date booking_start_date) {
         this.booking_start_date = booking_start_date;
     }
 
-    public Timestamp getBooking_end_date() {
+    public Date getBooking_end_date() {
         return booking_end_date;
     }
 
-    public void setBooking_end_date(Timestamp booking_end_date) {
+    public void setBooking_end_date(Date booking_end_date) {
         this.booking_end_date = booking_end_date;
     }
 
