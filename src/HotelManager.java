@@ -5,6 +5,7 @@ import entities.Employee;
 import panels.Panel;
 import panels.customerPanels.ProfilePanel;
 import panels.managerPanels.*;
+import panels.receptionistPanels.HouseKeepingPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -117,7 +118,7 @@ public class HotelManager {
             //if (currSsn.isEmpty() && !command.equals("Guest")) return;
 
             String[] sidePanelOptions = {"Rooms", "Users", "Employees", "Finance", "Bookings", "Housekeeping",
-                    "Book a room", "My Bookings", "Profile", "My Jobs", "Query Panel",  "Customer"};
+                    "Book a room", "My Bookings", "Profile", "My Jobs", "Query Panel",  "Add Customer"};
             String [] mainPanelOptions = {"Manager", "Customer", "Housekeeper", "Receptionist", "Database Manager","Back"};
             if (compare(command, sidePanelOptions) && button.getName().equals("side")) {
                 Panel activePanel = hotelView.getActivePanel();
@@ -188,6 +189,7 @@ public class HotelManager {
                     case "Housekeeping":
                         CleaningSchedule cleaningSchedule;
                         int currHotelId = currEmployee.getEmp_hotel_id();
+                        HousekeepingPanel panel = (HousekeepingPanel) hotelView.getActivePanel().getPanelByName(command);
                         if (button.getName().equals("applyFilter")) {
                             //System.out.println("entered");
                             try {
