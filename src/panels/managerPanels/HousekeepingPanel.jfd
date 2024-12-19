@@ -24,12 +24,12 @@ new FormModel {
 								add( null )
 							} )
 						}, new java.util.Vector {
-							add( "Schedule ID" )
-							add( "Housekeeper SSN" )
-							add( "Receptionist SSN" )
-							add( "Room ID" )
-							add( "Cleaning Date" )
-							add( "Status" )
+							add( "schedule_id" )
+							add( "housekeeper_ssn" )
+							add( "receptionist_ssn" )
+							add( "room_id" )
+							add( "cleaning_date" )
+							add( "service_status" )
 						}, new java.util.Vector {
 							add( class java.lang.Integer )
 							add( class java.lang.String )
@@ -197,16 +197,15 @@ new FormModel {
 					name: "pnlFilter"
 					"preferredSize": new java.awt.Dimension( 400, 200 )
 					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "comboBox1"
+						name: "cbFilterColumn"
 						"model": new javax.swing.DefaultComboBoxModel {
-							selectedItem: "None"
-							addElement( "None" )
-							addElement( "Schedule ID" )
-							addElement( "Housekeeper SSN" )
-							addElement( "Receptionist SSN" )
-							addElement( "Room ID" )
-							addElement( "Cleaning Date" )
-							addElement( "Status" )
+							selectedItem: "schedule_id"
+							addElement( "schedule_id" )
+							addElement( "housekeeper_ssn" )
+							addElement( "receptionist_ssn" )
+							addElement( "room_id" )
+							addElement( "cleaning_date" )
+							addElement( "service_status" )
 						}
 						"cursor": #Cursor0
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "comboBox1", true ) )
@@ -216,11 +215,11 @@ new FormModel {
 						"width": 98
 					} )
 					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "comboBox2"
+						name: "cbFilterOption"
 						"model": new javax.swing.DefaultComboBoxModel {
 							selectedItem: "None"
 							addElement( "None" )
-							addElement( "==" )
+							addElement( "=" )
 							addElement( "!=" )
 							addElement( "<" )
 							addElement( ">" )

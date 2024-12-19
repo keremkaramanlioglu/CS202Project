@@ -409,28 +409,40 @@ public class HotelDao {
         return null;
     }
 
-    public ArrayList<CleaningSchedule> getCleaningSchedules(String filterColumn, String filterOption, String filterValue) throws SQLException {
-        String sql = "";
-        ArrayList<CleaningSchedule> cs = new ArrayList<>();
+    public ArrayList<CleaningSchedule> getCleaningSchedules(int hotelID, String filterColumn, String filterOption, String filterValue) throws SQLException {
+        System.out.println(hotelID);
+        String sql = "SELECT DISTINCT cs.schedule_id, cs.housekeeper_ssn, cs.receptionist_ssn, cs.room_id, cs.cleaning_date, cs.service_status " +
+                "FROM CleaningSchedule cs, Rooms r, Employees e " +
+                "WHERE cs.room_id = r.room_id AND e.emp_hotel_id = ? AND r.hotel_id = ?";
+
+
+        ArrayList<CleaningSchedule> cleaningSchedules = new ArrayList<>();
 
         if (filterOption.equals("None")) {
-            sql = "SELECT * FROM CleaningSchedule";
+            sql = "SELECT DISTINCT cs.schedule_id, cs.housekeeper_ssn, cs.receptionist_ssn, cs.room_id, cs.cleaning_date, cs.service_status " +
+                    "FROM CleaningSchedule cs, Rooms r, Employees e " +
+                    "WHERE cs.room_id = r.room_id AND e.emp_hotel_id = ? AND r.hotel_id = ?";
         } else {
+            if (!compare(filterColumn, new String[]{"schedule_id", "room_id"})) {
+                filterValue = "'" + filterValue + "'";
+            }
             String column = "";
             String where = "";
-            sql = "SELECT * FROM CleaningSchedule WHERE " + filterColumn + filterOption + " ?";
+            sql = "SELECT DISTINCT cs.schedule_id, cs.housekeeper_ssn, cs.receptionist_ssn, cs.room_id, cs.cleaning_date, cs.service_status " +
+                    "FROM CleaningSchedule cs, Rooms r, Employees e " +
+                    "WHERE cs.room_id = r.room_id AND e.emp_hotel_id = ? AND r.hotel_id = ? AND cs." + filterColumn + filterOption + filterValue;
+            System.out.println(sql);
         }
-
         stmt = con.prepareStatement(sql);
-        stmt.setString(1, filterValue);
-
+        stmt.setInt(1, hotelID);
+        stmt.setInt(2, hotelID);
         //System.out.println(stmt);
 
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            cs.add(new CleaningSchedule(rs));
+            cleaningSchedules.add(new CleaningSchedule(rs));
         }
-        return cs;
+        return cleaningSchedules;
     }
 
     public ArrayList<CleaningSchedule> getCleaningSchedules(String filterColumn, String filterOption, String filterValue, String filterValueUpper) throws SQLException {
