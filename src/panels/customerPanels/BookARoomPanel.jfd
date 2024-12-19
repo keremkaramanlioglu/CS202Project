@@ -19,14 +19,6 @@ new FormModel {
 							add( null )
 							add( null )
 						} )
-						add( new java.util.Vector {
-							add( null )
-							add( null )
-							add( null )
-							add( null )
-							add( null )
-							add( null )
-						} )
 					}, new java.util.Vector {
 						add( "Hotel Name" )
 						add( "Zip Code" )
@@ -195,6 +187,7 @@ new FormModel {
 						"text": "Show Rooms"
 						"cursor": #Cursor0
 						"actionCommand": "Book a room"
+						"name": "show rooms"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 30
 						"y": 155
@@ -210,6 +203,7 @@ new FormModel {
 						"text": "Reset Filters"
 						"cursor": #Cursor0
 						"name": "reset filters"
+						"actionCommand": "Book a room"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 200
 						"height": 60
