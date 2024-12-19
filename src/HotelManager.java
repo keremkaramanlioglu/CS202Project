@@ -136,7 +136,9 @@ public class HotelManager {
 
                         break;
                     case "update":
+                        break;
                     case "delete":
+                        break;
                     case "applyFilter":
                         if (command.equals("Bookings")){ //from both
                             System.out.println("filter button pressed in booking panel");

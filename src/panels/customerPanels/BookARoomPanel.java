@@ -27,6 +27,11 @@ public class BookARoomPanel extends Panel {
         super.model = tableModel;
         initTable();
     }
+    // TODO write a hotelDao function that takes these filters
+    public String[] getFilters() {
+        return new String[]{String.valueOf(tfCheckInDate.getText()), String.valueOf(tfCheckOutDate.getText()), String.valueOf(tfHotelName.getText()),
+        String.valueOf(tfCity.getText()), String.valueOf(tfRoomType.getText()), String.valueOf(tfNumberOfPeople.getText())};
+    }
 
     private void initTable() {
         super.model = new DefaultTableModel(
