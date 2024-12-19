@@ -136,8 +136,11 @@ public class HotelManager {
 
                         break;
                     case "update":
+                        break;
                     case "delete":
+                        break;
                     case "applyFilter":
+                        break;
                 }
             }
         }
