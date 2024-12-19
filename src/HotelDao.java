@@ -473,4 +473,68 @@ public class HotelDao {
     public void executeQuery(String query) {
 
     }
+
+    // NEW
+
+    public ArrayList<Object[]> filterBookings(String columnName, String filterOption, String filterValue, String filterValueUpper) throws SQLException {
+        ArrayList<Object[]> result = new ArrayList<>();
+        String sql = "";
+
+        // Construct the SQL query based on filter options
+        switch (filterOption) {
+            case "None":
+                sql = "SELECT * FROM Bookings";
+                break;
+            case "=":
+            case "!=":
+            case "<":
+            case ">":
+            case "<=":
+            case ">=":
+                sql = "SELECT * FROM Bookings WHERE " + columnName + " " + filterOption + " ?";
+                break;
+            case "between":
+                sql = "SELECT * FROM Bookings WHERE " + columnName + " BETWEEN ? AND ?";
+                break;
+            case "contains":
+                sql = "SELECT * FROM Bookings WHERE " + columnName + " LIKE ?";
+                filterValue = "%" + filterValue + "%"; // Adjust filterValue for LIKE
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid filter option: " + filterOption);
+        }
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            // Set query parameters based on filter options
+            if (!filterOption.equals("None")) {
+                if (filterOption.equals("between")) {
+                    stmt.setString(1, filterValue);
+                    stmt.setString(2, filterValueUpper);
+                } else {
+                    stmt.setString(1, filterValue);
+                }
+            }
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                // Collect results into an ArrayList<Object[]>
+                //rs.next();
+                while (rs.next()) {
+                    Object[] row = new Object[9];
+                    row[0] = rs.getInt("booking_id");
+                    row[1] = rs.getString("c_ssn");
+                    row[2] = rs.getInt("room_id");
+                    row[3] = rs.getString("payment_status");
+                    row[4] = rs.getString("payment_method");
+                    row[5] = rs.getTimestamp("booking_start_date");
+                    row[6] = rs.getTimestamp("booking_end_date");
+                    row[7] = rs.getBoolean("c_check_in_status");
+                    row[8] = rs.getBoolean("c_check_out_status");
+                    result.add(row);
+                }
+            }
+        }
+
+        return result;
+    }
+
 }
