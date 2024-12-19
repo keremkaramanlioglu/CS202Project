@@ -48,6 +48,7 @@ public class HousekeeperPanel extends Panel {
     public void addButtonListener(ActionListener al) {
         btnMyJobs.addActionListener(al);
         btnBack.addActionListener(al);
+        MyJobsPanel.addButtonListener(al);
     }
 
     @Override

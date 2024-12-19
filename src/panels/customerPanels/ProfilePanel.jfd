@@ -158,7 +158,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btnEdit"
 				"text": "Edit"
-				"actionCommand": "Profile_Edit"
+				"actionCommand": "Profile"
 				"name": "edit"
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 55
@@ -169,7 +169,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btnConfirm"
 				"text": "Confirm"
-				"actionCommand": "Profile_Confirm"
+				"actionCommand": "Profile"
 				"enabled": false
 				"name": "confirm"
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {

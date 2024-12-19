@@ -33,6 +33,9 @@ public class ProfilePanel extends Panel {
                 && !tfLastName.getText().isEmpty() && !tfPhoneNumber.getText().isEmpty() && !tfZipCode.getText().isEmpty();
     }
 
+    public JButton getBtnConfirm() {
+        return btnConfirm;
+    }
     @Override
     public void addMouseListener(MouseListener ml) {
         tfBirthDate.addMouseListener(ml);
@@ -75,7 +78,7 @@ public class ProfilePanel extends Panel {
         tfFirstName.setEditable(false);
         tfLastName.setEditable(false);
         tfSsn.setEditable(false);
-        tfBirthDate.setEditable(false);
+        tfBirthDate.setEnabled(false);
         tfEmail.setEditable(false);
         tfPhoneNumber.setEditable(false);
         tfGender.setEditable(false);
@@ -88,7 +91,7 @@ public class ProfilePanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         lblfirstName = new JLabel();
         tfFirstName = new JTextField();
         lblLastName = new JLabel();
@@ -206,14 +209,14 @@ public class ProfilePanel extends Panel {
 
         //---- btnEdit ----
         btnEdit.setText("Edit");
-        btnEdit.setActionCommand("Profile_Edit");
+        btnEdit.setActionCommand("Profile");
         btnEdit.setName("edit");
         add(btnEdit);
         btnEdit.setBounds(55, 540, 200, 40);
 
         //---- btnConfirm ----
         btnConfirm.setText("Confirm");
-        btnConfirm.setActionCommand("Profile_Confirm");
+        btnConfirm.setActionCommand("Profile");
         btnConfirm.setEnabled(false);
         btnConfirm.setName("confirm");
         add(btnConfirm);
@@ -239,7 +242,7 @@ public class ProfilePanel extends Panel {
 
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JLabel lblfirstName;
     private JTextField tfFirstName;
     private JLabel lblLastName;
