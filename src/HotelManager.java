@@ -67,7 +67,6 @@ public class HotelManager {
             case "Database Manager" -> true;
             case "Receptionist" -> compare(action, new String[]{"Customer", "Receptionist"});
             case "Housekeeper" -> compare(action, new String[]{"Customer", "Housekeeper"});
-            case "Customer" -> action.equals("Customer");
             default -> false;
         };
     }
@@ -132,6 +131,7 @@ public class HotelManager {
                 hotelView.getActivePanel().reset();
                 hotelView.setActivePanel(hotelView.getPanelByName(command));
             } else {
+                Panel activePanel = hotelView.getActivePanel();
                 switch (name) {
                     case "add":
                         if (command.equals("Bookings")){
@@ -206,11 +206,30 @@ public class HotelManager {
                         }
                         break;
                     case "view rooms":
-                        System.out.println(command);
                         if (command.equals("Rooms")){
                             System.out.println("view available rooms button pressed in rooms panel");
                         }
                         break;
+                    case "confirm":
+                        if (command.equals("My Jobs")){
+                            System.out.println("confirm button pressed in my jobs panel");
+                        } else if (command.equals("Profile")) {
+                            System.out.println("confirm button pressed in profile panel");
+                            ProfilePanel profile = (ProfilePanel)activePanel.getPanelByName("Profile");
+                            profile.pushConfirmButton();
+                        }
+                        break;
+                    case "execute":
+                        if (command.equals("Query")){
+                            System.out.println("execute button pressed in query panel");
+                        }
+                        break;
+                    case "edit":
+                        if (command.equals("Profile")){
+                            System.out.println("edit button pressed in profile panel");
+                            ProfilePanel profile = (ProfilePanel)activePanel.getPanelByName("Profile");
+                            profile.pushEditButton();
+                        }
                 }
             }
         }

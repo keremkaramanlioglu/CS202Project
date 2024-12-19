@@ -57,7 +57,7 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnConfirm"
 					"text": "Confirm"
-					"actionCommand": "ConfirmCS"
+					"actionCommand": "My Jobs"
 					"name": "confirm"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 60
