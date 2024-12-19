@@ -148,13 +148,24 @@ class DatePicker {
 
     public String getPickedDate() {
         initiateDialog();
-        if (day.isEmpty())
-            return day;
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(
-                "yyyy-MM-dd", Locale.ENGLISH);
+
+        // Check if the day is empty or invalid
+        if (day.isEmpty()) {
+            JOptionPane.showMessageDialog(parent, "Please select a valid date.", "Invalid Date", JOptionPane.ERROR_MESSAGE);
+            return ""; // Return an empty string or handle it appropriately
+        }
+
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
         java.util.Calendar cal = java.util.Calendar.getInstance();
-        cal.set(year, month, Integer.parseInt(day));
-        return sdf.format(cal.getTime());
+
+        try {
+            cal.set(year, month, Integer.parseInt(day));
+            String date = sdf.format(cal.getTime());
+            return date;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(parent, "Error selecting the date. Please try again.", "Date Error", JOptionPane.ERROR_MESSAGE);
+            return ""; // Return an empty string if the date is invalid
+        }
     }
 }
 

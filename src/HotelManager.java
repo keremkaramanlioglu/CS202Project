@@ -187,7 +187,8 @@ public class HotelManager {
                                 activePanel.getCenterPanel().setTableRows(hotelDao.filterBookings(activePanel.getCenterPanel().getSelectedFilterColumn(),
                                         activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue()));
                             } else if (command.equals("Employees")) { //from manager
-                                System.out.println("filter button pressed in employees panel by manager");
+                                activePanel.getCenterPanel().setTableRows(hotelDao.filterEmployees(activePanel.getCenterPanel().getSelectedFilterColumn(),
+                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), currEmployee.getEmp_hotel_id()));
                             } else if (command.equals("Housekeeping")) { //from manager
                                 System.out.println("filter button pressed in housekeeping panel by manager");
                             } else if (command.equals("Rooms")) { //from manager
