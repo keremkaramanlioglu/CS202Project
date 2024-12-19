@@ -4,24 +4,119 @@
 
 package panels.receptionistPanels;
 
+import panels.Panel;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Timestamp;
+import java.util.Objects;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
 
 /**
  * @author kutay
  */
-public class HouseKeepingPanel extends JPanel {
+public class HouseKeepingPanel extends Panel {
+
+    private DefaultTableModel model;
+
     public HouseKeepingPanel() {
         initComponents();
+        initTable();
+        super.cbFilterColumn = cbSelectColumn;
+        super.cbFilterOption = cbFilterOption;
+        super.tfFilterUpperValue = tfFilterUpperValue;
+        super.tfFilterValue = tfFilterValue;
+        super.table = tblData;
+        super.model = model;
+    }
+
+    private void initTable() {
+        model = new DefaultTableModel(
+                new Object[][] {
+                },
+                new String[] {
+                        "housekeeper_ssn", "room_num", "cleaning_date", "service_status"
+                }
+        ) {
+            final Class<?>[] columnTypes = new Class<?>[] {
+                    Integer.class, String.class, String.class, String.class
+            };
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return columnTypes[columnIndex];
+            }
+        };
+        table.setModel(model);
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                Object[] fields = new Object[table.getColumnCount()];
+                int selectedRow = table.getSelectedRow();
+
+                if (selectedRow != -1) {
+                    for (int i = 0; i < fields.length; i++) {
+                        fields[i] = table.getValueAt(selectedRow, i + 1);
+                    }
+                }
+                setFields(fields);
+            }
+        });
+    }
+
+    @Override
+    public void addButtonListener(ActionListener al) {
+        btnUpdate.addActionListener(al);
+        btnDelete.addActionListener(al);
+        btnAdd.addActionListener(al);
+        btnApply.addActionListener(al);
+    }
+    @Override
+    public boolean tfCheck() {
+        return !tfRoomNumber.getText().isEmpty() && !tfSsn.getText().isEmpty() && !tfTime.getText().equals("Choose a Date!");
+    }
+    @Override
+    public void addMouseListener(MouseListener ml) {
+        tfTime.addMouseListener(ml);
+    }
+    @Override
+    public void reset() {
+
+    }
+    @Override
+    public void setFields(Object[] rowValues) {
+        tfSsn.setText(rowValues[0].toString());
+        tfRoomNumber.setText(rowValues[1].toString());
+        tfTime.setText(rowValues[2].toString());
+        cbSelectColumn.setSelectedItem(rowValues[3]);
+    }
+    @Override
+    public Object[] getEntity() {
+        if (!tfCheck()) {
+            JOptionPane.showMessageDialog(this, "Please enter all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+
+        return new Object[] {
+                tfSsn.getText(),
+                tfRoomNumber.getText(),
+                Timestamp.valueOf(tfTime.getText()),
+                String.valueOf(cbSelectColumn.getSelectedItem())
+        };
+    }
+    @Override
+    public Panel getPanelByName(String panelName) {
+        return null;
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlHouseKeeping = new JScrollPane();
-        tblHouseKeeping = new JTable();
+        tblData = new JTable();
         pnlControl = new JPanel();
         pnlSelection = new JPanel();
         btnAdd = new JButton();
@@ -33,9 +128,9 @@ public class HouseKeepingPanel extends JPanel {
         lblSsn = new JLabel();
         lblRoomNumber = new JLabel();
         lblTime = new JLabel();
-        tfStatus = new JTextField();
         lblStatus = new JLabel();
         textArea1 = new JTextArea();
+        cbStatus = new JComboBox<>();
         pnlFilter = new JPanel();
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
@@ -46,38 +141,21 @@ public class HouseKeepingPanel extends JPanel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
-        . swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing
-        . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
-        Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
-        ) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
-        public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName (
-        ) )) throw new RuntimeException( ); }} );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax
+        . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing
+        .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .
+        Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .red
+        ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override
+        public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName (
+        ) ) )throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== pnlHouseKeeping ========
         {
             pnlHouseKeeping.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-            //---- tblHouseKeeping ----
-            tblHouseKeeping.setModel(new DefaultTableModel(
-                new Object[][] {
-                    {null, null, null, null},
-                    {null, null, null, null},
-                },
-                new String[] {
-                    "housekeeper_ssn", "room_num", "cleaning_date", "service_status"
-                }
-            ) {
-                Class<?>[] columnTypes = new Class<?>[] {
-                    Integer.class, String.class, String.class, String.class
-                };
-                @Override
-                public Class<?> getColumnClass(int columnIndex) {
-                    return columnTypes[columnIndex];
-                }
-            });
-            pnlHouseKeeping.setViewportView(tblHouseKeeping);
+            //---- tblData ----
+            pnlHouseKeeping.setViewportView(tblData);
         }
         add(pnlHouseKeeping, BorderLayout.CENTER);
 
@@ -116,6 +194,10 @@ public class HouseKeepingPanel extends JPanel {
                 btnUpdate.setBounds(225, 125, 100, 60);
                 pnlSelection.add(tfSsn);
                 tfSsn.setBounds(15, 65, 100, 34);
+
+                //---- tfTime ----
+                tfTime.setEditable(false);
+                tfTime.setText("Choose a Date!");
                 pnlSelection.add(tfTime);
                 tfTime.setBounds(225, 65, 100, 34);
                 pnlSelection.add(tfRoomNumber);
@@ -134,15 +216,13 @@ public class HouseKeepingPanel extends JPanel {
                 lblRoomNumber.setBounds(120, 45, 100, 25);
 
                 //---- lblTime ----
-                lblTime.setText("Time:");
+                lblTime.setText("Cleaning Date:");
                 lblTime.setFont(new Font("Inter", Font.PLAIN, 12));
                 pnlSelection.add(lblTime);
                 lblTime.setBounds(225, 45, 100, 25);
-                pnlSelection.add(tfStatus);
-                tfStatus.setBounds(330, 65, 100, 34);
 
                 //---- lblStatus ----
-                lblStatus.setText("Status");
+                lblStatus.setText("Status:");
                 lblStatus.setFont(new Font("Inter", Font.PLAIN, 12));
                 pnlSelection.add(lblStatus);
                 lblStatus.setBounds(330, 45, 100, 25);
@@ -153,6 +233,14 @@ public class HouseKeepingPanel extends JPanel {
                 textArea1.setWrapStyleWord(true);
                 pnlSelection.add(textArea1);
                 textArea1.setBounds(330, 125, 100, 60);
+
+                //---- cbStatus ----
+                cbStatus.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "Pending",
+                    "Completed"
+                }));
+                pnlSelection.add(cbStatus);
+                cbStatus.setBounds(330, 65, 95, 30);
 
                 {
                     // compute preferred size
@@ -253,7 +341,7 @@ public class HouseKeepingPanel extends JPanel {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane pnlHouseKeeping;
-    private JTable tblHouseKeeping;
+    private JTable tblData;
     private JPanel pnlControl;
     private JPanel pnlSelection;
     private JButton btnAdd;
@@ -265,9 +353,9 @@ public class HouseKeepingPanel extends JPanel {
     private JLabel lblSsn;
     private JLabel lblRoomNumber;
     private JLabel lblTime;
-    private JTextField tfStatus;
     private JLabel lblStatus;
     private JTextArea textArea1;
+    private JComboBox<String> cbStatus;
     private JPanel pnlFilter;
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;

@@ -27,6 +27,13 @@ public class ProfilePanel extends Panel {
     }
 
     @Override
+    public boolean tfCheck() {
+        return !tfBirthDate.getText().equals("Choose a Date!") && !tfGender.getText().isEmpty()
+                && !tfEmail.getText().isEmpty() && !tfSsn.getText().isEmpty() && !tfFirstName.getText().isEmpty()
+                && !tfLastName.getText().isEmpty() && !tfPhoneNumber.getText().isEmpty() && !tfZipCode.getText().isEmpty();
+    }
+
+    @Override
     public void addMouseListener(MouseListener ml) {
         tfBirthDate.addMouseListener(ml);
     }
@@ -34,6 +41,11 @@ public class ProfilePanel extends Panel {
     @Override
     public void reset() {
         // TODO reset the components
+    }
+
+    @Override
+    public void setFields(Object[] rowValues) {
+
     }
 
     @Override
@@ -76,7 +88,7 @@ public class ProfilePanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         lblfirstName = new JLabel();
         tfFirstName = new JTextField();
         lblLastName = new JLabel();
@@ -97,14 +109,13 @@ public class ProfilePanel extends Panel {
         btnConfirm = new JButton();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(
-        new javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e"
-        ,javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
-        ,new java.awt.Font("Dialo\u0067",java.awt.Font.BOLD,12)
-        ,java.awt.Color.red), getBorder())); addPropertyChangeListener(
-        new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-        ){if("borde\u0072".equals(e.getPropertyName()))throw new RuntimeException()
-        ;}});
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
+        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax
+        . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
+        .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
+        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .
+        equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(null);
 
         //---- lblfirstName ----
@@ -206,7 +217,7 @@ public class ProfilePanel extends Panel {
         btnConfirm.setEnabled(false);
         btnConfirm.setName("confirm");
         add(btnConfirm);
-        btnConfirm.setBounds(380, 540, 200, 40);
+        btnConfirm.setBounds(275, 540, 200, 40);
 
         {
             // compute preferred size
@@ -228,7 +239,7 @@ public class ProfilePanel extends Panel {
 
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JLabel lblfirstName;
     private JTextField tfFirstName;
     private JLabel lblLastName;

@@ -15,14 +15,42 @@ import javax.swing.*;
  * @author kerem
  */
 public class EmpInfos {
-    public EmpInfos() {
+    Employee emp;
+    JFrame parent;
+    public EmpInfos(JFrame parent) {
+        this.parent = parent;
     }
 
-    public Employee getEmp() {
+    public void getEmp() {
+        initiateEmployee();
+        //return emp;
+    }
+
+    public boolean checkFields() {
+        return !(tfSsn.getText().isEmpty()) && !(tfFirstName.getText().isEmpty()) && !(tfLastName.getText().isEmpty()) && !(tfEmail.getText().isEmpty())
+                && !(tfSalary.getText().isEmpty()) && !(tfGender.getText().isEmpty()) && !(tfType.getText().isEmpty()) && !(tfBD.getText().isEmpty())
+                && !(tfPhoneNum.getText().isEmpty()) && !(tfStartDate.getText().isEmpty());
+    }
+
+//    public checkInitiateEmp() {
+//        emp.setEmp_bd(tfBD.getText());
+//        emp.setEmp_type(tfType.getText());
+//        emp.setEmp_ssn(tfSsn.getText());
+//        emp.setYears(tf);
+//    }
+
+    public void initiateEmployee() {
         initComponents();
-        return new Employee(new Object[]{tfSsn.getText(), tfFirstName.getText(), tfLastName.getText(),
-        tfType.getText(), Double.parseDouble(tfSalary.getText()), tfEmail.getText(), tfGender.getText(), tfStreet.getText(),
-        tfNo.getText(), tfApartment.getText(), tfZipcode.getText()});
+        frame.setVisible(true);
+        btnOK.addActionListener(ae -> {
+            if (checkFields()) {
+
+                frame.dispose();
+                frame.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(parent, "Please fill out all the fields!");
+            }
+        });
     }
 
     public void setEmp(Employee emp) {
@@ -261,7 +289,7 @@ public class EmpInfos {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
-    private JFrame frame;
+    public JFrame frame;
     private JPanel panel1;
     private JLabel label1;
     private JLabel label2;

@@ -3,6 +3,8 @@ package panels;
 import entities.Booking;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -10,15 +12,19 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public abstract class Panel extends JPanel {
-    public Panel prevCenterPanel;
-    public JButton prevSelectedButton;
+    public Panel prevCenterPanel = null;
+    public JButton prevSelectedButton = null;
     public JTable table = null;
+    public DefaultTableModel model = null;
     public JComboBox<String> cbFilterColumn;
     public JComboBox<String> cbFilterOption;
     public JTextField tfFilterValue;
     public JTextField tfFilterUpperValue;
 
     public abstract void addButtonListener(ActionListener al);
+
+    public abstract boolean tfCheck();
+
 
     public void setSelectedButton(JButton button) {
         if (prevSelectedButton == button) return;
@@ -27,6 +33,16 @@ public abstract class Panel extends JPanel {
         }
         prevSelectedButton = button;
         button.setBackground(MainPanel.centerPanelColor);
+    }
+
+    public void setTableRows(ArrayList<Object[]> rowValues) {
+        for (Object[] row : rowValues) {
+            model.addRow(row);
+        }
+        table.revalidate();
+        table.repaint();
+        this.revalidate();
+        this.repaint();
     }
 
     public abstract void addMouseListener(MouseListener ml);
@@ -61,6 +77,8 @@ public abstract class Panel extends JPanel {
         } else JOptionPane.showMessageDialog(null, "No row selected!");
         return rowValues;
     }
+
+    public abstract void setFields(Object[] rowValues);
 
     public abstract Object[] getEntity();
 

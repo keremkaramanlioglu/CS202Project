@@ -11,14 +11,57 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
 
 /**
  * @author kutay
  */
 public class RoomsPanel extends Panel {
+
+    private DefaultTableModel model;
+
     public RoomsPanel() {
         initComponents();
+        initTable();
+        super.table = tblrooms;
+        super.model = model;
+    }
+
+    public void initTable() {
+        model = new DefaultTableModel(
+                new Object[][] {
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                },
+                new String[] {
+                        "room_num", "room_size", "room_capacity", "room_price", "room_type", "cleaning_status"
+                }
+        ) {
+            final Class<?>[] columnTypes = new Class<?>[] {
+                    String.class, Integer.class, String.class, Double.class, String.class, String.class
+            };
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return columnTypes[columnIndex];
+            }
+        };
+        table.setModel(model);
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                Object[] fields = new Object[table.getColumnCount()];
+                int selectedRow = table.getSelectedRow();
+
+                if (selectedRow != -1) {
+                    for (int i = 0; i < fields.length; i++) {
+                        fields[i] = table.getValueAt(selectedRow, i + 1);
+                    }
+                }
+                setFields(fields);
+            }
+        });
     }
 
     private void initComponents() {
@@ -27,35 +70,21 @@ public class RoomsPanel extends Panel {
         pnlRooms = new JScrollPane();
         tblrooms = new JTable();
         pnlControl = new JPanel();
-        pnlSelection = new JPanel();
-        btnAdd = new JButton();
-        btnDelete = new JButton();
-        btnUpdate = new JButton();
-        tfRoomNumber = new JTextField();
-        tfCleaningStatus = new JTextField();
-        tfRoomStatus = new JTextField();
-        lblRoomNumber = new JLabel();
-        lblRoomstatus = new JLabel();
-        lblCleaningStatus = new JLabel();
-        textArea1 = new JTextArea();
         pnlFilter = new JPanel();
-        cbSelectColumn = new JComboBox<>();
-        cbFilterOption = new JComboBox<>();
-        lblFilterValue = new JLabel();
         btnApply = new JButton();
-        tfFilterValue = new JTextField();
-        tfFilterUpperValue = new JTextField();
+        tfStartDate = new JTextField();
+        tfEndDate = new JTextField();
         label8 = new JLabel();
+        label1 = new JLabel();
+        label2 = new JLabel();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(
-        new javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion"
-        ,javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
-        ,new java.awt.Font("D\u0069alog",java.awt.Font.BOLD,12)
-        ,java.awt.Color.red), getBorder())); addPropertyChangeListener(
-        new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-        ){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException()
-        ;}});
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
+        border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER
+        , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font
+        .BOLD ,12 ), java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
+        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r"
+        .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== pnlRooms ========
@@ -63,15 +92,6 @@ public class RoomsPanel extends Panel {
             pnlRooms.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
             //---- tblrooms ----
-            tblrooms.setModel(new DefaultTableModel(
-                new Object[][] {
-                    {null, null, null},
-                    {null, null, null},
-                },
-                new String[] {
-                    "Room Number", "Room Status", "Cleaning Status"
-                }
-            ));
             pnlRooms.setViewportView(tblrooms);
         }
         add(pnlRooms, BorderLayout.CENTER);
@@ -81,139 +101,45 @@ public class RoomsPanel extends Panel {
             pnlControl.setPreferredSize(new Dimension(0, 250));
             pnlControl.setLayout(new BoxLayout(pnlControl, BoxLayout.X_AXIS));
 
-            //======== pnlSelection ========
-            {
-                pnlSelection.setPreferredSize(new Dimension(450, 0));
-                pnlSelection.setLayout(null);
-
-                //---- btnAdd ----
-                btnAdd.setText("Add");
-                btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnAdd.setActionCommand("Rooms");
-                btnAdd.setName("add");
-                pnlSelection.add(btnAdd);
-                btnAdd.setBounds(25, 100, 100, 60);
-
-                //---- btnDelete ----
-                btnDelete.setText("Delete");
-                btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnDelete.setActionCommand("Rooms");
-                btnDelete.setName("delete");
-                pnlSelection.add(btnDelete);
-                btnDelete.setBounds(130, 100, 100, 60);
-
-                //---- btnUpdate ----
-                btnUpdate.setText("Update");
-                btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnUpdate.setActionCommand("Rooms");
-                btnUpdate.setName("update");
-                pnlSelection.add(btnUpdate);
-                btnUpdate.setBounds(235, 100, 100, 60);
-                pnlSelection.add(tfRoomNumber);
-                tfRoomNumber.setBounds(25, 40, 100, 34);
-                pnlSelection.add(tfCleaningStatus);
-                tfCleaningStatus.setBounds(235, 40, 100, 34);
-                pnlSelection.add(tfRoomStatus);
-                tfRoomStatus.setBounds(130, 40, 100, 34);
-
-                //---- lblRoomNumber ----
-                lblRoomNumber.setText("Room Number:");
-                lblRoomNumber.setFont(new Font("Inter", Font.PLAIN, 12));
-                pnlSelection.add(lblRoomNumber);
-                lblRoomNumber.setBounds(25, 20, 100, 25);
-
-                //---- lblRoomstatus ----
-                lblRoomstatus.setText("Room Status:");
-                lblRoomstatus.setFont(new Font("Inter", Font.PLAIN, 12));
-                pnlSelection.add(lblRoomstatus);
-                lblRoomstatus.setBounds(130, 20, 100, 25);
-
-                //---- lblCleaningStatus ----
-                lblCleaningStatus.setText("Cleaning Status:");
-                lblCleaningStatus.setFont(new Font("Inter", Font.PLAIN, 12));
-                pnlSelection.add(lblCleaningStatus);
-                lblCleaningStatus.setBounds(235, 20, 100, 25);
-
-                //---- textArea1 ----
-                textArea1.setText("Please choose a row to update!");
-                textArea1.setLineWrap(true);
-                textArea1.setWrapStyleWord(true);
-                pnlSelection.add(textArea1);
-                textArea1.setBounds(335, 100, textArea1.getPreferredSize().width, 60);
-
-                {
-                    // compute preferred size
-                    Dimension preferredSize = new Dimension();
-                    for(int i = 0; i < pnlSelection.getComponentCount(); i++) {
-                        Rectangle bounds = pnlSelection.getComponent(i).getBounds();
-                        preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-                        preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
-                    }
-                    Insets insets = pnlSelection.getInsets();
-                    preferredSize.width += insets.right;
-                    preferredSize.height += insets.bottom;
-                    pnlSelection.setMinimumSize(preferredSize);
-                    pnlSelection.setPreferredSize(preferredSize);
-                }
-            }
-            pnlControl.add(pnlSelection);
-
             //======== pnlFilter ========
             {
                 pnlFilter.setPreferredSize(new Dimension(450, 0));
                 pnlFilter.setLayout(null);
 
-                //---- cbSelectColumn ----
-                cbSelectColumn.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "room_num",
-                    "room_status",
-                    "cleaning_status"
-                }));
-                pnlFilter.add(cbSelectColumn);
-                cbSelectColumn.setBounds(35, 25, 120, 45);
-
-                //---- cbFilterOption ----
-                cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None",
-                    "=",
-                    "!=",
-                    "<",
-                    ">",
-                    "<=",
-                    ">=",
-                    "between",
-                    "contains"
-                }));
-                pnlFilter.add(cbFilterOption);
-                cbFilterOption.setBounds(155, 25, 120, 45);
-
-                //---- lblFilterValue ----
-                lblFilterValue.setText("Filter Value:");
-                pnlFilter.add(lblFilterValue);
-                lblFilterValue.setBounds(35, 85, 245, 30);
-
                 //---- btnApply ----
-                btnApply.setText("Apply");
+                btnApply.setText("View Available Rooms");
                 btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnApply.setActionCommand("Rooms");
                 btnApply.setName("apply");
                 pnlFilter.add(btnApply);
-                btnApply.setBounds(30, 155, 245, 60);
+                btnApply.setBounds(300, 120, 245, 60);
 
-                //---- tfFilterValue ----
-                tfFilterValue.setToolTipText("Filter Input");
-                pnlFilter.add(tfFilterValue);
-                tfFilterValue.setBounds(30, 115, 115, 40);
+                //---- tfStartDate ----
+                tfStartDate.setToolTipText("Filter Input");
+                tfStartDate.setText("Choose a Date!");
+                pnlFilter.add(tfStartDate);
+                tfStartDate.setBounds(300, 45, 115, 40);
 
-                //---- tfFilterUpperValue ----
-                tfFilterUpperValue.setToolTipText("Filter Input");
-                pnlFilter.add(tfFilterUpperValue);
-                tfFilterUpperValue.setBounds(160, 115, 115, 40);
+                //---- tfEndDate ----
+                tfEndDate.setToolTipText("Filter Input");
+                tfEndDate.setText("Choose a Date!");
+                pnlFilter.add(tfEndDate);
+                tfEndDate.setBounds(425, 45, 115, 40);
 
                 //---- label8 ----
                 label8.setText("-");
                 pnlFilter.add(label8);
-                label8.setBounds(150, 130, 15, label8.getPreferredSize().height);
+                label8.setBounds(415, 55, 15, label8.getPreferredSize().height);
+
+                //---- label1 ----
+                label1.setText("Start Date");
+                pnlFilter.add(label1);
+                label1.setBounds(295, 20, 120, 25);
+
+                //---- label2 ----
+                label2.setText("End Date");
+                pnlFilter.add(label2);
+                label2.setBounds(420, 20, 120, 25);
 
                 {
                     // compute preferred size
@@ -239,11 +165,24 @@ public class RoomsPanel extends Panel {
     @Override
     public void addButtonListener(ActionListener al) {
 
-    }@Override
-    public void addMouseListener(MouseListener ml) {
+    }
 
+    @Override
+    public boolean tfCheck() {
+        return !tfStartDate.getText().equals("Choose a Date!") && !tfEndDate.getText().equals("Choose a Date!");
+    }
+
+    @Override
+    public void addMouseListener(MouseListener ml) {
+        tfStartDate.addMouseListener(ml);
+        tfEndDate.addMouseListener(ml);
     }@Override
     public void reset() {
+
+    }
+
+    @Override
+    public void setFields(Object[] rowValues) {
 
     }
 
@@ -262,24 +201,12 @@ public class RoomsPanel extends Panel {
     private JScrollPane pnlRooms;
     private JTable tblrooms;
     private JPanel pnlControl;
-    private JPanel pnlSelection;
-    private JButton btnAdd;
-    private JButton btnDelete;
-    private JButton btnUpdate;
-    private JTextField tfRoomNumber;
-    private JTextField tfCleaningStatus;
-    private JTextField tfRoomStatus;
-    private JLabel lblRoomNumber;
-    private JLabel lblRoomstatus;
-    private JLabel lblCleaningStatus;
-    private JTextArea textArea1;
     private JPanel pnlFilter;
-    private JComboBox<String> cbSelectColumn;
-    private JComboBox<String> cbFilterOption;
-    private JLabel lblFilterValue;
     private JButton btnApply;
-    private JTextField tfFilterValue;
-    private JTextField tfFilterUpperValue;
+    private JTextField tfStartDate;
+    private JTextField tfEndDate;
     private JLabel label8;
+    private JLabel label1;
+    private JLabel label2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

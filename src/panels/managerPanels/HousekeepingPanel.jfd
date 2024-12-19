@@ -172,7 +172,7 @@ new FormModel {
 						"width": 91
 					} )
 					add( new FormComponent( "javax.swing.JCheckBox" ) {
-						name: "checkBox1"
+						name: "cbCompleted"
 						"text": "Completed"
 						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
@@ -208,7 +208,6 @@ new FormModel {
 							addElement( "service_status" )
 						}
 						"cursor": #Cursor0
-						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "comboBox1", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 25
 						"y": 23

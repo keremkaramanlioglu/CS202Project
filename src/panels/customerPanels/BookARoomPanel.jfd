@@ -16,8 +16,12 @@ new FormModel {
 							add( null )
 							add( null )
 							add( null )
+							add( null )
+							add( null )
 						} )
 						add( new java.util.Vector {
+							add( null )
+							add( null )
 							add( null )
 							add( null )
 							add( null )
@@ -27,8 +31,19 @@ new FormModel {
 						add( "Hotel Name" )
 						add( "Zip Code" )
 						add( "Room Type" )
+						add( "Room Size" )
+						add( "Room Price" )
 						add( "Room Capacity" )
 					}, new java.util.Vector {
+						add( class java.lang.String )
+						add( class java.lang.String )
+						add( class java.lang.String )
+						add( class java.lang.Integer )
+						add( class java.lang.Double )
+						add( class java.lang.String )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
 						add( null )
 						add( null )
 						add( null )
@@ -36,9 +51,6 @@ new FormModel {
 					}, new java.util.Vector {
 						add( null )
 						add( null )
-						add( null )
-						add( null )
-					}, new java.util.Vector {
 						add( null )
 						add( null )
 						add( null )
@@ -83,7 +95,6 @@ new FormModel {
 						"text": "Show Rooms"
 						"cursor": #Cursor0
 						"actionCommand": "Book a room"
-						"name": "show rooms"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 40
 						"y": 160

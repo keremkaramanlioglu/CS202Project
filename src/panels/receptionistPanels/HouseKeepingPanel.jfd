@@ -9,7 +9,7 @@ new FormModel {
 				name: "pnlHouseKeeping"
 				"verticalScrollBarPolicy": 22
 				add( new FormComponent( "javax.swing.JTable" ) {
-					name: "tblHouseKeeping"
+					name: "tblData"
 					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
 						add( new java.util.Vector {
 							add( null )
@@ -100,6 +100,8 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "tfTime"
+						"editable": false
+						"text": "Choose a Date!"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 34
@@ -136,7 +138,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "lblTime"
-						"text": "Time:"
+						"text": "Cleaning Date:"
 						"font": &Font0 new java.awt.Font( "Inter", 0, 12 )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
@@ -144,17 +146,9 @@ new FormModel {
 						"x": 225
 						"y": 45
 					} )
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "tfStatus"
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"width": 100
-						"height": 34
-						"x": 330
-						"y": 65
-					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "lblStatus"
-						"text": "Status"
+						"text": "Status:"
 						"font": #Font0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
@@ -172,6 +166,19 @@ new FormModel {
 						"height": 60
 						"x": 330
 						"y": 125
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "cbStatus"
+						"model": new javax.swing.DefaultComboBoxModel {
+							selectedItem: "Pending"
+							addElement( "Pending" )
+							addElement( "Completed" )
+						}
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 330
+						"y": 65
+						"width": 95
+						"height": 30
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {

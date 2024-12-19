@@ -33,11 +33,20 @@ public class FinancePanel extends Panel {
         tfStartDate.addMouseListener(ml);
     }
 
+    public boolean tfCheck() {
+        return !tfStartDate.getText().isEmpty() && !tfEndDate.getText().isEmpty();
+    }
+
     @Override
     public void reset() {
         tfStartDate.setText(tfText);
         tfEndDate.setText(tfText);
         tfRevenue.setText("");
+    }
+
+    @Override
+    public void setFields(Object[] rowValues) {
+
     }
 
     @Override
@@ -66,24 +75,22 @@ public class FinancePanel extends Panel {
         lblRevenue = new JLabel();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
-        .border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder
-        .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.
-        awt.Font.BOLD,12),java.awt.Color.red), getBorder()))
-        ; addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-        ){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException();}})
-        ;
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
+        0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
+        . BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
+        red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
+        beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(null);
 
         //---- tfStartDate ----
         tfStartDate.setEditable(false);
-        tfStartDate.setText("Please Choose a Date");
+        tfStartDate.setText("Choose a Date!");
         add(tfStartDate);
         tfStartDate.setBounds(300, 100, 200, 40);
 
         //---- tfEndDate ----
         tfEndDate.setEditable(false);
-        tfEndDate.setText("Please Choose a Date");
+        tfEndDate.setText("Choose a Date!");
         add(tfEndDate);
         tfEndDate.setBounds(300, 170, 200, 40);
 

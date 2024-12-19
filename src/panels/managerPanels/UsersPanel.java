@@ -9,13 +9,63 @@ import panels.Panel;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.util.Objects;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
 
 /**
  * @author kerem
  */
 public class UsersPanel extends Panel {
+
+    private DefaultTableModel model;
+
+    public UsersPanel() {
+        initComponents();
+        initTable();
+        super.cbFilterColumn = cbColumnOption;
+        super.cbFilterOption = cbFilterOption;
+        super.tfFilterUpperValue = tfFilterUpperValue;
+        super.tfFilterValue = tfFilterValue;
+        super.table = tblData;
+        super.model = model;
+    }
+
+    private void initTable() {
+        model = new DefaultTableModel(
+                new Object[][] {
+                },
+                new String[] {
+                        "ssn", "firstname", "lastname", "bd", "room_id", "email", "phone_num", "gender", "zip_code"
+                }
+        ) {
+            final Class<?>[] columnTypes = new Class<?>[] {
+                    Integer.class, String.class, String.class, String.class, Integer.class, String.class, String.class, String.class, Integer.class
+            };
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return columnTypes[columnIndex];
+            }
+        };
+        table.setModel(model);
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                Object[] fields = new Object[table.getColumnCount()];
+                int selectedRow = table.getSelectedRow();
+
+                if (selectedRow != -1) {
+                    for (int i = 0; i < fields.length; i++) {
+                        fields[i] = table.getValueAt(selectedRow, i + 1);
+                    }
+                }
+                setFields(fields);
+            }
+        });
+    }
+
     @Override
     public void addButtonListener(ActionListener al) {
         btnAdd.addActionListener(al);
@@ -34,8 +84,45 @@ public class UsersPanel extends Panel {
     }
 
     @Override
+    public void setFields(Object[] rowValues) {
+        tfSsn.setText(String.valueOf(rowValues[0]));
+        tfFirstName.setText(String.valueOf(rowValues[1]));
+        tfLastName.setText(String.valueOf(rowValues[2]));
+        tfBirthDate.setText(String.valueOf(rowValues[3]));
+        tfRoomID.setText(String.valueOf(rowValues[4]));
+        tfEmail.setText(String.valueOf(rowValues[5]));
+        tfPhoneNo.setText(String.valueOf(rowValues[6]));
+        tfGender.setText(String.valueOf(rowValues[7]));
+        tfZipCode.setText(String.valueOf(rowValues[8]));
+    }
+
+    @Override
+    public boolean tfCheck() {
+        return !tfSsn.getText().isEmpty() && !tfRoomID.getText().isEmpty()
+                && !tfBirthDate.getText().isEmpty() && !tfZipCode.getText().isEmpty() && !tfFirstName.getText().isEmpty()
+                && !tfLastName.getText().isEmpty() && !tfEmail.getText().isEmpty() && !tfPhoneNo.getText().isEmpty()
+                && !tfGender.getText().isEmpty();
+    }
+
+    @Override
     public Object[] getEntity() {
-        return new Object[0];
+        if (!tfCheck()) {
+            JOptionPane.showMessageDialog(this, "Please enter all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+
+        return new Object[] {
+                tfSsn.getText(),
+                tfFirstName.getText(),
+                tfLastName.getText(),
+                tfBirthDate.getText(),
+                Integer.parseInt(tfRoomID.getText()),
+                tfEmail.getText(),
+                tfPhoneNo.getText(),
+                tfGender.getText(),
+                tfZipCode.getText()
+        };
     }
 
     @Override
@@ -43,15 +130,12 @@ public class UsersPanel extends Panel {
         return null;
     }
 
-    public UsersPanel() {
-        initComponents();
-    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlData = new JScrollPane();
-        tblUsers = new JTable();
+        tblData = new JTable();
         panel1 = new JPanel();
         pnlSelection = new JPanel();
         tfLastName = new JTextField();
@@ -87,7 +171,13 @@ public class UsersPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(900, 700));
-
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+        . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder
+        . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dialo\u0067" ,java .
+        awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder( )) )
+        ;  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("borde\u0072" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+        ;
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -95,25 +185,8 @@ public class UsersPanel extends Panel {
             pnlData.setPreferredSize(new Dimension(900, 450));
             pnlData.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-            //---- tblUsers ----
-            tblUsers.setModel(new DefaultTableModel(
-                new Object[][] {
-                    {null, null, null, null, null, null, null, "", null},
-                    {null, null, null, null, null, null, null, null, null},
-                },
-                new String[] {
-                    "ssn", "firstname", "lastname", "bd", "room_id", "email", "phone_num", "gender", "zip_code"
-                }
-            ) {
-                Class<?>[] columnTypes = new Class<?>[] {
-                    Integer.class, String.class, String.class, String.class, Integer.class, String.class, String.class, String.class, Integer.class
-                };
-                @Override
-                public Class<?> getColumnClass(int columnIndex) {
-                    return columnTypes[columnIndex];
-                }
-            });
-            pnlData.setViewportView(tblUsers);
+            //---- tblData ----
+            pnlData.setViewportView(tblData);
         }
         add(pnlData, BorderLayout.CENTER);
 
@@ -334,7 +407,7 @@ public class UsersPanel extends Panel {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane pnlData;
-    private JTable tblUsers;
+    private JTable tblData;
     private JPanel panel1;
     private JPanel pnlSelection;
     private JTextField tfLastName;

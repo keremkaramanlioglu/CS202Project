@@ -15,37 +15,25 @@ new FormModel {
 							add( null )
 							add( null )
 							add( null )
-							add( null )
-							add( null )
 						} )
 						add( new java.util.Vector {
-							add( null )
-							add( null )
 							add( null )
 							add( null )
 							add( null )
 						} )
 					}, new java.util.Vector {
 						add( "Room Number" )
-						add( "Receptionist ID" )
 						add( "Cleaning Date" )
 						add( "Service Status" )
-						add( "Schedule ID" )
 					}, new java.util.Vector {
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-					}, new java.util.Vector {
-						add( null )
-						add( null )
 						add( null )
 						add( null )
 						add( null )
 					}, new java.util.Vector {
 						add( null )
 						add( null )
+						add( null )
+					}, new java.util.Vector {
 						add( null )
 						add( null )
 						add( null )
@@ -69,7 +57,7 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnConfirm"
 					"text": "Confirm"
-					"actionCommand": "My Jobs"
+					"actionCommand": "ConfirmCS"
 					"name": "confirm"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 60

@@ -11,6 +11,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.sql.Date;
+import java.util.Objects;
 
 /**
  * @author kerem
@@ -26,6 +28,13 @@ public class AddCustomerPanel extends Panel {
     }
 
     @Override
+    public boolean tfCheck() {
+        return !tfGender.getText().isEmpty() && !tfPhoneNumber.getText().isEmpty() && !tfEmail.getText().isEmpty()
+                && !tfSsn.getText().isEmpty() && !tfFirstName.getText().isEmpty() && !tfLastName.getText().isEmpty()
+                && !tfBirthDate.getText().isEmpty() && !tfZipCode.getText().isEmpty();
+    }
+
+    @Override
     public void addMouseListener(MouseListener ml) {
         tfBirthDate.addMouseListener(ml);
     }
@@ -36,8 +45,28 @@ public class AddCustomerPanel extends Panel {
     }
 
     @Override
+    public void setFields(Object[] rowValues) {
+
+    }
+
+    @Override
     public Object[] getEntity() {
-        return new Object[0];
+        if (!tfCheck()) {
+            JOptionPane.showMessageDialog(this, "Please enter all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+
+        return new Object[] {
+                tfSsn.getText(),
+                tfFirstName.getText(),
+                tfLastName.getText(),
+                Date.valueOf(tfBirthDate.getText()),
+                tfEmail.getText(),
+                tfPhoneNumber.getText(),
+                tfGender.getText(),
+                tfZipCode.getText()
+        };
     }
 
     @Override

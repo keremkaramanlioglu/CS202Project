@@ -9,20 +9,61 @@ import panels.Panel;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.util.Objects;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
 
 /**
  * @author kerem
  */
 public class MyJobsPanel extends Panel {
+
+    private DefaultTableModel tableModel;
+    
+    // button action command is ConfirmCS
+
     public MyJobsPanel() {
         initComponents();
+        initTable();
+        super.table = tblJobs;
+        super.model = tableModel;
+    }
+
+    private void initTable() {
+        tableModel = new DefaultTableModel(
+                new Object[][] {
+                },
+                new String[] {
+                        "Room Number", "Cleaning Date", "Service Status"
+                }
+        );
+        table.setModel(tableModel);
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                Object[] fields = new Object[table.getColumnCount()];
+                int selectedRow = table.getSelectedRow();
+
+                if (selectedRow != -1) {
+                    for (int i = 0; i < fields.length; i++) {
+                        fields[i] = table.getValueAt(selectedRow, i + 1);
+                    }
+                }
+                setFields(fields);
+            }
+        });
     }
 
     @Override
     public void addButtonListener(ActionListener al) {
+        btnConfirm.addActionListener(al);
+    }
 
+    @Override
+    public boolean tfCheck() {
+        return false;
     }
 
     @Override
@@ -32,6 +73,11 @@ public class MyJobsPanel extends Panel {
 
     @Override
     public void reset() {
+
+    }
+
+    @Override
+    public void setFields(Object[] rowValues) {
 
     }
 
@@ -47,7 +93,7 @@ public class MyJobsPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlJobs = new JScrollPane();
         tblJobs = new JTable();
         pnlControl = new JPanel();
@@ -55,13 +101,12 @@ public class MyJobsPanel extends Panel {
         btnConfirm = new JButton();
 
         //======== this ========
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax
-        . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing
-        .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .
-        Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .red
-        ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override
-        public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e. getPropertyName (
-        ) ) )throw new RuntimeException( ) ;} } );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder
+        (0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border.TitledBorder.CENTER,javax.swing.border
+        .TitledBorder.BOTTOM,new java.awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),java.awt
+        .Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void
+        propertyChange(java.beans.PropertyChangeEvent e){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException()
+        ;}});
         setLayout(new BorderLayout());
 
         //======== pnlJobs ========
@@ -71,11 +116,11 @@ public class MyJobsPanel extends Panel {
             //---- tblJobs ----
             tblJobs.setModel(new DefaultTableModel(
                 new Object[][] {
-                    {null, null, null, null, null},
-                    {null, null, null, null, null},
+                    {null, null, null},
+                    {null, null, null},
                 },
                 new String[] {
-                    "Room Number", "Receptionist ID", "Cleaning Date", "Service Status", "Schedule ID"
+                    "Room Number", "Cleaning Date", "Service Status"
                 }
             ));
             pnlJobs.setViewportView(tblJobs);
@@ -94,7 +139,7 @@ public class MyJobsPanel extends Panel {
 
             //---- btnConfirm ----
             btnConfirm.setText("Confirm");
-            btnConfirm.setActionCommand("My Jobs");
+            btnConfirm.setActionCommand("ConfirmCS");
             btnConfirm.setName("confirm");
             pnlControl.add(btnConfirm);
             btnConfirm.setBounds(60, 60, 155, 40);
@@ -119,7 +164,7 @@ public class MyJobsPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane pnlJobs;
     private JTable tblJobs;
     private JPanel pnlControl;

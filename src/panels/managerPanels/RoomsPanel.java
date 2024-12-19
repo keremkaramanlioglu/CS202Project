@@ -9,7 +9,11 @@ import panels.Panel;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.util.Date;
+import java.util.Objects;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
 
 /**
@@ -17,8 +21,51 @@ import javax.swing.table.*;
  */
 public class RoomsPanel extends Panel {
 
+    private DefaultTableModel model;
+
     public RoomsPanel() {
+        super();
         initComponents();
+        initTable();
+        super.cbFilterColumn = cbSelectColumn;
+        super.cbFilterOption = cbFilterOption;
+        super.tfFilterUpperValue = tfFilterUpperValue;
+        super.tfFilterValue = tfFilterValue;
+        super.table = table1;
+        super.model = model;
+    }
+
+    private void initTable() {
+        model = new DefaultTableModel(
+                new Object[][] {
+                },
+                new String[] {
+                        "room_id", "hotel_id", "room_num", "room_type", "room_size", "room_price", "capacity"
+                }
+        ) {
+            final Class<?>[] columnTypes = new Class<?>[] {
+                    Integer.class, Integer.class, Integer.class, String.class, Float.class, Float.class, String.class
+            };
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return columnTypes[columnIndex];
+            }
+        };
+        table.setModel(model);
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                Object[] fields = new Object[table.getColumnCount()];
+                int selectedRow = table.getSelectedRow();
+
+                if (selectedRow != -1) {
+                    for (int i = 0; i < fields.length; i++) {
+                        fields[i] = table.getValueAt(selectedRow, i + 1);
+                    }
+                }
+                setFields(fields);
+            }
+        });
     }
 
     @Override
@@ -46,8 +93,36 @@ public class RoomsPanel extends Panel {
     } // comment
 
     @Override
+    public void setFields(Object[] rowValues) {
+        tfHotelID.setText(String.valueOf(rowValues[0]));
+        tfRoomNum.setText(String.valueOf(rowValues[1]));
+        tfRoomType.setText(String.valueOf(rowValues[2]));
+        tfRoomSize.setText(String.valueOf(rowValues[3]));
+        tfRoomPrice.setText(String.valueOf(rowValues[4]));
+        tfCapacity.setText(String.valueOf(rowValues[5]));
+    }
+
+    @Override
     public Object[] getEntity() {
-        return new Object[0];
+        if (!tfCheck()) {
+            JOptionPane.showMessageDialog(this, "Please enter all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+
+        return new Object[] {
+                Integer.parseInt(tfHotelID.getText()),
+                tfRoomNum.getText(),
+                tfRoomType.getText(),
+                Integer.parseInt(tfRoomSize.getText()),
+                Double.parseDouble(tfRoomPrice.getText()),
+                tfCapacity.getText()
+        };
+    }
+
+    public boolean tfCheck() {
+        return !tfHotelID.getText().isEmpty() && !tfRoomNum.getText().isEmpty()
+                && !tfRoomPrice.getText().isEmpty() && !tfRoomSize.getText().isEmpty() && !tfCapacity.getText().isEmpty();
     }
 
     @Override
@@ -65,17 +140,19 @@ public class RoomsPanel extends Panel {
         btnAdd = new JButton();
         btnDelete = new JButton();
         btnUpdate = new JButton();
+        tfRoomNum = new JTextField();
         tfRoomType = new JTextField();
         tfRoomSize = new JTextField();
-        tfRoomPrice = new JTextField();
         tfCapacity = new JTextField();
-        tfRoomNum = new JTextField();
+        tfHotelID = new JTextField();
         label1 = new JLabel();
         label2 = new JLabel();
         label3 = new JLabel();
         label4 = new JLabel();
         label5 = new JLabel();
         textArea1 = new JTextArea();
+        tfRoomPrice = new JTextField();
+        label7 = new JLabel();
         filterPanel = new JPanel();
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
@@ -86,7 +163,12 @@ public class RoomsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
+        border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER
+        , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font
+        .BOLD ,12 ), java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
+        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order"
+        .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -94,23 +176,6 @@ public class RoomsPanel extends Panel {
             scrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
             //---- table1 ----
-            table1.setModel(new DefaultTableModel(
-                new Object[][] {
-                    {null, null, null, null, null, null, null},
-                    {null, null, null, null, null, null, null},
-                },
-                new String[] {
-                    "room_id", "hotel_id", "room_num", "room_type", "room_size", "room_price", "capacity"
-                }
-            ) {
-                Class<?>[] columnTypes = new Class<?>[] {
-                    Integer.class, Integer.class, Integer.class, String.class, Float.class, Float.class, String.class
-                };
-                @Override
-                public Class<?> getColumnClass(int columnIndex) {
-                    return columnTypes[columnIndex];
-                }
-            });
             table1.setPreferredSize(new Dimension(525, 400));
             scrollPane1.setViewportView(table1);
         }
@@ -150,30 +215,30 @@ public class RoomsPanel extends Panel {
                 selectionPanel.add(btnUpdate);
                 btnUpdate.setBounds(300, 150, 130, 60);
 
+                //---- tfRoomNum ----
+                tfRoomNum.setToolTipText("Room Type");
+                selectionPanel.add(tfRoomNum);
+                tfRoomNum.setBounds(125, 55, 100, 34);
+
                 //---- tfRoomType ----
-                tfRoomType.setToolTipText("Room Type");
+                tfRoomType.setToolTipText("Room Size");
                 selectionPanel.add(tfRoomType);
-                tfRoomType.setBounds(125, 55, 100, 34);
+                tfRoomType.setBounds(230, 55, 100, 34);
 
                 //---- tfRoomSize ----
-                tfRoomSize.setToolTipText("Room Size");
+                tfRoomSize.setToolTipText("Room Price");
                 selectionPanel.add(tfRoomSize);
-                tfRoomSize.setBounds(230, 55, 100, 34);
-
-                //---- tfRoomPrice ----
-                tfRoomPrice.setToolTipText("Room Price");
-                selectionPanel.add(tfRoomPrice);
-                tfRoomPrice.setBounds(335, 55, 100, 34);
+                tfRoomSize.setBounds(335, 55, 100, 34);
 
                 //---- tfCapacity ----
                 tfCapacity.setToolTipText("Capacity");
                 selectionPanel.add(tfCapacity);
                 tfCapacity.setBounds(440, 55, 100, 34);
 
-                //---- tfRoomNum ----
-                tfRoomNum.setToolTipText("Room Number");
-                selectionPanel.add(tfRoomNum);
-                tfRoomNum.setBounds(20, 55, 100, 34);
+                //---- tfHotelID ----
+                tfHotelID.setToolTipText("Room Number");
+                selectionPanel.add(tfHotelID);
+                tfHotelID.setBounds(20, 55, 100, 34);
 
                 //---- label1 ----
                 label1.setText("Room Number:");
@@ -196,9 +261,9 @@ public class RoomsPanel extends Panel {
                 label4.setBounds(335, 35, 90, 25);
 
                 //---- label5 ----
-                label5.setText("Capacity:");
+                label5.setText("Room Price:");
                 selectionPanel.add(label5);
-                label5.setBounds(440, 35, 90, 25);
+                label5.setBounds(20, 90, 90, 25);
 
                 //---- textArea1 ----
                 textArea1.setText("Please choose a row to update!");
@@ -206,6 +271,16 @@ public class RoomsPanel extends Panel {
                 textArea1.setWrapStyleWord(true);
                 selectionPanel.add(textArea1);
                 textArea1.setBounds(435, 150, 100, 60);
+
+                //---- tfRoomPrice ----
+                tfRoomPrice.setToolTipText("Capacity");
+                selectionPanel.add(tfRoomPrice);
+                tfRoomPrice.setBounds(20, 105, 100, 34);
+
+                //---- label7 ----
+                label7.setText("Capacity:");
+                selectionPanel.add(label7);
+                label7.setBounds(435, 35, 90, 25);
 
                 {
                     // compute preferred size
@@ -316,17 +391,19 @@ public class RoomsPanel extends Panel {
     private JButton btnAdd;
     private JButton btnDelete;
     private JButton btnUpdate;
+    private JTextField tfRoomNum;
     private JTextField tfRoomType;
     private JTextField tfRoomSize;
-    private JTextField tfRoomPrice;
     private JTextField tfCapacity;
-    private JTextField tfRoomNum;
+    private JTextField tfHotelID;
     private JLabel label1;
     private JLabel label2;
     private JLabel label3;
     private JLabel label4;
     private JLabel label5;
     private JTextArea textArea1;
+    private JTextField tfRoomPrice;
+    private JLabel label7;
     private JPanel filterPanel;
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;

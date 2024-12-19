@@ -37,6 +37,11 @@ public class ManagerPanel extends Panel {
     }
 
     @Override
+    public void setFields(Object[] rowValues) {
+
+    }
+
+    @Override
     public Object[] getEntity() {
         return new Object[0];
     }

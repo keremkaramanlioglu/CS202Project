@@ -30,9 +30,16 @@ public class EmployeesPanel extends Panel {
     }
 
     @Override
+    public boolean tfCheck() {
+        return false;
+    }
+
+    @Override
     public void addMouseListener(MouseListener ml) {
 
     }
+
+
 
     @Override
     public void reset() {
@@ -40,45 +47,13 @@ public class EmployeesPanel extends Panel {
     }
 
     @Override
-    public Object[] getEntity() {
-        return new Object[0];
+    public void setFields(Object[] rowValues) {
+
     }
 
-    public void setTableWithEmployees(ArrayList<Employee> emps) {
-        // Define column names (adjust to match the fields in your Customer class)
-        String[] columnNames = {"ssn", "firstname", "lastname", "type", "bd", "years", "hotel_id", "salary", "phone_num", "email", "gender", "street", "no", "apartment", "zip_code"};
-
-        // Create a table model with column names
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-
-        // Loop through the customers list and add each as a row to the model
-        for ( Employee emp : emps) {
-            Object[] row = {
-                    emp.getEmp_ssn(),
-                    emp.getEmp_firstname(),
-                    emp.getEmp_lastname(),
-                    emp.getEmp_type(),
-                    emp.getEmp_bd(),
-                    emp.getYears(),
-                    emp.getEmp_hotel_id(),
-                    emp.getEmp_salary(),
-                    emp.getEmp_phone_num(),
-                    emp.getEmp_email(),
-                    emp.getEmp_gender(),
-                    emp.getStreet(),
-                    emp.getNo(),
-                    emp.getApartment(),
-                    emp.getZip_code()
-            };
-            model.addRow(row);
-        }
-
-        // Set the table model to the JTable
-        tblEmployees.setModel(model);
-        tblEmployees.revalidate();
-        tblEmployees.repaint();
-        this.revalidate();
-        this.repaint();
+    @Override
+    public Object[] getEntity() {
+        return new Object[0];
     }
 
     @Override

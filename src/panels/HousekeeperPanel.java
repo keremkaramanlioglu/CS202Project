@@ -27,6 +27,11 @@ public class HousekeeperPanel extends Panel {
     }
 
     @Override
+    public void setFields(Object[] rowValues) {
+
+    }
+
+    @Override
     public Object[] getEntity() {
         return new Object[0];
     }

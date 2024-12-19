@@ -10,6 +10,8 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
 
 import entities.Booking;
@@ -24,6 +26,8 @@ import javax.swing.*;
  */
 public class BookingsPanel extends Panel {
 
+    private DefaultTableModel model;
+
     @Override
     public void addButtonListener(ActionListener al) {
         // TODO add button listeners to components
@@ -31,7 +35,6 @@ public class BookingsPanel extends Panel {
         btnDelete.addActionListener(al);
         btnUpdate.addActionListener(al);
         btnApply.addActionListener(al);
-
     }
 
     @Override
@@ -43,6 +46,18 @@ public class BookingsPanel extends Panel {
     @Override
     public void reset() {
         // TODO reset the components
+    }
+
+    @Override
+    public void setFields(Object[] rowValues) {
+        tfCSsn.setText(String.valueOf(rowValues[0]));
+        tfRoomID.setText(String.valueOf(rowValues[1]));
+        cbPaymentStatus.setSelectedItem(String.valueOf(rowValues[2]));
+        cbPaymentMethod.setSelectedItem(String.valueOf(rowValues[3]));
+        tfStartDate.setText(String.valueOf(rowValues[4]));
+        tfEndDate.setText(String.valueOf(rowValues[5]));
+        cbCheckin.setSelected(Boolean.parseBoolean(String.valueOf(rowValues[6])));
+        cbCheckout.setSelected(Boolean.parseBoolean(String.valueOf(rowValues[7])));
     }
 
 
@@ -66,42 +81,9 @@ public class BookingsPanel extends Panel {
         };
     }
 
-
-    private boolean tfCheck() {
+    public boolean tfCheck() {
         return !tfCSsn.getText().isEmpty() && !tfRoomID.getText().isEmpty()
                  && !tfStartDate.getText().isEmpty() && !tfEndDate.getText().isEmpty();
-    }
-
-    public void setTableWithBookings(ArrayList<Booking> bookings) {
-        // Define column names (adjust to match the fields in your Customer class)
-        String[] columnNames = {"booking_id", "c_ssn", "room_id", "payment_status", "payment_method", "booking_start_date", "booking_end_date", "c_check_in_status", "c_check_out_status"};
-
-        // Create a table model with column names
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-
-        // Loop through the customers list and add each as a row to the model
-        for ( Booking booking : bookings) {
-            Object[] row = {
-                    booking.getBooking_id(),
-                    booking.getC_ssn(),
-                    booking.getRoom_id(),
-                    booking.getPayment_status(),
-                    booking.getPayment_method(),
-                    booking.getBooking_start_date(),
-                    booking.getBooking_end_date(),
-                    booking.isC_check_in_status(),
-                    booking.isC_check_out_status()
-            };
-            model.addRow(row);
-        }
-
-        // Set the table model to the JTable
-        table2.setModel(model);
-        table2.revalidate();
-        table2.repaint();
-        this.revalidate();
-        this.repaint();
-
     }
 
 
@@ -112,19 +94,52 @@ public class BookingsPanel extends Panel {
 
     public BookingsPanel() {
         initComponents();
+        initTable();
         super.cbFilterColumn = cbSelectColumn;
         super.cbFilterOption = cbFilterOption;
         super.tfFilterUpperValue = tfFilterUpperValue;
         super.tfFilterValue = tfFilterValue;
-        super.prevCenterPanel = null;
-        super.prevSelectedButton = null;
+        super.table = tblData;
+        super.model = model;
+    }
+
+    private void initTable() {
+        model = new DefaultTableModel(
+                new Object[][] {},
+                new String[] {
+                        "booking_id", "c_ssn", "room_id", "payment_status", "payment_method", "booking_start_date", "booking_end_date", "c_check_in_status", "c_check_out_status"
+                }
+        ) {
+            final Class<?>[] columnTypes = new Class<?>[] {
+                    Integer.class, String.class, Integer.class, String.class, String.class, Date.class, Date.class, Boolean.class, Boolean.class
+            };
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return columnTypes[columnIndex];
+            }
+        };
+        table.setModel(model);
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                Object[] fields = new Object[table.getColumnCount()];
+                int selectedRow = table.getSelectedRow();
+
+                if (selectedRow != -1) {
+                    for (int i = 0; i < fields.length; i++) {
+                        fields[i] = table.getValueAt(selectedRow, i + 1);
+                    }
+                }
+                setFields(fields);
+            }
+        });
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         scrollPane1 = new JScrollPane();
-        table2 = new JTable();
+        tblData = new JTable();
         panel1 = new JPanel();
         panel3 = new JPanel();
         tfCSsn = new JTextField();
@@ -155,22 +170,22 @@ public class BookingsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax .
-        swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e" , javax. swing .border
-        . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dialo\u0067"
-        , java .awt . Font. BOLD ,12 ) ,java . awt. Color .red ) , getBorder
-        () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java
-        . beans. PropertyChangeEvent e) { if( "borde\u0072" .equals ( e. getPropertyName () ) )throw new RuntimeException
-        ( ) ;} } );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+        . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder
+        . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .
+        awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder( )) )
+        ;  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+        ;
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
         {
             scrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-            //---- table2 ----
-            table2.setPreferredSize(new Dimension(150, 400));
-            table2.setModel(new DefaultTableModel(
+            //---- tblData ----
+            tblData.setPreferredSize(new Dimension(150, 400));
+            tblData.setModel(new DefaultTableModel(
                 new Object[][] {
                     {null, null, null, null, null, null, null, true, true},
                     {null, null, null, null, null, null, null, null, null},
@@ -187,7 +202,7 @@ public class BookingsPanel extends Panel {
                     return columnTypes[columnIndex];
                 }
             });
-            scrollPane1.setViewportView(table2);
+            scrollPane1.setViewportView(tblData);
         }
         add(scrollPane1, BorderLayout.CENTER);
 
@@ -421,7 +436,7 @@ public class BookingsPanel extends Panel {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane scrollPane1;
-    private JTable table2;
+    private JTable tblData;
     private JPanel panel1;
     private JPanel panel3;
     private JTextField tfCSsn;

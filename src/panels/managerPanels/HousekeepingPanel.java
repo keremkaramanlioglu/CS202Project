@@ -5,6 +5,8 @@
 package panels.managerPanels;
 
 import java.awt.event.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
 
 import entities.CleaningSchedule;
@@ -14,84 +16,62 @@ import panels.Panel;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Objects;
 import javax.swing.*;
 
 /**
  * @author kerem
  */
 public class HousekeepingPanel extends Panel {
+
+    DefaultTableModel tableModel;
+
     public HousekeepingPanel() {
+        super();
         initComponents();
+        initTable();
         super.cbFilterColumn = this.cbFilterColumn;
         super.cbFilterOption = this.cbFilterOption;
         super.tfFilterValue = tfFilterValue;
         super.tfFilterUpperValue = tfFilterUpperValue;
+        super.table = this.dataTable;
+        super.model = this.tableModel;
     }
 
-    public void setTableWithEmployees(ArrayList<Employee> emps) {
-        // Define column names (adjust to match the fields in your Customer class)
-        String[] columnNames = {"ssn", "firstname", "lastname", "type", "bd", "years", "hotel_id", "salary", "phone_num", "email", "gender", "street", "no", "apartment", "zip_code"};
-
-        // Create a table model with column names
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-
-        // Loop through the customers list and add each as a row to the model
-        for ( Employee emp : emps) {
-            Object[] row = {
-                    emp.getEmp_ssn(),
-                    emp.getEmp_firstname(),
-                    emp.getEmp_lastname(),
-                    emp.getEmp_type(),
-                    emp.getEmp_bd(),
-                    emp.getYears(),
-                    emp.getEmp_hotel_id(),
-                    emp.getEmp_salary(),
-                    emp.getEmp_phone_num(),
-                    emp.getEmp_email(),
-                    emp.getEmp_gender(),
-                    emp.getStreet(),
-                    emp.getNo(),
-                    emp.getApartment(),
-                    emp.getZip_code()
+    private void initTable() {
+        tableModel = new DefaultTableModel(
+                new Object[][] {
+                },
+                new String[] {
+                        "schedule_id", "housekeeper_ssn", "receptionist_ssn", "room_id", "cleaning_date", "service_status"
+                }
+        ) {
+            final Class<?>[] columnTypes = new Class<?>[] {
+                    Integer.class, String.class, String.class, Integer.class, String.class, String.class
             };
-            model.addRow(row);
-        }
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return columnTypes[columnIndex];
+            }
+        };
+        table.setModel(tableModel);
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                Object[] fields = new Object[table.getColumnCount()];
+                int selectedRow = table.getSelectedRow();
 
-        // Set the table model to the JTable
-        dataTable.setModel(model);
-        dataTable.revalidate();
-        dataTable.repaint();
-        this.revalidate();
-        this.repaint();
-    }
-
-    public void setTableWithCleaningSchedules(ArrayList<CleaningSchedule> schedules) {
-        // Define column names (adjust to match the fields in your Customer class)
-        String[] columnNames = {"schedule_id", "housekeeper_ssn", "receptionist_ssn", "room_id", "cleaning_date", "service_status"};
-
-        // Create a table model with column names
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-
-        // Loop through the customers list and add each as a row to the model
-        for ( CleaningSchedule cs : schedules) {
-            Object[] row = {
-                    cs.getSchedule_id(),
-                    cs.getHousekeeper_ssn(),
-                    cs.getReceptionist_ssn(),
-                    cs.getRoom_id(),
-                    cs.getCleaning_date(),
-                    cs.getService_status()
-            };
-            model.addRow(row);
-        }
-
-        // Set the table model to the JTable
-        dataTable.setModel(model);
-        dataTable.revalidate();
-        dataTable.repaint();
-        this.revalidate();
-        this.repaint();
+                if (selectedRow != -1) {
+                    for (int i = 0; i < fields.length; i++) {
+                        fields[i] = table.getValueAt(selectedRow, i + 1);
+                    }
+                }
+                setFields(fields);
+            }
+        });
     }
 
     @Override
@@ -100,6 +80,12 @@ public class HousekeepingPanel extends Panel {
         btnDelete.addActionListener(al);
         btnUpdate.addActionListener(al);
         btnApply.addActionListener(al);
+    }
+
+    @Override
+    public boolean tfCheck() {
+        return !(tfCleaningDate.getText().isEmpty()) && !(tfHousekeeperSsn.getText().isEmpty()) && !(tfReceptionistSsn.getText().isEmpty()) &&
+                !(tfRoomID.getText().isEmpty()) && !(tfCleaningDate.getText().equals("Choose a Date!"));
     }
 
     @Override
@@ -113,8 +99,29 @@ public class HousekeepingPanel extends Panel {
     }
 
     @Override
+    public void setFields(Object[] rowValues) {
+        tfHousekeeperSsn.setText(String.valueOf(rowValues[0]));
+        tfReceptionistSsn.setText(String.valueOf(rowValues[1]));
+        tfRoomID.setText(String.valueOf(rowValues[2]));
+        tfCleaningDate.setText(String.valueOf(rowValues[3]));
+        cbCompleted.setSelected(Boolean.parseBoolean(String.valueOf(rowValues[4])));
+    }
+
+    @Override
     public Object[] getEntity() {
-        return new Object[0];
+        if (!tfCheck()) {
+            JOptionPane.showMessageDialog(this, "Please enter all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+
+        return new Object[] {
+                tfHousekeeperSsn.getText(),
+                tfReceptionistSsn.getText(),
+                Integer.parseInt(tfRoomID.getText()),
+                Timestamp.valueOf(tfCleaningDate.getText()),
+                cbCompleted.isSelected()
+        };
     }
 
     @Override
@@ -122,13 +129,9 @@ public class HousekeepingPanel extends Panel {
         return null;
     }
 
-    private void comboBox1(ActionEvent e) {
-        // TODO add your code here
-    }
-
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlData = new JPanel();
         scrollPane1 = new JScrollPane();
         dataTable = new JTable();
@@ -145,7 +148,7 @@ public class HousekeepingPanel extends Panel {
         label3 = new JLabel();
         label4 = new JLabel();
         label5 = new JLabel();
-        checkBox1 = new JCheckBox();
+        cbCompleted = new JCheckBox();
         textArea1 = new JTextArea();
         pnlFilter = new JPanel();
         cbFilterColumn = new JComboBox<>();
@@ -158,13 +161,12 @@ public class HousekeepingPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(1920, 1080));
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
-        javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax
-        .swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java
-        .awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),java.awt
-        .Color.red), getBorder())); addPropertyChangeListener(new java.beans.
-        PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062or\u0064er".
-        equals(e.getPropertyName()))throw new RuntimeException();}});
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
+        ( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border
+        . TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
+        propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
+        ; }} );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -177,22 +179,6 @@ public class HousekeepingPanel extends Panel {
                 scrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
                 //---- dataTable ----
-                dataTable.setModel(new DefaultTableModel(
-                    new Object[][] {
-                        {null, null, null, null, null, null},
-                    },
-                    new String[] {
-                        "schedule_id", "housekeeper_ssn", "receptionist_ssn", "room_id", "cleaning_date", "service_status"
-                    }
-                ) {
-                    Class<?>[] columnTypes = new Class<?>[] {
-                        Integer.class, String.class, String.class, Integer.class, String.class, String.class
-                    };
-                    @Override
-                    public Class<?> getColumnClass(int columnIndex) {
-                        return columnTypes[columnIndex];
-                    }
-                });
                 dataTable.setPreferredScrollableViewportSize(new Dimension(450, 500));
                 dataTable.setPreferredSize(new Dimension(450, 300));
                 scrollPane1.setViewportView(dataTable);
@@ -268,11 +254,11 @@ public class HousekeepingPanel extends Panel {
                 pnlSelection.add(label5);
                 label5.setBounds(340, 15, 91, label5.getPreferredSize().height);
 
-                //---- checkBox1 ----
-                checkBox1.setText("Completed");
-                checkBox1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                pnlSelection.add(checkBox1);
-                checkBox1.setBounds(30, 70, 105, 32);
+                //---- cbCompleted ----
+                cbCompleted.setText("Completed");
+                cbCompleted.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                pnlSelection.add(cbCompleted);
+                cbCompleted.setBounds(30, 70, 105, 32);
 
                 //---- textArea1 ----
                 textArea1.setText("Please choose a row to update!");
@@ -313,7 +299,6 @@ public class HousekeepingPanel extends Panel {
                     "service_status"
                 }));
                 cbFilterColumn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                cbFilterColumn.addActionListener(e -> comboBox1(e));
                 pnlFilter.add(cbFilterColumn);
                 cbFilterColumn.setBounds(25, 23, 98, cbFilterColumn.getPreferredSize().height);
 
@@ -385,7 +370,7 @@ public class HousekeepingPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JPanel pnlData;
     private JScrollPane scrollPane1;
     private JTable dataTable;
@@ -402,7 +387,7 @@ public class HousekeepingPanel extends Panel {
     private JLabel label3;
     private JLabel label4;
     private JLabel label5;
-    private JCheckBox checkBox1;
+    private JCheckBox cbCompleted;
     private JTextArea textArea1;
     private JPanel pnlFilter;
     private JComboBox<String> cbFilterColumn;

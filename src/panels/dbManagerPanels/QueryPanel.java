@@ -9,25 +9,79 @@ import panels.Panel;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.util.Date;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * @author kutay
  */
 public class QueryPanel extends panels.Panel {
+
+    private DefaultTableModel model;
+
     public QueryPanel() {
         initComponents();
+        //initTable();
+        super.table = tblData;
+        super.model = model;
     }
+
+//    private void initTable() {
+//        model = new DefaultTableModel(
+//                new Object[][] {},
+//                new String[] {
+//                        "booking_id", "c_ssn", "room_id", "payment_status", "payment_method", "booking_start_date", "booking_end_date", "c_check_in_status", "c_check_out_status"
+//                }
+//        ) {
+//            final Class<?>[] columnTypes = new Class<?>[] {
+//                    Integer.class, String.class, Integer.class, String.class, String.class, Date.class, Date.class, Boolean.class, Boolean.class
+//            };
+//            @Override
+//            public Class<?> getColumnClass(int columnIndex) {
+//                return columnTypes[columnIndex];
+//            }
+//        };
+//        table.setModel(model);
+//        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+//            @Override
+//            public void valueChanged(ListSelectionEvent e) {
+//                Object[] fields = new Object[table.getColumnCount()];
+//                int selectedRow = table.getSelectedRow();
+//
+//                if (selectedRow != -1) {
+//                    for (int i = 0; i < fields.length; i++) {
+//                        fields[i] = table.getValueAt(selectedRow, i + 1);
+//                    }
+//                }
+//                setFields(fields);
+//            }
+//        });
+//    }
 
     @Override
     public void addButtonListener(ActionListener al) {
         btnExecute.addActionListener(al);
-    }@Override
+    }
+
+    @Override
+    public boolean tfCheck() {
+        return false;
+    }
+
+    @Override
     public void addMouseListener(MouseListener ml) {
 
     }@Override
     public void reset() {
         taQuery.setText("");
+    }
+
+    @Override
+    public void setFields(Object[] rowValues) {
+
     }
 
     @Override

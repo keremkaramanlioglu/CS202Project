@@ -11,7 +11,7 @@ new FormModel {
 				"preferredSize": new java.awt.Dimension( 900, 450 )
 				"verticalScrollBarPolicy": 22
 				add( new FormComponent( "javax.swing.JTable" ) {
-					name: "tblUsers"
+					name: "tblData"
 					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
 						add( new java.util.Vector {
 							add( null )

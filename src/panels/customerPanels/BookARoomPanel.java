@@ -10,14 +10,55 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
 
 /**
  * @author kerem
  */
 public class BookARoomPanel extends Panel {
+    
+    private DefaultTableModel tableModel;
+    
     public BookARoomPanel() {
         initComponents();
+        initTable();
+        super.table = tblData;
+        super.model = tableModel;
+    }
+
+    private void initTable() {
+        tableModel = new DefaultTableModel(
+                new Object[][] {
+                },
+                new String[] {
+                        "Hotel Name", "Zip Code", "Room Type", "Room Size", "Room Price", "Room Capacity"
+                }
+        ) {
+            final Class<?>[] columnTypes = new Class<?>[] {
+                    String.class, String.class, String.class, Integer.class, Double.class, String.class
+            };
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return columnTypes[columnIndex];
+            }
+        };
+        table.setModel(model);
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                Object[] fields = new Object[table.getColumnCount()];
+                int selectedRow = table.getSelectedRow();
+
+                if (selectedRow != -1) {
+                    for (int i = 0; i < fields.length; i++) {
+                        fields[i] = table.getValueAt(selectedRow, i + 1);
+                    }
+                }
+                setFields(fields);
+            }
+        });
     }
 
     @Override
@@ -27,6 +68,11 @@ public class BookARoomPanel extends Panel {
         btnBook.addActionListener(al);
         btnShowRooms.addActionListener(al);
         btnResetFilters.addActionListener(al);
+    }
+
+    @Override
+    public boolean tfCheck() {
+        return false;
     }
 
     @Override
@@ -42,6 +88,11 @@ public class BookARoomPanel extends Panel {
     }
 
     @Override
+    public void setFields(Object[] rowValues) {
+
+    }
+
+    @Override
     public Object[] getEntity() {
         return new Object[0];
     }
@@ -53,7 +104,7 @@ public class BookARoomPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlReservableHotels = new JScrollPane();
         tblData = new JTable();
         pnlControl = new JPanel();
@@ -79,13 +130,13 @@ public class BookARoomPanel extends Panel {
         btnBook = new JButton();
 
         //======== this ========
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new
-        javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax
-        . swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java
-        . awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt
-        . Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .
-        PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .
-        equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
+        javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e",javax
+        .swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java
+        .awt.Font("Dialo\u0067",java.awt.Font.BOLD,12),java.awt
+        .Color.red), getBorder())); addPropertyChangeListener(new java.beans.
+        PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("borde\u0072".
+        equals(e.getPropertyName()))throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
         //======== pnlReservableHotels ========
@@ -95,13 +146,21 @@ public class BookARoomPanel extends Panel {
             //---- tblData ----
             tblData.setModel(new DefaultTableModel(
                 new Object[][] {
-                    {null, null, null, null},
-                    {null, null, null, null},
+                    {null, null, null, null, null, null},
+                    {null, null, null, null, null, null},
                 },
                 new String[] {
-                    "Hotel Name", "Zip Code", "Room Type", "Room Capacity"
+                    "Hotel Name", "Zip Code", "Room Type", "Room Size", "Room Price", "Room Capacity"
                 }
-            ));
+            ) {
+                Class<?>[] columnTypes = new Class<?>[] {
+                    String.class, String.class, String.class, Integer.class, Double.class, String.class
+                };
+                @Override
+                public Class<?> getColumnClass(int columnIndex) {
+                    return columnTypes[columnIndex];
+                }
+            });
             pnlReservableHotels.setViewportView(tblData);
         }
         add(pnlReservableHotels, BorderLayout.CENTER);
@@ -136,7 +195,6 @@ public class BookARoomPanel extends Panel {
                 btnShowRooms.setText("Show Rooms");
                 btnShowRooms.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnShowRooms.setActionCommand("Book a room");
-                btnShowRooms.setName("show rooms");
                 pnlDate.add(btnShowRooms);
                 btnShowRooms.setBounds(40, 160, 215, 60);
 
@@ -279,7 +337,7 @@ public class BookARoomPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane pnlReservableHotels;
     private JTable tblData;
     private JPanel pnlControl;
