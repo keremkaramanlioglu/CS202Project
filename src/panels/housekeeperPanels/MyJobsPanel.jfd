@@ -26,18 +26,19 @@ new FormModel {
 						add( "Cleaning Date" )
 						add( "Service Status" )
 					}, new java.util.Vector {
-						add( null )
-						add( null )
-						add( null )
+						add( class java.lang.String )
+						add( class java.lang.String )
+						add( class java.lang.String )
 					}, new java.util.Vector {
-						add( null )
-						add( null )
-						add( null )
+						add( false )
+						add( false )
+						add( false )
 					}, new java.util.Vector {
 						add( null )
 						add( null )
 						add( null )
 					} )
+					"enabled": false
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"

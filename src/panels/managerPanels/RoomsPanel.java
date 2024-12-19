@@ -164,12 +164,12 @@ public class RoomsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder
-        ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border
-        .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt
-        . Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void
-        propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
-        ;} } );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
+        ( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border
+        . TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
+        propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
+        ; }} );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -187,11 +187,18 @@ public class RoomsPanel extends Panel {
                 }
             ) {
                 Class<?>[] columnTypes = new Class<?>[] {
-                    Integer.class, Integer.class, Integer.class, String.class, Float.class, Float.class, String.class
+                    Integer.class, Integer.class, String.class, String.class, Double.class, Double.class, String.class
+                };
+                boolean[] columnEditable = new boolean[] {
+                    false, false, false, false, false, false, false
                 };
                 @Override
                 public Class<?> getColumnClass(int columnIndex) {
                     return columnTypes[columnIndex];
+                }
+                @Override
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return columnEditable[columnIndex];
                 }
             });
             table1.setPreferredSize(new Dimension(525, 400));
@@ -339,7 +346,7 @@ public class RoomsPanel extends Panel {
                 //---- cbFilterOption ----
                 cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
                     "None",
-                    "==",
+                    "=",
                     "!=",
                     "<",
                     ">",
@@ -349,6 +356,7 @@ public class RoomsPanel extends Panel {
                     "contains"
                 }));
                 cbFilterOption.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                cbFilterOption.setEnabled(false);
                 filterPanel.add(cbFilterOption);
                 cbFilterOption.setBounds(165, 35, 120, 45);
 

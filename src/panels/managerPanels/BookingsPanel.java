@@ -184,12 +184,11 @@ public class BookingsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-        EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing
-        . border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ),
-        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () ))
-        throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
+        0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
+        . BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
+        red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
+        beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -208,10 +207,10 @@ public class BookingsPanel extends Panel {
                 }
             ) {
                 Class<?>[] columnTypes = new Class<?>[] {
-                    Integer.class, String.class, Integer.class, String.class, String.class, Date.class, Date.class, Boolean.class, Boolean.class
+                    Integer.class, String.class, Integer.class, String.class, String.class, String.class, String.class, Boolean.class, Boolean.class
                 };
                 boolean[] columnEditable = new boolean[] {
-                    true, true, true, true, true, true, true, false, false
+                    false, false, false, false, false, false, false, false, false
                 };
                 @Override
                 public Class<?> getColumnClass(int columnIndex) {
@@ -223,6 +222,7 @@ public class BookingsPanel extends Panel {
                 }
             });
             tblData.setRowSelectionAllowed(false);
+            tblData.setEnabled(false);
             scrollPane1.setViewportView(tblData);
         }
         add(scrollPane1, BorderLayout.CENTER);
@@ -403,7 +403,7 @@ public class BookingsPanel extends Panel {
                 }));
                 cbFilterOption2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 panel2.add(cbFilterOption2);
-                cbFilterOption2.setBounds(130, 20, 120, 45);
+                cbFilterOption2.setBounds(135, 20, 120, 45);
 
                 //---- label6 ----
                 label6.setText("Filter Value:");

@@ -38,12 +38,12 @@ new FormModel {
 							add( class java.lang.String )
 							add( class java.lang.String )
 						}, new java.util.Vector {
-							add( true )
-							add( null )
-							add( null )
-							add( null )
-							add( null )
-							add( null )
+							add( false )
+							add( false )
+							add( false )
+							add( false )
+							add( false )
+							add( false )
 						}, new java.util.Vector {
 							add( null )
 							add( null )
@@ -54,6 +54,7 @@ new FormModel {
 						} )
 						"preferredScrollableViewportSize": new java.awt.Dimension( 450, 500 )
 						"preferredSize": new java.awt.Dimension( 450, 300 )
+						"enabled": false
 					} )
 				}, new FormLayoutConstraints( class java.lang.String ) {
 					"value": "Center"
