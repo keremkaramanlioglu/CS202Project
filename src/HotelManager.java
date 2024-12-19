@@ -159,38 +159,32 @@ public class HotelManager {
                             break;
                         case "update":
                             if (command.equals("Bookings")) {
-                                System.out.println("update button pressed in booking panel");
+                                hotelDao.updateBooking(new Booking(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Employees")) {
-                                System.out.println("update button pressed in employees panel by manager");
+                                hotelDao.updateEmployee(new Employee(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Housekeeping")) {
-                                System.out.println("update button pressed in housekeeping panel by manager");
+                                hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Rooms")) {
-                                System.out.println("update button pressed in rooms panel by manager");
+                                hotelDao.updateRoom(new Room(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Users")) {
-                                System.out.println("update button pressed in users panel by manager");
+                                hotelDao.updateCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("houseKeeping")) {
-                                System.out.println("update button pressed in housekeeping panel by receptionist");
+                                hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
                             }
                             break;
                         case "delete":
                             if (command.equals("Bookings")) {
-                                System.out.println("delete button pressed in booking panel");
                                 hotelDao.deleteBooking(new Booking(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Employees")) {
-                                System.out.println("delete button pressed in employees panel by manager");
-                                hotelDao.deleteEmployee(new Employee(activePanel.getCenterPanel().getEntity()));
+                                hotelDao.deleteBooking(new Booking(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Housekeeping")) {
-                                System.out.println("delete button pressed in housekeeping panel by manager");
                                 hotelDao.deleteCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Rooms")) {
-                                System.out.println("delete button pressed in rooms panel by manager");
                                 hotelDao.deleteRoom(new Room(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Users")) {
-                                System.out.println("delete button pressed in users panel by manager");
                                 hotelDao.deleteCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("houseKeeping")) {
-                                System.out.println("delete button pressed in housekeeping panel by receptionist");
-                                hotelDao.insertCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
+                                hotelDao.deleteCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
                             }
                             break;
                         case "applyFilter":
@@ -201,13 +195,17 @@ public class HotelManager {
                                 activePanel.getCenterPanel().setTableRows(hotelDao.filterEmployees(activePanel.getCenterPanel().getSelectedFilterColumn(),
                                         activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), currEmployee.getEmp_hotel_id()));
                             } else if (command.equals("Housekeeping")) { //from manager
-                                System.out.println("filter button pressed in housekeeping panel by manager");
+                                activePanel.getCenterPanel().setTableRows(hotelDao.filterCleaningSchedule(activePanel.getCenterPanel().getSelectedFilterColumn(),
+                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), currEmployee.getEmp_hotel_id()));
                             } else if (command.equals("Rooms")) { //from manager
-                                System.out.println("filter button pressed in rooms panel by manager");
+                                activePanel.getCenterPanel().setTableRows(hotelDao.filterRooms(activePanel.getCenterPanel().getSelectedFilterColumn(),
+                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), currEmployee.getEmp_hotel_id()));
                             } else if (command.equals("Users")) { //from manager
-                                System.out.println("filter button pressed in users panel by manager");
+                                activePanel.getCenterPanel().setTableRows(hotelDao.filterCustomers(activePanel.getCenterPanel().getSelectedFilterColumn(),
+                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), currEmployee.getEmp_hotel_id()));
                             } else if (command.equals("houseKeeping")) { //from receptionist
-                                System.out.println("filter button pressed in housekeeping panel by receptionist");
+                                activePanel.getCenterPanel().setTableRows(hotelDao.filterCleaningScheduleRcp(activePanel.getCenterPanel().getSelectedFilterColumn(),
+                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), currEmployee.getEmp_hotel_id()));
                             }
                             break;
                         case "ok":
@@ -232,11 +230,12 @@ public class HotelManager {
                             break;
                         case "confirm":
                             if (command.equals("My Jobs")) {
-                                System.out.println("confirm button pressed in my jobs panel");
+                                boolean b = hotelDao.updateCleaningSchedule(activePanel.getCenterPanel().getSelectedRow(), currEmployee.getEmp_ssn());
                             } else if (command.equals("Profile")) {
                                 System.out.println("confirm button pressed in profile panel");
                                 ProfilePanel profile = (ProfilePanel) activePanel.getPanelByName("Profile");
                                 profile.pushConfirmButton();
+                                //hotelDao.processCustomer(profile.getEntity());
                             }
                             break;
                         case "execute":
@@ -252,7 +251,7 @@ public class HotelManager {
                             }
                     }
                 } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+                    throw new RuntimeException(ex);  // TODO convert JOptionPane
                 }
             }
         }

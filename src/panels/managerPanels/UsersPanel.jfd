@@ -298,16 +298,16 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JComboBox" ) {
 						name: "cbColumnOption"
 						"model": new javax.swing.DefaultComboBoxModel {
-							selectedItem: "Ssn"
-							addElement( "Ssn" )
-							addElement( "First Name" )
-							addElement( "Last Name" )
-							addElement( "Birth Date" )
-							addElement( "Room ID" )
-							addElement( "E-mail" )
-							addElement( "Phone Number" )
-							addElement( "Gender" )
-							addElement( "Zip Code" )
+							selectedItem: "c_ssn"
+							addElement( "c_ssn" )
+							addElement( "c_firstname" )
+							addElement( "c_lastname" )
+							addElement( "c_bd" )
+							addElement( "c_room_id" )
+							addElement( "c_email" )
+							addElement( "c_phone_cum" )
+							addElement( "c_gender" )
+							addElement( "zip_code" )
 						}
 						"cursor": #Cursor1
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
@@ -321,7 +321,7 @@ new FormModel {
 						"model": new javax.swing.DefaultComboBoxModel {
 							selectedItem: "None"
 							addElement( "None" )
-							addElement( "==" )
+							addElement( "=" )
 							addElement( "!=" )
 							addElement( "<" )
 							addElement( ">" )

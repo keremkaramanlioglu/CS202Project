@@ -133,7 +133,7 @@ public class UsersPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlData = new JScrollPane();
         tblData = new JTable();
         panel1 = new JPanel();
@@ -171,11 +171,6 @@ public class UsersPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(900, 700));
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
-        0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
-        . BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
-        red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
-        beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -348,15 +343,15 @@ public class UsersPanel extends Panel {
 
                 //---- cbColumnOption ----
                 cbColumnOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "Ssn",
-                    "First Name",
-                    "Last Name",
-                    "Birth Date",
-                    "Room ID",
-                    "E-mail",
-                    "Phone Number",
-                    "Gender",
-                    "Zip Code"
+                    "c_ssn",
+                    "c_firstname",
+                    "c_lastname",
+                    "c_bd",
+                    "c_room_id",
+                    "c_email",
+                    "c_phone_cum",
+                    "c_gender",
+                    "zip_code"
                 }));
                 cbColumnOption.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlFilter.add(cbColumnOption);
@@ -365,7 +360,7 @@ public class UsersPanel extends Panel {
                 //---- cbFilterOption ----
                 cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
                     "None",
-                    "==",
+                    "=",
                     "!=",
                     "<",
                     ">",
@@ -428,7 +423,7 @@ public class UsersPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane pnlData;
     private JTable tblData;
     private JPanel panel1;

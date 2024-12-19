@@ -56,6 +56,10 @@ public class MyJobsPanel extends Panel {
         super.model = tableModel;
     }
 
+    public boolean getCompleted() {
+        return rbMark.isSelected();
+    }
+
     @Override
     public void addButtonListener(ActionListener al) {
         btnConfirm.addActionListener(al);
