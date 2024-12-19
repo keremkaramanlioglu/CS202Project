@@ -71,7 +71,7 @@ new FormModel {
 						"text": "View Available Rooms"
 						"cursor": new java.awt.Cursor( 12 )
 						"actionCommand": "Rooms"
-						"name": "apply"
+						"name": "view rooms"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 245
 						"height": 60

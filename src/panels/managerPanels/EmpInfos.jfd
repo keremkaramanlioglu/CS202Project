@@ -265,6 +265,8 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnOK"
 					"text": "OK"
+					"actionCommand": "Employees"
+					"name": "ok"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 425
 					"y": 570

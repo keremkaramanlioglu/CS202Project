@@ -64,7 +64,7 @@ public class RoomsPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         pnlRooms = new JScrollPane();
         tblrooms = new JTable();
         pnlControl = new JPanel();
@@ -77,12 +77,13 @@ public class RoomsPanel extends Panel {
         label2 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
-        border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER
-        , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font
-        .BOLD ,12 ), java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
-        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r"
-        .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+        . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder
+        . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .
+        awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder( )) )
+        ;  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+        ;
         setLayout(new BorderLayout());
 
         //======== pnlRooms ========
@@ -90,6 +91,23 @@ public class RoomsPanel extends Panel {
             pnlRooms.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
             //---- tblrooms ----
+            tblrooms.setModel(new DefaultTableModel(
+                new Object[][] {
+                    {null, null, null, null, null, null},
+                    {null, null, null, null, null, null},
+                },
+                new String[] {
+                    "room_num", "room_size", "room_capacity", "room_price", "room_type", "cleaning_status"
+                }
+            ) {
+                Class<?>[] columnTypes = new Class<?>[] {
+                    String.class, Integer.class, String.class, Double.class, String.class, String.class
+                };
+                @Override
+                public Class<?> getColumnClass(int columnIndex) {
+                    return columnTypes[columnIndex];
+                }
+            });
             pnlRooms.setViewportView(tblrooms);
         }
         add(pnlRooms, BorderLayout.CENTER);
@@ -108,7 +126,7 @@ public class RoomsPanel extends Panel {
                 btnApply.setText("View Available Rooms");
                 btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnApply.setActionCommand("Rooms");
-                btnApply.setName("apply");
+                btnApply.setName("view rooms");
                 pnlFilter.add(btnApply);
                 btnApply.setBounds(300, 120, 245, 60);
 
@@ -162,7 +180,7 @@ public class RoomsPanel extends Panel {
 
     @Override
     public void addButtonListener(ActionListener al) {
-
+        btnApply.addActionListener(al);
     }
 
     @Override
@@ -195,7 +213,7 @@ public class RoomsPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JScrollPane pnlRooms;
     private JTable tblrooms;
     private JPanel pnlControl;
