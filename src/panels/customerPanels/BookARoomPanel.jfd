@@ -48,7 +48,7 @@ new FormModel {
 						add( null )
 						add( null )
 					} )
-					"enabled": false
+					"columnSelectionAllowed": true
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"

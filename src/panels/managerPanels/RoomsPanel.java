@@ -173,8 +173,6 @@ public class RoomsPanel extends Panel {
             //---- table1 ----
             table1.setModel(new DefaultTableModel(
                 new Object[][] {
-                    {null, null, null, null, null, null, null},
-                    {null, null, null, null, null, null, null},
                 },
                 new String[] {
                     "room_id", "hotel_id", "room_num", "room_type", "room_size", "room_price", "capacity"
