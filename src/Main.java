@@ -51,7 +51,8 @@ public class Main {
             HotelView hotelView = new HotelView();
             new HotelManager(hotelView, new DBConnectionControl(hotelView));
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            //JOptionPane.showMessageDialog(null, e.getMessage());
+            e.printStackTrace();
         }
     }
 }

@@ -20,21 +20,20 @@ import javax.swing.table.*;
  */
 public class HouseKeepingPanel extends Panel {
 
-    private DefaultTableModel model;
+    private DefaultTableModel tableModel;
 
     public HouseKeepingPanel() {
         initComponents();
+
         initTable();
         super.cbFilterColumn = cbSelectColumn;
         super.cbFilterOption = cbFilterOption;
         super.tfFilterUpperValue = tfFilterUpperValue;
         super.tfFilterValue = tfFilterValue;
-        super.table = tblData;
-        super.model = model;
     }
 
     private void initTable() {
-        model = new DefaultTableModel(
+        tableModel = new DefaultTableModel(
                 new Object[][] {
                 },
                 new String[] {
@@ -49,21 +48,23 @@ public class HouseKeepingPanel extends Panel {
                 return columnTypes[columnIndex];
             }
         };
-        table.setModel(model);
-        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        tblData.setModel(tableModel);
+        tblData.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                Object[] fields = new Object[table.getColumnCount()];
-                int selectedRow = table.getSelectedRow();
+                Object[] fields = new Object[tblData.getColumnCount()];
+                int selectedRow = tblData.getSelectedRow();
 
                 if (selectedRow != -1) {
                     for (int i = 0; i < fields.length; i++) {
-                        fields[i] = table.getValueAt(selectedRow, i + 1);
+                        fields[i] = tblData.getValueAt(selectedRow, i + 1);
                     }
                 }
                 setFields(fields);
             }
         });
+        super.table = tblData;
+        super.model = tableModel;
     }
 
     @Override
@@ -114,7 +115,7 @@ public class HouseKeepingPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         pnlHouseKeeping = new JScrollPane();
         tblData = new JTable();
         pnlControl = new JPanel();
@@ -141,13 +142,12 @@ public class HouseKeepingPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax
-        . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing
-        .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .
-        Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .red
-        ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override
-        public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName (
-        ) ) )throw new RuntimeException( ) ;} } );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
+        border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER
+        ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font
+        . BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener(
+        new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r"
+        .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== pnlHouseKeeping ========
@@ -155,6 +155,23 @@ public class HouseKeepingPanel extends Panel {
             pnlHouseKeeping.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
             //---- tblData ----
+            tblData.setModel(new DefaultTableModel(
+                new Object[][] {
+                    {null, null, null, null},
+                    {null, null, null, null},
+                },
+                new String[] {
+                    "housekeeper_ssn", "room_num", "cleaning_date", "service_status"
+                }
+            ) {
+                Class<?>[] columnTypes = new Class<?>[] {
+                    Integer.class, String.class, String.class, String.class
+                };
+                @Override
+                public Class<?> getColumnClass(int columnIndex) {
+                    return columnTypes[columnIndex];
+                }
+            });
             pnlHouseKeeping.setViewportView(tblData);
         }
         add(pnlHouseKeeping, BorderLayout.CENTER);
@@ -297,8 +314,8 @@ public class HouseKeepingPanel extends Panel {
                 //---- btnApply ----
                 btnApply.setText("Apply");
                 btnApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnApply.setActionCommand("Housekeeping");
-                btnApply.setName("apply");
+                btnApply.setActionCommand("HouseKeeping");
+                btnApply.setName("applyFilter");
                 pnlFilter.add(btnApply);
                 btnApply.setBounds(25, 160, 245, 60);
 
@@ -339,7 +356,7 @@ public class HouseKeepingPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JScrollPane pnlHouseKeeping;
     private JTable tblData;
     private JPanel pnlControl;

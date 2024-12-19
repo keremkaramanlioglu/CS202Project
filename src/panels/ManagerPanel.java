@@ -77,6 +77,11 @@ public class ManagerPanel extends Panel {
     }
 
     @Override
+    public boolean tfCheck() {
+        return false;
+    }
+
+    @Override
     public void addMouseListener(MouseListener l) {
         pnlUsers.addMouseListener(l);
         pnlBookings.addMouseListener(l);

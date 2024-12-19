@@ -37,8 +37,6 @@ public class HousekeepingPanel extends Panel {
         super.cbFilterOption = this.cbFilterOption;
         super.tfFilterValue = tfFilterValue;
         super.tfFilterUpperValue = tfFilterUpperValue;
-        super.table = this.dataTable;
-        super.model = this.tableModel;
     }
 
     private void initTable() {
@@ -57,21 +55,23 @@ public class HousekeepingPanel extends Panel {
                 return columnTypes[columnIndex];
             }
         };
-        table.setModel(tableModel);
-        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        dataTable.setModel(tableModel);
+        dataTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                Object[] fields = new Object[table.getColumnCount()];
-                int selectedRow = table.getSelectedRow();
+                Object[] fields = new Object[dataTable.getColumnCount()];
+                int selectedRow = dataTable.getSelectedRow();
 
                 if (selectedRow != -1) {
                     for (int i = 0; i < fields.length; i++) {
-                        fields[i] = table.getValueAt(selectedRow, i + 1);
+                        fields[i] = dataTable.getValueAt(selectedRow, i + 1);
                     }
                 }
                 setFields(fields);
             }
         });
+        super.table = this.dataTable;
+        super.model = this.tableModel;
     }
 
     @Override

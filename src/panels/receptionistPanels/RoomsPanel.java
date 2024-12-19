@@ -20,17 +20,15 @@ import javax.swing.table.*;
  */
 public class RoomsPanel extends Panel {
 
-    private DefaultTableModel model;
+    private DefaultTableModel tableModel;
 
     public RoomsPanel() {
         initComponents();
         initTable();
-        super.table = tblrooms;
-        super.model = model;
     }
 
     public void initTable() {
-        model = new DefaultTableModel(
+        tableModel = new DefaultTableModel(
                 new Object[][] {
                         {null, null, null, null, null, null},
                         {null, null, null, null, null, null},
@@ -47,21 +45,23 @@ public class RoomsPanel extends Panel {
                 return columnTypes[columnIndex];
             }
         };
-        table.setModel(model);
-        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        tblrooms.setModel(tableModel);
+        tblrooms.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                Object[] fields = new Object[table.getColumnCount()];
-                int selectedRow = table.getSelectedRow();
+                Object[] fields = new Object[tblrooms.getColumnCount()];
+                int selectedRow = tblrooms.getSelectedRow();
 
                 if (selectedRow != -1) {
                     for (int i = 0; i < fields.length; i++) {
-                        fields[i] = table.getValueAt(selectedRow, i + 1);
+                        fields[i] = tblrooms.getValueAt(selectedRow, i + 1);
                     }
                 }
                 setFields(fields);
             }
         });
+        super.table = tblrooms;
+        super.model = tableModel;
     }
 
     private void initComponents() {

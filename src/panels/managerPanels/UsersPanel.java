@@ -20,7 +20,7 @@ import javax.swing.table.*;
  */
 public class UsersPanel extends Panel {
 
-    private DefaultTableModel model;
+    private DefaultTableModel model1;
 
     public UsersPanel() {
         initComponents();
@@ -29,12 +29,10 @@ public class UsersPanel extends Panel {
         super.cbFilterOption = cbFilterOption;
         super.tfFilterUpperValue = tfFilterUpperValue;
         super.tfFilterValue = tfFilterValue;
-        super.table = tblData;
-        super.model = model;
     }
 
     private void initTable() {
-        model = new DefaultTableModel(
+       model1 = new DefaultTableModel(
                 new Object[][] {
                 },
                 new String[] {
@@ -49,21 +47,23 @@ public class UsersPanel extends Panel {
                 return columnTypes[columnIndex];
             }
         };
-        table.setModel(model);
-        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        tblData.setModel(model1);
+        tblData.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                Object[] fields = new Object[table.getColumnCount()];
-                int selectedRow = table.getSelectedRow();
+                Object[] fields = new Object[tblData.getColumnCount()];
+                int selectedRow = tblData.getSelectedRow();
 
                 if (selectedRow != -1) {
                     for (int i = 0; i < fields.length; i++) {
-                        fields[i] = table.getValueAt(selectedRow, i + 1);
+                        fields[i] = tblData.getValueAt(selectedRow, i + 1);
                     }
                 }
                 setFields(fields);
             }
         });
+        super.table = tblData;
+        super.model = model1;
     }
 
     @Override
@@ -133,7 +133,7 @@ public class UsersPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         pnlData = new JScrollPane();
         tblData = new JTable();
         panel1 = new JPanel();
@@ -171,13 +171,12 @@ public class UsersPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(900, 700));
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
-        . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder
-        . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dialo\u0067" ,java .
-        awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder( )) )
-        ;  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-        ) {if ("borde\u0072" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
-        ;
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
+        EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing
+        . border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ),
+        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
+        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () ))
+        throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -186,6 +185,23 @@ public class UsersPanel extends Panel {
             pnlData.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
             //---- tblData ----
+            tblData.setModel(new DefaultTableModel(
+                new Object[][] {
+                    {null, null, null, null, null, null, null, "", null},
+                    {null, null, null, null, null, null, null, null, null},
+                },
+                new String[] {
+                    "ssn", "firstname", "lastname", "bd", "room_id", "email", "phone_num", "gender", "zip_code"
+                }
+            ) {
+                Class<?>[] columnTypes = new Class<?>[] {
+                    Integer.class, String.class, String.class, String.class, Integer.class, String.class, String.class, String.class, Integer.class
+                };
+                @Override
+                public Class<?> getColumnClass(int columnIndex) {
+                    return columnTypes[columnIndex];
+                }
+            });
             pnlData.setViewportView(tblData);
         }
         add(pnlData, BorderLayout.CENTER);
@@ -364,7 +380,7 @@ public class UsersPanel extends Panel {
                 btnApplyFilter.setText("Apply Filters");
                 btnApplyFilter.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btnApplyFilter.setActionCommand("Users");
-                btnApplyFilter.setName("apply");
+                btnApplyFilter.setName("applyFilter");
                 pnlFilter.add(btnApplyFilter);
                 btnApplyFilter.setBounds(45, 150, 245, 40);
 
@@ -405,7 +421,7 @@ public class UsersPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JScrollPane pnlData;
     private JTable tblData;
     private JPanel panel1;
