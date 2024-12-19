@@ -4,6 +4,7 @@ import panels.Panel;
 import panels.customerPanels.ProfilePanel;
 import panels.managerPanels.*;
 import panels.receptionistPanels.HouseKeepingPanel;
+import panels.receptionistPanels.RoomsPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -225,6 +226,8 @@ public class HotelManager {
                         case "view rooms":
                             if (command.equals("Rooms")) {
                                 System.out.println("view available rooms button pressed in rooms panel");
+                                RoomsPanel pnl = (RoomsPanel)activePanel.getCenterPanel();
+                                pnl.setTableRows(hotelDao.viewAvailableRooms(pnl.getTfStartDate(), pnl.getTfEndDate(), currHotelID));
                             }
                             break;
                         case "confirm":

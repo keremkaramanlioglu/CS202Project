@@ -642,4 +642,106 @@ public class HotelDao {
         return totalRevenue;
     }
 
+    public ArrayList<Object[]> filterRooms(String columnName, String filterOption, String filterValue, String filterValueUpper, int hotelID) throws SQLException {
+        ArrayList<Object[]> result = new ArrayList<>();
+        String sql = "SELECT * FROM Rooms WHERE hotel_id = ?";
+
+        switch (filterOption) {
+            case "None":
+                sql = "SELECT * FROM Rooms WHERE hotel_id = ?";
+                break;
+            case "=":
+            case "!=":
+            case "<":
+            case ">":
+            case "<=":
+            case ">=":
+                sql = "SELECT * FROM Rooms WHERE " + columnName + " " + filterOption + " ?";
+                break;
+            case "between":
+                sql = "SELECT * FROM Rooms WHERE " + columnName + " BETWEEN ? AND ?";
+                break;
+            case "contains":
+                sql = "SELECT * FROM Rooms WHERE " + columnName + " LIKE ?";
+                filterValue = "%" + filterValue + "%";
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid filter option: " + filterOption);
+        }
+
+        sql += " AND hotel_id = ?";
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            if (!filterOption.equals("None")) {
+                if (filterOption.equals("between")) {
+                    stmt.setString(1, filterValue);
+                    stmt.setString(2, filterValueUpper);
+                    stmt.setInt(3, hotelID);
+                } else {
+                    stmt.setString(1, filterValue);
+                    stmt.setInt(2, hotelID);
+                }
+            } else {
+                stmt.setInt(1, hotelID);
+            }
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Object[] row = new Object[7];
+                    row[0] = rs.getInt("room_id");
+                    row[1] = rs.getString("room_num");
+                    row[2] = rs.getString("room_type");
+                    row[3] = rs.getInt("room_size");
+                    row[4] = rs.getDouble("room_price");
+                    row[5] = rs.getString("room_capacity");
+                    row[6] = rs.getInt("hotel_id");
+                    result.add(row);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public ArrayList<Object[]> viewAvailableRooms(Date startDate, Date endDate, int hotelID) throws SQLException {
+        ArrayList<Object[]> availableRooms = new ArrayList<>();
+
+        // SQL sorgusu: Otel ID'si ve tarih aralığında rezervasyonu olmayan odaları seç
+        String sql = "SELECT r.room_id, r.room_num, r.room_type, r.room_size, r.room_price, r.room_capacity " +
+                "FROM Rooms r " +
+                "WHERE r.hotel_id = ? AND NOT EXISTS (" +
+                "   SELECT 1 FROM Bookings b " +
+                "   WHERE b.room_id = r.room_id " +
+                "   AND ((b.booking_start_date BETWEEN ? AND ?) " +
+                "   OR (b.booking_end_date BETWEEN ? AND ?) " +
+                "   OR (b.booking_start_date <= ? AND b.booking_end_date >= ?))" +
+                ")";
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            // Set query parameters
+            stmt.setInt(1, hotelID);
+            stmt.setDate(2, new java.sql.Date(startDate.getTime()));
+            stmt.setDate(3, new java.sql.Date(endDate.getTime()));
+            stmt.setDate(4, new java.sql.Date(startDate.getTime()));
+            stmt.setDate(5, new java.sql.Date(endDate.getTime()));
+            stmt.setDate(6, new java.sql.Date(startDate.getTime()));
+            stmt.setDate(7, new java.sql.Date(endDate.getTime()));
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                // Collect available rooms into an ArrayList<Object[]>
+                while (rs.next()) {
+                    Object[] row = new Object[6];
+                    row[0] = rs.getInt("room_id");
+                    row[1] = rs.getString("room_num");
+                    row[2] = rs.getString("room_type");
+                    row[3] = rs.getInt("room_size");
+                    row[4] = rs.getDouble("room_price");
+                    row[5] = rs.getString("room_capacity");
+                    availableRooms.add(row);
+                }
+            }
+        }
+
+        return availableRooms;
+    }
 }
