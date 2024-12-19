@@ -1,5 +1,6 @@
 import entities.*;
 
+import javax.management.openmbean.OpenMBeanConstructorInfo;
 import java.awt.print.Book;
 import java.sql.*;
 import java.util.ArrayList;
@@ -154,14 +155,14 @@ public class HotelDao {
         stmt.setString(1, employee.getEmp_ssn());
         stmt.executeUpdate();
     }
-    public void insertBooking(Booking booking) throws SQLException {
+    public void insertBooking(Object[] objects) throws SQLException {
         String sql = "INSERT INTO Bookings (c_ssn, room_id, payment_status, payment_method, booking_start_date, booking_end_date, c_check_in_status, c_check_out_status) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         stmt = con.prepareStatement(sql);
-        stmt.setString(1, booking.getC_ssn());
-        stmt.setInt(2, booking.getRoom_id());
-        stmt.setString(3, booking.getPayment_status());
-        stmt.setString(4, booking.getPayment_method());
-        stmt.setTimestamp(5, booking.getBooking_start_date());
+        stmt.setString(1, String.valueOf(objects[0]));
+        stmt.setInt(2, Integer.parseInt(String.valueOf(objects[1])));
+        stmt.setString(3, String.valueOf(objects[2]));
+        stmt.setString(4, String.valueOf(objects[3]));
+        stmt.setTimestamp(5, Date.valueOf(String.valueOf(objects[4])));
         stmt.setTimestamp(6, booking.getBooking_end_date());
         stmt.setBoolean(7, booking.isC_check_in_status());
         stmt.setBoolean(8, booking.isC_check_out_status());
@@ -529,6 +530,91 @@ public class HotelDao {
                     row[6] = rs.getTimestamp("booking_end_date");
                     row[7] = rs.getBoolean("c_check_in_status");
                     row[8] = rs.getBoolean("c_check_out_status");
+                    result.add(row);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public ArrayList<Object[]> filterEmployees(String columnName, String filterOption, String filterValue, String filterValueUpper, int emp_hotel_id) throws SQLException {
+        ArrayList<Object[]> result = new ArrayList<>();
+        String sql = "";
+
+        String emp = "emp_";
+        if (!compare(columnName, new String[]{"years", "street", "no", "apartment", "zip_code"})) {
+            columnName = emp + columnName;
+        }
+
+        // Construct the SQL query based on filter options
+        switch (filterOption) {
+            case "None":
+                sql = "SELECT * FROM Employees";
+                break;
+            case "=":
+            case "!=":
+            case "<":
+            case ">":
+            case "<=":
+            case ">=":
+                sql = "SELECT * FROM Employees WHERE " + columnName + " " + filterOption + " ?";
+                break;
+            case "between":
+                sql = "SELECT * FROM Employees WHERE (" + columnName + " BETWEEN ? AND ?)";
+                break;
+            case "contains":
+                sql = "SELECT * FROM Employees WHERE " + columnName + " LIKE ?";
+                filterValue = "%" + filterValue + "%"; // Adjust filterValue for LIKE
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid filter option: " + filterOption);
+        }
+
+
+        if (emp_hotel_id != -1) {
+            if (filterOption.equals("None")) {
+                sql += " WHERE emp_hotel_id = ?";
+            } else {
+                sql += " AND emp_hotel_id = ?";
+            }
+        }
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            // Set query parameters based on filter options
+            if (!filterOption.equals("None")) {
+                if (filterOption.equals("between")) {
+                    stmt.setString(1, filterValue);
+                    stmt.setString(2, filterValueUpper);
+                    stmt.setInt(3, emp_hotel_id);
+                } else {
+                    stmt.setString(1, filterValue);
+                    stmt.setInt(2, emp_hotel_id);
+                }
+            } else{
+                stmt.setInt(1, emp_hotel_id);
+            }
+
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                // Collect results into an ArrayList<Object[]>
+                while (rs.next()) {
+                    Object[] row = new Object[15];
+                    row[0] = rs.getString("emp_ssn");
+                    row[1] = rs.getString("emp_firstname");
+                    row[2] = rs.getString("emp_lastname");
+                    row[3] = rs.getString("emp_type");
+                    row[4] = rs.getDate("emp_bd");
+                    row[5] = rs.getDate("years");
+                    row[6] = rs.getInt("emp_hotel_id");
+                    row[7] = rs.getDouble("emp_salary");
+                    row[8] = rs.getString("emp_phone_num");
+                    row[9] = rs.getString("emp_email");
+                    row[10] = rs.getString("emp_gender");
+                    row[11] = rs.getString("street");
+                    row[12] = rs.getString("no");
+                    row[13] = rs.getString("apartment");
+                    row[14] = rs.getString("zip_code");
                     result.add(row);
                 }
             }

@@ -14,8 +14,8 @@ public class Booking {
     private int room_id;
     private String payment_status;
     private String payment_method;
-    private Timestamp booking_start_date;
-    private Timestamp booking_end_date;
+    private Date booking_start_date;
+    private Date booking_end_date;
     private boolean c_check_in_status;
     private boolean c_check_out_status;
 
@@ -25,8 +25,8 @@ public class Booking {
         this.room_id = rs.getInt("room_id");
         this.payment_status = rs.getString("payment_status");
         this.payment_method = rs.getString("payment_method");
-        this.booking_start_date = rs.getTimestamp("booking_start_date");
-        this.booking_end_date = rs.getTimestamp("booking_end_date");
+        this.booking_start_date = rs.getDate("booking_start_date");
+        this.booking_end_date = rs.getDate("booking_end_date");
         this.c_check_in_status = rs.getBoolean("c_check_in_status");
         this.c_check_out_status = rs.getBoolean("c_check_out_status");
     }
