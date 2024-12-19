@@ -9,6 +9,7 @@ import panels.Panel;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.sql.Date;
 import javax.swing.*;
 
 /**
@@ -35,6 +36,18 @@ public class FinancePanel extends Panel {
 
     public boolean tfCheck() {
         return !tfStartDate.getText().isEmpty() && !tfEndDate.getText().isEmpty();
+    }
+
+    public Date getStartDate() {
+        return Date.valueOf(tfStartDate.getText());
+    }
+
+    public Date getEndDate() {
+        return Date.valueOf(tfEndDate.getText());
+    }
+
+    public void setTfRevenue(double d){
+        tfRevenue.setText(d+"");
     }
 
     @Override

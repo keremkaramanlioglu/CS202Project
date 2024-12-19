@@ -154,15 +154,15 @@ public class HotelDao {
         stmt.setString(1, employee.getEmp_ssn());
         stmt.executeUpdate();
     }
-    public void insertBooking(Object[] objects) throws SQLException {
+    public void insertBooking(Booking booking) throws SQLException {
         String sql = "INSERT INTO Bookings (c_ssn, room_id, payment_status, payment_method, booking_start_date, booking_end_date, c_check_in_status, c_check_out_status) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         stmt = con.prepareStatement(sql);
-        stmt.setString(1, String.valueOf(objects[0]));
-        stmt.setInt(2, Integer.parseInt(String.valueOf(objects[1])));
-        stmt.setString(3, String.valueOf(objects[2]));
-        stmt.setString(4, String.valueOf(objects[3]));
-        stmt.setTimestamp(5, Date.valueOf(String.valueOf(objects[4])));
-        stmt.setTimestamp(6, booking.getBooking_end_date());
+        stmt.setString(1, booking.getC_ssn());
+        stmt.setInt(2, booking.getRoom_id());
+        stmt.setString(3, booking.getPayment_status());
+        stmt.setString(4, booking.getPayment_method());
+        stmt.setDate(5, booking.getBooking_start_date());
+        stmt.setDate(6, booking.getBooking_end_date());
         stmt.setBoolean(7, booking.isC_check_in_status());
         stmt.setBoolean(8, booking.isC_check_out_status());
         stmt.executeUpdate();
@@ -612,6 +612,34 @@ public class HotelDao {
         }
 
         return result;
+    }
+
+    public double calculateRevenue(Date start, Date end, int hotelID) {
+        double totalRevenue = 0.0;
+        String query = "SELECT SUM(r.room_price * DATEDIFF(b.booking_end_date, b.booking_start_date)) AS total_revenue "
+                + "FROM Bookings b "
+                + "JOIN Rooms r ON b.room_id = r.room_id "
+                + "WHERE r.hotel_id = ? "
+                + "AND b.booking_start_date >= ? "
+                + "AND b.booking_end_date <= ? "
+                + "AND b.payment_status = 'Completed' ";
+
+        try (PreparedStatement stmt = con.prepareStatement(query)) {
+
+            stmt.setInt(1, hotelID);  // hotelID
+            stmt.setDate(2, new java.sql.Date(start.getTime()));  // start date
+            stmt.setDate(3, new java.sql.Date(end.getTime()));  // end date
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    totalRevenue = rs.getDouble("total_revenue");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return totalRevenue;
     }
 
 }
