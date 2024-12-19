@@ -69,8 +69,8 @@ public class BookingsPanel extends Panel {
             // JTextFields
             fieldValues[0] = Integer.parseInt(tfCSsn.getText().trim());  // CSsn as Integer
             fieldValues[1] = Integer.parseInt(tfRoomID.getText().trim());  // RoomID as Integer
-            fieldValues[2] = java.sql.Date.valueOf(tfStartDate.getText().trim()); // Start Date as java.sql.Date
-            fieldValues[3] = java.sql.Date.valueOf(tfEndDate.getText().trim());   // End Date as java.sql.Date
+            fieldValues[2] = java.sql.Date.valueOf(String.valueOf(new Date("2024-12-12"))); // Start Date as java.sql.Date
+            fieldValues[3] = java.sql.Date.valueOf(String.valueOf(new Date("2024-12-24")));   // End Date as java.sql.Date
 
             // JComboBoxes
             fieldValues[4] = Objects.requireNonNull(cbPaymentStatus.getSelectedItem()).toString(); // Payment Status as String
@@ -142,12 +142,7 @@ public class BookingsPanel extends Panel {
                 setFields(fields);
             }
         });
-        // Set the table to select entire rows
-        tblData.setRowSelectionAllowed(true);
-        tblData.setColumnSelectionAllowed(false); // Disable column selection if needed
 
-// Set the selection mode
-        tblData.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         super.table = tblData;
         super.model = tableModel;
     }
