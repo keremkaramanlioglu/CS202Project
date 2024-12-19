@@ -30,8 +30,6 @@ public class RoomsPanel extends Panel {
     public void initTable() {
         tableModel = new DefaultTableModel(
                 new Object[][] {
-                        {null, null, null, null, null, null},
-                        {null, null, null, null, null, null},
                 },
                 new String[] {
                         "room_num", "room_size", "room_capacity", "room_price", "room_type", "cleaning_status"
