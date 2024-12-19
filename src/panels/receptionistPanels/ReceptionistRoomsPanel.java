@@ -4,7 +4,6 @@
 
 package panels.receptionistPanels;
 
-import java.awt.event.*;
 import panels.Panel;
 
 import java.awt.*;
@@ -16,9 +15,30 @@ import javax.swing.table.*;
 /**
  * @author kutay
  */
-public class RoomsPanel extends Panel {
-    public RoomsPanel() {
+public class ReceptionistRoomsPanel extends Panel {
+    public ReceptionistRoomsPanel() {
         initComponents();
+    }
+
+    @Override
+    public void addButtonListener(ActionListener al) {
+
+    }@Override
+    public void addMouseListener(MouseListener ml) {
+
+    }@Override
+    public void reset() {
+
+    }
+
+    @Override
+    public Object[] getEntity() {
+        return new Object[0];
+    }
+
+    @Override
+    public Panel getPanelByName(String panelName) {
+        return null;
     }
 
     private void initComponents() {
@@ -234,27 +254,6 @@ public class RoomsPanel extends Panel {
         }
         add(pnlControl, BorderLayout.SOUTH);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
-    }
-
-    @Override
-    public void addButtonListener(ActionListener al) {
-
-    }@Override
-    public void addMouseListener(MouseListener ml) {
-
-    }@Override
-    public void reset() {
-
-    }
-
-    @Override
-    public Object[] getEntity() {
-        return new Object[0];
-    }
-
-    @Override
-    public Panel getPanelByName(String panelName) {
-        return null;
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off

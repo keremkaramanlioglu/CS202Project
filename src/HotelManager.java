@@ -2,10 +2,11 @@ import entities.Booking;
 import entities.CleaningSchedule;
 import entities.Employee;
 
+import entities.Room;
 import panels.Panel;
 import panels.customerPanels.ProfilePanel;
 import panels.managerPanels.*;
-import panels.receptionistPanels.HouseKeepingPanel;
+import panels.receptionistPanels.ReceptionistRoomsPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -118,7 +119,7 @@ public class HotelManager {
             //if (currSsn.isEmpty() && !command.equals("Guest")) return;
 
             String[] sidePanelOptions = {"Rooms", "Users", "Employees", "Finance", "Bookings", "Housekeeping",
-                    "Book a room", "My Bookings", "Profile", "My Jobs", "Query Panel",  "Add Customer"};
+                    "Book a room", "My Bookings", "Profile", "My Jobs", "Query Panel",  "Add Customer", "View Rooms"};
             String [] mainPanelOptions = {"Manager", "Customer", "Housekeeper", "Receptionist", "Database Manager","Back"};
             if (compare(command, sidePanelOptions) && button.getName().equals("side")) {
                 Panel activePanel = hotelView.getActivePanel();
@@ -208,6 +209,26 @@ public class HotelManager {
                             EmpInfos empInfos = new EmpInfos();
                             empl = empInfos.getEmp();
                             System.out.println(empl);
+                        }
+                        break;
+                    case "Rooms":
+                        Room room;
+                        if (button.getName().equals("applyFilter")) {
+                            RoomsPanel pnlRoom = (RoomsPanel) hotelView.getActivePanel().getPanelByName(command);
+                            System.out.println("entered");
+                            try {
+                                System.out.println(pnlRoom.getSelectedFilterOption().equals("None"));
+                                System.out.println(pnlRoom.getSelectedFilterColumn() + " " + pnlRoom.getSelectedFilterColumn() + " " + pnlRoom.getSelectedFilterColumn());
+                                ArrayList<Room> rooms = hotelDao.getRooms(pnlRoom.getSelectedFilterColumn(), pnlRoom.getSelectedFilterOption(), pnlRoom.getSelectedFilterValue());
+                                pnlRoom.setTableWithRooms(rooms);
+                                for (Room room1 : rooms) {
+                                    System.out.println(room1);
+                                }
+                            } catch (SQLException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                        } else if (button.getName().equals("add")) {
+                            System.out.println("add");
                         }
                         break;
                     case "Receptionist":

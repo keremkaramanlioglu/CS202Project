@@ -96,7 +96,7 @@ public class EmployeesPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         pnlData = new JScrollPane();
         tblEmployees = new JTable();
         pnlControl = new JPanel();
@@ -115,13 +115,14 @@ public class EmployeesPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax
-        . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing
-        .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .
-        Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .red
-        ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override
-        public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName (
-        ) ) )throw new RuntimeException( ) ;} } );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder (
+        new javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn"
+        , javax. swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM
+        , new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 )
+        ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener(
+        new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
+        ) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
+        ;} } );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -163,7 +164,7 @@ public class EmployeesPanel extends Panel {
                 //---- btnAdd ----
                 btnAdd.setText("Add");
                 btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnAdd.setActionCommand("Employees");
+                btnAdd.setActionCommand("Rooms");
                 btnAdd.setName("add");
                 pnlSelection.add(btnAdd);
                 btnAdd.setBounds(20, 125, 100, 50);
@@ -171,7 +172,7 @@ public class EmployeesPanel extends Panel {
                 //---- btnDelete ----
                 btnDelete.setText("Delete");
                 btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnDelete.setActionCommand("Employees");
+                btnDelete.setActionCommand("Rooms");
                 btnDelete.setName("delete");
                 pnlSelection.add(btnDelete);
                 btnDelete.setBounds(125, 125, 100, 50);
@@ -179,7 +180,7 @@ public class EmployeesPanel extends Panel {
                 //---- btnUpdate ----
                 btnUpdate.setText("Update");
                 btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnUpdate.setActionCommand("Employees");
+                btnUpdate.setActionCommand("Rooms");
                 btnUpdate.setName("update");
                 pnlSelection.add(btnUpdate);
                 btnUpdate.setBounds(230, 125, 100, 50);
@@ -265,7 +266,7 @@ public class EmployeesPanel extends Panel {
                 //---- btnApplyFilter ----
                 btnApplyFilter.setText("Apply Filters");
                 btnApplyFilter.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btnApplyFilter.setActionCommand("Employees");
+                btnApplyFilter.setActionCommand("Rooms");
                 btnApplyFilter.setName("applyFilter");
                 pnlFilter.add(btnApplyFilter);
                 btnApplyFilter.setBounds(55, 145, 245, 40);
@@ -307,7 +308,7 @@ public class EmployeesPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JScrollPane pnlData;
     private JTable tblEmployees;
     private JPanel pnlControl;

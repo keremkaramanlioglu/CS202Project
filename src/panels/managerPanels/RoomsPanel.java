@@ -4,11 +4,14 @@
 
 package panels.managerPanels;
 
+import entities.Employee;
+import entities.Room;
 import panels.Panel;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -19,6 +22,38 @@ public class RoomsPanel extends Panel {
 
     public RoomsPanel() {
         initComponents();
+        super.cbFilterColumn = cbSelectColumn;
+        super.cbFilterOption = cbFilterOption;
+        super.tfFilterValue = tfFilterValue;
+        super.tfFilterUpperValue = tfFilterUpperValue;
+    }
+
+    public void setTableWithRooms(ArrayList<Room> rooms){
+        String[] columnNames = {"room_id", "hotel_id", "room_number", "room_type", "room_size", "room_price", "room_capacity"};
+
+        // Create a table model with column names
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+        // Loop through the customers list and add each as a row to the model
+        for ( Room room : rooms) {
+            Object[] row = {
+                    room.getRoom_id(),
+                    room.getHotel_id(),
+                    room.getRoom_num(),
+                    room.getRoom_type(),
+                    room.getRoom_size(),
+                    room.getRoom_price(),
+                    room.getRoom_capacity()
+            };
+            model.addRow(row);
+        }
+
+        // Set the table model to the JTable
+        table1.setModel(model);
+        table1.revalidate();
+        table1.repaint();
+        this.revalidate();
+        this.repaint();
     }
 
     @Override
@@ -26,6 +61,7 @@ public class RoomsPanel extends Panel {
         btnAdd.addActionListener(al);
         btnDelete.addActionListener(al);
         btnUpdate.addActionListener(al);
+        btnApplyFilter.addActionListener(al);
     }
 
     @Override
@@ -57,7 +93,7 @@ public class RoomsPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         scrollPane1 = new JScrollPane();
         table1 = new JTable();
         controlPanel = new JPanel();
@@ -80,13 +116,18 @@ public class RoomsPanel extends Panel {
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
         label6 = new JLabel();
-        button1 = new JButton();
+        btnApplyFilter = new JButton();
         tfFilterValue = new JTextField();
         tfFilterUpperValue = new JTextField();
         label8 = new JLabel();
 
         //======== this ========
-
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
+        border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER
+        , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font
+        .BOLD ,12 ), java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
+        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order"
+        .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -230,14 +271,13 @@ public class RoomsPanel extends Panel {
 
                 //---- cbSelectColumn ----
                 cbSelectColumn.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None",
-                    "Room Id",
-                    "Hotel ID",
-                    "Room Number",
-                    "Room Type",
-                    "Room Size",
-                    "Room Price",
-                    "Capacity"
+                    "room_id",
+                    "hotel_id",
+                    "room_number",
+                    "room_type",
+                    "room_size",
+                    "room_price",
+                    "room_capacity"
                 }));
                 cbSelectColumn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 filterPanel.add(cbSelectColumn);
@@ -246,7 +286,7 @@ public class RoomsPanel extends Panel {
                 //---- cbFilterOption ----
                 cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
                     "None",
-                    "==",
+                    "=",
                     "!=",
                     "<",
                     ">",
@@ -264,12 +304,13 @@ public class RoomsPanel extends Panel {
                 filterPanel.add(label6);
                 label6.setBounds(50, 85, 225, 30);
 
-                //---- button1 ----
-                button1.setText("Apply");
-                button1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                button1.setName("apply");
-                filterPanel.add(button1);
-                button1.setBounds(40, 150, 245, 60);
+                //---- btnApplyFilter ----
+                btnApplyFilter.setText("Apply");
+                btnApplyFilter.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnApplyFilter.setName("applyFilter");
+                btnApplyFilter.setActionCommand("Rooms");
+                filterPanel.add(btnApplyFilter);
+                btnApplyFilter.setBounds(40, 150, 245, 60);
 
                 //---- tfFilterValue ----
                 tfFilterValue.setToolTipText("Filter Input");
@@ -308,7 +349,7 @@ public class RoomsPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JScrollPane scrollPane1;
     private JTable table1;
     private JPanel controlPanel;
@@ -331,7 +372,7 @@ public class RoomsPanel extends Panel {
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;
     private JLabel label6;
-    private JButton button1;
+    private JButton btnApplyFilter;
     private JTextField tfFilterValue;
     private JTextField tfFilterUpperValue;
     private JLabel label8;

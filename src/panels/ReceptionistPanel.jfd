@@ -42,7 +42,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnRooms"
-					"text": "Rooms"
+					"text": "View Rooms"
 					"background": #Color2
 					"foreground": #Color3
 					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE

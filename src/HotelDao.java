@@ -243,7 +243,7 @@ public class HotelDao {
     }
 
     public ArrayList<Room> getRooms(String filterColumn, String filterOption, String filterValue) throws SQLException {
-        String sql = "";
+        String sql = "SELECT * FROM Rooms";
         ArrayList<Room> rooms = new ArrayList<>();
 
         if (filterOption.equals("None")) {
@@ -255,7 +255,6 @@ public class HotelDao {
         }
 
         stmt = con.prepareStatement(sql);
-        stmt.setString(1, filterValue);
 
         //System.out.println(stmt);
 
