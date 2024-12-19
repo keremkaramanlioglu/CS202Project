@@ -28,7 +28,7 @@ public class HotelManager {
 
     public HotelManager(HotelView hotelView, DBConnectionControl dbConnectionControl) throws SQLException {
         this.hotelView = hotelView;
-        hotelView.setVisible(true);
+        //hotelView.setVisible(true);
         this.currSsn = "";
         ButtonListener buttonListener = new ButtonListener();
         hotelView.addButtonListener(buttonListener);
@@ -106,7 +106,7 @@ public class HotelManager {
     private class ButtonListener implements ActionListener, MouseListener {
         public void actionPerformed(ActionEvent e) {
 
-            //connectionControl();
+            connectionControl();
 
             //System.out.println("Curr Ssn: " + currSsn);
 
@@ -127,109 +127,114 @@ public class HotelManager {
                 if (activePanel.getCenterPanel() != null) activePanel.getCenterPanel().reset();
                 activePanel.setCenterPanel(activePanel.getPanelByName(command));
             } else if (compare(command, mainPanelOptions)) {
-                //if (!command.equals("Customer")) if (!checkAction(command)) return;
+                if (!command.equals("Customer")) if (!checkAction(command)) return;
                 hotelView.getActivePanel().reset();
                 hotelView.setActivePanel(hotelView.getPanelByName(command));
             } else {
                 Panel activePanel = hotelView.getActivePanel();
-                switch (name) {
-                    case "add":
-                        if (command.equals("Bookings")){
-                            System.out.println("add button pressed in booking panel");
-                        } else if (command.equals("Employees")) {
-                            System.out.println("add button pressed in employees panel by manager");
-                        } else if (command.equals("Housekeeping")) {
-                            System.out.println("add button pressed in housekeeping panel by manager");
-                        } else if (command.equals("Rooms")) {
-                            System.out.println("add button pressed in rooms panel by manager");
-                        } else if (command.equals("Users")) {
-                            System.out.println("add button pressed in users panel by manager");
-                        } else if (command.equals("Add Customer")) {
-                            System.out.println("add button pressed in add customer panel by receptionist");
-                        } else if (command.equals("houseKeeping")) {
-                            System.out.println("add button pressed in housekeeping panel by receptionist");
-                        }
-                        break;
-                    case "update":
-                        if (command.equals("Bookings")) {
-                            System.out.println("update button pressed in booking panel");
-                        } else if (command.equals("Employees")) {
-                            System.out.println("update button pressed in employees panel by manager");
-                        } else if (command.equals("Housekeeping")) {
-                            System.out.println("update button pressed in housekeeping panel by manager");
-                        } else if (command.equals("Rooms")) {
-                            System.out.println("update button pressed in rooms panel by manager");
-                        } else if (command.equals("Users")) {
-                            System.out.println("update button pressed in users panel by manager");
-                        } else if (command.equals("houseKeeping")) {
-                            System.out.println("update button pressed in housekeeping panel by receptionist");
-                        }
-                        break;
-                    case "delete":
-                        if (command.equals("Bookings")) {
-                            System.out.println("delete button pressed in booking panel");
-                        } else if (command.equals("Employees")) {
-                            System.out.println("delete button pressed in employees panel by manager");
-                        } else if (command.equals("Housekeeping")) {
-                            System.out.println("delete button pressed in housekeeping panel by manager");
-                        } else if (command.equals("Rooms")) {
-                            System.out.println("delete button pressed in rooms panel by manager");
-                        } else if (command.equals("Users")) {
-                            System.out.println("delete button pressed in users panel by manager");
-                        } else if (command.equals("houseKeeping")) {
-                            System.out.println("delete button pressed in housekeeping panel by receptionist");
-                        }
-                        break;
-                    case "applyFilter":
-                        if (command.equals("Bookings")){ //from both
-                            System.out.println("filter button pressed in booking panel");
-                        } else if (command.equals("Employees")) { //from manager
-                            System.out.println("filter button pressed in employees panel by manager");
-                        } else if (command.equals("Housekeeping")) { //from manager
-                            System.out.println("filter button pressed in housekeeping panel by manager");
-                        } else if (command.equals("Rooms")) { //from manager
-                            System.out.println("filter button pressed in rooms panel by manager");
-                        } else if (command.equals("Users")) { //from manager
-                            System.out.println("filter button pressed in users panel by manager");
-                        } else if (command.equals("houseKeeping")) { //from receptionist
-                            System.out.println("filter button pressed in housekeeping panel by receptionist");
-                        }
-                        break;
-                    case "ok":
-                        if (command.equals("Employees")) {
-                            System.out.println("ok button pressed in EmpInfos panel");
-                        }
-                        break;
-                    case "show revenue":
-                        if (command.equals("Finance")){
-                            System.out.println("show revenue button pressed in finance panel");
-                        }
-                        break;
-                    case "view rooms":
-                        if (command.equals("Rooms")){
-                            System.out.println("view available rooms button pressed in rooms panel");
-                        }
-                        break;
-                    case "confirm":
-                        if (command.equals("My Jobs")){
-                            System.out.println("confirm button pressed in my jobs panel");
-                        } else if (command.equals("Profile")) {
-                            System.out.println("confirm button pressed in profile panel");
-                            ProfilePanel profile = (ProfilePanel)activePanel.getPanelByName("Profile");
-                            profile.pushConfirmButton();
-                        }
-                        break;
-                    case "execute":
-                        if (command.equals("Query")){
-                            System.out.println("execute button pressed in query panel");
-                        }
-                        break;
-                    case "edit":
-                        if (command.equals("Profile")){
-                            System.out.println("edit button pressed in profile panel");
-                            ProfilePanel profile = (ProfilePanel)activePanel.getPanelByName("Profile");
-                            profile.pushEditButton();
-                        }
+                try {
+                    switch (name) {
+                        case "add":
+                            if (command.equals("Bookings")) {
+                                System.out.println("add button pressed in booking panel");
+                            } else if (command.equals("Employees")) {
+                                System.out.println("add button pressed in employees panel by manager");
+                            } else if (command.equals("Housekeeping")) {
+                                System.out.println("add button pressed in housekeeping panel by manager");
+                            } else if (command.equals("Rooms")) {
+                                System.out.println("add button pressed in rooms panel by manager");
+                            } else if (command.equals("Users")) {
+                                System.out.println("add button pressed in users panel by manager");
+                            } else if (command.equals("Add Customer")) {
+                                System.out.println("add button pressed in add customer panel by receptionist");
+                            } else if (command.equals("houseKeeping")) {
+                                System.out.println("add button pressed in housekeeping panel by receptionist");
+                            }
+                            break;
+                        case "update":
+                            if (command.equals("Bookings")) {
+                                System.out.println("update button pressed in booking panel");
+                            } else if (command.equals("Employees")) {
+                                System.out.println("update button pressed in employees panel by manager");
+                            } else if (command.equals("Housekeeping")) {
+                                System.out.println("update button pressed in housekeeping panel by manager");
+                            } else if (command.equals("Rooms")) {
+                                System.out.println("update button pressed in rooms panel by manager");
+                            } else if (command.equals("Users")) {
+                                System.out.println("update button pressed in users panel by manager");
+                            } else if (command.equals("houseKeeping")) {
+                                System.out.println("update button pressed in housekeeping panel by receptionist");
+                            }
+                            break;
+                        case "delete":
+                            if (command.equals("Bookings")) {
+                                System.out.println("delete button pressed in booking panel");
+                            } else if (command.equals("Employees")) {
+                                System.out.println("delete button pressed in employees panel by manager");
+                            } else if (command.equals("Housekeeping")) {
+                                System.out.println("delete button pressed in housekeeping panel by manager");
+                            } else if (command.equals("Rooms")) {
+                                System.out.println("delete button pressed in rooms panel by manager");
+                            } else if (command.equals("Users")) {
+                                System.out.println("delete button pressed in users panel by manager");
+                            } else if (command.equals("houseKeeping")) {
+                                System.out.println("delete button pressed in housekeeping panel by receptionist");
+                            }
+                            break;
+                        case "applyFilter":
+                            if (command.equals("Bookings")) { //from both
+                                activePanel.getCenterPanel().setTableRows(hotelDao.filterBookings(activePanel.getCenterPanel().getSelectedFilterColumn(),
+                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue()));
+                            } else if (command.equals("Employees")) { //from manager
+                                System.out.println("filter button pressed in employees panel by manager");
+                            } else if (command.equals("Housekeeping")) { //from manager
+                                System.out.println("filter button pressed in housekeeping panel by manager");
+                            } else if (command.equals("Rooms")) { //from manager
+                                System.out.println("filter button pressed in rooms panel by manager");
+                            } else if (command.equals("Users")) { //from manager
+                                System.out.println("filter button pressed in users panel by manager");
+                            } else if (command.equals("houseKeeping")) { //from receptionist
+                                System.out.println("filter button pressed in housekeeping panel by receptionist");
+                            }
+                            break;
+                        case "ok":
+                            if (command.equals("Employees")) {
+                                System.out.println("ok button pressed in EmpInfos panel");
+                            }
+                            break;
+                        case "show revenue":
+                            if (command.equals("Finance")) {
+                                System.out.println("show revenue button pressed in finance panel");
+                            }
+                            break;
+                        case "view rooms":
+                            if (command.equals("Rooms")) {
+                                System.out.println("view available rooms button pressed in rooms panel");
+                            }
+                            break;
+                        case "confirm":
+                            if (command.equals("My Jobs")) {
+                                System.out.println("confirm button pressed in my jobs panel");
+                            } else if (command.equals("Profile")) {
+                                System.out.println("confirm button pressed in profile panel");
+                                ProfilePanel profile = (ProfilePanel) activePanel.getPanelByName("Profile");
+                                profile.pushConfirmButton();
+                            }
+                            break;
+                        case "execute":
+                            if (command.equals("Query")) {
+                                System.out.println("execute button pressed in query panel");
+                            }
+                            break;
+                        case "edit":
+                            if (command.equals("Profile")) {
+                                System.out.println("edit button pressed in profile panel");
+                                ProfilePanel profile = (ProfilePanel) activePanel.getPanelByName("Profile");
+                                profile.pushEditButton();
+                            }
+                    }
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
                 }
             }
         }

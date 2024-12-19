@@ -75,6 +75,7 @@ new FormModel {
 						add( null )
 						add( null )
 					} )
+					"rowSelectionAllowed": false
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
@@ -284,7 +285,7 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "panel2"
 					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "cbSelectColumn"
+						name: "cbSelectColumn2"
 						"model": new javax.swing.DefaultComboBoxModel {
 							selectedItem: "booking_id"
 							addElement( "booking_id" )
@@ -305,7 +306,7 @@ new FormModel {
 						"y": 20
 					} )
 					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "cbFilterOption"
+						name: "cbFilterOption2"
 						"model": new javax.swing.DefaultComboBoxModel {
 							selectedItem: "None"
 							addElement( "None" )
