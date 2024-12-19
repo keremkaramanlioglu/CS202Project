@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public abstract class Panel extends JPanel {
     public Panel prevCenterPanel = null;
@@ -36,6 +37,9 @@ public abstract class Panel extends JPanel {
     }
 
     public void setTableRows(ArrayList<Object[]> rowValues) {
+
+        model.setRowCount(0);
+
         for (Object[] row : rowValues) {
             model.addRow(row);
         }
@@ -83,15 +87,19 @@ public abstract class Panel extends JPanel {
     public abstract Object[] getEntity();
 
     public String getSelectedFilterOption() {
-        return (String) cbFilterOption.getSelectedItem();
+        return Objects.requireNonNull(cbFilterOption.getSelectedItem()).toString();
     }
 
     public String getSelectedFilterColumn() {
-        return (String) cbFilterColumn.getSelectedItem();
+        return Objects.requireNonNull(cbFilterColumn.getSelectedItem()).toString();
     }
 
     public String getSelectedFilterValue() {
-        return (String) tfFilterValue.getText();
+        return Objects.requireNonNull(tfFilterValue.getText().trim());
+    }
+
+    public String getSelectedFilterUpperValue() {
+        return Objects.requireNonNull(tfFilterUpperValue.getText()).trim();
     }
 
     public abstract Panel getPanelByName(String panelName);

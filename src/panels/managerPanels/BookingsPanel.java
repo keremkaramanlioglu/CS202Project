@@ -50,14 +50,14 @@ public class BookingsPanel extends Panel {
 
     @Override
     public void setFields(Object[] rowValues) {
-        tfCSsn.setText(String.valueOf(rowValues[0]));
-        tfRoomID.setText(String.valueOf(rowValues[1]));
-        cbPaymentStatus.setSelectedItem(String.valueOf(rowValues[2]));
-        cbPaymentMethod.setSelectedItem(String.valueOf(rowValues[3]));
-        tfStartDate.setText(String.valueOf(rowValues[4]));
-        tfEndDate.setText(String.valueOf(rowValues[5]));
-        cbCheckin.setSelected(Boolean.parseBoolean(String.valueOf(rowValues[6])));
-        cbCheckout.setSelected(Boolean.parseBoolean(String.valueOf(rowValues[7])));
+        tfCSsn.setText(String.valueOf(rowValues[1]));
+        tfRoomID.setText(String.valueOf(rowValues[2]));
+        cbPaymentStatus.setSelectedItem(String.valueOf(rowValues[3]));
+        cbPaymentMethod.setSelectedItem(String.valueOf(rowValues[4]));
+        tfStartDate.setText(String.valueOf(rowValues[5]));
+        tfEndDate.setText(String.valueOf(rowValues[6]));
+        cbCheckin.setSelected(Boolean.parseBoolean(String.valueOf(rowValues[7])));
+        cbCheckout.setSelected(Boolean.parseBoolean(String.valueOf(rowValues[8])));
     }
 
 
@@ -75,8 +75,8 @@ public class BookingsPanel extends Panel {
             // JComboBoxes
             fieldValues[4] = Objects.requireNonNull(cbPaymentStatus.getSelectedItem()).toString(); // Payment Status as String
             fieldValues[5] = Objects.requireNonNull(cbPaymentMethod.getSelectedItem()).toString(); // Payment Method as String
-            fieldValues[6] = Objects.requireNonNull(cbSelectColumn.getSelectedItem()).toString();  // Select Column as String
-            fieldValues[7] = Objects.requireNonNull(cbFilterOption.getSelectedItem()).toString();  // Filter Option as String
+            fieldValues[6] = Objects.requireNonNull(cbSelectColumn2.getSelectedItem()).toString();  // Select Column as String
+            fieldValues[7] = Objects.requireNonNull(cbFilterOption2.getSelectedItem()).toString();  // Filter Option as String
         } catch (NumberFormatException e) {
             // Handle invalid number format exceptions, e.g., if parsing fails
             System.err.println("Error parsing number fields: " + e.getMessage());
@@ -105,10 +105,9 @@ public class BookingsPanel extends Panel {
 
     public BookingsPanel() {
         initComponents();
-
         initTable();
-        super.cbFilterColumn = cbSelectColumn;
-        super.cbFilterOption = cbFilterOption;
+        super.cbFilterColumn = cbSelectColumn2;
+        super.cbFilterOption = cbFilterOption2;
         super.tfFilterUpperValue = tfFilterUpperValue;
         super.tfFilterValue = tfFilterValue;
     }
@@ -137,12 +136,18 @@ public class BookingsPanel extends Panel {
 
                 if (selectedRow != -1) {
                     for (int i = 0; i < fields.length; i++) {
-                        fields[i] = tblData.getValueAt(selectedRow, i + 1);
+                        fields[i] = tblData.getValueAt(selectedRow, i);
                     }
                 }
                 setFields(fields);
             }
         });
+        // Set the table to select entire rows
+        tblData.setRowSelectionAllowed(true);
+        tblData.setColumnSelectionAllowed(false); // Disable column selection if needed
+
+// Set the selection mode
+        tblData.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         super.table = tblData;
         super.model = tableModel;
     }
@@ -173,8 +178,8 @@ public class BookingsPanel extends Panel {
         cbPaymentStatus = new JComboBox<>();
         cbPaymentMethod = new JComboBox<>();
         panel2 = new JPanel();
-        cbSelectColumn = new JComboBox<>();
-        cbFilterOption = new JComboBox<>();
+        cbSelectColumn2 = new JComboBox<>();
+        cbFilterOption2 = new JComboBox<>();
         label6 = new JLabel();
         tfFilterValue = new JTextField();
         btnApply = new JButton();
@@ -182,12 +187,13 @@ public class BookingsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
-        border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER
-        , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font
-        .BOLD ,12 ), java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
-        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order"
-        .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+        . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder
+        . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .
+        awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder( )) )
+        ;  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+        ;
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -213,6 +219,7 @@ public class BookingsPanel extends Panel {
                     return columnTypes[columnIndex];
                 }
             });
+            tblData.setRowSelectionAllowed(false);
             scrollPane1.setViewportView(tblData);
         }
         add(scrollPane1, BorderLayout.CENTER);
@@ -363,8 +370,8 @@ public class BookingsPanel extends Panel {
             {
                 panel2.setLayout(null);
 
-                //---- cbSelectColumn ----
-                cbSelectColumn.setModel(new DefaultComboBoxModel<>(new String[] {
+                //---- cbSelectColumn2 ----
+                cbSelectColumn2.setModel(new DefaultComboBoxModel<>(new String[] {
                     "booking_id",
                     "c_ssn",
                     "room_id",
@@ -375,12 +382,12 @@ public class BookingsPanel extends Panel {
                     "c_check_in_status",
                     "c_check_out_status"
                 }));
-                cbSelectColumn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                panel2.add(cbSelectColumn);
-                cbSelectColumn.setBounds(10, 20, 120, 45);
+                cbSelectColumn2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                panel2.add(cbSelectColumn2);
+                cbSelectColumn2.setBounds(10, 20, 120, 45);
 
-                //---- cbFilterOption ----
-                cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
+                //---- cbFilterOption2 ----
+                cbFilterOption2.setModel(new DefaultComboBoxModel<>(new String[] {
                     "None",
                     "=",
                     "!=",
@@ -391,9 +398,9 @@ public class BookingsPanel extends Panel {
                     "between",
                     "contains"
                 }));
-                cbFilterOption.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                panel2.add(cbFilterOption);
-                cbFilterOption.setBounds(130, 20, 120, 45);
+                cbFilterOption2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                panel2.add(cbFilterOption2);
+                cbFilterOption2.setBounds(130, 20, 120, 45);
 
                 //---- label6 ----
                 label6.setText("Filter Value:");
@@ -469,8 +476,8 @@ public class BookingsPanel extends Panel {
     private JComboBox<String> cbPaymentStatus;
     private JComboBox<String> cbPaymentMethod;
     private JPanel panel2;
-    private JComboBox<String> cbSelectColumn;
-    private JComboBox<String> cbFilterOption;
+    private JComboBox<String> cbSelectColumn2;
+    private JComboBox<String> cbFilterOption2;
     private JLabel label6;
     private JTextField tfFilterValue;
     private JButton btnApply;
