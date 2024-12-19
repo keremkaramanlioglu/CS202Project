@@ -137,6 +137,7 @@ public class HotelManager {
                         case "add":
                             if (command.equals("Bookings")) {
                                 System.out.println("add button pressed in booking panel");
+                                hotelDao.insertBooking(new Booking(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Employees")) {
                                 System.out.println("add button pressed in employees panel by manager");
                             } else if (command.equals("Housekeeping")) {

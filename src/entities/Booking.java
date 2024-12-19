@@ -33,24 +33,24 @@ public class Booking {
 
     public Booking(Object[] objs) {
         if (objs.length == 9) {
-            this.booking_id = (Integer) objs[0];
-            this.c_ssn = (String) objs[1];
-            this.room_id = (Integer) objs[2];
-            this.payment_status = (String) objs[3];
-            this.payment_method = (String) objs[4];
-            this.booking_start_date = (Timestamp) objs[5];
-            this.booking_end_date = (Timestamp) objs[6];
-            this.c_check_in_status = (Boolean) objs[7];
-            this.c_check_out_status = (Boolean) objs[8];
+            this.booking_id = Integer.parseInt(String.valueOf(objs[0]));
+            this.c_ssn =  String.valueOf(objs[1]);
+            this.room_id = Integer.parseInt(String.valueOf(objs[2]));
+            this.payment_status = String.valueOf(objs[3]);
+            this.payment_method = String.valueOf(objs[4]);
+            this.booking_start_date = Date.valueOf(String.valueOf(objs[5]));
+            this.booking_end_date = Date.valueOf(String.valueOf(objs[6]));
+            this.c_check_in_status = Boolean.parseBoolean(String.valueOf(objs[7]));
+            this.c_check_out_status = Boolean.parseBoolean(String.valueOf(objs[8]));
         } else {
-            this.c_ssn = (String) objs[0];
-            this.room_id = (Integer) objs[1];
-            this.payment_status = (String) objs[2];
-            this.payment_method = (String) objs[3];
-            this.booking_start_date = toTimestamp((String)objs[4]);
-            this.booking_end_date = toTimestamp((String) objs[5]);
-            this.c_check_in_status = (Boolean) objs[6];
-            this.c_check_out_status = (Boolean) objs[7];
+            this.c_ssn =  String.valueOf(objs[0]);
+            this.room_id = Integer.parseInt(String.valueOf(objs[1]));
+            this.payment_status = String.valueOf(objs[2]);
+            this.payment_method = String.valueOf(objs[3]);
+            this.booking_start_date = Date.valueOf(String.valueOf(objs[4]));
+            this.booking_end_date = Date.valueOf(String.valueOf(objs[5]));
+            this.c_check_in_status = Boolean.parseBoolean(String.valueOf(objs[6]));
+            this.c_check_out_status = Boolean.parseBoolean(String.valueOf(objs[7]));
         }
     }
 
@@ -116,19 +116,19 @@ public class Booking {
         this.payment_method = payment_method;
     }
 
-    public Timestamp getBooking_start_date() {
+    public Date getBooking_start_date() {
         return booking_start_date;
     }
 
-    public void setBooking_start_date(Timestamp booking_start_date) {
+    public void setBooking_start_date(Date booking_start_date) {
         this.booking_start_date = booking_start_date;
     }
 
-    public Timestamp getBooking_end_date() {
+    public Date getBooking_end_date() {
         return booking_end_date;
     }
 
-    public void setBooking_end_date(Timestamp booking_end_date) {
+    public void setBooking_end_date(Date booking_end_date) {
         this.booking_end_date = booking_end_date;
     }
 

@@ -64,17 +64,19 @@ public class BookingsPanel extends Panel {
     @Override
     public Object[] getEntity() {
         Object[] fieldValues = new Object[8];
+        Timestamp startDate;
+        Timestamp endDate;
 
         try {
             // JTextFields
-            fieldValues[0] = Integer.parseInt(tfCSsn.getText().trim());  // CSsn as Integer
-            fieldValues[1] = Integer.parseInt(tfRoomID.getText().trim());  // RoomID as Integer
-            fieldValues[2] = java.sql.Date.valueOf(String.valueOf(new Date("2024-12-12"))); // Start Date as java.sql.Date
-            fieldValues[3] = java.sql.Date.valueOf(String.valueOf(new Date("2024-12-24")));   // End Date as java.sql.Date
+            fieldValues[0] = tfCSsn.getText().trim();  // CSsn as Integer
+            fieldValues[1] = tfRoomID.getText().trim();  // RoomID as Integer
+            fieldValues[4] = tfStartDate.getText().trim(); // Start Date as java.sql.Date
+            fieldValues[5] = tfEndDate.getText().trim();   // End Date as java.sql.Date
 
             // JComboBoxes
-            fieldValues[4] = Objects.requireNonNull(cbPaymentStatus.getSelectedItem()).toString(); // Payment Status as String
-            fieldValues[5] = Objects.requireNonNull(cbPaymentMethod.getSelectedItem()).toString(); // Payment Method as String
+            fieldValues[2] = Objects.requireNonNull(cbPaymentStatus.getSelectedItem()).toString(); // Payment Status as String
+            fieldValues[3] = Objects.requireNonNull(cbPaymentMethod.getSelectedItem()).toString(); // Payment Method as String
             fieldValues[6] = Objects.requireNonNull(cbSelectColumn2.getSelectedItem()).toString();  // Select Column as String
             fieldValues[7] = Objects.requireNonNull(cbFilterOption2.getSelectedItem()).toString();  // Filter Option as String
         } catch (NumberFormatException e) {
@@ -105,6 +107,7 @@ public class BookingsPanel extends Panel {
 
     public BookingsPanel() {
         initComponents();
+
         initTable();
         super.cbFilterColumn = cbSelectColumn2;
         super.cbFilterOption = cbFilterOption2;
@@ -142,7 +145,6 @@ public class BookingsPanel extends Panel {
                 setFields(fields);
             }
         });
-
         super.table = tblData;
         super.model = tableModel;
     }
@@ -182,13 +184,12 @@ public class BookingsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
-        . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder
-        . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .
-        awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder( )) )
-        ;  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-        ) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
-        ;
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
+        EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing
+        . border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ),
+        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
+        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () ))
+        throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -199,7 +200,7 @@ public class BookingsPanel extends Panel {
             tblData.setPreferredSize(new Dimension(150, 400));
             tblData.setModel(new DefaultTableModel(
                 new Object[][] {
-                    {null, null, null, null, null, null, null, true, true},
+                    {null, null, null, null, null, null, null, false, false},
                     {null, null, null, null, null, null, null, null, null},
                 },
                 new String[] {
@@ -209,9 +210,16 @@ public class BookingsPanel extends Panel {
                 Class<?>[] columnTypes = new Class<?>[] {
                     Integer.class, String.class, Integer.class, String.class, String.class, Date.class, Date.class, Boolean.class, Boolean.class
                 };
+                boolean[] columnEditable = new boolean[] {
+                    true, true, true, true, true, true, true, false, false
+                };
                 @Override
                 public Class<?> getColumnClass(int columnIndex) {
                     return columnTypes[columnIndex];
+                }
+                @Override
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return columnEditable[columnIndex];
                 }
             });
             tblData.setRowSelectionAllowed(false);
