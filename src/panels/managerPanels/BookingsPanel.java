@@ -182,14 +182,6 @@ public class BookingsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
-        new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion"
-        , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
-        , new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 )
-        , java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
-        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-        ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
-        ; }} );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -208,10 +200,10 @@ public class BookingsPanel extends Panel {
                 }
             ) {
                 Class<?>[] columnTypes = new Class<?>[] {
-                    Integer.class, String.class, Integer.class, String.class, String.class, Date.class, Date.class, Boolean.class, Boolean.class
+                    Integer.class, String.class, Integer.class, String.class, String.class, String.class, String.class, Boolean.class, Boolean.class
                 };
                 boolean[] columnEditable = new boolean[] {
-                    true, true, true, true, true, true, true, false, false
+                    false, false, false, false, false, false, false, false, false
                 };
                 @Override
                 public Class<?> getColumnClass(int columnIndex) {
@@ -223,6 +215,7 @@ public class BookingsPanel extends Panel {
                 }
             });
             tblData.setRowSelectionAllowed(false);
+            tblData.setEnabled(false);
             scrollPane1.setViewportView(tblData);
         }
         add(scrollPane1, BorderLayout.CENTER);
@@ -403,7 +396,7 @@ public class BookingsPanel extends Panel {
                 }));
                 cbFilterOption2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 panel2.add(cbFilterOption2);
-                cbFilterOption2.setBounds(130, 20, 120, 45);
+                cbFilterOption2.setBounds(135, 20, 120, 45);
 
                 //---- label6 ----
                 label6.setText("Filter Value:");

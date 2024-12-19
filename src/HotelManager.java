@@ -4,6 +4,7 @@ import panels.Panel;
 import panels.customerPanels.ProfilePanel;
 import panels.managerPanels.*;
 import panels.receptionistPanels.HouseKeepingPanel;
+import panels.receptionistPanels.RoomsPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -115,7 +116,6 @@ public class HotelManager {
             //System.out.println(button.getName());
 
             //if (currSsn.isEmpty() && !command.equals("Guest")) return;
-
             String[] sidePanelOptions = {"Rooms", "Users", "Employees", "Finance", "Bookings", "Housekeeping",
                     "Book a room", "My Bookings", "Profile", "My Jobs", "Query Panel",  "Add Customer"};
             String [] mainPanelOptions = {"Manager", "Customer", "Housekeeper", "Receptionist", "Database Manager","Back"};
@@ -129,6 +129,7 @@ public class HotelManager {
                 hotelView.getActivePanel().reset();
                 hotelView.setActivePanel(hotelView.getPanelByName(command));
             } else {
+                int currHotelID = currEmployee.getEmp_hotel_id();
                 Panel activePanel = hotelView.getActivePanel();
                 try {
                     switch (name) {
@@ -138,16 +139,22 @@ public class HotelManager {
                                 hotelDao.insertBooking(new Booking(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Employees")) {
                                 System.out.println("add button pressed in employees panel by manager");
+                                hotelDao.insertEmployee(new Employee(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Housekeeping")) {
                                 System.out.println("add button pressed in housekeeping panel by manager");
+                                hotelDao.insertCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Rooms")) {
                                 System.out.println("add button pressed in rooms panel by manager");
+                                hotelDao.insertRoom(new Room(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Users")) {
                                 System.out.println("add button pressed in users panel by manager");
+                                hotelDao.insertCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Add Customer")) {
                                 System.out.println("add button pressed in add customer panel by receptionist");
+                                hotelDao.insertRoom(new Room(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("houseKeeping")) {
                                 System.out.println("add button pressed in housekeeping panel by receptionist");
+                                hotelDao.insertCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
                             }
                             break;
                         case "update":
@@ -209,11 +216,16 @@ public class HotelManager {
                         case "show revenue":
                             if (command.equals("Finance")) {
                                 System.out.println("show revenue button pressed in finance panel");
+                                FinancePanel pnl = (FinancePanel)activePanel.getCenterPanel();
+                                double revenue = hotelDao.calculateRevenue(pnl.getStartDate(), pnl.getEndDate(), currHotelID);
+                                pnl.setTfRevenue(revenue);
                             }
                             break;
                         case "view rooms":
                             if (command.equals("Rooms")) {
                                 System.out.println("view available rooms button pressed in rooms panel");
+                                RoomsPanel pnl = (RoomsPanel)activePanel.getCenterPanel();
+                                pnl.setTableRows(hotelDao.viewAvailableRooms(pnl.getTfStartDate(), pnl.getTfEndDate(), currHotelID));
                             }
                             break;
                         case "confirm":

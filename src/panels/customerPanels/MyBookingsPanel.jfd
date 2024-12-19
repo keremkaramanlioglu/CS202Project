@@ -35,19 +35,19 @@ new FormModel {
 						add( "Check-in Date" )
 						add( "Check-out Date" )
 					}, new java.util.Vector {
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
+						add( class java.lang.String )
+						add( class java.lang.String )
+						add( class java.lang.String )
+						add( class java.lang.String )
+						add( class java.lang.String )
+						add( class java.lang.String )
 					}, new java.util.Vector {
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
-						add( null )
+						add( true )
+						add( true )
+						add( true )
+						add( true )
+						add( true )
+						add( true )
 					}, new java.util.Vector {
 						add( null )
 						add( null )
@@ -56,6 +56,7 @@ new FormModel {
 						add( null )
 						add( null )
 					} )
+					"enabled": false
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"

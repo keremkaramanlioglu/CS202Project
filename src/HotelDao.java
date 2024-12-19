@@ -613,6 +613,33 @@ public class HotelDao {
 
         return result;
     }
+    public double calculateRevenue(Date start, Date end, int hotelID) {
+        double totalRevenue = 0.0;
+        String query = "SELECT SUM(r.room_price * DATEDIFF(b.booking_end_date, b.booking_start_date)) AS total_revenue "
+                + "FROM Bookings b "
+                + "JOIN Rooms r ON b.room_id = r.room_id "
+                + "WHERE r.hotel_id = ? "
+                + "AND b.booking_start_date >= ? "
+                + "AND b.booking_end_date <= ? "
+                + "AND b.payment_status = 'Completed' ";
+
+        try (PreparedStatement stmt = con.prepareStatement(query)) {
+
+            stmt.setInt(1, hotelID);  // hotelID
+            stmt.setDate(2, new java.sql.Date(start.getTime()));  // start date
+            stmt.setDate(3, new java.sql.Date(end.getTime()));  // end date
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    totalRevenue = rs.getDouble("total_revenue");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return totalRevenue;
+    }
 
     public ArrayList<Object[]> filterCleaningSchedule(String columnName, String filterOption, String filterValue, String filterValueUpper, int emp_hotel_id) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
@@ -707,7 +734,6 @@ public class HotelDao {
             default:
                 throw new IllegalArgumentException("Invalid filter option: " + filterOption);
         }
-
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             // Set query parameters based on filter options
             if (!filterOption.equals("None")) {
@@ -742,6 +768,48 @@ public class HotelDao {
         return result;
     }
 
+    public ArrayList<Object[]> viewAvailableRooms(Date startDate, Date endDate, int hotelID) throws SQLException {
+        ArrayList<Object[]> availableRooms = new ArrayList<>();
+
+        // SQL sorgusu: Otel ID'si ve tarih aralığında rezervasyonu olmayan odaları seç
+        String sql = "SELECT r.room_id, r.room_num, r.room_type, r.room_size, r.room_price, r.room_capacity " +
+                "FROM Rooms r " +
+                "WHERE r.hotel_id = ? AND NOT EXISTS (" +
+                "   SELECT 1 FROM Bookings b " +
+                "   WHERE b.room_id = r.room_id " +
+                "   AND ((b.booking_start_date BETWEEN ? AND ?) " +
+                "   OR (b.booking_end_date BETWEEN ? AND ?) " +
+                "   OR (b.booking_start_date <= ? AND b.booking_end_date >= ?))" +
+                ")";
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            // Set query parameters
+            stmt.setInt(1, hotelID);
+            stmt.setDate(2, new java.sql.Date(startDate.getTime()));
+            stmt.setDate(3, new java.sql.Date(endDate.getTime()));
+            stmt.setDate(4, new java.sql.Date(startDate.getTime()));
+            stmt.setDate(5, new java.sql.Date(endDate.getTime()));
+            stmt.setDate(6, new java.sql.Date(startDate.getTime()));
+            stmt.setDate(7, new java.sql.Date(endDate.getTime()));
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                // Collect available rooms into an ArrayList<Object[]>
+                while (rs.next()) {
+                    Object[] row = new Object[6];
+                    row[0] = rs.getInt("room_id");
+                    row[1] = rs.getString("room_num");
+                    row[2] = rs.getString("room_type");
+                    row[3] = rs.getInt("room_size");
+                    row[4] = rs.getDouble("room_price");
+                    row[5] = rs.getString("room_capacity");
+                    availableRooms.add(row);
+                }
+            }
+        }
+
+        return availableRooms;
+    }
+  
     public ArrayList<Object[]> filterCustomers(String columnName, String filterOption, String filterValue, String filterValueUpper, int hotel_id) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
         String sql = "";
@@ -882,7 +950,4 @@ public class HotelDao {
             return rowsAffected > 0; // Return true if at least one row was updated
         }
     }
-
-
-
 }

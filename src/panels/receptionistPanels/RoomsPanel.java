@@ -10,6 +10,7 @@ import panels.Panel;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.sql.Date;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -62,6 +63,13 @@ public class RoomsPanel extends Panel {
         super.model = tableModel;
     }
 
+    public Date getTfStartDate(){
+        return Date.valueOf(this.tfStartDate.getText());
+    }
+    public Date getTfEndDate(){
+        return Date.valueOf(this.tfEndDate.getText());
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kutay Mumcu
@@ -77,13 +85,12 @@ public class RoomsPanel extends Panel {
         label2 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
-        . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder
-        . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .
-        awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder( )) )
-        ;  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-        ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
-        ;
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.
+        border.EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder.CENTER
+        ,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font
+        .BOLD,12),java.awt.Color.red), getBorder())); addPropertyChangeListener(
+        new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r"
+        .equals(e.getPropertyName()))throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
         //======== pnlRooms ========
@@ -101,13 +108,21 @@ public class RoomsPanel extends Panel {
                 }
             ) {
                 Class<?>[] columnTypes = new Class<?>[] {
-                    String.class, Integer.class, String.class, Double.class, String.class, String.class
+                    String.class, Double.class, String.class, Double.class, String.class, String.class
+                };
+                boolean[] columnEditable = new boolean[] {
+                    false, false, false, false, false, false
                 };
                 @Override
                 public Class<?> getColumnClass(int columnIndex) {
                     return columnTypes[columnIndex];
                 }
+                @Override
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return columnEditable[columnIndex];
+                }
             });
+            tblrooms.setEnabled(false);
             pnlRooms.setViewportView(tblrooms);
         }
         add(pnlRooms, BorderLayout.CENTER);

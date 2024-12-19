@@ -131,7 +131,7 @@ public class HousekeepingPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         pnlData = new JPanel();
         scrollPane1 = new JScrollPane();
         dataTable = new JTable();
@@ -161,12 +161,13 @@ public class HousekeepingPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(1920, 1080));
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
-        ( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border
-        . TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
-        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
-        propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
-        ; }} );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing
+        . border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder
+        . CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .
+        awt . Font. BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) )
+        ;  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
+        ) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } )
+        ;
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -179,8 +180,32 @@ public class HousekeepingPanel extends Panel {
                 scrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
                 //---- dataTable ----
+                dataTable.setModel(new DefaultTableModel(
+                    new Object[][] {
+                        {null, null, null, null, null, null},
+                    },
+                    new String[] {
+                        "schedule_id", "housekeeper_ssn", "receptionist_ssn", "room_id", "cleaning_date", "service_status"
+                    }
+                ) {
+                    Class<?>[] columnTypes = new Class<?>[] {
+                        Integer.class, String.class, String.class, Integer.class, String.class, String.class
+                    };
+                    boolean[] columnEditable = new boolean[] {
+                        false, false, false, false, false, false
+                    };
+                    @Override
+                    public Class<?> getColumnClass(int columnIndex) {
+                        return columnTypes[columnIndex];
+                    }
+                    @Override
+                    public boolean isCellEditable(int rowIndex, int columnIndex) {
+                        return columnEditable[columnIndex];
+                    }
+                });
                 dataTable.setPreferredScrollableViewportSize(new Dimension(450, 500));
                 dataTable.setPreferredSize(new Dimension(450, 300));
+                dataTable.setEnabled(false);
                 scrollPane1.setViewportView(dataTable);
             }
             pnlData.add(scrollPane1, BorderLayout.CENTER);
@@ -370,7 +395,7 @@ public class HousekeepingPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JPanel pnlData;
     private JScrollPane scrollPane1;
     private JTable dataTable;
