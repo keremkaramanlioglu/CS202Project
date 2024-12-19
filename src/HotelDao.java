@@ -773,7 +773,7 @@ public class HotelDao {
 
         // SQL sorgusu: Otel ID'si ve tarih aralığında rezervasyonu olmayan odaları seç
         String sql = "SELECT r.room_num, r.room_size, r.room_capacity, r.room_price, r.room_type, cs.service_status " +
-                "FROM Rooms r, CleaningSchedule cs" +
+                "FROM Rooms r " +
                 "LEFT JOIN CleaningSchedule cs ON cs.room_id = r.room_id " +
                 "WHERE r.hotel_id = ? " +
                 "AND NOT EXISTS ( " +
@@ -787,8 +787,8 @@ public class HotelDao {
                 "   SELECT 1 FROM CleaningSchedule cs2 " +
                 "   WHERE cs2.room_id = r.room_id " +
                 "   AND cs2.service_status = 'Pending' " +
-                "   AND cs2.cleaning_date BETWEEN ? AND ?)";
-
+                "   AND cs2.cleaning_date BETWEEN ? AND ? " +
+                ")";
 
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             // Set query parameters
@@ -806,12 +806,12 @@ public class HotelDao {
                 // Collect available rooms into an ArrayList<Object[]>
                 while (rs.next()) {
                     Object[] row = new Object[6];
-                    row[0] = rs.getInt("room_num");
+                    row[0] = rs.getString("room_num");
                     row[1] = rs.getString("room_size");
                     row[2] = rs.getString("room_capacity");
-                    row[3] = rs.getInt("room_price");
-                    row[4] = rs.getDouble("room_type");
-                    row[5] = rs.getString("room_capacity");
+                    row[3] = rs.getDouble("room_price");
+                    row[4] = rs.getString("room_type");
+                    row[5] = rs.getString("service_status");
                     availableRooms.add(row);
                 }
             }
