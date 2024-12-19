@@ -64,19 +64,17 @@ public class BookingsPanel extends Panel {
     @Override
     public Object[] getEntity() {
         Object[] fieldValues = new Object[8];
-        Timestamp startDate;
-        Timestamp endDate;
 
         try {
             // JTextFields
-            fieldValues[0] = tfCSsn.getText().trim();  // CSsn as Integer
-            fieldValues[1] = tfRoomID.getText().trim();  // RoomID as Integer
-            fieldValues[4] = tfStartDate.getText().trim(); // Start Date as java.sql.Date
-            fieldValues[5] = tfEndDate.getText().trim();   // End Date as java.sql.Date
+            fieldValues[0] = (tfCSsn.getText().trim());  // CSsn as Integer
+            fieldValues[1] = (tfRoomID.getText().trim());  // RoomID as Integer
+            fieldValues[2] =  Objects.requireNonNull(cbPaymentStatus.getSelectedItem()).toString();// Start Date as java.sql.Date
+            fieldValues[3] =  Objects.requireNonNull(cbPaymentMethod.getSelectedItem()).toString(); // End Date as java.sql.Date
 
             // JComboBoxes
-            fieldValues[2] = Objects.requireNonNull(cbPaymentStatus.getSelectedItem()).toString(); // Payment Status as String
-            fieldValues[3] = Objects.requireNonNull(cbPaymentMethod.getSelectedItem()).toString(); // Payment Method as String
+            fieldValues[4] = tfStartDate.getText().trim(); // Payment Status as String
+            fieldValues[5] = tfEndDate.getText().trim(); // Payment Method as String
             fieldValues[6] = Objects.requireNonNull(cbSelectColumn2.getSelectedItem()).toString();  // Select Column as String
             fieldValues[7] = Objects.requireNonNull(cbFilterOption2.getSelectedItem()).toString();  // Filter Option as String
         } catch (NumberFormatException e) {
@@ -107,7 +105,6 @@ public class BookingsPanel extends Panel {
 
     public BookingsPanel() {
         initComponents();
-
         initTable();
         super.cbFilterColumn = cbSelectColumn2;
         super.cbFilterOption = cbFilterOption2;
@@ -145,13 +142,14 @@ public class BookingsPanel extends Panel {
                 setFields(fields);
             }
         });
+
         super.table = tblData;
         super.model = tableModel;
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         scrollPane1 = new JScrollPane();
         tblData = new JTable();
         panel1 = new JPanel();
@@ -184,12 +182,14 @@ public class BookingsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-        EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing
-        . border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ),
-        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () ))
-        throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
+        new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion"
+        , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+        , new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 )
+        , java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
+        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
+        ; }} );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -455,7 +455,7 @@ public class BookingsPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane scrollPane1;
     private JTable tblData;
     private JPanel panel1;

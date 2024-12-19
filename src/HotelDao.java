@@ -154,15 +154,15 @@ public class HotelDao {
         stmt.setString(1, employee.getEmp_ssn());
         stmt.executeUpdate();
     }
-    public void insertBooking(Object[] objects) throws SQLException {
+    public void insertBooking(Booking booking) throws SQLException {
         String sql = "INSERT INTO Bookings (c_ssn, room_id, payment_status, payment_method, booking_start_date, booking_end_date, c_check_in_status, c_check_out_status) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         stmt = con.prepareStatement(sql);
-        stmt.setString(1, String.valueOf(objects[0]));
-        stmt.setInt(2, Integer.parseInt(String.valueOf(objects[1])));
-        stmt.setString(3, String.valueOf(objects[2]));
-        stmt.setString(4, String.valueOf(objects[3]));
-        stmt.setTimestamp(5, Date.valueOf(String.valueOf(objects[4])));
-        stmt.setTimestamp(6, booking.getBooking_end_date());
+        stmt.setString(1, booking.getC_ssn());
+        stmt.setInt(2, booking.getRoom_id());
+        stmt.setString(3, booking.getPayment_status());
+        stmt.setString(4, booking.getPayment_method());
+        stmt.setDate(5, booking.getBooking_start_date());
+        stmt.setDate(6, booking.getBooking_end_date());
         stmt.setBoolean(7, booking.isC_check_in_status());
         stmt.setBoolean(8, booking.isC_check_out_status());
         stmt.executeUpdate();
@@ -613,5 +613,276 @@ public class HotelDao {
 
         return result;
     }
+
+    public ArrayList<Object[]> filterCleaningSchedule(String columnName, String filterOption, String filterValue, String filterValueUpper, int emp_hotel_id) throws SQLException {
+        ArrayList<Object[]> result = new ArrayList<>();
+        String sql = "";
+
+
+        // Construct the SQL query based on filter options
+        switch (filterOption) {
+            case "None":
+                sql = "SELECT cs.schedule_id, cs.housekeeper_ssn, cs.receptionist_ssn, cs.room_id, cs.cleaning_date, cs.service_status FROM CleaningSchedule cs JOIN Rooms r ON cs.room_id = r.room_id WHERE r.hotel_id = ?";
+                break;
+            case "=":
+            case "!=":
+            case "<":
+            case ">":
+            case "<=":
+            case ">=":
+                sql = "SELECT cs.schedule_id, cs.housekeeper_ssn, cs.receptionist_ssn, cs.room_id, cs.cleaning_date, cs.service_status FROM CleaningSchedule cs JOIN Rooms r ON cs.room_id = r.room_id WHERE r.hotel_id = ? AND " + columnName + " " + filterOption + " ?";
+                break;
+            case "between":
+                sql = "SELECT cs.schedule_id, cs.housekeeper_ssn, cs.receptionist_ssn, cs.room_id, cs.cleaning_date, cs.service_status FROM CleaningSchedule cs JOIN Rooms r ON cs.room_id = r.room_id WHERE r.hotel_id = ? (" + columnName + " BETWEEN ? AND ?)";
+                break;
+            case "contains":
+                sql = "SELECT cs.schedule_id, cs.housekeeper_ssn, cs.receptionist_ssn, cs.room_id, cs.cleaning_date, cs.service_status FROM CleaningSchedule cs JOIN Rooms r ON cs.room_id = r.room_id WHERE r.hotel_id = ? " + columnName + " LIKE ?";
+                filterValue = "%" + filterValue + "%"; // Adjust filterValue for LIKE
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid filter option: " + filterOption);
+        }
+
+
+
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            // Set query parameters based on filter options
+            if (!filterOption.equals("None")) {
+                if (filterOption.equals("between")) {
+                    stmt.setString(2, filterValue);
+                    stmt.setString(3, filterValueUpper);
+                    stmt.setInt(1, emp_hotel_id);
+                } else {
+                    stmt.setString(2, filterValue);
+                    stmt.setInt(1, emp_hotel_id);
+                }
+            } else{
+                stmt.setInt(1, emp_hotel_id);
+            }
+
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                // Collect results into an ArrayList<Object[]>
+                while (rs.next()) {
+                    Object[] row = new Object[6];
+                    row[0] = rs.getInt("schedule_id");
+                    row[1] = rs.getString("housekeeper_ssn");
+                    row[2] = rs.getString("receptionist_ssn");
+                    row[3] = rs.getString("room_id");
+                    row[4] = rs.getDate("cleaning_date");
+                    row[5] = rs.getDate("service_status");
+                    result.add(row);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public ArrayList<Object[]> filterRooms(String columnName, String filterOption, String filterValue, String filterValueUpper, int hotel_id) throws SQLException {
+        ArrayList<Object[]> result = new ArrayList<>();
+        String sql = "";
+
+        // Construct the SQL query based on filter options
+        switch (filterOption) {
+            case "None":
+                sql = "SELECT r.room_id, r.hotel_id, r.room_num, r.room_type, r.room_size, r.room_price, r.room_capacity FROM Rooms r WHERE r.hotel_id = ?";
+                break;
+            case "=":
+            case "!=":
+            case "<":
+            case ">":
+            case "<=":
+            case ">=":
+                sql = "SELECT r.room_id, r.hotel_id, r.room_num, r.room_type, r.room_size, r.room_price, r.room_capacity FROM Rooms r WHERE r.hotel_id = ? AND " + columnName + " " + filterOption + " ?";
+                break;
+            case "between":
+                sql = "SELECT r.room_id, r.hotel_id, r.room_num, r.room_type, r.room_size, r.room_price, r.room_capacity FROM Rooms r WHERE r.hotel_id = ? AND (" + columnName + " BETWEEN ? AND ?)";
+                break;
+            case "contains":
+                sql = "SELECT r.room_id, r.hotel_id, r.room_num, r.room_type, r.room_size, r.room_price, r.room_capacity FROM Rooms r WHERE r.hotel_id = ? AND " + columnName + " LIKE ?";
+                filterValue = "%" + filterValue + "%"; // Adjust filterValue for LIKE
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid filter option: " + filterOption);
+        }
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            // Set query parameters based on filter options
+            if (!filterOption.equals("None")) {
+                if (filterOption.equals("between")) {
+                    stmt.setInt(1, hotel_id);
+                    stmt.setString(2, filterValue);
+                    stmt.setString(3, filterValueUpper);
+                } else {
+                    stmt.setInt(1, hotel_id);
+                    stmt.setString(2, filterValue);
+                }
+            } else {
+                stmt.setInt(1, hotel_id);
+            }
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                // Collect results into an ArrayList<Object[]>
+                while (rs.next()) {
+                    Object[] row = new Object[7];
+                    row[0] = rs.getInt("room_id");
+                    row[1] = rs.getInt("hotel_id");
+                    row[2] = rs.getString("room_num");
+                    row[3] = rs.getString("room_type");
+                    row[4] = rs.getInt("room_size");
+                    row[5] = rs.getBigDecimal("room_price");
+                    row[6] = rs.getString("room_capacity");
+                    result.add(row);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public ArrayList<Object[]> filterCustomers(String columnName, String filterOption, String filterValue, String filterValueUpper, int hotel_id) throws SQLException {
+        ArrayList<Object[]> result = new ArrayList<>();
+        String sql = "";
+
+        // Construct the SQL query based on filter options
+        switch (filterOption) {
+            case "None":
+                sql = "SELECT c.c_ssn, c.c_firstname, c.c_lastname, c.c_bd, c.c_room_id, c.c_email, c.c_phone_num, c.c_gender, c.zip_code FROM Customers c JOIN Rooms r ON c.c_room_id = r.room_id WHERE r.hotel_id = ?";
+                break;
+            case "=":
+            case "!=":
+            case "<":
+            case ">":
+            case "<=":
+            case ">=":
+                sql = "SELECT c.c_ssn, c.c_firstname, c.c_lastname, c.c_bd, c.c_room_id, c.c_email, c.c_phone_num, c.c_gender, c.zip_code FROM Customers c JOIN Rooms r ON c.c_room_id = r.room_id WHERE r.hotel_id = ? AND " + columnName + " " + filterOption + " ?";
+                break;
+            case "between":
+                sql = "SELECT c.c_ssn, c.c_firstname, c.c_lastname, c.c_bd, c.c_room_id, c.c_email, c.c_phone_num, c.c_gender, c.zip_code FROM Customers c JOIN Rooms r ON c.c_room_id = r.room_id WHERE r.hotel_id = ? AND (" + columnName + " BETWEEN ? AND ?)";
+                break;
+            case "contains":
+                sql = "SELECT c.c_ssn, c.c_firstname, c.c_lastname, c.c_bd, c.c_room_id, c.c_email, c.c_phone_num, c.c_gender, c.zip_code FROM Customers c JOIN Rooms r ON c.c_room_id = r.room_id WHERE r.hotel_id = ? AND " + columnName + " LIKE ?";
+                filterValue = "%" + filterValue + "%"; // Adjust filterValue for LIKE
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid filter option: " + filterOption);
+        }
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            // Set query parameters based on filter options
+            if (!filterOption.equals("None")) {
+                if (filterOption.equals("between")) {
+                    stmt.setInt(1, hotel_id);
+                    stmt.setString(2, filterValue);
+                    stmt.setString(3, filterValueUpper);
+                } else {
+                    stmt.setInt(1, hotel_id);
+                    stmt.setString(2, filterValue);
+                }
+            } else {
+                stmt.setInt(1, hotel_id);
+            }
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                // Collect results into an ArrayList<Object[]>
+                while (rs.next()) {
+                    Object[] row = new Object[9];
+                    row[0] = rs.getString("c_ssn");
+                    row[1] = rs.getString("c_firstname");
+                    row[2] = rs.getString("c_lastname");
+                    row[3] = rs.getDate("c_bd");
+                    row[4] = rs.getInt("c_room_id");
+                    row[5] = rs.getString("c_email");
+                    row[6] = rs.getString("c_phone_num");
+                    row[7] = rs.getString("c_gender");
+                    row[8] = rs.getString("zip_code");
+                    result.add(row);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public ArrayList<Object[]> filterCleaningScheduleRcp(String columnName, String filterOption, String filterValue, String filterValueUpper, int hotel_id) throws SQLException {
+        ArrayList<Object[]> result = new ArrayList<>();
+        String sql = "";
+
+        // Construct the SQL query based on filter options
+        switch (filterOption) {
+            case "None":
+                sql = "SELECT cs.housekeeper_ssn, r.room_num, cs.cleaning_date, cs.service_status FROM CleaningSchedule cs JOIN Rooms r ON cs.room_id = r.room_id WHERE r.hotel_id = ?";
+                break;
+            case "=":
+            case "!=":
+            case "<":
+            case ">":
+            case "<=":
+            case ">=":
+                sql = "SELECT cs.housekeeper_ssn, r.room_num, cs.cleaning_date, cs.service_status FROM CleaningSchedule cs JOIN Rooms r ON cs.room_id = r.room_id WHERE r.hotel_id = ? AND " + columnName + " " + filterOption + " ?";
+                break;
+            case "between":
+                sql = "SELECT cs.housekeeper_ssn, r.room_num, cs.cleaning_date, cs.service_status FROM CleaningSchedule cs JOIN Rooms r ON cs.room_id = r.room_id WHERE r.hotel_id = ? AND (" + columnName + " BETWEEN ? AND ?)";
+                break;
+            case "contains":
+                sql = "SELECT cs.housekeeper_ssn, r.room_num, cs.cleaning_date, cs.service_status FROM CleaningSchedule cs JOIN Rooms r ON cs.room_id = r.room_id WHERE r.hotel_id = ? AND " + columnName + " LIKE ?";
+                filterValue = "%" + filterValue + "%"; // Adjust filterValue for LIKE
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid filter option: " + filterOption);
+        }
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            // Set query parameters based on filter options
+            if (!filterOption.equals("None")) {
+                if (filterOption.equals("between")) {
+                    stmt.setInt(1, hotel_id);
+                    stmt.setString(2, filterValue);
+                    stmt.setString(3, filterValueUpper);
+                } else {
+                    stmt.setInt(1, hotel_id);
+                    stmt.setString(2, filterValue);
+                }
+            } else {
+                stmt.setInt(1, hotel_id);
+            }
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                // Collect results into an ArrayList<Object[]>
+                while (rs.next()) {
+                    Object[] row = new Object[4];
+                    row[0] = rs.getString("housekeeper_ssn");
+                    row[1] = rs.getString("room_num");
+                    row[2] = rs.getDate("cleaning_date");
+                    row[3] = rs.getString("service_status");
+                    result.add(row);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public boolean updateCleaningSchedule(Object[] obj, String ssn) throws SQLException {
+        String sql = "UPDATE CleaningSchedule cs " +
+                "JOIN Rooms r ON cs.room_id = r.room_id " +
+                "SET cs.service_status = ? " +
+                "WHERE r.room_num = ? AND cs.cleaning_date = ? AND cs.housekeeper_ssn = ?";
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            // Set the query parameters
+            stmt.setString(1, String.valueOf(obj[2])); // New service status
+            stmt.setString(2, String.valueOf(obj[0]));      // Room number
+            stmt.setDate(3, Date.valueOf(String.valueOf(obj[0]))); // Cleaning date
+            stmt.setString(4, ssn);
+            // Execute the update
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0; // Return true if at least one row was updated
+        }
+    }
+
+
 
 }
