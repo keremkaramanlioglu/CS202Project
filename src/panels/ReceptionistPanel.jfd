@@ -64,7 +64,7 @@ new FormModel {
 					"focusable": false
 					"cursor": #Cursor0
 					"name": "side"
-					"actionCommand": "Customer"
+					"actionCommand": "Add Customer"
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnBack"
