@@ -45,7 +45,6 @@ public class BookingsPanel extends Panel {
     public void setTableWithBookings(ArrayList<Booking> bookings) {
         // Define column names (adjust to match the fields in your Customer class)
         String[] columnNames = {"booking_id", "c_ssn", "room_id", "payment_status", "payment_method", "booking_start_date", "booking_end_date", "c_check_in_status", "c_check_out_status"};
-        table = new JTable();
         // Create a table model with column names
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
@@ -66,7 +65,7 @@ public class BookingsPanel extends Panel {
         }
 
         // Set the table model to the JTable
-        table.setModel(model);
+        table2.setModel(model);
     }
 
 
@@ -77,26 +76,12 @@ public class BookingsPanel extends Panel {
 
     public BookingsPanel() {
         initComponents();
-        super.table = table;
-    }
-
-    private void cbSelectColumn(ActionEvent e) {
-        if (((String)cbSelectColumn.getSelectedItem()).contains("Check")){
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "Checked in", "Checked out"}));
-        } else if (((String)cbSelectColumn.getSelectedItem()).equals("Payment Status")) {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "Completed", "Pending", "Canceled"}));
-        } else if (((String)cbSelectColumn.getSelectedItem()).equals("Payment Method")) {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "In Advance", "During Check-out"}));
-        } else if (((String)cbSelectColumn.getSelectedItem()).equals("None")) {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None"}));
-        } else {
-            cbFilterOption.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "None", "==", "!=", "<", ">", "<=", ">=", "between", "contains"}));
-        }
+        super.cbFilterColumn = cbSelectColumn;
+        super.cbFilterOption = cbFilterOption;
+        super.tfFilterUpperValue = tfFilterUpperValue;
+        super.tfFilterValue = tfFilterValue;
+        super.prevCenterPanel = null;
+        super.prevSelectedButton = null;
     }
 
     private void initComponents() {
