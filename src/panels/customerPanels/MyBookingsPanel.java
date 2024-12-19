@@ -5,6 +5,8 @@
 package panels.customerPanels;
 
 import java.awt.event.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
 import panels.Panel;
 
@@ -17,14 +19,50 @@ import javax.swing.*;
  * @author kerem
  */
 public class MyBookingsPanel extends Panel {
+
+    private DefaultTableModel tableModel;
+
     public MyBookingsPanel() {
         initComponents();
+        super.table = tblBookings;
+        super.model = tableModel;
+        initTable();
+    }
+
+    private void initTable() {  // TODO write a cancel booking function in hotel dao
+       tableModel = new DefaultTableModel(
+                new Object[][] {
+                },
+                new String[] {
+                        "Hotel name", "Zip Code", "Room Type", "#People", "Check-in Date", "Check-out Date"
+                }
+        );
+        table.setModel(model);
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                Object[] fields = new Object[table.getColumnCount()];
+                int selectedRow = table.getSelectedRow();
+
+                if (selectedRow != -1) {
+                    for (int i = 0; i < fields.length; i++) {
+                        fields[i] = table.getValueAt(selectedRow, i + 1);
+                    }
+                }
+                setFields(fields);
+            }
+        });
     }
 
 
     @Override
     public void addButtonListener(ActionListener al) {
         btnNewBooking.addActionListener(al);
+    }
+
+    @Override
+    public boolean tfCheck() {
+        return false;
     }
 
     @Override
