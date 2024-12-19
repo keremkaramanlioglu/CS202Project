@@ -67,6 +67,8 @@ public class ProfilePanel extends Panel {
         fieldValues[6] = tfPhoneNumber.getText().trim();
         fieldValues[7] = tfGender.getText().trim();
         fieldValues[8] = tfZipCode.getText().trim();
+
+        return fieldValues;
     }
 
     @Override
