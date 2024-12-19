@@ -349,7 +349,7 @@ new FormModel {
 						"text": "Apply Filters"
 						"cursor": #Cursor1
 						"actionCommand": "Users"
-						"name": "apply"
+						"name": "applyFilter"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 45
 						"y": 150

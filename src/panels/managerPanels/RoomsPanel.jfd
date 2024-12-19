@@ -282,10 +282,11 @@ new FormModel {
 						"height": 30
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "button1"
+						name: "btnFilter"
 						"text": "Apply"
 						"cursor": #Cursor0
-						"name": "apply"
+						"name": "applyFilter"
+						"actionCommand": "Rooms"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 40
 						"y": 150

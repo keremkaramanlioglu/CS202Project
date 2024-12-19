@@ -70,6 +70,11 @@ public class ReceptionistPanel extends Panel {
     }
 
     @Override
+    public boolean tfCheck() {
+        return false;
+    }
+
+    @Override
     public void addMouseListener(MouseListener ml) {
         pnlBookings.addMouseListener(ml);
         pnlHousekeeping.addMouseListener(ml);

@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public abstract class Panel extends JPanel {
     public Panel prevCenterPanel = null;
     public JButton prevSelectedButton = null;
-    public JTable table = null;
-    public DefaultTableModel model = null;
+    public JTable table;
+    public DefaultTableModel model;
     public JComboBox<String> cbFilterColumn;
     public JComboBox<String> cbFilterOption;
     public JTextField tfFilterValue;

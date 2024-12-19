@@ -51,6 +51,11 @@ public class HousekeeperPanel extends Panel {
     }
 
     @Override
+    public boolean tfCheck() {
+        return false;
+    }
+
+    @Override
     public void addMouseListener(MouseListener ml) {
 
     }

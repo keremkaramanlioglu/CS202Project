@@ -27,8 +27,6 @@ public class MyJobsPanel extends Panel {
     public MyJobsPanel() {
         initComponents();
         initTable();
-        super.table = tblJobs;
-        super.model = tableModel;
     }
 
     private void initTable() {
@@ -39,21 +37,23 @@ public class MyJobsPanel extends Panel {
                         "Room Number", "Cleaning Date", "Service Status"
                 }
         );
-        table.setModel(tableModel);
-        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        tblJobs.setModel(tableModel);
+        tblJobs.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                Object[] fields = new Object[table.getColumnCount()];
-                int selectedRow = table.getSelectedRow();
+                Object[] fields = new Object[tblJobs.getColumnCount()];
+                int selectedRow = tblJobs.getSelectedRow();
 
                 if (selectedRow != -1) {
                     for (int i = 0; i < fields.length; i++) {
-                        fields[i] = table.getValueAt(selectedRow, i + 1);
+                        fields[i] = tblJobs.getValueAt(selectedRow, i + 1);
                     }
                 }
                 setFields(fields);
             }
         });
+        super.table = tblJobs;
+        super.model = tableModel;
     }
 
     @Override

@@ -21,7 +21,7 @@ import javax.swing.table.*;
  */
 public class RoomsPanel extends Panel {
 
-    private DefaultTableModel model;
+    private DefaultTableModel model1;
 
     public RoomsPanel() {
         super();
@@ -31,12 +31,10 @@ public class RoomsPanel extends Panel {
         super.cbFilterOption = cbFilterOption;
         super.tfFilterUpperValue = tfFilterUpperValue;
         super.tfFilterValue = tfFilterValue;
-        super.table = table1;
-        super.model = model;
     }
 
     private void initTable() {
-        model = new DefaultTableModel(
+        model1 = new DefaultTableModel(
                 new Object[][] {
                 },
                 new String[] {
@@ -51,21 +49,23 @@ public class RoomsPanel extends Panel {
                 return columnTypes[columnIndex];
             }
         };
-        table.setModel(model);
-        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        table1.setModel(model1);
+        table1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                Object[] fields = new Object[table.getColumnCount()];
-                int selectedRow = table.getSelectedRow();
+                Object[] fields = new Object[table1.getColumnCount()];
+                int selectedRow = table1.getSelectedRow();
 
                 if (selectedRow != -1) {
                     for (int i = 0; i < fields.length; i++) {
-                        fields[i] = table.getValueAt(selectedRow, i + 1);
+                        fields[i] = table1.getValueAt(selectedRow, i + 1);
                     }
                 }
                 setFields(fields);
             }
         });
+        super.table = table1;
+        super.model = model1;
     }
 
     @Override
@@ -73,6 +73,7 @@ public class RoomsPanel extends Panel {
         btnAdd.addActionListener(al);
         btnDelete.addActionListener(al);
         btnUpdate.addActionListener(al);
+        btnFilter.addActionListener(al);
     }
 
     @Override
@@ -132,7 +133,7 @@ public class RoomsPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         scrollPane1 = new JScrollPane();
         table1 = new JTable();
         controlPanel = new JPanel();
@@ -157,18 +158,18 @@ public class RoomsPanel extends Panel {
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
         label6 = new JLabel();
-        button1 = new JButton();
+        btnFilter = new JButton();
         tfFilterValue = new JTextField();
         tfFilterUpperValue = new JTextField();
         label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
-        border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER
-        , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font
-        .BOLD ,12 ), java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
-        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order"
-        .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder
+        ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border
+        .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt
+        . Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void
+        propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
+        ;} } );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -176,6 +177,23 @@ public class RoomsPanel extends Panel {
             scrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
             //---- table1 ----
+            table1.setModel(new DefaultTableModel(
+                new Object[][] {
+                    {null, null, null, null, null, null, null},
+                    {null, null, null, null, null, null, null},
+                },
+                new String[] {
+                    "room_id", "hotel_id", "room_num", "room_type", "room_size", "room_price", "capacity"
+                }
+            ) {
+                Class<?>[] columnTypes = new Class<?>[] {
+                    Integer.class, Integer.class, Integer.class, String.class, Float.class, Float.class, String.class
+                };
+                @Override
+                public Class<?> getColumnClass(int columnIndex) {
+                    return columnTypes[columnIndex];
+                }
+            });
             table1.setPreferredSize(new Dimension(525, 400));
             scrollPane1.setViewportView(table1);
         }
@@ -339,12 +357,13 @@ public class RoomsPanel extends Panel {
                 filterPanel.add(label6);
                 label6.setBounds(50, 85, 225, 30);
 
-                //---- button1 ----
-                button1.setText("Apply");
-                button1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                button1.setName("apply");
-                filterPanel.add(button1);
-                button1.setBounds(40, 150, 245, 60);
+                //---- btnFilter ----
+                btnFilter.setText("Apply");
+                btnFilter.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                btnFilter.setName("applyFilter");
+                btnFilter.setActionCommand("Rooms");
+                filterPanel.add(btnFilter);
+                btnFilter.setBounds(40, 150, 245, 60);
 
                 //---- tfFilterValue ----
                 tfFilterValue.setToolTipText("Filter Input");
@@ -383,7 +402,7 @@ public class RoomsPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JScrollPane scrollPane1;
     private JTable table1;
     private JPanel controlPanel;
@@ -408,7 +427,7 @@ public class RoomsPanel extends Panel {
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;
     private JLabel label6;
-    private JButton button1;
+    private JButton btnFilter;
     private JTextField tfFilterValue;
     private JTextField tfFilterUpperValue;
     private JLabel label8;

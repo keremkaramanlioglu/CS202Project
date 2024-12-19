@@ -232,8 +232,8 @@ new FormModel {
 						name: "btnApply"
 						"text": "Apply"
 						"cursor": #Cursor0
-						"actionCommand": "Housekeeping"
-						"name": "apply"
+						"actionCommand": "HouseKeeping"
+						"name": "applyFilter"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 245
 						"height": 60

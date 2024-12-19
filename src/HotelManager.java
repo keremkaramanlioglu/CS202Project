@@ -140,6 +140,19 @@ public class HotelManager {
                     case "delete":
                         break;
                     case "applyFilter":
+                        if (command.equals("Bookings")){ //from both
+                            System.out.println("filter button pressed in booking panel");
+                        } else if (command.equals("Employees")) { //from manager
+                            System.out.println("filter button pressed in employees panel by manager");
+                        } else if (command.equals("Housekeeping")) { //from manager
+                            System.out.println("filter button pressed in housekeeping panel by manager");
+                        } else if (command.equals("Rooms")) { //from manager
+                            System.out.println("filter button pressed in rooms panel by manager");
+                        } else if (command.equals("Users")) { //from manager
+                            System.out.println("filter button pressed in users panel by manager");
+                        } else if (command.equals("HouseKeeping")) { //from receptionist
+                            System.out.println("filter button pressed in housekeeping panel by receptionist");
+                        }
                         break;
                 }
             }
