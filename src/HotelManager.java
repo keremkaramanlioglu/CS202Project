@@ -1,4 +1,5 @@
 import entities.Booking;
+import entities.CleaningSchedule;
 import entities.Employee;
 
 import panels.Panel;
@@ -124,7 +125,7 @@ public class HotelManager {
                 if (activePanel.getCenterPanel() != null) activePanel.getCenterPanel().reset();
                 activePanel.setCenterPanel(activePanel.getPanelByName(command));
             } else if (compare(command, mainPanelOptions)) {
-                //if (!command.equals("Customer")) if (!checkAction(command)) return;
+                if (!command.equals("Customer")) if (!checkAction(command)) return;
                 hotelView.getActivePanel().reset();
                 hotelView.setActivePanel(hotelView.getPanelByName(command));
             } else {
@@ -185,17 +186,18 @@ public class HotelManager {
                         }
                         break;
                     case "Housekeeping":
-                        Employee houseKeeper;
-                        HousekeepingPanel pnlHK = (HousekeepingPanel) hotelView.getActivePanel().getPanelByName(command);
+                        CleaningSchedule cleaningSchedule;
+                        int currHotelId = currEmployee.getEmp_hotel_id();
                         if (button.getName().equals("applyFilter")) {
                             //System.out.println("entered");
                             try {
-                                //System.out.println(pnlRcp.getSelectedFilterOption().equals("None"));
-                                //System.out.println(pnlRcp.getSelectedFilterColumn() + " " + pnlRcp.getSelectedFilterColumn() + " " + pnlRcp.getSelectedFilterColumn());
-                                ArrayList<Employee> houseKeepers = hotelDao.getEmployees(pnlHK.getSelectedFilterColumn(), pnlHK.getSelectedFilterOption(), pnlHK.getSelectedFilterValue());
-                                pnlHK.setTableWithEmployees(houseKeepers);
-                                for (Employee hk : houseKeepers) {
-                                    System.out.println(hk);
+
+                                System.out.println(panel.getSelectedFilterOption().equals("None"));
+                                System.out.println(panel.getSelectedFilterColumn() + " " + panel.getSelectedFilterColumn() + " " + panel.getSelectedFilterColumn());
+                                ArrayList<CleaningSchedule> schedules = hotelDao.getCleaningSchedules(currHotelId, panel.getSelectedFilterColumn(), panel.getSelectedFilterOption(), panel.getSelectedFilterValue());
+                                panel.setTableWithCleaningSchedules(schedules);
+                                for (CleaningSchedule cs : schedules) {
+                                    System.out.println(cs);
                                 }
                             } catch (SQLException ex) {
                                 throw new RuntimeException(ex);

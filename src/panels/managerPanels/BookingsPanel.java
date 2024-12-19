@@ -101,6 +101,7 @@ public class BookingsPanel extends Panel {
         table2.repaint();
         this.revalidate();
         this.repaint();
+
     }
 
 
@@ -113,10 +114,11 @@ public class BookingsPanel extends Panel {
         initComponents();
         super.cbFilterColumn = cbSelectColumn;
         super.cbFilterOption = cbFilterOption;
-        super.tfFilterValue = tfFilterValue;
         super.tfFilterUpperValue = tfFilterUpperValue;
+        super.tfFilterValue = tfFilterValue;
+        super.prevCenterPanel = null;
+        super.prevSelectedButton = null;
     }
-
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
