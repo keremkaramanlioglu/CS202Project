@@ -24,8 +24,6 @@ public class MyBookingsPanel extends Panel {
 
     public MyBookingsPanel() {
         initComponents();
-        super.table = tblBookings;
-        super.model = tableModel;
         initTable();
     }
 
@@ -37,21 +35,23 @@ public class MyBookingsPanel extends Panel {
                         "Hotel name", "Zip Code", "Room Type", "#People", "Check-in Date", "Check-out Date"
                 }
         );
-        table.setModel(model);
-        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        tblBookings.setModel(tableModel);
+        tblBookings.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                Object[] fields = new Object[table.getColumnCount()];
-                int selectedRow = table.getSelectedRow();
+                Object[] fields = new Object[tblBookings.getColumnCount()];
+                int selectedRow = tblBookings.getSelectedRow();
 
                 if (selectedRow != -1) {
                     for (int i = 0; i < fields.length; i++) {
-                        fields[i] = table.getValueAt(selectedRow, i + 1);
+                        fields[i] = tblBookings.getValueAt(selectedRow, i + 1);
                     }
                 }
                 setFields(fields);
             }
         });
+        super.table = tblBookings;
+        super.model = tableModel;
     }
 
 

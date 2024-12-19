@@ -63,27 +63,38 @@ public class BookingsPanel extends Panel {
 
     @Override
     public Object[] getEntity() {
-        if (!tfCheck()) {
-            JOptionPane.showMessageDialog(this, "Please enter all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
+        Object[] fieldValues = new Object[8];
+
+        try {
+            // JTextFields
+            fieldValues[0] = Integer.parseInt(tfCSsn.getText().trim());  // CSsn as Integer
+            fieldValues[1] = Integer.parseInt(tfRoomID.getText().trim());  // RoomID as Integer
+            fieldValues[2] = java.sql.Date.valueOf(tfStartDate.getText().trim()); // Start Date as java.sql.Date
+            fieldValues[3] = java.sql.Date.valueOf(tfEndDate.getText().trim());   // End Date as java.sql.Date
+
+            // JComboBoxes
+            fieldValues[4] = Objects.requireNonNull(cbPaymentStatus.getSelectedItem()).toString(); // Payment Status as String
+            fieldValues[5] = Objects.requireNonNull(cbPaymentMethod.getSelectedItem()).toString(); // Payment Method as String
+            fieldValues[6] = Objects.requireNonNull(cbSelectColumn.getSelectedItem()).toString();  // Select Column as String
+            fieldValues[7] = Objects.requireNonNull(cbFilterOption.getSelectedItem()).toString();  // Filter Option as String
+        } catch (NumberFormatException e) {
+            // Handle invalid number format exceptions, e.g., if parsing fails
+            System.err.println("Error parsing number fields: " + e.getMessage());
+            return null;
+        } catch (IllegalArgumentException e) {
+            // Handle invalid date format
+            System.err.println("Invalid date format: " + e.getMessage());
             return null;
         }
 
-
-        return new Object[] {
-                tfCSsn.getText(),
-                Integer.parseInt(tfRoomID.getText()),
-                Objects.requireNonNull(cbPaymentStatus.getSelectedItem()).toString(),
-                Objects.requireNonNull(cbPaymentMethod.getSelectedItem()).toString(),
-                tfStartDate.getText(),
-                tfEndDate.getText(),
-                cbCheckin.isSelected(),
-                cbCheckout.isSelected()
-        };
+        return fieldValues;
     }
 
     public boolean tfCheck() {
-        return !tfCSsn.getText().isEmpty() && !tfRoomID.getText().isEmpty()
-                 && !tfStartDate.getText().isEmpty() && !tfEndDate.getText().isEmpty();
+        if (tfCSsn.getText().trim().isEmpty()) return false;   // Check CSsn field
+        if (tfRoomID.getText().trim().isEmpty()) return false;  // Check RoomID field
+        if (tfStartDate.getText().trim().isEmpty()) return false; // Check Start Date field
+        return !tfEndDate.getText().trim().isEmpty();   // Check End Date field
     }
 
 
@@ -133,12 +144,12 @@ public class BookingsPanel extends Panel {
             }
         });
         super.table = tblData;
-        super.model = model;
+        super.model = tableModel;
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         scrollPane1 = new JScrollPane();
         tblData = new JTable();
         panel1 = new JPanel();
@@ -171,11 +182,12 @@ public class BookingsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
-        0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
-        . BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
-        red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
-        beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .
+        EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER ,javax . swing
+        . border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,
+        java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( )
+        { @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )
+        throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -433,7 +445,7 @@ public class BookingsPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane scrollPane1;
     private JTable tblData;
     private JPanel panel1;
