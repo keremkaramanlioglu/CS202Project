@@ -164,8 +164,6 @@ public class RoomsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
-        ; }} );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
