@@ -133,6 +133,8 @@ public class HotelManager {
             } else {
                 switch (name) {
                     case "add":
+
+                        break;
                     case "update":
                     case "delete":
                     case "applyFilter":
