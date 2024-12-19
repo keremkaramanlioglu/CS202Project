@@ -81,6 +81,7 @@ public class ReceptionistPanel extends Panel {
         pnlBookings.addMouseListener(ml);
         pnlHousekeeping.addMouseListener(ml);
         pnlAddCustomers.addMouseListener(ml);
+        pnlRooms.addMouseListener(ml);
     }
 
     public JButton getBtnHousekeeping() {

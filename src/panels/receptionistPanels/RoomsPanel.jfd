@@ -83,6 +83,8 @@ new FormModel {
 						name: "tfStartDate"
 						"toolTipText": "Filter Input"
 						"text": "Choose a Date!"
+						"editable": false
+						"cursor": &Cursor0 new java.awt.Cursor( 12 )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 115
 						"height": 40
@@ -93,6 +95,8 @@ new FormModel {
 						name: "tfEndDate"
 						"toolTipText": "Filter Input"
 						"text": "Choose a Date!"
+						"editable": false
+						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 115
 						"height": 40
