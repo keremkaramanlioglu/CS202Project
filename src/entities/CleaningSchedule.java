@@ -23,12 +23,20 @@ public class CleaningSchedule {
     }
 
     public CleaningSchedule(Object[] obj) {
-        this.schedule_id = Integer.parseInt(obj[0].toString());
-        this.housekeeper_ssn = String.valueOf(obj[1]);
-        this.receptionist_ssn = String.valueOf(obj[2]);
-        this.room_id = Integer.parseInt(obj[3].toString());
-        this.cleaning_date = Date.valueOf(String.valueOf(obj[4]));
-        this.service_status = String.valueOf(obj[5]);
+        if (obj.length == 6) {
+            this.schedule_id = Integer.parseInt(obj[0].toString());
+            this.housekeeper_ssn = String.valueOf(obj[1]);
+            this.receptionist_ssn = String.valueOf(obj[2]);
+            this.room_id = Integer.parseInt(obj[3].toString());
+            this.cleaning_date = Date.valueOf(String.valueOf(obj[4]));
+            this.service_status = String.valueOf(obj[5]);
+        } else {
+            this.housekeeper_ssn = String.valueOf(obj[0]);
+            this.receptionist_ssn = String.valueOf(obj[1]);
+            this.room_id = Integer.parseInt(String.valueOf(obj[2]));
+            this.cleaning_date = Date.valueOf(String.valueOf(obj[3]));
+            this.service_status = String.valueOf(obj[4]);
+        }
     }
 
     public int getSchedule_id() {
