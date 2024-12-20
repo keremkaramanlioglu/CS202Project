@@ -4,11 +4,13 @@
 
 package panels.dbManagerPanels;
 
+import java.awt.event.*;
 import panels.Panel;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -24,42 +26,41 @@ public class QueryPanel extends panels.Panel {
 
     public QueryPanel() {
         initComponents();
-        //initTable();
-        super.table = tblData;
-        super.model = model;
+        initTable();
     }
 
-//    private void initTable() {
-//        model = new DefaultTableModel(
-//                new Object[][] {},
-//                new String[] {
-//                        "booking_id", "c_ssn", "room_id", "payment_status", "payment_method", "booking_start_date", "booking_end_date", "c_check_in_status", "c_check_out_status"
-//                }
-//        ) {
-//            final Class<?>[] columnTypes = new Class<?>[] {
-//                    Integer.class, String.class, Integer.class, String.class, String.class, Date.class, Date.class, Boolean.class, Boolean.class
-//            };
-//            @Override
-//            public Class<?> getColumnClass(int columnIndex) {
-//                return columnTypes[columnIndex];
-//            }
-//        };
-//        table.setModel(model);
-//        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-//            @Override
-//            public void valueChanged(ListSelectionEvent e) {
-//                Object[] fields = new Object[table.getColumnCount()];
-//                int selectedRow = table.getSelectedRow();
-//
-//                if (selectedRow != -1) {
-//                    for (int i = 0; i < fields.length; i++) {
-//                        fields[i] = table.getValueAt(selectedRow, i + 1);
-//                    }
-//                }
-//                setFields(fields);
-//            }
-//        });
-//    }
+    public void setTableColumns(ArrayList<Object> columnValues) {
+        model.setColumnCount(0);
+
+        for (Object columnValue : columnValues) {
+            model.addColumn(columnValue.toString());
+        }
+        table.revalidate();
+        table.repaint();
+        this.revalidate();
+        this.repaint();
+    }
+
+    private void initTable() {
+        model = new DefaultTableModel();
+        tblData.setModel(model);
+        tblData.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                Object[] fields = new Object[tblData.getColumnCount()];
+                int selectedRow = tblData.getSelectedRow();
+
+                if (selectedRow != -1) {
+                    for (int i = 0; i < fields.length; i++) {
+                        fields[i] = tblData.getValueAt(selectedRow, i + 1);
+                    }
+                }
+                setFields(fields);
+            }
+        });
+        super.table = tblData;
+        super.model = this.model;
+    }
 
     @Override
     public void addButtonListener(ActionListener al) {
@@ -94,6 +95,16 @@ public class QueryPanel extends panels.Panel {
         return null;
     }
 
+    public String getTaQuery() {
+        return taQuery.getText();
+    }
+
+    private void taQueryKeyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER && e.isShiftDown()) {
+            btnExecute.doClick();
+        }
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kutay Mumcu
@@ -105,12 +116,12 @@ public class QueryPanel extends panels.Panel {
         btnExecute = new JButton();
 
         //======== this ========
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .
-        EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder. CENTER ,javax . swing
-        . border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,
-        java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( )
-        { @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )
-        throw new RuntimeException( ) ;} } );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
+        ( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing. border
+        . TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
+        propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
+        ; }} );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -151,6 +162,12 @@ public class QueryPanel extends panels.Panel {
                 //---- taQuery ----
                 taQuery.setWrapStyleWord(true);
                 taQuery.setLineWrap(true);
+                taQuery.addKeyListener(new KeyAdapter() {
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                        taQueryKeyPressed(e);
+                    }
+                });
                 pnlQuery.setViewportView(taQuery);
             }
             pnlControl.add(pnlQuery);

@@ -463,9 +463,6 @@ public class HotelDao {
         }
         return cs;
     }
-    public void executeQuery(String query) {
-
-    }
 
     // NEW
 
@@ -967,4 +964,25 @@ public class HotelDao {
             return rowsAffected > 0; // Return true if at least one row was updated
         }
     }
+
+    public ResultSet getResultSet(String query) throws SQLException {
+        PreparedStatement stmt = con.prepareStatement(query);
+        ResultSet resultSet = stmt.executeQuery(query);
+        return resultSet;
+    }
+
+    public ArrayList<Object[]> getRowsAsObject(ResultSet rs, ArrayList<Object> columns) throws SQLException {
+        ArrayList<Object[]> result = new ArrayList<>();
+        int count = columns.size();
+
+        while (rs.next()) {
+            Object[] row = new Object[count];
+            for (int i = 0; i < count; i++) {
+                row[i] = rs.getObject(i + 1);
+            }
+            result.add(row);
+        }
+        return result;
+    }
+
 }
