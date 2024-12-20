@@ -53,12 +53,12 @@ public class RoomsPanel extends Panel {
         table1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                Object[] fields = new Object[table1.getColumnCount()];
+                Object[] fields = new Object[table1.getColumnCount() - 1];
                 int selectedRow = table1.getSelectedRow();
 
                 if (selectedRow != -1) {
-                    for (int i = 0; i < fields.length; i++) {
-                        fields[i] = table1.getValueAt(selectedRow, i + 1);
+                    for (int i = 1; i < table1.getColumnCount(); i++) {
+                        fields[i - 1] = table1.getValueAt(selectedRow, i);
                     }
                 }
                 setFields(fields);
@@ -109,6 +109,7 @@ public class RoomsPanel extends Panel {
             JOptionPane.showMessageDialog(this, "Please enter all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
+
 
 
         return new Object[] {
@@ -356,7 +357,6 @@ public class RoomsPanel extends Panel {
                     "contains"
                 }));
                 cbFilterOption.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                cbFilterOption.setEnabled(false);
                 filterPanel.add(cbFilterOption);
                 cbFilterOption.setBounds(165, 35, 120, 45);
 

@@ -1,7 +1,5 @@
 import entities.*;
 
-import javax.management.openmbean.OpenMBeanConstructorInfo;
-import java.awt.print.Book;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -57,7 +55,7 @@ public class HotelDao {
         stmt.setString(6, room.getRoom_capacity());
         stmt.executeUpdate();
     }
-    public void updateRoom(Room room) throws SQLException {
+    public int updateRoom(Room room) throws SQLException {
         String sql = "UPDATE Rooms SET hotel_id = ?, room_num = ?, room_type = ?, room_size = ?, room_price = ?, room_capacity = ? WHERE room_id = ?";
         stmt = con.prepareStatement(sql);
         stmt.setInt(1, room.getHotel_id());
@@ -66,7 +64,8 @@ public class HotelDao {
         stmt.setInt(4, room.getRoom_size());
         stmt.setDouble(5, room.getRoom_price());
         stmt.setString(6, room.getRoom_capacity());
-        stmt.executeUpdate();
+        stmt.setInt(7, room.getRoom_id());
+        return stmt.executeUpdate();
     }
     public void deleteRoom(Room room) throws SQLException {
         String sql = "DELETE FROM Rooms WHERE room_id = ?";
@@ -88,7 +87,7 @@ public class HotelDao {
         stmt.setString(9, customer.getZip_code());
         stmt.executeUpdate();
     }
-    public void updateCustomer(Customer customer) throws SQLException {
+    public int updateCustomer(Customer customer) throws SQLException {
         String sql = "UPDATE Customers SET c_firstname = ?, c_lastname = ?, c_bd = ?, c_room_id = ?, c_email = ?, c_phone_num = ?, c_gender = ?, zip_code = ? WHERE c_ssn = ?";
         stmt = con.prepareStatement(sql);
         stmt.setString(1, customer.getC_ssn());
@@ -100,7 +99,7 @@ public class HotelDao {
         stmt.setString(7, customer.getC_phone_num());
         stmt.setString(8, customer.getC_gender());
         stmt.setString(9, customer.getZip_code());
-        stmt.executeUpdate();
+        return stmt.executeUpdate();
     }
     public void deleteCustomer(Customer customer) throws SQLException {
         String sql = "DELETE FROM Customers WHERE c_ssn = ?";
