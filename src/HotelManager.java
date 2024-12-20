@@ -304,16 +304,31 @@ public class HotelManager {
 
                                 ArrayList<Object> columnValues = new ArrayList<>();
 
-                                ResultSet resultSet = hotelDao.getResultSet(query);
-                                ResultSetMetaData metaData = resultSet.getMetaData();
+                                try {
+                                    ResultSet resultSet = hotelDao.getResultSet(query);
+                                    ResultSetMetaData metaData = resultSet.getMetaData();
 
-                                int columnCount = metaData.getColumnCount();
-                                for (int i = 1; i <= columnCount; i++) {
-                                    columnValues.add(i - 1, metaData.getColumnName(i));
-                                    System.out.println(columnValues.get(i - 1));
+                                    int columnCount = metaData.getColumnCount();
+                                    for (int i = 1; i <= columnCount; i++) {
+                                        columnValues.add(i - 1, metaData.getColumnName(i));
+                                        System.out.println(columnValues.get(i - 1));
+                                    }
+                                    pnl.setTableColumns(columnValues);
+                                    pnl.setTableRows(hotelDao.getRowsAsObject(resultSet, columnValues));
+                                }catch (Exception ex){
+                                    System.out.println(ex.getMessage());
+                                    System.out.println("hata");
+                                    try {
+                                        int affectedRows = hotelDao.executeUpdate(query);
+                                        System.out.println("Query executed successfully. Rows affected: " + affectedRows);
+                                        JOptionPane.showMessageDialog(null, "Query executed successfully. Rows affected: " + affectedRows);
+                                    } catch (Exception innerEx) {
+                                        System.out.println(innerEx.getMessage());
+                                        System.out.println("Failed to execute the non-result-set query.");
+                                        JOptionPane.showMessageDialog(null, "Failed to execute query: " + innerEx.getMessage(),
+                                                "Execution Error", JOptionPane.ERROR_MESSAGE);
+                                    }
                                 }
-                                pnl.setTableColumns(columnValues);
-                                pnl.setTableRows(hotelDao.getRowsAsObject(resultSet, columnValues));
                             }
                             break;
                         case "edit":

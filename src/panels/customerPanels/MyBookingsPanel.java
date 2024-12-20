@@ -67,7 +67,6 @@ public class MyBookingsPanel extends Panel {
 
     @Override
     public void addButtonListener(ActionListener al) {
-        btnNewBooking.addActionListener(al);
         btnCancel.addActionListener(al);
         btnShow.addActionListener(al);
     }
