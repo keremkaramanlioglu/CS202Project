@@ -76,7 +76,7 @@ new FormModel {
 						add( null )
 						add( null )
 					} )
-					"enabled": false
+					"autoCreateRowSorter": true
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"

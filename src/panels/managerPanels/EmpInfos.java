@@ -78,19 +78,19 @@ public class EmpInfos extends JDialog {
 
     public void setEmp(Employee emp) {
         this.emp = emp;
-        tfSsn.setText(emp.getEmp_ssn());
-        tfFirstName.setText(emp.getEmp_firstname());
-        tfLastName.setText(emp.getEmp_lastname());
-        tfType.setText(emp.getEmp_type());
-        tfSalary.setText(Double.toString(emp.getEmp_salary()));
-        tfEmail.setText(emp.getEmp_email());
-        tfGender.setText(emp.getEmp_gender());
-        tfStreet.setText(emp.getStreet());
-        tfNo.setText(emp.getNo());
-        tfApartment.setText(emp.getApartment());
-        tfZipcode.setText(emp.getZip_code());
+        tfSsn.setText(String.valueOf(emp.getEmp_ssn()));
+        tfFirstName.setText(String.valueOf(emp.getEmp_firstname()));
+        tfLastName.setText(String.valueOf(emp.getEmp_lastname()));
+        tfType.setText(String.valueOf(emp.getEmp_type()));
+        tfSalary.setText(String.valueOf(emp.getEmp_salary()));
+        tfEmail.setText(String.valueOf(emp.getEmp_email()));
+        tfGender.setText(String.valueOf(emp.getEmp_gender()));
+        tfStreet.setText(String.valueOf(emp.getEmp_firstname()));
+        tfNo.setText(String.valueOf(emp.getEmp_lastname()));
+        tfApartment.setText(String.valueOf(emp.getEmp_bd()));
+        tfZipcode.setText(String.valueOf(emp.getZip_code()));
         tfBD.setText(String.valueOf(emp.getEmp_bd()));
-        tfPhoneNum.setText(emp.getEmp_phone_num());
+        tfPhoneNum.setText(String.valueOf(emp.getEmp_phone_num()));
         tfStartDate.setText(String.valueOf(emp.getYears()));
         tfHotelID.setText(String.valueOf(emp.getEmp_hotel_id()));
     }

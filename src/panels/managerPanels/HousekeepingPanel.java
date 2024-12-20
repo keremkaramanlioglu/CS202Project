@@ -63,8 +63,8 @@ public class HousekeepingPanel extends Panel {
                 int selectedRow = dataTable.getSelectedRow();
 
                 if (selectedRow != -1) {
-                    for (int i = 1; i < fields.length; i++) {
-                        fields[i] = dataTable.getValueAt(selectedRow, i + 1);
+                    for (int i = 1; i < dataTable.getColumnCount(); i++) {
+                        fields[i - 1] = dataTable.getValueAt(selectedRow, i);
                     }
                 }
                 setFields(fields);
@@ -104,23 +104,23 @@ public class HousekeepingPanel extends Panel {
         tfReceptionistSsn.setText(String.valueOf(rowValues[1]));
         tfRoomID.setText(String.valueOf(rowValues[2]));
         tfCleaningDate.setText(String.valueOf(rowValues[3]));
-        cbCompleted.setSelected(Boolean.parseBoolean(String.valueOf(rowValues[4])));
+        cbCompleted.setSelected((!String.valueOf(rowValues[4]).equals("Pending")));
     }
 
     @Override
     public Object[] getEntity() {
-        if (!tfCheck()) {
-            JOptionPane.showMessageDialog(this, "Please enter all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
+//        if (!tfCheck()) {
+//            JOptionPane.showMessageDialog(this, "Please enter all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
+//            return null;
+//        }
 
 
         return new Object[] {
                 tfHousekeeperSsn.getText(),
                 tfReceptionistSsn.getText(),
-                Integer.parseInt(tfRoomID.getText()),
-                Timestamp.valueOf(tfCleaningDate.getText()),
-                cbCompleted.isSelected()
+                tfRoomID.getText(),
+                tfCleaningDate.getText(),
+                cbCompleted.isSelected() ? ("Completed") : ("Pending")
         };
     }
 
@@ -131,7 +131,7 @@ public class HousekeepingPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlData = new JPanel();
         scrollPane1 = new JScrollPane();
         dataTable = new JTable();
@@ -161,13 +161,14 @@ public class HousekeepingPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(1920, 1080));
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing
-        . border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder
-        . CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .
-        awt . Font. BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) )
-        ;  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
-        ) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } )
-        ;
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
+        new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e"
+        , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+        , new java .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 )
+        , java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
+        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("borde\u0072" .equals (e .getPropertyName () )) throw new RuntimeException( )
+        ; }} );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -205,7 +206,7 @@ public class HousekeepingPanel extends Panel {
                 });
                 dataTable.setPreferredScrollableViewportSize(new Dimension(450, 500));
                 dataTable.setPreferredSize(new Dimension(450, 300));
-                dataTable.setEnabled(false);
+                dataTable.setAutoCreateRowSorter(true);
                 scrollPane1.setViewportView(dataTable);
             }
             pnlData.add(scrollPane1, BorderLayout.CENTER);
@@ -395,7 +396,7 @@ public class HousekeepingPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JPanel pnlData;
     private JScrollPane scrollPane1;
     private JTable dataTable;

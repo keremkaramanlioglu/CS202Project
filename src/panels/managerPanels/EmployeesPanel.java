@@ -122,8 +122,25 @@ public class EmployeesPanel extends Panel {
 
     @Override
     public Object[] getEntity() {
-        return new Object[0];
+        return new Object[] {
+                tfSsn.getText(),
+                tfFirstName.getText(),
+                tfLastName.getText(),
+                tfType.getText(),
+                tfBD.getText(),
+                tfStartDate.getText(),
+                tfHotelID.getText(),
+                tfSalary.getText(),
+                tfPhoneNum.getText(),
+                tfEmail.getText(),
+                tfGender.getText(),
+                tfStreet.getText(),
+                tfNo.getText(),
+                tfApartment.getText(),
+                tfZipcode.getText()
+        };
     }
+
 
     @Override
     public Panel getPanelByName(String panelName) {
@@ -150,14 +167,48 @@ public class EmployeesPanel extends Panel {
         tfFilterValue = new JTextField();
         tfFilterUpperValue = new JTextField();
         label8 = new JLabel();
+        panel1 = new JPanel();
+        label1 = new JLabel();
+        label2 = new JLabel();
+        label3 = new JLabel();
+        label4 = new JLabel();
+        label5 = new JLabel();
+        label6 = new JLabel();
+        label7 = new JLabel();
+        label9 = new JLabel();
+        label10 = new JLabel();
+        label11 = new JLabel();
+        label12 = new JLabel();
+        label13 = new JLabel();
+        label14 = new JLabel();
+        label15 = new JLabel();
+        label16 = new JLabel();
+        tfSsn = new JTextField();
+        tfFirstName = new JTextField();
+        tfLastName = new JTextField();
+        tfType = new JTextField();
+        tfBD = new JTextField();
+        tfStartDate = new JTextField();
+        tfHotelID = new JTextField();
+        tfSalary = new JTextField();
+        tfPhoneNum = new JTextField();
+        tfEmail = new JTextField();
+        tfGender = new JTextField();
+        tfStreet = new JTextField();
+        tfNo = new JTextField();
+        tfApartment = new JTextField();
+        tfZipcode = new JTextField();
+        btnOK = new JButton();
+        btnCancel = new JButton();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
-        EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing
-        .border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),
-        java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener()
-        {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName()))
-        throw new RuntimeException();}});
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
+        .border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder
+        .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.
+        awt.Font.BOLD,12),java.awt.Color.red), getBorder()))
+        ; addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+        ){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}})
+        ;
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -189,6 +240,7 @@ public class EmployeesPanel extends Panel {
                     return columnEditable[columnIndex];
                 }
             });
+            tblEmployees.setAutoCreateRowSorter(true);
             pnlData.setViewportView(tblEmployees);
         }
         add(pnlData, BorderLayout.CENTER);
@@ -347,6 +399,151 @@ public class EmployeesPanel extends Panel {
             pnlControl.add(pnlFilter);
         }
         add(pnlControl, BorderLayout.SOUTH);
+
+        //======== panel1 ========
+        {
+            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
+            EmptyBorder(0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border.TitledBorder.CENTER,javax.swing
+            .border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),
+            java.awt.Color.red),panel1. getBorder()));panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener()
+            {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062or\u0064er".equals(e.getPropertyName()))
+            throw new RuntimeException();}});
+            panel1.setLayout(null);
+
+            //---- label1 ----
+            label1.setText("emp_ssn:");
+            panel1.add(label1);
+            label1.setBounds(10, 10, 90, 35);
+
+            //---- label2 ----
+            label2.setText("firstname:");
+            panel1.add(label2);
+            label2.setBounds(10, 50, 90, 35);
+
+            //---- label3 ----
+            label3.setText("lastname:");
+            panel1.add(label3);
+            label3.setBounds(10, 90, 90, 35);
+
+            //---- label4 ----
+            label4.setText("type:");
+            panel1.add(label4);
+            label4.setBounds(10, 130, 90, 35);
+
+            //---- label5 ----
+            label5.setText("birthdate:");
+            panel1.add(label5);
+            label5.setBounds(10, 170, 90, 35);
+
+            //---- label6 ----
+            label6.setText("start date:");
+            panel1.add(label6);
+            label6.setBounds(10, 210, 90, 35);
+
+            //---- label7 ----
+            label7.setText("hotel_id:");
+            panel1.add(label7);
+            label7.setBounds(10, 250, 90, 35);
+
+            //---- label9 ----
+            label9.setText("salary:");
+            panel1.add(label9);
+            label9.setBounds(10, 285, 90, 35);
+
+            //---- label10 ----
+            label10.setText("phone_num:");
+            panel1.add(label10);
+            label10.setBounds(10, 320, 90, 35);
+
+            //---- label11 ----
+            label11.setText("email:");
+            panel1.add(label11);
+            label11.setBounds(10, 360, 90, 35);
+
+            //---- label12 ----
+            label12.setText("gender:");
+            panel1.add(label12);
+            label12.setBounds(10, 400, 90, 35);
+
+            //---- label13 ----
+            label13.setText("street:");
+            panel1.add(label13);
+            label13.setBounds(10, 440, 90, 35);
+
+            //---- label14 ----
+            label14.setText("no:");
+            panel1.add(label14);
+            label14.setBounds(10, 480, 90, 35);
+
+            //---- label15 ----
+            label15.setText("apartment:");
+            panel1.add(label15);
+            label15.setBounds(10, 515, 90, 35);
+
+            //---- label16 ----
+            label16.setText("zip_code:");
+            panel1.add(label16);
+            label16.setBounds(10, 565, 90, 35);
+            panel1.add(tfSsn);
+            tfSsn.setBounds(100, 10, 310, 35);
+            panel1.add(tfFirstName);
+            tfFirstName.setBounds(100, 50, 310, 35);
+            panel1.add(tfLastName);
+            tfLastName.setBounds(100, 90, 310, 35);
+            panel1.add(tfType);
+            tfType.setBounds(100, 130, 310, 35);
+            panel1.add(tfBD);
+            tfBD.setBounds(100, 170, 310, 35);
+            panel1.add(tfStartDate);
+            tfStartDate.setBounds(100, 210, 310, 35);
+            panel1.add(tfHotelID);
+            tfHotelID.setBounds(100, 250, 310, 35);
+            panel1.add(tfSalary);
+            tfSalary.setBounds(100, 285, 310, 35);
+            panel1.add(tfPhoneNum);
+            tfPhoneNum.setBounds(100, 325, 310, 35);
+            panel1.add(tfEmail);
+            tfEmail.setBounds(100, 360, 310, 35);
+            panel1.add(tfGender);
+            tfGender.setBounds(100, 400, 310, 35);
+            panel1.add(tfStreet);
+            tfStreet.setBounds(100, 440, 310, 35);
+            panel1.add(tfNo);
+            tfNo.setBounds(100, 480, 310, 35);
+            panel1.add(tfApartment);
+            tfApartment.setBounds(100, 520, 310, 35);
+            panel1.add(tfZipcode);
+            tfZipcode.setBounds(100, 565, 310, 35);
+
+            //---- btnOK ----
+            btnOK.setText("OK");
+            btnOK.setActionCommand("Employees");
+            btnOK.setName("ok");
+            panel1.add(btnOK);
+            btnOK.setBounds(485, 505, 158, 55);
+
+            //---- btnCancel ----
+            btnCancel.setText("Cancel");
+            btnCancel.setActionCommand("Employees");
+            btnCancel.setName("ok");
+            panel1.add(btnCancel);
+            btnCancel.setBounds(485, 565, 158, 55);
+
+            {
+                // compute preferred size
+                Dimension preferredSize = new Dimension();
+                for(int i = 0; i < panel1.getComponentCount(); i++) {
+                    Rectangle bounds = panel1.getComponent(i).getBounds();
+                    preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+                    preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+                }
+                Insets insets = panel1.getInsets();
+                preferredSize.width += insets.right;
+                preferredSize.height += insets.bottom;
+                panel1.setMinimumSize(preferredSize);
+                panel1.setPreferredSize(preferredSize);
+            }
+        }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -370,5 +567,38 @@ public class EmployeesPanel extends Panel {
     private JTextField tfFilterValue;
     private JTextField tfFilterUpperValue;
     private JLabel label8;
+    private JPanel panel1;
+    private JLabel label1;
+    private JLabel label2;
+    private JLabel label3;
+    private JLabel label4;
+    private JLabel label5;
+    private JLabel label6;
+    private JLabel label7;
+    private JLabel label9;
+    private JLabel label10;
+    private JLabel label11;
+    private JLabel label12;
+    private JLabel label13;
+    private JLabel label14;
+    private JLabel label15;
+    private JLabel label16;
+    private JTextField tfSsn;
+    private JTextField tfFirstName;
+    private JTextField tfLastName;
+    private JTextField tfType;
+    private JTextField tfBD;
+    private JTextField tfStartDate;
+    private JTextField tfHotelID;
+    private JTextField tfSalary;
+    private JTextField tfPhoneNum;
+    private JTextField tfEmail;
+    private JTextField tfGender;
+    private JTextField tfStreet;
+    private JTextField tfNo;
+    private JTextField tfApartment;
+    private JTextField tfZipcode;
+    private JButton btnOK;
+    private JButton btnCancel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

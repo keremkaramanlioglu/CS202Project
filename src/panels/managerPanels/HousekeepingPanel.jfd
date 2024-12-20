@@ -54,7 +54,7 @@ new FormModel {
 						} )
 						"preferredScrollableViewportSize": new java.awt.Dimension( 450, 500 )
 						"preferredSize": new java.awt.Dimension( 450, 300 )
-						"enabled": false
+						"autoCreateRowSorter": true
 					} )
 				}, new FormLayoutConstraints( class java.lang.String ) {
 					"value": "Center"

@@ -62,7 +62,7 @@ public class HotelManager {
     }
 
     private boolean isValidAction(String action) {
-        return switch (currEmployee.getEmp_type()) {
+        return switch (String.valueOf(currEmployee.getEmp_type())) {
             case "Manager" -> compare(action, new String[]{"Manager", "Customer", "Housekeeper", "Receptionist"});
             case "Database Manager" -> true;
             case "Receptionist" -> compare(action, new String[]{"Customer", "Receptionist"});
@@ -138,85 +138,81 @@ public class HotelManager {
                 hotelView.getActivePanel().reset();
                 hotelView.setActivePanel(hotelView.getPanelByName(command));
             } else {
-                int currHotelID = currEmployee.getEmp_hotel_id();
+                Object currHotelID = currEmployee.getEmp_hotel_id();
                 Panel activePanel = hotelView.getActivePanel();
+                int rowsAffected = 0;
                 try {
                     switch (name) {
                         case "add":
                             if (command.equals("Bookings")) {
                                 System.out.println("add button pressed in booking panel");
-                                int affectedRows = hotelDao.insertBooking(new Booking(activePanel.getCenterPanel().getEntity()));
-                                if (affectedRows > 0) {
-                                    JOptionPane.showMessageDialog(hotelView, affectedRows + " " + command + " added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                                }
+                                rowsAffected = hotelDao.insertBooking(new Booking(activePanel.getCenterPanel().getEntity()));
+//                                if (affectedRows > 0) {
+//                                    JOptionPane.showMessageDialog(hotelView, affectedRows + " " + command + " added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+//                                }
                             } else if (command.equals("Employees")) {
-                                //System.out.println("add button pressed in employees panel by manager");
-                                EmpInfos emp = new EmpInfos(hotelView);
-                                Employee employee = emp.getEmployee();
-                                if (employee != null) {
-                                    hotelDao.insertEmployee(employee);
-                                }
-
+//                                //System.out.println("add button pressed in employees panel by manager");
+//                                EmpInfos emp = new EmpInfos(hotelView);
+//                                Employee employee = emp.getEmployee();
+//                                if (employee != null) {
+//                                    hotelDao.insertEmployee(employee);
+//                                }
                                 // TODO ADD ROOM NUM CONSTRAINTS
                             } else if (command.equals("Housekeeping")) {
-                                System.out.println("add button pressed in housekeeping panel by manager");
-                                hotelDao.insertCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
+                                rowsAffected = hotelDao.insertCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Rooms")) {
-                                System.out.println("add button pressed in rooms panel by manager");
-                                int affectedRows = hotelDao.insertRoom(new Room(activePanel.getCenterPanel().getEntity()));
-                                if (affectedRows > 0) {
-                                    JOptionPane.showMessageDialog(hotelView, affectedRows + " " + command + " added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                                }
+                                rowsAffected = hotelDao.insertRoom(new Room(activePanel.getCenterPanel().getEntity()));
+//                                if (affectedRows > 0) {
+//                                    JOptionPane.showMessageDialog(hotelView, affectedRows + " " + command + " added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+//                                }
                             } else if (command.equals("Users")) {
-                                System.out.println("add button pressed in users panel by manager");
-                                hotelDao.insertCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
+                                rowsAffected = hotelDao.insertCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Add Customer")) {
-                                System.out.println("add button pressed in add customer panel by receptionist");
-                                hotelDao.insertCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
+                                rowsAffected = hotelDao.insertCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("houseKeeping")) {
-                                System.out.println("add button pressed in housekeeping panel by receptionist");
-                                hotelDao.insertCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
+                                rowsAffected = hotelDao.insertCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
                             }
                             break;
                         case "update":
                             if (command.equals("Bookings")) {
                                 Booking book = new Booking(activePanel.getCenterPanel().getEntity());
                                 book.setBooking_id(Integer.parseInt(String.valueOf(activePanel.getCenterPanel().getSelectedRow()[0])));
-                                int affectedRows = hotelDao.updateBooking(book);
-                                if( affectedRows > 0) {
-                                    JOptionPane.showMessageDialog(null, command + " updated successfully!" + " Affected rows: " + affectedRows);
-                                }
+                                rowsAffected = hotelDao.updateBooking(book);
+//                                if( affectedRows > 0) {
+//                                    JOptionPane.showMessageDialog(null, command + " updated successfully!" + " Affected rows: " + affectedRows);
+//                                }
                             } else if (command.equals("Employees")) {
-                                Object[] emps = activePanel.getCenterPanel().getSelectedRow();
-                                if (emps == null) {
-                                    JOptionPane.showMessageDialog(null, "No row selected!");
-                                    return;
-                                }
-                                Employee employee = new Employee(activePanel.getCenterPanel().getSelectedRow());
-                                if (employee != null) {
-                                    EmpInfos emp = new EmpInfos(hotelView);
-                                    emp.setEmp(employee);
-                                    employee = emp.getEmployee();
-                                    if (employee.equals(employee)) {return;}
-                                    hotelDao.updateEmployee(employee);
-                                }
+//                                Object[] emps = activePanel.getCenterPanel().getSelectedRow();
+//                                if (emps == null) {
+//                                    JOptionPane.showMessageDialog(null, "No row selected!");
+//                                    return;
+//                                }
+//                                Employee employee = new Employee(activePanel.getCenterPanel().getSelectedRow());
+//                                if (employee != null) {
+//                                    EmpInfos emp = new EmpInfos(hotelView);
+//                                    emp.setEmp(employee);
+//                                    employee = emp.getEmployee();
+//                                    //if (employee.equals(employee)) {return;}
+//                                    hotelDao.updateEmployee(employee);
+//                                }
                             } else if (command.equals("Housekeeping")) {
-                                hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
+                                CleaningSchedule cs = new CleaningSchedule(activePanel.getCenterPanel().getEntity());
+                                cs.setSchedule_id(activePanel.getCenterPanel().getSelectedRow()[0]);
+                                rowsAffected = hotelDao.updateCleaningSchedule(cs);
                             } else if (command.equals("Rooms")) {
                                 Room room = new Room(activePanel.getCenterPanel().getEntity());
                                 room.setRoom_id(Integer.parseInt(String.valueOf(activePanel.getCenterPanel().getSelectedRow()[0])));
-                                int affectedRows = hotelDao.updateRoom(room);
-                                if( affectedRows > 0) {
-                                    JOptionPane.showMessageDialog(null, "Room updated successfully!" + " Affected rows: " + affectedRows);
-                                }
+                                rowsAffected = hotelDao.updateRoom(room);
+//                                if( affectedRows > 0) {
+//                                    JOptionPane.showMessageDialog(null, "Room updated successfully!" + " Affected rows: " + affectedRows);
+//                                }
                             } else if (command.equals("Users")) {
-
+                                rowsAffected = hotelDao.updateCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("houseKeeping")) {
-                                hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
+                                rowsAffected = hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
                             }
                             break;
                         case "delete":
-                            int rowsAffected = 0;
                             if (command.equals("Bookings")) {
                                  rowsAffected = hotelDao.deleteBooking(new Booking(activePanel.getCenterPanel().getSelectedRow()));
                             } else if (command.equals("Employees")) {
@@ -230,9 +226,6 @@ public class HotelManager {
                             } else if (command.equals("houseKeeping")) {
                                 rowsAffected = hotelDao.deleteCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getSelectedRow()));
                             }
-                            if (rowsAffected > 0) {
-                                JOptionPane.showMessageDialog(null, rowsAffected + " " + command + " deleted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                            }
                             break;
                         case "applyFilter":
                             if (command.equals("Bookings")) { //from both
@@ -240,19 +233,19 @@ public class HotelManager {
                                         activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue()));
                             } else if (command.equals("Employees")) { //from manager
                                 activePanel.getCenterPanel().setTableRows(hotelDao.filterEmployees(activePanel.getCenterPanel().getSelectedFilterColumn(),
-                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), currEmployee.getEmp_hotel_id()));
+                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), (Integer)(currHotelID)));
                             } else if (command.equals("Housekeeping")) { //from manager
                                 activePanel.getCenterPanel().setTableRows(hotelDao.filterCleaningSchedule(activePanel.getCenterPanel().getSelectedFilterColumn(),
-                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), currEmployee.getEmp_hotel_id()));
+                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), (Integer)(currHotelID)));
                             } else if (command.equals("Rooms")) { //from manager
                                 activePanel.getCenterPanel().setTableRows(hotelDao.filterRooms(activePanel.getCenterPanel().getSelectedFilterColumn(),
-                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), currEmployee.getEmp_hotel_id()));
+                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), (Integer)(currHotelID)));
                             } else if (command.equals("Users")) { //from manager
                                 activePanel.getCenterPanel().setTableRows(hotelDao.filterCustomers(activePanel.getCenterPanel().getSelectedFilterColumn(),
-                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), currEmployee.getEmp_hotel_id()));
+                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), (Integer)(currHotelID)));
                             } else if (command.equals("houseKeeping")) { //from receptionist
                                 activePanel.getCenterPanel().setTableRows(hotelDao.filterCleaningScheduleRcp(activePanel.getCenterPanel().getSelectedFilterColumn(),
-                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), currEmployee.getEmp_hotel_id()));
+                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), (Integer)(currHotelID)));
                             }
                             break;
                         case "ok":
@@ -264,7 +257,7 @@ public class HotelManager {
                             if (command.equals("Finance")) {
                                 System.out.println("show revenue button pressed in finance panel");
                                 FinancePanel pnl = (FinancePanel)activePanel.getCenterPanel();
-                                double revenue = hotelDao.calculateRevenue(pnl.getStartDate(), pnl.getEndDate(), currHotelID);
+                                double revenue = hotelDao.calculateRevenue(pnl.getStartDate(), pnl.getEndDate(), (Integer)currHotelID);
                                 pnl.setRevenue(String.valueOf(revenue));
                             }
                             break;
@@ -272,12 +265,12 @@ public class HotelManager {
                             if (command.equals("Rooms")) {
                                 System.out.println("view available rooms button pressed in rooms panel");
                                 RoomsPanel pnl = (RoomsPanel)activePanel.getCenterPanel();
-                                pnl.setTableRows(hotelDao.viewAvailableRooms(pnl.getTfStartDate(), pnl.getTfEndDate(), currHotelID));
+                                pnl.setTableRows(hotelDao.viewAvailableRooms(pnl.getTfStartDate(), pnl.getTfEndDate(), (Integer)currHotelID));
                             }
                             break;
                         case "confirm":
                             if (command.equals("My Jobs")) {
-                                boolean b = hotelDao.updateCleaningSchedule(activePanel.getCenterPanel().getSelectedRow(), currEmployee.getEmp_ssn());
+                                int affectedRow = hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getSelectedRow()));
                             } else if (command.equals("Profile")) {
                                 System.out.println("confirm button pressed in profile panel");
                                 ProfilePanel profile = (ProfilePanel) activePanel.getPanelByName("Profile");
@@ -296,10 +289,17 @@ public class HotelManager {
                                 ProfilePanel profile = (ProfilePanel) activePanel.getPanelByName("Profile");
                                 profile.pushEditButton();
                             }
+                        case "show rooms":
+                            if (command.equals("Book a room")) {
+                                System.out.println("show rooms button pressed in book a room panel");
+                            }
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(hotelView, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                if (rowsAffected > 0) {
+                    JOptionPane.showMessageDialog(hotelView, rowsAffected + " " + command + " " + name +"ed successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         }
