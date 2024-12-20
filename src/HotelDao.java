@@ -115,7 +115,7 @@ public class HotelDao {
         stmt.setString(2, employee.getEmp_firstname());
         stmt.setString(3, employee.getEmp_lastname());
         stmt.setString(4, employee.getEmp_type());
-        stmt.setString(5, employee.getEmp_bd());
+        stmt.setDate(5, employee.getEmp_bd());
         stmt.setDate(6, employee.getYears());
         stmt.setInt(7, employee.getEmp_hotel_id());
         stmt.setDouble(8, employee.getEmp_salary());
@@ -135,7 +135,7 @@ public class HotelDao {
         stmt.setString(2, employee.getEmp_firstname());
         stmt.setString(3, employee.getEmp_lastname());
         stmt.setString(4, employee.getEmp_type());
-        stmt.setString(5, employee.getEmp_bd());
+        stmt.setDate(5, employee.getEmp_bd());
         stmt.setDate(6, employee.getYears());
         stmt.setInt(7, employee.getEmp_hotel_id());
         stmt.setDouble(8, employee.getEmp_salary());
@@ -230,7 +230,7 @@ public class HotelDao {
         stmt.setString(1, cleaningSchedule.getHousekeeper_ssn());
         stmt.setString(2, cleaningSchedule.getReceptionist_ssn());
         stmt.setInt(3, cleaningSchedule.getRoom_id());
-        stmt.setTimestamp(4, cleaningSchedule.getCleaning_date());
+        stmt.setDate(4, cleaningSchedule.getCleaning_date());
         stmt.setString(5, cleaningSchedule.getService_status());
         stmt.setInt(6, cleaningSchedule.getSchedule_id());
         stmt.executeUpdate();
