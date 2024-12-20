@@ -1157,4 +1157,10 @@ public class HotelDao {
         return result;
     }
 
+    public int executeUpdate(String query) throws SQLException {
+        Statement stmt = con.createStatement();
+        return stmt.executeUpdate(query); //for INSERT, UPDATE, DELETE
+    }
+
+
 }
