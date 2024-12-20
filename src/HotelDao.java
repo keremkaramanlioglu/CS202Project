@@ -784,10 +784,71 @@ public class HotelDao {
         return result;
     }
 
+    public ArrayList<Object[]> viewMyBookings(String ssn) throws SQLException {
+        ArrayList<Object[]> result = new ArrayList<>();
+
+        String sql = "SELECT h.hotel_name, h.zip_code, r.room_type, b.booking_start_date, b.booking_end_date\n" +
+                "FROM Bookings b\n" +
+                "JOIN Rooms r ON b.room_id = r.room_id\n" +
+                "JOIN Hotels h ON r.hotel_id = h.hotel_id\n" +
+                "WHERE b.c_ssn = ?;";
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, ssn);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Object[] row = new Object[5];
+                    row[0] = rs.getObject("hotel_name");
+                    row[1] = rs.getObject("zip_code");
+                    row[2] = rs.getObject("room_type");
+                    row[3] = rs.getObject("booking_start_date");
+                    row[4] = rs.getObject("booking_end_date");
+                    result.add(row);
+                }
+            }
+        }
+        return result;
+    }
+
+    public ArrayList<Object[]> viewAvailableRooms(Date startDate, Date endDate) throws SQLException {
+        ArrayList<Object[]> result = new ArrayList<>();
+
+        String sql = "SELECT h.hotel_name, h.zip_code, r.room_type, r.room_size, r.room_price, r.room_capacity " +
+                "FROM Rooms r JOIN Hotels h ON r.hotel_id = h.hotel_id " +
+                "WHERE NOT EXISTS (SELECT 1 " +
+                                    "FROM Bookings b " +
+                                    "WHERE b.room_id = r.room_id AND ((b.booking_start_date BETWEEN ? AND ?) OR " +
+                                                                    "(b.booking_end_date BETWEEN ? AND ?) OR " +
+                                                                    "(b.booking_start_date <= ? AND b.booking_end_date >= ?)));";
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setDate(1, startDate);
+            stmt.setDate(2, endDate);
+            stmt.setDate(3, startDate);
+            stmt.setDate(4, endDate);
+            stmt.setDate(5, startDate);
+            stmt.setDate(6, endDate);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Object[] row = new Object[6];
+                    row[0] = rs.getObject("hotel_name");
+                    row[1] = rs.getObject("zip_code");
+                    row[2] = rs.getObject("room_type");
+                    row[3] = rs.getObject("room_size");
+                    row[4] = rs.getObject("room_price");
+                    row[5] = rs.getObject("room_capacity");
+                    result.add(row);
+                }
+            }
+        }
+        return result;
+    }
+
     public ArrayList<Object[]> viewAvailableRooms(Date startDate, Date endDate, int hotelID) throws SQLException {
         ArrayList<Object[]> availableRooms = new ArrayList<>();
 
-        // SQL sorgusu: Otel ID'si ve tarih aralığında rezervasyonu olmayan odaları seç
         String sql = "SELECT r.room_num, r.room_size, r.room_capacity, r.room_price, r.room_type, cs.service_status " +
                 "FROM Rooms r " +
                 "LEFT JOIN CleaningSchedule cs ON cs.room_id = r.room_id " +
