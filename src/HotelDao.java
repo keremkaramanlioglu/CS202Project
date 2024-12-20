@@ -825,8 +825,7 @@ public class HotelDao {
         }
 
         return availableRooms;
-}
-  
+    }
     public ArrayList<Object[]> filterCustomers(String columnName, String filterOption, String filterValue, String filterValueUpper, int hotel_id) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
         String sql = "";
