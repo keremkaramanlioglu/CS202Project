@@ -23,8 +23,8 @@ public class HouseKeepingPanel extends Panel {
     private DefaultTableModel tableModel;
 
     public HouseKeepingPanel() {
+        super();
         initComponents();
-
         initTable();
         super.cbFilterColumn = cbSelectColumn;
         super.cbFilterOption = cbFilterOption;
@@ -37,11 +37,11 @@ public class HouseKeepingPanel extends Panel {
                 new Object[][] {
                 },
                 new String[] {
-                        "housekeeper_ssn", "room_num", "cleaning_date", "service_status"
+                        "schedule_id", "housekeeper_ssn", "room_num", "cleaning_date", "service_status"
                 }
         ) {
             final Class<?>[] columnTypes = new Class<?>[] {
-                    Integer.class, String.class, String.class, String.class
+                    Integer.class, String.class, String.class, String.class, String.class
             };
             @Override
             public Class<?> getColumnClass(int columnIndex) {
@@ -52,12 +52,13 @@ public class HouseKeepingPanel extends Panel {
         tblData.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                Object[] fields = new Object[tblData.getColumnCount()];
+                Object[] fields = new Object[tblData.getColumnCount()]; // 5
                 int selectedRow = tblData.getSelectedRow();
 
+
                 if (selectedRow != -1) {
-                    for (int i = 0; i < fields.length; i++) {
-                        fields[i] = tblData.getValueAt(selectedRow, i);
+                    for (int i = 1; i < tblData.getColumnCount(); i++) {
+                        fields[i - 1] = tblData.getValueAt(selectedRow, i);
                     }
                 }
                 setFields(fields);
@@ -76,7 +77,7 @@ public class HouseKeepingPanel extends Panel {
     }
     @Override
     public boolean tfCheck() {
-        return !tfRoomNumber.getText().isEmpty() && !tfSsn.getText().isEmpty() && !tfTime.getText().equals("Choose a Date!");
+        return !tfRoomNum.getText().isEmpty() && !tfSsn.getText().isEmpty() && !tfTime.getText().equals("Choose a Date!");
     }
     @Override
     public void addMouseListener(MouseListener ml) {
@@ -89,25 +90,55 @@ public class HouseKeepingPanel extends Panel {
     @Override
     public void setFields(Object[] rowValues) {
         tfSsn.setText(String.valueOf(rowValues[0]));
-        tfRoomNumber.setText(String.valueOf(rowValues[1]));
+        tfRoomNum.setText(String.valueOf(rowValues[1]));
         tfTime.setText(String.valueOf(rowValues[2]));
-        cbSelectColumn.setSelectedItem(rowValues[3]);
+        cbStatus.setSelectedItem(rowValues[3]);
     }
     @Override
     public Object[] getEntity() {
-        if (!tfCheck()) {
-            JOptionPane.showMessageDialog(this, "Please enter all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
+//        if (!tfCheck()) {
+//            JOptionPane.showMessageDialog(this, "Please enter all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
+//            return null;
+//        }
+
+        Object[] rowValues = new Object[5];
+        rowValues[0] = tfSsn.getText();
+        rowValues[1] = null;
+        rowValues[2] = null;
+        rowValues[3] = tfTime.getText();
+        rowValues[4] = String.valueOf(cbStatus.getSelectedItem());
+        return rowValues;
+    }
+
+    @Override
+    public Object[] getSelectedRow() {
+        if (table == null) return null;
+        int rowIndex = table.getSelectedRow();
+        int columnCount = table.getColumnCount();
+        Object[] rowValues = new Object[columnCount + 1];
+
+        boolean b = false;
+
+        if (rowIndex != -1) {
+            for (int col = 0; col < columnCount + 1; col++) {
+                if (col == 2) {
+                    b = true;
+                    col += 2;
+                    continue;
+                }
+                rowValues[col] = table.getValueAt(rowIndex, (b ? col - 1 : col));
+            }
+        } else {
             return null;
         }
-
-
-        return new Object[] {
-                tfSsn.getText(),
-                tfRoomNumber.getText(),
-                Timestamp.valueOf(tfTime.getText()),
-                String.valueOf(cbSelectColumn.getSelectedItem())
-        };
+        return rowValues;
     }
+
+    public String getRoomNum() {
+        if (tfRoomNum.getText().isEmpty()) { JOptionPane.showMessageDialog(null, "Please enter a room number."); }
+        return tfRoomNum.getText();
+    }
+
     @Override
     public Panel getPanelByName(String panelName) {
         return null;
@@ -115,7 +146,7 @@ public class HouseKeepingPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlHouseKeeping = new JScrollPane();
         tblData = new JTable();
         pnlControl = new JPanel();
@@ -125,7 +156,7 @@ public class HouseKeepingPanel extends Panel {
         btnUpdate = new JButton();
         tfSsn = new JTextField();
         tfTime = new JTextField();
-        tfRoomNumber = new JTextField();
+        tfRoomNum = new JTextField();
         lblSsn = new JLabel();
         lblRoomNumber = new JLabel();
         lblTime = new JLabel();
@@ -143,10 +174,10 @@ public class HouseKeepingPanel extends Panel {
 
         //======== this ========
         setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-        EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing
-        . border. TitledBorder. BOTTOM, new java .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ),
+        EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing
+        . border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ),
         java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .getPropertyName () ))
+        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () ))
         throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
@@ -157,18 +188,18 @@ public class HouseKeepingPanel extends Panel {
             //---- tblData ----
             tblData.setModel(new DefaultTableModel(
                 new Object[][] {
-                    {null, null, null, null},
-                    {null, null, null, null},
+                    {null, null, null, null, null},
+                    {null, null, null, null, null},
                 },
                 new String[] {
-                    "housekeeper_ssn", "room_num", "cleaning_date", "service_status"
+                    "schedule_id", "housekeeper_ssn", "room_num", "cleaning_date", "service_status"
                 }
             ) {
                 Class<?>[] columnTypes = new Class<?>[] {
-                    String.class, String.class, String.class, String.class
+                    Integer.class, String.class, Integer.class, String.class, String.class
                 };
                 boolean[] columnEditable = new boolean[] {
-                    false, false, false, false
+                    true, false, false, false, false
                 };
                 @Override
                 public Class<?> getColumnClass(int columnIndex) {
@@ -179,7 +210,7 @@ public class HouseKeepingPanel extends Panel {
                     return columnEditable[columnIndex];
                 }
             });
-            tblData.setEnabled(false);
+            tblData.setAutoCreateRowSorter(true);
             pnlHouseKeeping.setViewportView(tblData);
         }
         add(pnlHouseKeeping, BorderLayout.CENTER);
@@ -225,8 +256,8 @@ public class HouseKeepingPanel extends Panel {
                 tfTime.setText("Choose a Date!");
                 pnlSelection.add(tfTime);
                 tfTime.setBounds(225, 65, 100, 34);
-                pnlSelection.add(tfRoomNumber);
-                tfRoomNumber.setBounds(120, 65, 100, 34);
+                pnlSelection.add(tfRoomNum);
+                tfRoomNum.setBounds(120, 65, 100, 34);
 
                 //---- lblSsn ----
                 lblSsn.setText("House Keeper SSN:");
@@ -235,7 +266,7 @@ public class HouseKeepingPanel extends Panel {
                 lblSsn.setBounds(15, 45, 100, 25);
 
                 //---- lblRoomNumber ----
-                lblRoomNumber.setText("Room Number:");
+                lblRoomNumber.setText("Room Num:");
                 lblRoomNumber.setFont(new Font("Inter", Font.PLAIN, 12));
                 pnlSelection.add(lblRoomNumber);
                 lblRoomNumber.setBounds(120, 45, 100, 25);
@@ -364,7 +395,7 @@ public class HouseKeepingPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane pnlHouseKeeping;
     private JTable tblData;
     private JPanel pnlControl;
@@ -374,7 +405,7 @@ public class HouseKeepingPanel extends Panel {
     private JButton btnUpdate;
     private JTextField tfSsn;
     private JTextField tfTime;
-    private JTextField tfRoomNumber;
+    private JTextField tfRoomNum;
     private JLabel lblSsn;
     private JLabel lblRoomNumber;
     private JLabel lblTime;
