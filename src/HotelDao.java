@@ -220,7 +220,7 @@ public class HotelDao {
         stmt.setString(1, cleaningSchedule.getHousekeeper_ssn());
         stmt.setString(2, cleaningSchedule.getReceptionist_ssn());
         stmt.setInt(3, cleaningSchedule.getRoom_id());
-        stmt.setTimestamp(4, cleaningSchedule.getCleaning_date());
+        stmt.setDate(4, cleaningSchedule.getCleaning_date());
         stmt.setString(5, cleaningSchedule.getService_status());
         stmt.executeUpdate();
     }
@@ -826,7 +826,6 @@ public class HotelDao {
 
         return availableRooms;
     }
-
     public ArrayList<Object[]> filterCustomers(String columnName, String filterOption, String filterValue, String filterValueUpper, int hotel_id) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
         String sql = "";
