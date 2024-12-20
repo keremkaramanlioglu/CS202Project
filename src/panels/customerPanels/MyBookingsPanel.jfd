@@ -65,22 +65,10 @@ new FormModel {
 					"actionCommand": "My Bookings"
 					"name": "cancel"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 90
+					"x": 120
 					"y": 60
 					"width": 225
 					"height": 75
-				} )
-				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "btnNewBooking"
-					"text": "New Booking"
-					"cursor": #Cursor0
-					"actionCommand": "My Bookings"
-					"name": "new booking"
-				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"width": 225
-					"height": 75
-					"x": 325
-					"y": 60
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnShow"
@@ -91,7 +79,7 @@ new FormModel {
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"width": 225
 					"height": 75
-					"x": 560
+					"x": 530
 					"y": 60
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
