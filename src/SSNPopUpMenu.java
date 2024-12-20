@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -28,6 +29,12 @@ public class SSNPopUpMenu extends JDialog {
         return ssn;
     }
 
+    private void tfSsnKeyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnOK.doClick();  // Programmatically clicks the OK button
+        }
+    }
+
     public class ButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -40,7 +47,7 @@ public class SSNPopUpMenu extends JDialog {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         label1 = new JLabel();
         tfSsn = new JTextField();
         btnOK = new JButton();
@@ -59,6 +66,14 @@ public class SSNPopUpMenu extends JDialog {
         label1.setFont(new Font("JetBrains Mono Medium", Font.BOLD, 16));
         contentPane.add(label1);
         label1.setBounds(25, 5, 495, 90);
+
+        //---- tfSsn ----
+        tfSsn.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                tfSsnKeyPressed(e);
+            }
+        });
         contentPane.add(tfSsn);
         tfSsn.setBounds(25, 90, 550, 50);
 
@@ -92,7 +107,7 @@ public class SSNPopUpMenu extends JDialog {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JLabel label1;
     private JTextField tfSsn;
     private JButton btnOK;
