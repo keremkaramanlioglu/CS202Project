@@ -791,7 +791,7 @@ public class HotelDao {
                 ")";
 
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
-            // Set query parameters
+            // Parametreleri ayarlama
             stmt.setInt(1, hotelID);
             stmt.setDate(2, startDate);
             stmt.setDate(3, endDate);
@@ -803,7 +803,7 @@ public class HotelDao {
             stmt.setDate(9, endDate);
 
             try (ResultSet rs = stmt.executeQuery()) {
-                // Collect available rooms into an ArrayList<Object[]>
+                // Müsait odaları toplama
                 while (rs.next()) {
                     Object[] row = new Object[6];
                     row[0] = rs.getString("room_num");
@@ -811,7 +811,14 @@ public class HotelDao {
                     row[2] = rs.getString("room_capacity");
                     row[3] = rs.getDouble("room_price");
                     row[4] = rs.getString("room_type");
-                    row[5] = rs.getString("service_status");
+
+                    // Cleaning status NULL ise "No Cleaning Schedule" yaz
+                    String cleaningStatus = rs.getString("service_status");
+                    if (cleaningStatus == null) {
+                        cleaningStatus = "No Cleaning Schedule";
+                    }
+                    row[5] = cleaningStatus;
+
                     availableRooms.add(row);
                 }
             }
@@ -819,7 +826,7 @@ public class HotelDao {
 
         return availableRooms;
     }
-  
+
     public ArrayList<Object[]> filterCustomers(String columnName, String filterOption, String filterValue, String filterValueUpper, int hotel_id) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
         String sql = "";
