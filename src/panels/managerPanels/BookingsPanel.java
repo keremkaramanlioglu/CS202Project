@@ -63,31 +63,16 @@ public class BookingsPanel extends Panel {
 
     @Override
     public Object[] getEntity() {
-        Object[] fieldValues = new Object[8];
-
-        try {
-            // JTextFields
-            fieldValues[0] = (tfCSsn.getText().trim());  // CSsn as Integer
-            fieldValues[1] = (tfRoomID.getText().trim());  // RoomID as Integer
-            fieldValues[2] =  cbPaymentStatus.getSelectedItem();// Start Date as java.sql.Date
-            fieldValues[3] =  cbPaymentMethod.getSelectedItem(); // End Date as java.sql.Date
-
-            // JComboBoxes
-            fieldValues[4] = tfStartDate.getText().trim(); // Payment Status as String
-            fieldValues[5] = tfEndDate.getText().trim(); // Payment Method as String
-            fieldValues[6] = cbCheckin.isSelected();  // Select Column as String
-            fieldValues[7] = cbCheckout.isSelected();  // Filter Option as String
-        } catch (NumberFormatException e) {
-            // Handle invalid number format exceptions, e.g., if parsing fails
-            System.err.println("Error parsing number fields: " + e.getMessage());
-            return null;
-        } catch (IllegalArgumentException e) {
-            // Handle invalid date format
-            System.err.println("Invalid date format: " + e.getMessage());
-            return null;
-        }
-
-        return fieldValues;
+        return new Object[] {
+                tfCSsn.getText(),
+                tfRoomID.getText(),
+                cbPaymentStatus.getSelectedItem(),
+                cbPaymentMethod.getSelectedItem(),
+                tfStartDate.getText(),
+                tfEndDate.getText(),
+                cbCheckin.isSelected(),
+                cbCheckout.isSelected()
+        };
     }
 
     public boolean tfCheck() {
@@ -182,13 +167,13 @@ public class BookingsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax
-        . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-        .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
-        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
-        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .
-        equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new
+        javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax
+        . swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java
+        . awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
+        . Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .
+        PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .
+        equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -222,6 +207,7 @@ public class BookingsPanel extends Panel {
                 }
             });
             tblData.setRowSelectionAllowed(false);
+            tblData.setAutoCreateRowSorter(true);
             scrollPane1.setViewportView(tblData);
         }
         add(scrollPane1, BorderLayout.CENTER);

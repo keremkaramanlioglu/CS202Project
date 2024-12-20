@@ -9,51 +9,49 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class Booking {
-    private int booking_id;
-    private String c_ssn;
-    private int room_id;
-    private String payment_status;
-    private String payment_method;
-    private Date booking_start_date;
-    private Date booking_end_date;
-    private boolean c_check_in_status;
-    private boolean c_check_out_status;
+    private Object booking_id;
+    private Object c_ssn;
+    private Object room_id;
+    private Object payment_status;
+    private Object payment_method;
+    private Object booking_start_date;
+    private Object booking_end_date;
+    private Object c_check_in_status;
+    private Object c_check_out_status;
 
     public Booking(ResultSet rs) throws SQLException { // TODO : ADD TRY BLOCK
-        this.booking_id = rs.getInt("booking_id");
-        this.c_ssn = rs.getString("c_ssn");
-        this.room_id = rs.getInt("room_id");
-        this.payment_status = rs.getString("payment_status");
-        this.payment_method = rs.getString("payment_method");
-        this.booking_start_date = rs.getDate("booking_start_date");
-        this.booking_end_date = rs.getDate("booking_end_date");
-        this.c_check_in_status = rs.getBoolean("c_check_in_status");
-        this.c_check_out_status = rs.getBoolean("c_check_out_status");
+        this.booking_id = rs.getObject("booking_id");
+        this.c_ssn = rs.getObject("c_ssn");
+        this.room_id = rs.getObject("room_id");
+        this.payment_status = rs.getObject("payment_status");
+        this.payment_method = rs.getObject("payment_method");
+        this.booking_start_date = rs.getObject("booking_start_date");
+        this.booking_end_date = rs.getObject("booking_end_date");
+        this.c_check_in_status = rs.getObject("c_check_in_status");
+        this.c_check_out_status = rs.getObject("c_check_out_status");
     }
 
     public Booking(Object[] objs) {
         if (objs.length == 9) {
-            this.booking_id = Integer.parseInt(String.valueOf(objs[0]));
-            this.c_ssn =  String.valueOf(objs[1]);
-            this.room_id = Integer.parseInt(String.valueOf(objs[2]));
-            this.payment_status = String.valueOf(objs[3]);
-            this.payment_method = String.valueOf(objs[4]);
-            System.out.println(String.valueOf(objs[5]));
-            System.out.println(String.valueOf(objs[6]));
-            this.booking_start_date = Date.valueOf(String.valueOf(objs[5]));
-            this.booking_end_date = Date.valueOf(String.valueOf(objs[6]));
-            this.c_check_in_status = Boolean.parseBoolean(String.valueOf(objs[7]));
-            this.c_check_out_status = Boolean.parseBoolean(String.valueOf(objs[8]));
+            this.booking_id = objs[0];
+            this.c_ssn = objs[1];
+            this.room_id = objs[2];
+            this.payment_status = objs[3];
+            this.payment_method = objs[4];
+            this.booking_start_date = objs[5];
+            this.booking_end_date = objs[6];
+            this.c_check_in_status = objs[7];
+            this.c_check_out_status = objs[8];
         } else {
-            this.c_ssn =  String.valueOf(objs[0]);
-            this.room_id = Integer.parseInt(String.valueOf(objs[1]));
-            this.payment_status = String.valueOf(objs[2]);
-            this.payment_method = String.valueOf(objs[3]);
-            this.booking_start_date = Date.valueOf(String.valueOf(objs[4]));
-            this.booking_end_date = Date.valueOf(String.valueOf(objs[5]));
-            this.c_check_in_status = Boolean.parseBoolean(String.valueOf(objs[6]));
-            //System.out.println(String.valueOf(objs[6]));
-            this.c_check_out_status = Boolean.parseBoolean(String.valueOf(objs[7]));
+            this.booking_id = null;
+            this.c_ssn = objs[0];
+            this.room_id = objs[1];
+            this.payment_status = objs[2];
+            this.payment_method = objs[3];
+            this.booking_start_date = objs[4];
+            this.booking_end_date = objs[5];
+            this.c_check_in_status = objs[6];
+            this.c_check_out_status = objs[7];
         }
     }
 
@@ -79,75 +77,75 @@ public class Booking {
         return timestamp;
     }
 
-    public int getBooking_id() {
+    public Object getBooking_id() {
         return booking_id;
     }
 
-    public void setBooking_id(int booking_id) {
+    public void setBooking_id(Object booking_id) {
         this.booking_id = booking_id;
     }
 
-    public String getC_ssn() {
+    public Object getC_ssn() {
         return c_ssn;
     }
 
-    public void setC_ssn(String c_ssn) {
+    public void setC_ssn(Object c_ssn) {
         this.c_ssn = c_ssn;
     }
 
-    public int getRoom_id() {
+    public Object getRoom_id() {
         return room_id;
     }
 
-    public void setRoom_id(int room_id) {
+    public void setRoom_id(Object room_id) {
         this.room_id = room_id;
     }
 
-    public String getPayment_status() {
+    public Object getPayment_status() {
         return payment_status;
     }
 
-    public void setPayment_status(String payment_status) {
+    public void setPayment_status(Object payment_status) {
         this.payment_status = payment_status;
     }
 
-    public String getPayment_method() {
+    public Object getPayment_method() {
         return payment_method;
     }
 
-    public void setPayment_method(String payment_method) {
+    public void setPayment_method(Object payment_method) {
         this.payment_method = payment_method;
     }
 
-    public Date getBooking_start_date() {
+    public Object getBooking_start_date() {
         return booking_start_date;
     }
 
-    public void setBooking_start_date(Date booking_start_date) {
+    public void setBooking_start_date(Object booking_start_date) {
         this.booking_start_date = booking_start_date;
     }
 
-    public Date getBooking_end_date() {
+    public Object getBooking_end_date() {
         return booking_end_date;
     }
 
-    public void setBooking_end_date(Date booking_end_date) {
+    public void setBooking_end_date(Object booking_end_date) {
         this.booking_end_date = booking_end_date;
     }
 
-    public boolean isC_check_in_status() {
+    public Object isC_check_in_status() {
         return c_check_in_status;
     }
 
-    public void setC_check_in_status(boolean c_check_in_status) {
+    public void setC_check_in_status(Object c_check_in_status) {
         this.c_check_in_status = c_check_in_status;
     }
 
-    public boolean isC_check_out_status() {
+    public Object isC_check_out_status() {
         return c_check_out_status;
     }
 
-    public void setC_check_out_status(boolean c_check_out_status) {
+    public void setC_check_out_status(Object c_check_out_status) {
         this.c_check_out_status = c_check_out_status;
     }
 

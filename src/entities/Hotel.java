@@ -4,24 +4,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Hotel {
-    private int hotel_id;
-    private String hotel_name;
-    private String hotel_phone;
-    private String hotel_email;
-    private double hotel_rating;
-    private String street;
-    private String no;
-    private String zip_code;
+    private Object hotel_id;
+    private Object hotel_name;
+    private Object hotel_phone;
+    private Object hotel_email;
+    private Object hotel_rating;
+    private Object street;
+    private Object no;
+    private Object zip_code;
 
     public Hotel(ResultSet rs) throws SQLException {  // TODO : ADD TRY BLOCK
-        this.hotel_id = rs.getInt("hotel_id");
-        this.hotel_name = rs.getString("hotel_name");
-        this.hotel_phone = rs.getString("hotel_phone");
-        this.hotel_email = rs.getString("hotel_email");
-        this.hotel_rating = rs.getDouble("hotel_rating");
-        this.street = rs.getString("street");
-        this.no = rs.getString("no");
-        this.zip_code = rs.getString("zip_code");
+        this.hotel_id = rs.getObject("hotel_id");
+        this.hotel_name = rs.getObject("hotel_name");
+        this.hotel_phone = rs.getObject("hotel_phone");
+        this.hotel_email = rs.getObject("hotel_email");
+        this.hotel_rating = rs.getObject("hotel_rating");
+        this.street = rs.getObject("street");
+        this.no = rs.getObject("no");
+        this.zip_code = rs.getObject("zip_code");
     }
 
     public Hotel(int hotel_id, String hotel_name, String hotel_phone, String hotel_email, double hotel_rating, String street, String no, String zip_code) {
@@ -37,86 +37,87 @@ public class Hotel {
 
     public Hotel(Object[] obj) {
         if (obj.length == 8) {
-            this.hotel_id = Integer.parseInt(String.valueOf(obj[0]));
-            this.hotel_name = String.valueOf(obj[1]);
-            this.hotel_phone = String.valueOf(obj[2]);
-            this.hotel_email = String.valueOf(obj[3]);
-            this.hotel_rating = Double.parseDouble(String.valueOf(obj[4]));
-            this.street = String.valueOf(obj[5]);
-            this.no = String.valueOf(obj[6]);
-            this.zip_code = String.valueOf(obj[7]);
+            this.hotel_id = obj[0];
+            this.hotel_name = obj[1];
+            this.hotel_phone = obj[2];
+            this.hotel_email = obj[3];
+            this.hotel_rating = obj[4];
+            this.street = obj[5];
+            this.no = obj[6];
+            this.zip_code = obj[7];
         } else {
-            this.hotel_name = String.valueOf(obj[0]);
-            this.hotel_phone = String.valueOf(obj[1]);
-            this.hotel_email = String.valueOf(obj[2]);
-            this.hotel_rating = Double.parseDouble(String.valueOf(obj[3]));
-            this.street = String.valueOf(obj[4]);
-            this.no = String.valueOf(obj[5]);
-            this.zip_code = String.valueOf(obj[6]);
+            this.hotel_id = null;
+            this.hotel_name = obj[0];
+            this.hotel_phone = obj[1];
+            this.hotel_email = obj[2];
+            this.hotel_rating = obj[3];
+            this.street = obj[4];
+            this.no = obj[5];
+            this.zip_code = obj[6];
         }
     }
 
-    public int getHotel_id() {
+    public Object getHotel_id() {
         return hotel_id;
     }
 
-    public void setHotel_id(int hotel_id) {
+    public void setHotel_id(Object hotel_id) {
         this.hotel_id = hotel_id;
     }
 
-    public String getHotel_name() {
+    public Object getHotel_name() {
         return hotel_name;
     }
 
-    public void setHotel_name(String hotel_name) {
+    public void setHotel_name(Object hotel_name) {
         this.hotel_name = hotel_name;
     }
 
-    public String getHotel_phone() {
+    public Object getHotel_phone() {
         return hotel_phone;
     }
 
-    public void setHotel_phone(String hotel_phone) {
+    public void setHotel_phone(Object hotel_phone) {
         this.hotel_phone = hotel_phone;
     }
 
-    public String getHotel_email() {
+    public Object getHotel_email() {
         return hotel_email;
     }
 
-    public void setHotel_email(String hotel_email) {
+    public void setHotel_email(Object hotel_email) {
         this.hotel_email = hotel_email;
     }
 
-    public double getHotel_rating() {
+    public Object getHotel_rating() {
         return hotel_rating;
     }
 
-    public void setHotel_rating(double hotel_rating) {
+    public void setHotel_rating(Object hotel_rating) {
         this.hotel_rating = hotel_rating;
     }
 
-    public String getStreet() {
+    public Object getStreet() {
         return street;
     }
 
-    public void setStreet(String street) {
+    public void setStreet(Object street) {
         this.street = street;
     }
 
-    public String getNo() {
+    public Object getNo() {
         return no;
     }
 
-    public void setNo(String no) {
+    public void setNo(Object no) {
         this.no = no;
     }
 
-    public String getZip_code() {
+    public Object getZip_code() {
         return zip_code;
     }
 
-    public void setZip_code(String zip_code) {
+    public void setZip_code(Object zip_code) {
         this.zip_code = zip_code;
     }
 

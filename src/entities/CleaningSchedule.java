@@ -6,84 +6,85 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 public class CleaningSchedule {
-    private int schedule_id;
-    private String housekeeper_ssn;
-    private String receptionist_ssn;
-    private int room_id;
-    private Date cleaning_date;
-    private String service_status;
+    private Object schedule_id;
+    private Object housekeeper_ssn;
+    private Object receptionist_ssn;
+    private Object room_id;
+    private Object cleaning_date;
+    private Object service_status;
 
     public CleaningSchedule(ResultSet rs) throws SQLException {  // TODO : ADD TRY BLOCK
-        this.schedule_id = rs.getInt("schedule_id");
-        this.housekeeper_ssn = rs.getString("housekeeper_ssn");
-        this.receptionist_ssn = rs.getString("receptionist_ssn");
-        this.room_id = rs.getInt("room_id");
-        this.cleaning_date = rs.getDate("cleaning_date");
-        this.service_status = rs.getString("service_status");
+        this.schedule_id = rs.getObject("schedule_id");
+        this.housekeeper_ssn = rs.getObject("housekeeper_ssn");
+        this.receptionist_ssn = rs.getObject("receptionist_ssn");
+        this.room_id = rs.getObject("room_id");
+        this.cleaning_date = rs.getObject("cleaning_date");
+        this.service_status = rs.getObject("service_status");
     }
 
     public CleaningSchedule(Object[] obj) {
         if (obj.length == 6) {
-            this.schedule_id = Integer.parseInt(obj[0].toString());
-            this.housekeeper_ssn = String.valueOf(obj[1]);
-            this.receptionist_ssn = String.valueOf(obj[2]);
-            this.room_id = Integer.parseInt(obj[3].toString());
-            this.cleaning_date = Date.valueOf(String.valueOf(obj[4]));
-            this.service_status = String.valueOf(obj[5]);
+            this.schedule_id = obj[0];
+            this.housekeeper_ssn = obj[1];
+            this.receptionist_ssn = obj[2];
+            this.room_id = obj[3];
+            this.cleaning_date = obj[4];
+            this.service_status = obj[5];
         } else {
-            this.housekeeper_ssn = String.valueOf(obj[0]);
-            this.receptionist_ssn = String.valueOf(obj[1]);
-            this.room_id = Integer.parseInt(String.valueOf(obj[2]));
-            this.cleaning_date = Date.valueOf(String.valueOf(obj[3]));
-            this.service_status = String.valueOf(obj[4]);
+            this.schedule_id = null;
+            this.housekeeper_ssn = obj[0];
+            this.receptionist_ssn = obj[1];
+            this.room_id = obj[2];
+            this.cleaning_date = obj[3];
+            this.service_status = obj[4];
         }
     }
 
-    public int getSchedule_id() {
+    public Object getSchedule_id() {
         return schedule_id;
     }
 
-    public void setSchedule_id(int schedule_id) {
+    public void setSchedule_id(Object schedule_id) {
         this.schedule_id = schedule_id;
     }
 
-    public String getHousekeeper_ssn() {
+    public Object getHousekeeper_ssn() {
         return housekeeper_ssn;
     }
 
-    public void setHousekeeper_ssn(String housekeeper_ssn) {
+    public void setHousekeeper_ssn(Object housekeeper_ssn) {
         this.housekeeper_ssn = housekeeper_ssn;
     }
 
-    public String getReceptionist_ssn() {
+    public Object getReceptionist_ssn() {
         return receptionist_ssn;
     }
 
-    public void setReceptionist_ssn(String receptionist_ssn) {
+    public void setReceptionist_ssn(Object receptionist_ssn) {
         this.receptionist_ssn = receptionist_ssn;
     }
 
-    public int getRoom_id() {
+    public Object getRoom_id() {
         return room_id;
     }
 
-    public void setRoom_id(int room_id) {
+    public void setRoom_id(Object room_id) {
         this.room_id = room_id;
     }
 
-    public Date getCleaning_date() {
+    public Object getCleaning_date() {
         return cleaning_date;
     }
 
-    public void setCleaning_date(Date cleaning_date) {
+    public void setCleaning_date(Object cleaning_date) {
         this.cleaning_date = cleaning_date;
     }
 
-    public String getService_status() {
+    public Object getService_status() {
         return service_status;
     }
 
-    public void setService_status(String service_status) {
+    public void setService_status(Object service_status) {
         this.service_status = service_status;
     }
 

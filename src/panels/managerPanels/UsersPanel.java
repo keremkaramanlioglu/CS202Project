@@ -10,11 +10,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.sql.Types;
 import java.util.Objects;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
+
+import static java.sql.JDBCType.NULL;
+
 
 /**
  * @author kerem
@@ -57,7 +61,7 @@ public class UsersPanel extends Panel {
 
                 if (selectedRow != -1) {
                     for (int i = 0; i < fields.length; i++) {
-                        fields[i] = tblData.getValueAt(selectedRow, i + 1);
+                        fields[i] = tblData.getValueAt(selectedRow, i);
                     }
                 }
                 setFields(fields);
@@ -159,17 +163,18 @@ public class UsersPanel extends Panel {
 
     @Override
     public Object[] getEntity() {
-        if (!tfCheck()) {
-            throw new IllegalArgumentException("Please enter all required fields!");
-        }
+//        if (!tfCheck()) {
+//            throw new IllegalArgumentException("Please enter all required fields!");
+//        }
 
+        System.out.println(tfRoomID.getText().isEmpty());
 
         return new Object[] {
                 tfSsn.getText(),
                 tfFirstName.getText(),
                 tfLastName.getText(),
                 tfBirthDate.getText(),
-                tfRoomID.getText(),
+                (tfRoomID.getText().isEmpty() ? NULL : tfRoomID.getText()),
                 tfEmail.getText(),
                 tfPhoneNo.getText(),
                 tfGender.getText(),
@@ -223,12 +228,13 @@ public class UsersPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(900, 700));
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder
-        ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border
-        .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
-        . Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void
-        propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
-        ;} } );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new
+        javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e" , javax
+        . swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java
+        . awt .Font ( "Dialo\u0067", java .awt . Font. BOLD ,12 ) ,java . awt
+        . Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .
+        PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "borde\u0072" .
+        equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -261,7 +267,7 @@ public class UsersPanel extends Panel {
                     return columnEditable[columnIndex];
                 }
             });
-            tblData.setEnabled(false);
+            tblData.setAutoCreateRowSorter(true);
             pnlData.setViewportView(tblData);
         }
         add(pnlData, BorderLayout.CENTER);
