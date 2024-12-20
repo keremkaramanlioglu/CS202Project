@@ -63,7 +63,7 @@ public class HousekeepingPanel extends Panel {
                 int selectedRow = dataTable.getSelectedRow();
 
                 if (selectedRow != -1) {
-                    for (int i = 0; i < fields.length; i++) {
+                    for (int i = 1; i < fields.length; i++) {
                         fields[i] = dataTable.getValueAt(selectedRow, i + 1);
                     }
                 }

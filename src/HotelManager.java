@@ -165,9 +165,14 @@ public class HotelManager {
                             } else if (command.equals("Housekeeping")) {
                                 hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Rooms")) {
-                                hotelDao.updateRoom(new Room(activePanel.getCenterPanel().getEntity()));
+                                Room room = new Room(activePanel.getCenterPanel().getEntity());
+                                room.setRoom_id(Integer.parseInt(String.valueOf(activePanel.getCenterPanel().getSelectedRow()[0])));
+                                System.out.println(String.valueOf(activePanel.getCenterPanel().getSelectedRow()[0]));
+                                if( hotelDao.updateRoom(room) > 0) {
+                                    System.out.println("successfully updated customer");
+                                }
                             } else if (command.equals("Users")) {
-                                hotelDao.updateCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
+
                             } else if (command.equals("houseKeeping")) {
                                 hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
                             }
