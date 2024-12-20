@@ -18,7 +18,7 @@ public class HotelDao {
         return false;
     }
 
-    public void insertHotel(Hotel hotel) throws SQLException {
+    public int insertHotel(Hotel hotel) throws SQLException {
         String sql = "INSERT INTO Hotels (hotel_name, hotel_phone, " +
                 "hotel_email, hotel_rating, street, no, zip_code) VALUES(?, ?, ?, ?, ?, ?, ?)";
         stmt = con.prepareStatement(sql);
@@ -29,7 +29,7 @@ public class HotelDao {
         stmt.setString(5, hotel.getStreet());
         stmt.setString(6, hotel.getNo());
         stmt.setString(7, hotel.getZip_code());
-        stmt.executeUpdate();
+        return stmt.executeUpdate();
     }
     public void updateHotel(Hotel hotel) throws SQLException {
         String sql = "UPDATE Hotels SET hotel_name = ?, hotel_phone = ?, hotel_email = ?, hotel_rating = ?, street = ?, no = ?, zip_code = ? WHERE hotel_id = ?";
@@ -44,8 +44,8 @@ public class HotelDao {
         stmt.setInt(8, hotel.getHotel_id());
         stmt.executeUpdate();
     }
-    public void insertRoom(Room room) throws SQLException {
-        String sql = "INSERT INTO Rooms (hotel_id, room_num, room_type, room_size, room_price, room_capacity) VALUES(?, ?, ?, ?, ?, ?, ?)";
+    public int insertRoom(Room room) throws SQLException {
+        String sql = "INSERT INTO Rooms (hotel_id, room_num, room_type, room_size, room_price, room_capacity) VALUES(?, ?, ?, ?, ?, ?)";
         stmt = con.prepareStatement(sql);
         stmt.setInt(1, room.getHotel_id());
         stmt.setString(2, room.getRoom_num());
@@ -53,7 +53,8 @@ public class HotelDao {
         stmt.setDouble(4, room.getRoom_size());
         stmt.setDouble(5, room.getRoom_price());
         stmt.setString(6, room.getRoom_capacity());
-        stmt.executeUpdate();
+
+        return stmt.executeUpdate();
     }
     public int updateRoom(Room room) throws SQLException {
         String sql = "UPDATE Rooms SET hotel_id = ?, room_num = ?, room_type = ?, room_size = ?, room_price = ?, room_capacity = ? WHERE room_id = ?";
@@ -67,25 +68,25 @@ public class HotelDao {
         stmt.setInt(7, room.getRoom_id());
         return stmt.executeUpdate();
     }
-    public void deleteRoom(Room room) throws SQLException {
+    public int deleteRoom(Room room) throws SQLException {
         String sql = "DELETE FROM Rooms WHERE room_id = ?";
         stmt = con.prepareStatement(sql);
         stmt.setInt(1, room.getRoom_id());
-        stmt.executeUpdate();
+        return stmt.executeUpdate();
     }
-    public void insertCustomer(Customer customer) throws SQLException {
+    public int insertCustomer(Customer customer) throws SQLException {
         String sql = "INSERT INTO Customers (c_ssn, c_firstname, c_lastname, c_bd, c_room_id, c_email, c_phone_num, c_gender, zip_code) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         stmt = con.prepareStatement(sql);
         stmt.setString(1, customer.getC_ssn());
         stmt.setString(2, customer.getC_firstname());
         stmt.setString(3, customer.getC_lastname());
         stmt.setDate(4, customer.getC_bd());
-        stmt.setDouble(5, customer.getC_room_id());
+        stmt.setObject(5, customer.getC_room_id(), Types.INTEGER);
         stmt.setString(6, customer.getC_email());
         stmt.setString(7, customer.getC_phone_num());
         stmt.setString(8, customer.getC_gender());
         stmt.setString(9, customer.getZip_code());
-        stmt.executeUpdate();
+        return stmt.executeUpdate();
     }
     public int updateCustomer(Customer customer) throws SQLException {
         String sql = "UPDATE Customers SET c_firstname = ?, c_lastname = ?, c_bd = ?, c_room_id = ?, c_email = ?, c_phone_num = ?, c_gender = ?, zip_code = ? WHERE c_ssn = ?";
@@ -101,13 +102,13 @@ public class HotelDao {
         stmt.setString(9, customer.getZip_code());
         return stmt.executeUpdate();
     }
-    public void deleteCustomer(Customer customer) throws SQLException {
+    public int deleteCustomer(Customer customer) throws SQLException {
         String sql = "DELETE FROM Customers WHERE c_ssn = ?";
         stmt = con.prepareStatement(sql);
         stmt.setString(1, customer.getC_ssn());
-        stmt.executeUpdate();
+        return stmt.executeUpdate();
     }
-    public void insertEmployee(Employee employee) throws SQLException {
+    public int insertEmployee(Employee employee) throws SQLException {
         String sql = "INSERT INTO Employees (emp_ssn, emp_firstname, emp_lastname, emp_type, emp_bd, years, emp_hotel_id, emp_salary, emp_phone_num, emp_email, emp_gender, street, no, apartment, zip_code) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         stmt = con.prepareStatement(sql);
         stmt.setString(1, employee.getEmp_ssn());
@@ -125,7 +126,7 @@ public class HotelDao {
         stmt.setString(13, employee.getNo());
         stmt.setString(14, employee.getApartment());
         stmt.setString(15, employee.getZip_code());
-        stmt.executeUpdate();
+        return stmt.executeUpdate();
     }
     public void updateEmployee(Employee employee) throws SQLException {
         String sql = "UPDATE Employees SET emp_firstname = ?, emp_lastname = ?, emp_type = ?, emp_bd = ?, years = ?, emp_hotel_id = ?, emp_salary = ?, emp_phone_num = ?, emp_email = ?, emp_gender = ?, street = ?, no = ?, apartment = ?, zip_code = ? WHERE emp_ssn = ?";
@@ -147,13 +148,13 @@ public class HotelDao {
         stmt.setString(15, employee.getZip_code());
         stmt.executeUpdate();
     }
-    public void deleteEmployee(Employee employee) throws SQLException {
+    public int deleteEmployee(Employee employee) throws SQLException {
         String sql = "DELETE FROM Employees WHERE emp_ssn = ?";
         stmt = con.prepareStatement(sql);
         stmt.setString(1, employee.getEmp_ssn());
-        stmt.executeUpdate();
+        return stmt.executeUpdate();
     }
-    public void insertBooking(Booking booking) throws SQLException {
+    public int insertBooking(Booking booking) throws SQLException {
         String sql = "INSERT INTO Bookings (c_ssn, room_id, payment_status, payment_method, booking_start_date, booking_end_date, c_check_in_status, c_check_out_status) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         stmt = con.prepareStatement(sql);
         stmt.setString(1, booking.getC_ssn());
@@ -164,9 +165,9 @@ public class HotelDao {
         stmt.setDate(6, booking.getBooking_end_date());
         stmt.setBoolean(7, booking.isC_check_in_status());
         stmt.setBoolean(8, booking.isC_check_out_status());
-        stmt.executeUpdate();
+        return stmt.executeUpdate();
     }
-    public void updateBooking(Booking booking) throws SQLException {
+    public int updateBooking(Booking booking) throws SQLException {
         String sql = "UPDATE Bookings SET c_ssn = ?, room_id = ?, payment_status = ?, payment_method = ?, booking_start_date = ?, booking_end_date = ?, c_check_in_status = ?, c_check_out_status = ? WHERE booking_id = ?";
         stmt = con.prepareStatement(sql);
         stmt.setString(1, booking.getC_ssn());
@@ -177,27 +178,28 @@ public class HotelDao {
         stmt.setDate(6, booking.getBooking_end_date());
         stmt.setBoolean(7, booking.isC_check_in_status());
         stmt.setBoolean(8, booking.isC_check_out_status());
-        stmt.executeUpdate();
+        stmt.setInt(9, booking.getBooking_id());
+        return stmt.executeUpdate();
     }
-    public void deleteBooking(Booking booking) throws SQLException {
+    public int deleteBooking(Booking booking) throws SQLException {
         String sql = "DELETE FROM Bookings WHERE booking_id = ?";
         stmt = con.prepareStatement(sql);
         stmt.setInt(1, booking.getBooking_id());
-        stmt.executeUpdate();
+        return stmt.executeUpdate();
     }
-    public void insertParkingLot(ParkingLot parkingLot) throws SQLException {
+    public int insertParkingLot(ParkingLot parkingLot) throws SQLException {
         String sql = "INSERT INTO ParkingLot (park_id, hotel_id, capacity) VALUES(?, ?, ?)";
         stmt = con.prepareStatement(sql);
         stmt.setInt(1, parkingLot.getPark_id());
         stmt.setInt(2, parkingLot.getHotel_id());
         stmt.setInt(3, parkingLot.getCapacity());
-        stmt.executeUpdate();
+        return stmt.executeUpdate();
     }
-    public void deleteHotel(Hotel hotel) throws SQLException {
+    public int deleteHotel(Hotel hotel) throws SQLException {
         String sql = "DELETE FROM Hotels WHERE hotel_id = ?";
         stmt = con.prepareStatement(sql);
         stmt.setInt(1, hotel.getHotel_id());
-        stmt.executeUpdate();
+        return stmt.executeUpdate();
     }
     public void updateParkingLot(ParkingLot parkingLot) throws SQLException {
         String sql = "UPDATE ParkingLot SET hotel_id = ?, capacity = ?";
@@ -206,13 +208,13 @@ public class HotelDao {
         stmt.setInt(2, parkingLot.getCapacity());
         stmt.executeUpdate();
     }
-    public void deleteParkingLot(ParkingLot parkingLot) throws SQLException {
+    public int deleteParkingLot(ParkingLot parkingLot) throws SQLException {
         String sql = "DELETE FROM ParkingLot WHERE park_id = ?";
         stmt = con.prepareStatement(sql);
         stmt.setInt(1, parkingLot.getPark_id());
-        stmt.executeUpdate();
+        return stmt.executeUpdate();
     }
-    public void insertCleaningSchedule(CleaningSchedule cleaningSchedule) throws SQLException {
+    public int insertCleaningSchedule(CleaningSchedule cleaningSchedule) throws SQLException {
         String sql = "INSERT INTO CleaningSchedule (housekeeper_ssn, receptionist_ssn, " +
                 "room_id, cleaning_date, service_status) VALUES(?, ?, ?, ?, ?)";
         stmt = con.prepareStatement(sql);
@@ -221,7 +223,7 @@ public class HotelDao {
         stmt.setInt(3, cleaningSchedule.getRoom_id());
         stmt.setDate(4, cleaningSchedule.getCleaning_date());
         stmt.setString(5, cleaningSchedule.getService_status());
-        stmt.executeUpdate();
+        return stmt.executeUpdate();
     }
     public void updateCleaningSchedule(CleaningSchedule cleaningSchedule) throws SQLException {
         String sql = "UPDATE CleaningSchedule SET housekeeper_ssn = ?, receptionist_ssn = ?, room_id = ?, cleaning_date = ?, service_status = ? WHERE schedule_id = ?";
@@ -234,11 +236,11 @@ public class HotelDao {
         stmt.setInt(6, cleaningSchedule.getSchedule_id());
         stmt.executeUpdate();
     }
-    public void deleteCleaningSchedule(CleaningSchedule cleaningSchedule) throws SQLException {
+    public int deleteCleaningSchedule(CleaningSchedule cleaningSchedule) throws SQLException {
         String sql = "DELETE FROM CleaningSchedule WHERE schedule_id = ?";
         stmt = con.prepareStatement(sql);
         stmt.setInt(1, cleaningSchedule.getSchedule_id());
-        stmt.executeUpdate();
+        return stmt.executeUpdate();
     }
 
     public ArrayList<Room> getRooms(String filterColumn, String filterOption, String filterValue) throws SQLException {
@@ -516,8 +518,8 @@ public class HotelDao {
                     row[2] = rs.getInt("room_id");
                     row[3] = rs.getString("payment_status");
                     row[4] = rs.getString("payment_method");
-                    row[5] = rs.getTimestamp("booking_start_date");
-                    row[6] = rs.getTimestamp("booking_end_date");
+                    row[5] = rs.getDate("booking_start_date");
+                    row[6] = rs.getDate("booking_end_date");
                     row[7] = rs.getBoolean("c_check_in_status");
                     row[8] = rs.getBoolean("c_check_out_status");
                     result.add(row);

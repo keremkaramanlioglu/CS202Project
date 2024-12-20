@@ -57,6 +57,14 @@ public class Employee {
         this.zip_code = String.valueOf(obj[14]);
     }
 
+    public Employee() {
+
+    }
+
+    public boolean equals(Employee employee) {
+        return this.emp_ssn.equals(employee.emp_ssn);
+    }
+
     public String getEmp_ssn() {
         return emp_ssn;
     }

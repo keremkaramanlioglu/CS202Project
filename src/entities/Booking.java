@@ -38,6 +38,8 @@ public class Booking {
             this.room_id = Integer.parseInt(String.valueOf(objs[2]));
             this.payment_status = String.valueOf(objs[3]);
             this.payment_method = String.valueOf(objs[4]);
+            System.out.println(String.valueOf(objs[5]));
+            System.out.println(String.valueOf(objs[6]));
             this.booking_start_date = Date.valueOf(String.valueOf(objs[5]));
             this.booking_end_date = Date.valueOf(String.valueOf(objs[6]));
             this.c_check_in_status = Boolean.parseBoolean(String.valueOf(objs[7]));
@@ -50,6 +52,7 @@ public class Booking {
             this.booking_start_date = Date.valueOf(String.valueOf(objs[4]));
             this.booking_end_date = Date.valueOf(String.valueOf(objs[5]));
             this.c_check_in_status = Boolean.parseBoolean(String.valueOf(objs[6]));
+            //System.out.println(String.valueOf(objs[6]));
             this.c_check_out_status = Boolean.parseBoolean(String.valueOf(objs[7]));
         }
     }

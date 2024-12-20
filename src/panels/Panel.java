@@ -78,7 +78,9 @@ public abstract class Panel extends JPanel {
             for (int col = 0; col < columnCount; col++) {
                 rowValues[col] = table.getValueAt(rowIndex, col);
             }
-        } else JOptionPane.showMessageDialog(null, "No row selected!");
+        } else {
+            return null;
+        }
         return rowValues;
     }
 

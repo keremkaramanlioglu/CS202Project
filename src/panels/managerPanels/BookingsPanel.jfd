@@ -50,8 +50,8 @@ new FormModel {
 						add( class java.lang.Integer )
 						add( class java.lang.String )
 						add( class java.lang.String )
-						add( class java.lang.String )
-						add( class java.lang.String )
+						add( class java.util.Date )
+						add( class java.util.Date )
 						add( class java.lang.Boolean )
 						add( class java.lang.Boolean )
 					}, new java.util.Vector {
@@ -76,7 +76,6 @@ new FormModel {
 						add( null )
 					} )
 					"rowSelectionAllowed": false
-					"enabled": false
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
