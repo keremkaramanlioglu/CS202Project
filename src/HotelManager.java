@@ -176,7 +176,10 @@ public class HotelManager {
                             } else if (command.equals("Add Customer")) {
                                 rowsAffected = hotelDao.insertCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("houseKeeping")) {
-                                rowsAffected = hotelDao.insertCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
+                                HouseKeepingPanel hk = (HouseKeepingPanel) activePanel.getCenterPanel();
+                                CleaningSchedule cs = new CleaningSchedule(activePanel.getCenterPanel().getEntity());
+                                cs.setReceptionist_ssn(currSsn);
+                                rowsAffected = hotelDao.insertCleaningScheduleWithRoomNum(cs, hk.getRoomNum(), Integer.parseInt(String.valueOf(currHotelID)));
                             }
                             break;
                         case "update":
@@ -215,7 +218,12 @@ public class HotelManager {
                             } else if (command.equals("Users")) {
                                 rowsAffected = hotelDao.updateCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("houseKeeping")) {
-                                rowsAffected = hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
+                                HouseKeepingPanel hk = (HouseKeepingPanel) activePanel.getCenterPanel();
+                                Object[] arr = hk.getSelectedRow();
+                                arr[2] = currSsn;
+                                arr[3] = null;
+                                CleaningSchedule cs = new CleaningSchedule(arr);
+                                rowsAffected = hotelDao.updateCleaningScheduleWithRoomNum(cs, hk.getRoomNum(), Integer.parseInt(String.valueOf(currHotelID)));
                             }
                             break;
                         case "delete":
@@ -224,13 +232,17 @@ public class HotelManager {
                             } else if (command.equals("Employees")) {
                                 rowsAffected = hotelDao.deleteEmployee(new Employee(activePanel.getCenterPanel().getSelectedRow()));
                             } else if (command.equals("Housekeeping")) {
-                                rowsAffected = hotelDao.deleteCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getSelectedRow()));
+                                CleaningSchedule cs = new CleaningSchedule(activePanel.getCenterPanel().getEntity());
+                                cs.setSchedule_id(activePanel.getCenterPanel().getSelectedRow()[0]);
+                                rowsAffected = hotelDao.deleteCleaningSchedule(cs);
                             } else if (command.equals("Rooms")) {
                                 rowsAffected = hotelDao.deleteRoom(new Room(activePanel.getCenterPanel().getSelectedRow()));
                             } else if (command.equals("Users")) {
                                 rowsAffected = hotelDao.deleteCustomer(new Customer(activePanel.getCenterPanel().getSelectedRow()));
                             } else if (command.equals("houseKeeping")) {
-                                rowsAffected = hotelDao.deleteCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getSelectedRow()));
+                                CleaningSchedule cs = new CleaningSchedule(activePanel.getCenterPanel().getEntity());
+                                cs.setSchedule_id(activePanel.getCenterPanel().getSelectedRow()[0]);
+                                rowsAffected = hotelDao.deleteCleaningSchedule(cs);
                             }
                             break;
                         case "applyFilter":

@@ -16,35 +16,41 @@ new FormModel {
 							add( null )
 							add( null )
 							add( null )
+							add( null )
 						} )
 						add( new java.util.Vector {
 							add( null )
 							add( null )
 							add( null )
 							add( null )
+							add( null )
 						} )
 					}, new java.util.Vector {
+						add( "schedule_id" )
 						add( "housekeeper_ssn" )
 						add( "room_num" )
 						add( "cleaning_date" )
 						add( "service_status" )
 					}, new java.util.Vector {
+						add( class java.lang.Integer )
 						add( class java.lang.String )
-						add( class java.lang.String )
+						add( class java.lang.Integer )
 						add( class java.lang.String )
 						add( class java.lang.String )
 					}, new java.util.Vector {
+						add( null )
 						add( false )
 						add( false )
 						add( false )
 						add( false )
 					}, new java.util.Vector {
+						add( null )
 						add( null )
 						add( null )
 						add( null )
 						add( null )
 					} )
-					"enabled": false
+					"autoCreateRowSorter": true
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
@@ -110,7 +116,7 @@ new FormModel {
 						"y": 65
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "tfRoomNumber"
+						name: "tfRoomNum"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 34
@@ -129,7 +135,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "lblRoomNumber"
-						"text": "Room ID:"
+						"text": "Room Num:"
 						"font": new java.awt.Font( "Inter", 0, 12 )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
