@@ -1,6 +1,9 @@
 import entities.*;
 
+import panels.CustomerPanel;
 import panels.Panel;
+import panels.customerPanels.BookARoomPanel;
+import panels.customerPanels.MyBookingsPanel;
 import panels.customerPanels.ProfilePanel;
 import panels.dbManagerPanels.QueryPanel;
 import panels.managerPanels.*;
@@ -288,7 +291,7 @@ public class HotelManager {
                                 int affectedRow = hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getSelectedRow()));
                             } else if (command.equals("Profile")) {
                                 ProfilePanel profile = (ProfilePanel) activePanel.getPanelByName("Profile");
-                                hotelDao.insertCustomer(profile.getCustomer());
+                                hotelDao.insertCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
                                 System.out.println("done");
                                 profile.pushConfirmButton();
                             }
@@ -321,7 +324,17 @@ public class HotelManager {
                             }
                         case "show rooms":
                             if (command.equals("Book a room")) {
-                                System.out.println("show rooms button pressed in book a room panel");
+                                BookARoomPanel panel = (BookARoomPanel) activePanel.getPanelByName("Book a room");
+                                activePanel.getCenterPanel().setTableRows(hotelDao.viewAvailableRooms(panel.getStartDate(), panel.getEndDate()));
+                            }
+                            break;
+                        case "show":
+                            if (command.equals("My Jobs")) {
+                                System.out.println("show cleaning duties button pressed in My Jobs panel by Housekeeper");
+                            } else if (command.equals("My Bookings")) {
+                                System.out.println("show bookings button pressed in My Bookings panel by Customer");
+                                MyBookingsPanel panel = (MyBookingsPanel) activePanel.getPanelByName("My Bookings");
+                                activePanel.getCenterPanel().setTableRows(hotelDao.viewMyBookings(currSsn));
                             }
                     }
                 } catch (Exception ex) {

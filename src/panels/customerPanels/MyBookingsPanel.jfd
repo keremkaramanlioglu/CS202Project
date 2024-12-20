@@ -17,7 +17,6 @@ new FormModel {
 							add( null )
 							add( null )
 							add( null )
-							add( null )
 						} )
 						add( new java.util.Vector {
 							add( null )
@@ -25,17 +24,14 @@ new FormModel {
 							add( null )
 							add( null )
 							add( null )
-							add( null )
 						} )
 					}, new java.util.Vector {
-						add( "Hotel name" )
-						add( "Zip Code" )
-						add( "Room Type" )
-						add( "#People" )
-						add( "Check-in Date" )
-						add( "Check-out Date" )
+						add( "hotel_name" )
+						add( "zip_code" )
+						add( "room_type" )
+						add( "booking_start_date" )
+						add( "booking_end_date" )
 					}, new java.util.Vector {
-						add( class java.lang.String )
 						add( class java.lang.String )
 						add( class java.lang.String )
 						add( class java.lang.String )
@@ -47,9 +43,7 @@ new FormModel {
 						add( true )
 						add( true )
 						add( true )
-						add( true )
 					}, new java.util.Vector {
-						add( null )
 						add( null )
 						add( null )
 						add( null )
@@ -85,7 +79,19 @@ new FormModel {
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"width": 225
 					"height": 75
-					"x": 590
+					"x": 325
+					"y": 60
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnShow"
+					"text": "Show"
+					"cursor": #Cursor0
+					"actionCommand": "My Bookings"
+					"name": "show"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 225
+					"height": 75
+					"x": 560
 					"y": 60
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {

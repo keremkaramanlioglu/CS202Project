@@ -20,12 +20,12 @@ new FormModel {
 							add( null )
 						} )
 					}, new java.util.Vector {
-						add( "Hotel Name" )
-						add( "Zip Code" )
-						add( "Room Type" )
-						add( "Room Size" )
-						add( "Room Price" )
-						add( "Room Capacity" )
+						add( "hotel_name" )
+						add( "zip_code" )
+						add( "room_type" )
+						add( "room_size" )
+						add( "room_price" )
+						add( "room_capacity" )
 					}, new java.util.Vector {
 						add( class java.lang.String )
 						add( class java.lang.String )

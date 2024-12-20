@@ -106,6 +106,10 @@ public class UsersPanel extends Panel {
         });
     }
 
+    public JButton getBtnApplyFilter() {
+        return btnApplyFilter;
+    }
+
     @Override
     public void addMouseListener(MouseListener ml) {
         tfBirthDate.addMouseListener(ml);
