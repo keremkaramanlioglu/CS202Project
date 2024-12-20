@@ -111,6 +111,7 @@ new FormModel {
 					"background": new java.awt.Color( 0, 153, 255, 255 )
 					"border": new javax.swing.border.LineBorder( sfield java.awt.Color lightGray, 1, false )
 					"focusable": false
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button4", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "button5"
