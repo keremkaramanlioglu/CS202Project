@@ -56,7 +56,6 @@ new FormModel {
 						add( null )
 						add( null )
 					} )
-					"enabled": false
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"

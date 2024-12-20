@@ -53,12 +53,12 @@ public class RoomsPanel extends Panel {
         table1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                Object[] fields = new Object[table1.getColumnCount()];
+                Object[] fields = new Object[table1.getColumnCount() - 1];
                 int selectedRow = table1.getSelectedRow();
 
                 if (selectedRow != -1) {
-                    for (int i = 0; i < fields.length; i++) {
-                        fields[i] = table1.getValueAt(selectedRow, i + 1);
+                    for (int i = 1; i < table1.getColumnCount(); i++) {
+                        fields[i - 1] = table1.getValueAt(selectedRow, i);
                     }
                 }
                 setFields(fields);
@@ -109,6 +109,7 @@ public class RoomsPanel extends Panel {
             JOptionPane.showMessageDialog(this, "Please enter all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
+
 
 
         return new Object[] {
@@ -164,6 +165,12 @@ public class RoomsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .
+        EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER ,javax . swing
+        . border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,
+        java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( )
+        { @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )
+        throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -173,6 +180,8 @@ public class RoomsPanel extends Panel {
             //---- table1 ----
             table1.setModel(new DefaultTableModel(
                 new Object[][] {
+                    {null, null, null, null, null, null, null},
+                    {null, null, null, null, null, null, null},
                 },
                 new String[] {
                     "room_id", "hotel_id", "room_num", "room_type", "room_size", "room_price", "capacity"
@@ -348,7 +357,6 @@ public class RoomsPanel extends Panel {
                     "contains"
                 }));
                 cbFilterOption.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                cbFilterOption.setEnabled(false);
                 filterPanel.add(cbFilterOption);
                 cbFilterOption.setBounds(165, 35, 120, 45);
 

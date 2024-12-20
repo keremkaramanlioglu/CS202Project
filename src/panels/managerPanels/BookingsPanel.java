@@ -135,7 +135,7 @@ public class BookingsPanel extends Panel {
                 int selectedRow = tblData.getSelectedRow();
 
                 if (selectedRow != -1) {
-                    for (int i = 0; i < fields.length; i++) {
+                    for (int i = 1; i < fields.length; i++) {
                         fields[i] = tblData.getValueAt(selectedRow, i);
                     }
                 }

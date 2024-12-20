@@ -57,7 +57,7 @@ public class HouseKeepingPanel extends Panel {
 
                 if (selectedRow != -1) {
                     for (int i = 0; i < fields.length; i++) {
-                        fields[i] = tblData.getValueAt(selectedRow, i + 1);
+                        fields[i] = tblData.getValueAt(selectedRow, i);
                     }
                 }
                 setFields(fields);
@@ -88,9 +88,9 @@ public class HouseKeepingPanel extends Panel {
     }
     @Override
     public void setFields(Object[] rowValues) {
-        tfSsn.setText(rowValues[0].toString());
-        tfRoomNumber.setText(rowValues[1].toString());
-        tfTime.setText(rowValues[2].toString());
+        tfSsn.setText(String.valueOf(rowValues[0]));
+        tfRoomNumber.setText(String.valueOf(rowValues[1]));
+        tfTime.setText(String.valueOf(rowValues[2]));
         cbSelectColumn.setSelectedItem(rowValues[3]);
     }
     @Override
