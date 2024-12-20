@@ -282,10 +282,10 @@ public class HotelManager {
                             if (command.equals("My Jobs")) {
                                 boolean b = hotelDao.updateCleaningSchedule(activePanel.getCenterPanel().getSelectedRow(), currEmployee.getEmp_ssn());
                             } else if (command.equals("Profile")) {
-                                System.out.println("confirm button pressed in profile panel");
                                 ProfilePanel profile = (ProfilePanel) activePanel.getPanelByName("Profile");
+                                hotelDao.insertCustomer(profile.getCustomer());
+                                System.out.println("done");
                                 profile.pushConfirmButton();
-                                //hotelDao.processCustomer(profile.getEntity());
                             }
                             break;
                         case "execute":

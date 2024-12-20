@@ -75,6 +75,10 @@ public class HotelDao {
         return stmt.executeUpdate();
     }
     public int insertCustomer(Customer customer) throws SQLException {
+        System.out.println(customer.getC_room_id());
+        if (customer.getC_room_id() == null){
+            System.out.println("it is null");
+        }
         String sql = "INSERT INTO Customers (c_ssn, c_firstname, c_lastname, c_bd, c_room_id, c_email, c_phone_num, c_gender, zip_code) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         stmt = con.prepareStatement(sql);
         stmt.setString(1, customer.getC_ssn());
