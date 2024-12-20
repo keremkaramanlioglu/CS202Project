@@ -36,14 +36,24 @@ public class Hotel {
     }
 
     public Hotel(Object[] obj) {
-        this.hotel_id = Integer.parseInt(String.valueOf(obj[0]));
-        this.hotel_name = String.valueOf(obj[1]);
-        this.hotel_phone = String.valueOf(obj[2]);
-        this.hotel_email = String.valueOf(obj[3]);
-        this.hotel_rating = Double.parseDouble(String.valueOf(obj[4]));
-        this.street = String.valueOf(obj[5]);
-        this.no = String.valueOf(obj[6]);
-        this.zip_code = String.valueOf(obj[7]);
+        if (obj.length == 8) {
+            this.hotel_id = Integer.parseInt(String.valueOf(obj[0]));
+            this.hotel_name = String.valueOf(obj[1]);
+            this.hotel_phone = String.valueOf(obj[2]);
+            this.hotel_email = String.valueOf(obj[3]);
+            this.hotel_rating = Double.parseDouble(String.valueOf(obj[4]));
+            this.street = String.valueOf(obj[5]);
+            this.no = String.valueOf(obj[6]);
+            this.zip_code = String.valueOf(obj[7]);
+        } else {
+            this.hotel_name = String.valueOf(obj[0]);
+            this.hotel_phone = String.valueOf(obj[1]);
+            this.hotel_email = String.valueOf(obj[2]);
+            this.hotel_rating = Double.parseDouble(String.valueOf(obj[3]));
+            this.street = String.valueOf(obj[4]);
+            this.no = String.valueOf(obj[5]);
+            this.zip_code = String.valueOf(obj[6]);
+        }
     }
 
     public int getHotel_id() {

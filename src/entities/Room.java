@@ -23,13 +23,22 @@ public class Room {
     }
 
     public Room(Object[] obj) {
-        this.room_id = Integer.parseInt(String.valueOf(obj[0]));
-        this.hotel_id = Integer.parseInt(String.valueOf(obj[1]));
-        this.room_num = String.valueOf(obj[2]);
-        this.room_type = String.valueOf(obj[3]);
-        this.room_size = Integer.parseInt(String.valueOf(obj[4]));
-        this.room_price = Double.parseDouble(String.valueOf(obj[5]));
-        this.room_capacity = String.valueOf(obj[6]);
+        if (obj.length == 7) {
+            this.room_id = Integer.parseInt(String.valueOf(obj[0]));
+            this.hotel_id = Integer.parseInt(String.valueOf(obj[1]));
+            this.room_num = String.valueOf(obj[2]);
+            this.room_type = String.valueOf(obj[3]);
+            this.room_size = Integer.parseInt(String.valueOf(obj[4]));
+            this.room_price = Double.parseDouble(String.valueOf(obj[5]));
+            this.room_capacity = String.valueOf(obj[6]);
+        } else {
+            this.hotel_id = Integer.parseInt(String.valueOf(obj[0]));
+            this.room_num = String.valueOf(obj[1]);
+            this.room_type = String.valueOf(obj[2]);
+            this.room_size = Integer.parseInt(String.valueOf(obj[3]));
+            this.room_price = Double.parseDouble(String.valueOf(obj[4]));
+            this.room_capacity = String.valueOf(obj[5]);
+        }
     }
 
     public int getRoom_id() {
