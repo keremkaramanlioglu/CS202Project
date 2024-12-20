@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.*;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.Objects;
@@ -17,6 +18,7 @@ import com.intellij.uiDesigner.core.*;
  * @author kerem
  */
 public class DBConnectionTestFrame extends JFrame {
+    static int x = 0;
     public DBConnectionTestFrame() {
         initComponents();
     }
@@ -47,9 +49,19 @@ public class DBConnectionTestFrame extends JFrame {
         button6.addActionListener(al);
     }
 
+    private void textField11KeyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER && x == 0) {
+            button6.doClick();
+            x++;
+        } else if (e.getKeyCode() == KeyEvent.VK_ENTER && x == 1) {
+            button5.doClick();
+            x--;
+        }
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         panel1 = new JPanel();
         label8 = new JLabel();
         textField8 = new JTextField();
@@ -73,7 +85,7 @@ public class DBConnectionTestFrame extends JFrame {
         setForeground(SystemColor.textInactiveText);
         setTitle("Connect to a Database");
         setResizable(false);
-        setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/MySQL.png"))).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/icons/MySQL.png")).getImage());
         var contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
@@ -81,13 +93,12 @@ public class DBConnectionTestFrame extends JFrame {
         {
             panel1.setBackground(new Color(0x333333));
             panel1.setForeground(Color.white);
-            panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax .
-            swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border
-            . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog"
-            , java .awt . Font. BOLD ,12 ) ,java . awt. Color .red ) ,panel1. getBorder
-            () ) ); panel1. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java
-            . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException
-            ( ) ;} } );
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border
+            . EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax
+            . swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,
+            12 ), java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans
+            . PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .
+            getPropertyName () )) throw new RuntimeException( ); }} );
 
             //---- label8 ----
             label8.setText("Host:");
@@ -154,6 +165,12 @@ public class DBConnectionTestFrame extends JFrame {
             textField11.setCaretColor(Color.white);
             textField11.setFont(new Font("JetBrains Mono Medium", Font.PLAIN, 14));
             textField11.setHorizontalAlignment(SwingConstants.CENTER);
+            textField11.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    textField11KeyPressed(e);
+                }
+            });
 
             //---- button6 ----
             button6.setText("Test Connection");
@@ -210,16 +227,16 @@ public class DBConnectionTestFrame extends JFrame {
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addComponent(label12, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textField11, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addComponent(button4, GroupLayout.PREFERRED_SIZE, 303, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(button5, GroupLayout.PREFERRED_SIZE, 291, GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(textField11, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 1, Short.MAX_VALUE))
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(label11, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(passwordField1, GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)))
+                                .addComponent(passwordField1, GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(button4, GroupLayout.PREFERRED_SIZE, 303, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                                .addComponent(button5, GroupLayout.PREFERRED_SIZE, 291, GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
             );
             panel1Layout.setVerticalGroup(
@@ -259,7 +276,7 @@ public class DBConnectionTestFrame extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JPanel panel1;
     private JLabel label8;
     private JTextField textField8;

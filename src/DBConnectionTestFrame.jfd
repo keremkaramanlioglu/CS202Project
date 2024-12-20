@@ -14,7 +14,7 @@ new FormModel {
 			"resizable": false
 			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/icons/MySQL.png" )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, par l {comp button6::::601:x, seq {par l {par l:::p {seq {comp label8:::p:92:p, space :::p, comp textField8:::p::p, space :::p, comp label9:::p:49:p, space :::p, comp textField9:::::x}, seq l {comp label10:::p:92:p, space :::p, comp textField10:::p::p}}, seq l {comp label12:::p:92:p, space :::p, comp textField11:::p::p}, seq l {comp button4:::p:303:p, space :::p, comp button5:::p:291:p}}, space :0:1:x}, seq l {comp label11:::p:92:p, space :::p, comp passwordField1::::503:x}}, space :::p}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {comp button6::::601:x, seq {par l {par l:::p {seq {comp label8:::p:92:p, space :::p, comp textField8:::p::p, space :::p, comp label9:::p:49:p, space :::p, comp textField9:::::x}, seq l {comp label10:::p:92:p, space :::p, comp textField10:::p::p}}, seq l {comp label12:::p:92:p, space :::p, comp textField11:::p::p}}, space :0:1:x}, seq l {comp label11:::p:92:p, space :::p, comp passwordField1::::503:x}, seq l {comp button4:::p:303:p, space ::7:x, comp button5:::p:291:p}}, space :::p}}"
 				"$verticalGroup": "par l {seq l {space :::p, par b {comp textField8::b:p::p, comp label9::b:p:38:p, comp textField9::b:p::p, comp label8::b:p:38:p}, space s:::p, par b {comp label10::b:p:38:p, comp textField10::b:p::p}, space s:::p, par b {comp label11::b:p:38:p, comp passwordField1::b:p::p}, space s:::p, par b {comp label12::b:p:38:p, comp textField11::b:p::p}, space :p:74:p, comp button6:::p:45:p, space ::244:x, par b {comp button4::b:p:45:p, comp button5::b:p:45:p}, space :::p}}"
 			} ) {
 				name: "panel1"
@@ -94,6 +94,7 @@ new FormModel {
 					"caretColor": new java.awt.Color( 255, 255, 255, 255 )
 					"font": new java.awt.Font( "JetBrains Mono Medium", 0, 14 )
 					"horizontalAlignment": 0
+					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "textField11KeyPressed", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "button6"
