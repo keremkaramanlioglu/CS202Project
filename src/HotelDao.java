@@ -167,7 +167,7 @@ public class HotelDao {
         stmt.executeUpdate();
     }
     public int updateBooking(Booking booking) throws SQLException {
-        String sql = "UPDATE Bookings SET c_ssn = ?, room_id = ?, payment_status = ?, payment_method = ?, booking_start_date = ?, booking_end_date = ?, c_check_in_status = ?, c_check_out_status = ? WHERE booking_id = ?";
+        String sql = "UPDATE Bookings SET c_ssn = ?, room_id = ?, payment_status = ?, payment_method = ?, c_check_in_status = ?, c_check_out_status = ? WHERE booking_id = ?";
         stmt = con.prepareStatement(sql);
         stmt.setString(1, booking.getC_ssn());
         stmt.setInt(2, booking.getRoom_id());
