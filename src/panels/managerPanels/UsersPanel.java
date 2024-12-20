@@ -7,6 +7,7 @@ package panels.managerPanels;
 import panels.Panel;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.Objects;
@@ -72,11 +73,40 @@ public class UsersPanel extends Panel {
         btnUpdate.addActionListener(al);
         btnDelete.addActionListener(al);
         btnApplyFilter.addActionListener(al);
+        cbFilterOption.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String filterOption = String.valueOf(cbFilterOption.getSelectedItem());
+                if (filterOption.equals("between")) {
+                    String filterColumn = String.valueOf(cbFilterColumn.getSelectedItem());
+                    enableTfUpperValue();
+                    if (filterColumn.equals("c_bd")) {
+                        makeDate(tfFilterUpperValue);
+                    }
+                } else {
+                    resetTf(tfFilterUpperValue);
+                    disableTfUpperValue();
+                }
+            }
+        });
+        cbFilterColumn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String filterColumn = String.valueOf(cbFilterColumn.getSelectedItem());
+                if (filterColumn.equals("c_bd")) {
+                    makeDate(tfFilterValue);
+                } else {
+                    resetTf(tfFilterValue);
+                }
+            }
+        });
     }
 
     @Override
     public void addMouseListener(MouseListener ml) {
         tfBirthDate.addMouseListener(ml);
+        tfFilterUpperValue.addMouseListener(ml);
+        tfFilterValue.addMouseListener(ml);
     }
 
     @Override
@@ -98,17 +128,39 @@ public class UsersPanel extends Panel {
 
     @Override
     public boolean tfCheck() {
-        return !tfSsn.getText().isEmpty() && !tfRoomID.getText().isEmpty()
+        return !tfSsn.getText().isEmpty()
                 && !tfBirthDate.getText().isEmpty() && !tfZipCode.getText().isEmpty() && !tfFirstName.getText().isEmpty()
                 && !tfLastName.getText().isEmpty() && !tfEmail.getText().isEmpty() && !tfPhoneNo.getText().isEmpty()
                 && !tfGender.getText().isEmpty();
     }
 
+    private void enableTfUpperValue() {
+        tfFilterUpperValue.setEditable(true);
+        tfFilterUpperValue.setEnabled(true);
+    }
+
+    private void disableTfUpperValue() {
+        tfFilterUpperValue.setText("");
+        tfFilterUpperValue.setEditable(false);
+        tfFilterUpperValue.setEnabled(false);
+    }
+
+    private void makeDate(JTextField tf) {
+        tf.setText("Choose a Date!");
+        tf.setEnabled(true);
+        tf.setEditable(false);
+    }
+
+    private void resetTf(JTextField tf) {
+        tf.setText("");
+        tf.setEnabled(true);
+        tf.setEditable(true);
+    }
+
     @Override
     public Object[] getEntity() {
         if (!tfCheck()) {
-            JOptionPane.showMessageDialog(this, "Please enter all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
-            return null;
+            throw new IllegalArgumentException("Please enter all required fields!");
         }
 
 
@@ -117,7 +169,7 @@ public class UsersPanel extends Panel {
                 tfFirstName.getText(),
                 tfLastName.getText(),
                 tfBirthDate.getText(),
-                Integer.parseInt(tfRoomID.getText()),
+                tfRoomID.getText(),
                 tfEmail.getText(),
                 tfPhoneNo.getText(),
                 tfGender.getText(),
@@ -171,6 +223,12 @@ public class UsersPanel extends Panel {
 
         //======== this ========
         setPreferredSize(new Dimension(900, 700));
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder
+        ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border
+        .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
+        . Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void
+        propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
+        ;} } );
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -393,6 +451,8 @@ public class UsersPanel extends Panel {
 
                 //---- tfFilterUpperValue ----
                 tfFilterUpperValue.setToolTipText("Filter Input");
+                tfFilterUpperValue.setEditable(false);
+                tfFilterUpperValue.setEnabled(false);
                 pnlFilter.add(tfFilterUpperValue);
                 tfFilterUpperValue.setBounds(175, 105, 115, 40);
 

@@ -69,14 +69,14 @@ public class BookingsPanel extends Panel {
             // JTextFields
             fieldValues[0] = (tfCSsn.getText().trim());  // CSsn as Integer
             fieldValues[1] = (tfRoomID.getText().trim());  // RoomID as Integer
-            fieldValues[2] =  Objects.requireNonNull(cbPaymentStatus.getSelectedItem()).toString();// Start Date as java.sql.Date
-            fieldValues[3] =  Objects.requireNonNull(cbPaymentMethod.getSelectedItem()).toString(); // End Date as java.sql.Date
+            fieldValues[2] =  cbPaymentStatus.getSelectedItem();// Start Date as java.sql.Date
+            fieldValues[3] =  cbPaymentMethod.getSelectedItem(); // End Date as java.sql.Date
 
             // JComboBoxes
             fieldValues[4] = tfStartDate.getText().trim(); // Payment Status as String
             fieldValues[5] = tfEndDate.getText().trim(); // Payment Method as String
-            fieldValues[6] = Objects.requireNonNull(cbSelectColumn2.getSelectedItem()).toString();  // Select Column as String
-            fieldValues[7] = Objects.requireNonNull(cbFilterOption2.getSelectedItem()).toString();  // Filter Option as String
+            fieldValues[6] = cbCheckin.isSelected();  // Select Column as String
+            fieldValues[7] = cbCheckout.isSelected();  // Filter Option as String
         } catch (NumberFormatException e) {
             // Handle invalid number format exceptions, e.g., if parsing fails
             System.err.println("Error parsing number fields: " + e.getMessage());
@@ -182,13 +182,13 @@ public class BookingsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new
-        javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax
-        . swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java
-        . awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
-        . Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .
-        PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .
-        equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
+        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax
+        . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
+        .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
+        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .
+        equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -207,7 +207,7 @@ public class BookingsPanel extends Panel {
                 }
             ) {
                 Class<?>[] columnTypes = new Class<?>[] {
-                    Integer.class, String.class, Integer.class, String.class, String.class, String.class, String.class, Boolean.class, Boolean.class
+                    Integer.class, String.class, Integer.class, String.class, String.class, Date.class, Date.class, Boolean.class, Boolean.class
                 };
                 boolean[] columnEditable = new boolean[] {
                     false, false, false, false, false, false, false, false, false

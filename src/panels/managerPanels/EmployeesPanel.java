@@ -13,6 +13,7 @@ import entities.Employee;
 import panels.Panel;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -75,6 +76,28 @@ public class EmployeesPanel extends Panel {
         btnApplyFilter.addActionListener(al);
         btnDelete.addActionListener(al);
         btnAdd.addActionListener(al);
+        cbFilterOption.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String filterOption = String.valueOf(cbFilterOption.getSelectedItem());
+                if (filterOption.equals("between")) {
+                    enableTfUpperValue();
+                } else  {
+                    disableTfUpperValue();
+                }
+            }
+        });
+    }
+
+    private void enableTfUpperValue() {
+        tfFilterUpperValue.setEnabled(true);
+        tfFilterUpperValue.setEditable(true);
+    }
+
+    private void disableTfUpperValue() {
+        tfFilterUpperValue.setText("");
+        tfFilterUpperValue.setEnabled(false);
+        tfFilterUpperValue.setEditable(false);
     }
 
     @Override
@@ -110,7 +133,7 @@ public class EmployeesPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlData = new JScrollPane();
         tblEmployees = new JTable();
         pnlControl = new JPanel();
@@ -129,13 +152,12 @@ public class EmployeesPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
-        javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax
-        .swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java
-        .awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),java.awt
-        .Color.red), getBorder())); addPropertyChangeListener(new java.beans.
-        PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062or\u0064er".
-        equals(e.getPropertyName()))throw new RuntimeException();}});
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
+        EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing
+        .border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),
+        java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener()
+        {@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName()))
+        throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
         //======== pnlData ========
@@ -167,7 +189,6 @@ public class EmployeesPanel extends Panel {
                     return columnEditable[columnIndex];
                 }
             });
-            tblEmployees.setEnabled(false);
             pnlData.setViewportView(tblEmployees);
         }
         add(pnlData, BorderLayout.CENTER);
@@ -298,6 +319,8 @@ public class EmployeesPanel extends Panel {
 
                 //---- tfFilterUpperValue ----
                 tfFilterUpperValue.setToolTipText("Filter Input");
+                tfFilterUpperValue.setEnabled(false);
+                tfFilterUpperValue.setEditable(false);
                 pnlFilter.add(tfFilterUpperValue);
                 tfFilterUpperValue.setBounds(185, 100, 115, 40);
 
@@ -330,7 +353,7 @@ public class EmployeesPanel extends Panel {
 
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane pnlData;
     private JTable tblEmployees;
     private JPanel pnlControl;

@@ -63,6 +63,7 @@ new FormModel {
 						add( null )
 					} )
 					"preferredSize": new java.awt.Dimension( 525, 400 )
+					"autoCreateRowSorter": true
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
@@ -199,17 +200,6 @@ new FormModel {
 						"x": 20
 						"y": 90
 					} )
-					add( new FormComponent( "javax.swing.JTextArea" ) {
-						name: "textArea1"
-						"text": "Please choose a row to update!"
-						"lineWrap": true
-						"wrapStyleWord": true
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"width": 100
-						"height": 60
-						"x": 435
-						"y": 150
-					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "tfRoomPrice"
 						"toolTipText": "Capacity"
@@ -227,6 +217,13 @@ new FormModel {
 						"height": 25
 						"x": 435
 						"y": 35
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label9"
+						"text": "Please choose a row to update or delete!"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 165
+						"y": 120
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
@@ -305,6 +302,8 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "tfFilterUpperValue"
 						"toolTipText": "Filter Input"
+						"enabled": false
+						"editable": false
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 115
 						"height": 40

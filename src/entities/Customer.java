@@ -9,7 +9,7 @@ public class Customer {
     private String c_firstname;
     private String c_lastname;
     private Date c_bd;
-    private int c_room_id;
+    private Integer c_room_id;
     private String c_email;
     private String c_phone_num;
     private String c_gender;
@@ -32,7 +32,7 @@ public class Customer {
         this.c_firstname = String.valueOf(obj[1]);
         this.c_lastname = String.valueOf(obj[2]);
         this.c_bd = Date.valueOf(String.valueOf(obj[3]));
-        this.c_room_id = Integer.parseInt(String.valueOf(obj[4]));
+        this.c_room_id = (String.valueOf(obj[4]).trim().isEmpty() ? null : Integer.parseInt(String.valueOf(obj[4])));
         this.c_email = String.valueOf(obj[5]);
         this.c_phone_num = String.valueOf(obj[6]);
         this.c_gender = String.valueOf(obj[7]);
@@ -71,11 +71,11 @@ public class Customer {
         this.c_bd = c_bd;
     }
 
-    public int getC_room_id() {
+    public Integer getC_room_id() {
         return c_room_id;
     }
 
-    public void setC_room_id(int c_room_id) {
+    public void setC_room_id(Integer c_room_id) {
         this.c_room_id = c_room_id;
     }
 

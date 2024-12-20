@@ -110,7 +110,6 @@ new FormModel {
 						add( null )
 						add( null )
 					} )
-					"enabled": false
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
@@ -260,6 +259,8 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "tfFilterUpperValue"
 						"toolTipText": "Filter Input"
+						"enabled": false
+						"editable": false
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 115
 						"height": 40

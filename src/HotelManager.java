@@ -78,7 +78,9 @@ public class HotelManager {
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
-            return false;
+            if (currEmployee == null) {
+                return false;
+            }
         } else if (!action.equals("Back") && !isValidAction(action)) {
             JOptionPane.showMessageDialog(hotelView,"Invalid action!", "Authority Error", JOptionPane.ERROR_MESSAGE);
             try {
@@ -86,12 +88,18 @@ public class HotelManager {
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
-            return false;
+            if (currEmployee == null) {
+                return false;
+            }
         }
         return true;
     }
 
     private void setCurrEmployee() throws SQLException {
+        if (hotelDao.getEmployees("ssn", "=", currSsn).isEmpty()) {
+            JOptionPane.showMessageDialog(hotelView, "No such Employee! Please enter a valid ssn!", "Invalid SSN!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         currEmployee = hotelDao.getEmployees("ssn", "=", currSsn).getFirst();
     }
 
@@ -137,22 +145,34 @@ public class HotelManager {
                         case "add":
                             if (command.equals("Bookings")) {
                                 System.out.println("add button pressed in booking panel");
-                                hotelDao.insertBooking(new Booking(activePanel.getCenterPanel().getEntity()));
+                                int affectedRows = hotelDao.insertBooking(new Booking(activePanel.getCenterPanel().getEntity()));
+                                if (affectedRows > 0) {
+                                    JOptionPane.showMessageDialog(hotelView, affectedRows + " " + command + " added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                                }
                             } else if (command.equals("Employees")) {
-                                System.out.println("add button pressed in employees panel by manager");
-                                hotelDao.insertEmployee(new Employee(activePanel.getCenterPanel().getEntity()));
+                                //System.out.println("add button pressed in employees panel by manager");
+                                EmpInfos emp = new EmpInfos(hotelView);
+                                Employee employee = emp.getEmployee();
+                                if (employee != null) {
+                                    hotelDao.insertEmployee(employee);
+                                }
+
+                                // TODO ADD ROOM NUM CONSTRAINTS
                             } else if (command.equals("Housekeeping")) {
                                 System.out.println("add button pressed in housekeeping panel by manager");
                                 hotelDao.insertCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Rooms")) {
                                 System.out.println("add button pressed in rooms panel by manager");
-                                hotelDao.insertRoom(new Room(activePanel.getCenterPanel().getEntity()));
+                                int affectedRows = hotelDao.insertRoom(new Room(activePanel.getCenterPanel().getEntity()));
+                                if (affectedRows > 0) {
+                                    JOptionPane.showMessageDialog(hotelView, affectedRows + " " + command + " added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                                }
                             } else if (command.equals("Users")) {
                                 System.out.println("add button pressed in users panel by manager");
                                 hotelDao.insertCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Add Customer")) {
                                 System.out.println("add button pressed in add customer panel by receptionist");
-                                hotelDao.insertRoom(new Room(activePanel.getCenterPanel().getEntity()));
+                                hotelDao.insertCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("houseKeeping")) {
                                 System.out.println("add button pressed in housekeeping panel by receptionist");
                                 hotelDao.insertCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
@@ -167,7 +187,19 @@ public class HotelManager {
                                     JOptionPane.showMessageDialog(null, command + " updated successfully!" + " Affected rows: " + affectedRows);
                                 }
                             } else if (command.equals("Employees")) {
-                                hotelDao.updateEmployee(new Employee(activePanel.getCenterPanel().getEntity()));
+                                Object[] emps = activePanel.getCenterPanel().getSelectedRow();
+                                if (emps == null) {
+                                    JOptionPane.showMessageDialog(null, "No row selected!");
+                                    return;
+                                }
+                                Employee employee = new Employee(activePanel.getCenterPanel().getSelectedRow());
+                                if (employee != null) {
+                                    EmpInfos emp = new EmpInfos(hotelView);
+                                    emp.setEmp(employee);
+                                    employee = emp.getEmployee();
+                                    if (employee.equals(employee)) {return;}
+                                    hotelDao.updateEmployee(employee);
+                                }
                             } else if (command.equals("Housekeeping")) {
                                 hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Rooms")) {
@@ -184,18 +216,22 @@ public class HotelManager {
                             }
                             break;
                         case "delete":
+                            int rowsAffected = 0;
                             if (command.equals("Bookings")) {
-                                hotelDao.deleteBooking(new Booking(activePanel.getCenterPanel().getEntity()));
+                                 rowsAffected = hotelDao.deleteBooking(new Booking(activePanel.getCenterPanel().getSelectedRow()));
                             } else if (command.equals("Employees")) {
-                                hotelDao.deleteBooking(new Booking(activePanel.getCenterPanel().getEntity()));
+                                rowsAffected = hotelDao.deleteEmployee(new Employee(activePanel.getCenterPanel().getSelectedRow()));
                             } else if (command.equals("Housekeeping")) {
-                                hotelDao.deleteCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
+                                rowsAffected = hotelDao.deleteCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getSelectedRow()));
                             } else if (command.equals("Rooms")) {
-                                hotelDao.deleteRoom(new Room(activePanel.getCenterPanel().getEntity()));
+                                rowsAffected = hotelDao.deleteRoom(new Room(activePanel.getCenterPanel().getSelectedRow()));
                             } else if (command.equals("Users")) {
-                                hotelDao.deleteCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
+                                rowsAffected = hotelDao.deleteCustomer(new Customer(activePanel.getCenterPanel().getSelectedRow()));
                             } else if (command.equals("houseKeeping")) {
-                                hotelDao.deleteCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
+                                rowsAffected = hotelDao.deleteCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getSelectedRow()));
+                            }
+                            if (rowsAffected > 0) {
+                                JOptionPane.showMessageDialog(null, rowsAffected + " " + command + " deleted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                             }
                             break;
                         case "applyFilter":
@@ -229,7 +265,7 @@ public class HotelManager {
                                 System.out.println("show revenue button pressed in finance panel");
                                 FinancePanel pnl = (FinancePanel)activePanel.getCenterPanel();
                                 double revenue = hotelDao.calculateRevenue(pnl.getStartDate(), pnl.getEndDate(), currHotelID);
-                                pnl.setTfRevenue(revenue);
+                                pnl.setRevenue(String.valueOf(revenue));
                             }
                             break;
                         case "view rooms":
@@ -261,8 +297,9 @@ public class HotelManager {
                                 profile.pushEditButton();
                             }
                     }
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);  // TODO convert JOptionPane
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(hotelView, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -270,7 +307,7 @@ public class HotelManager {
         @Override
         public void mouseClicked(MouseEvent e) {
             JTextField tf = (JTextField) e.getSource();
-            if (tf.isEnabled()) tf.setText(datePicker.getPickedDate());
+            if (tf.isEnabled() && !tf.isEditable()) tf.setText(datePicker.getPickedDate());
         }
 
         @Override

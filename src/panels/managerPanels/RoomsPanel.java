@@ -7,6 +7,7 @@ package panels.managerPanels;
 import panels.Panel;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.Date;
@@ -31,6 +32,16 @@ public class RoomsPanel extends Panel {
         super.cbFilterOption = cbFilterOption;
         super.tfFilterUpperValue = tfFilterUpperValue;
         super.tfFilterValue = tfFilterValue;
+        cbFilterOption.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (String.valueOf(cbFilterOption.getSelectedItem()).equals("between")) {
+                    enableTfUpperValue();
+                } else {
+                    disableTfUpperValue();
+                }
+            }
+        });
     }
 
     private void initTable() {
@@ -106,8 +117,7 @@ public class RoomsPanel extends Panel {
     @Override
     public Object[] getEntity() {
         if (!tfCheck()) {
-            JOptionPane.showMessageDialog(this, "Please enter all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
-            return null;
+            throw new IllegalArgumentException("Please enter all required fields!");
         }
 
 
@@ -122,6 +132,17 @@ public class RoomsPanel extends Panel {
         };
     }
 
+    private void enableTfUpperValue() {
+        tfFilterUpperValue.setEnabled(true);
+        tfFilterUpperValue.setEditable(true);
+    }
+
+    private void disableTfUpperValue() {
+        tfFilterUpperValue.setText("");
+        tfFilterUpperValue.setEnabled(false);
+        tfFilterUpperValue.setEditable(false);
+    }
+
     public boolean tfCheck() {
         return !tfHotelID.getText().isEmpty() && !tfRoomNum.getText().isEmpty()
                 && !tfRoomPrice.getText().isEmpty() && !tfRoomSize.getText().isEmpty() && !tfCapacity.getText().isEmpty();
@@ -134,7 +155,7 @@ public class RoomsPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         scrollPane1 = new JScrollPane();
         table1 = new JTable();
         controlPanel = new JPanel();
@@ -152,9 +173,9 @@ public class RoomsPanel extends Panel {
         label3 = new JLabel();
         label4 = new JLabel();
         label5 = new JLabel();
-        textArea1 = new JTextArea();
         tfRoomPrice = new JTextField();
         label7 = new JLabel();
+        label9 = new JLabel();
         filterPanel = new JPanel();
         cbSelectColumn = new JComboBox<>();
         cbFilterOption = new JComboBox<>();
@@ -165,12 +186,14 @@ public class RoomsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-        EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing
-        . border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ),
-        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () ))
-        throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
+        new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion"
+        , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+        , new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 )
+        , java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (
+        new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+        ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( )
+        ; }} );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -203,6 +226,7 @@ public class RoomsPanel extends Panel {
                 }
             });
             table1.setPreferredSize(new Dimension(525, 400));
+            table1.setAutoCreateRowSorter(true);
             scrollPane1.setViewportView(table1);
         }
         add(scrollPane1, BorderLayout.CENTER);
@@ -291,13 +315,6 @@ public class RoomsPanel extends Panel {
                 selectionPanel.add(label5);
                 label5.setBounds(20, 90, 90, 25);
 
-                //---- textArea1 ----
-                textArea1.setText("Please choose a row to update!");
-                textArea1.setLineWrap(true);
-                textArea1.setWrapStyleWord(true);
-                selectionPanel.add(textArea1);
-                textArea1.setBounds(435, 150, 100, 60);
-
                 //---- tfRoomPrice ----
                 tfRoomPrice.setToolTipText("Capacity");
                 selectionPanel.add(tfRoomPrice);
@@ -307,6 +324,11 @@ public class RoomsPanel extends Panel {
                 label7.setText("Capacity:");
                 selectionPanel.add(label7);
                 label7.setBounds(435, 35, 90, 25);
+
+                //---- label9 ----
+                label9.setText("Please choose a row to update or delete!");
+                selectionPanel.add(label9);
+                label9.setBounds(new Rectangle(new Point(165, 120), label9.getPreferredSize()));
 
                 {
                     // compute preferred size
@@ -380,6 +402,8 @@ public class RoomsPanel extends Panel {
 
                 //---- tfFilterUpperValue ----
                 tfFilterUpperValue.setToolTipText("Filter Input");
+                tfFilterUpperValue.setEnabled(false);
+                tfFilterUpperValue.setEditable(false);
                 filterPanel.add(tfFilterUpperValue);
                 tfFilterUpperValue.setBounds(170, 110, 115, 40);
 
@@ -410,7 +434,7 @@ public class RoomsPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane scrollPane1;
     private JTable table1;
     private JPanel controlPanel;
@@ -428,9 +452,9 @@ public class RoomsPanel extends Panel {
     private JLabel label3;
     private JLabel label4;
     private JLabel label5;
-    private JTextArea textArea1;
     private JTextField tfRoomPrice;
     private JLabel label7;
+    private JLabel label9;
     private JPanel filterPanel;
     private JComboBox<String> cbSelectColumn;
     private JComboBox<String> cbFilterOption;
