@@ -129,7 +129,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "lblRoomNumber"
-						"text": "Room Number:"
+						"text": "Room ID:"
 						"font": new java.awt.Font( "Inter", 0, 12 )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100

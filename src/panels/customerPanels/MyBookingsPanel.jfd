@@ -85,7 +85,19 @@ new FormModel {
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"width": 225
 					"height": 75
-					"x": 590
+					"x": 325
+					"y": 60
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnShow"
+					"text": "Show"
+					"cursor": #Cursor0
+					"actionCommand": "My Bookings"
+					"name": "show"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 225
+					"height": 75
+					"x": 560
 					"y": 60
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {

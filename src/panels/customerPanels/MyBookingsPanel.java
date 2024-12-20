@@ -59,6 +59,7 @@ public class MyBookingsPanel extends Panel {
     public void addButtonListener(ActionListener al) {
         btnNewBooking.addActionListener(al);
         btnCancel.addActionListener(al);
+        btnShow.addActionListener(al);
     }
 
     @Override
@@ -93,21 +94,22 @@ public class MyBookingsPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
         pnlBookings = new JScrollPane();
         tblBookings = new JTable();
         pnlControl = new JPanel();
         btnCancel = new JButton();
         btnNewBooking = new JButton();
+        btnShow = new JButton();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
-        .border.EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder
-        .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.
-        awt.Font.BOLD,12),java.awt.Color.red), getBorder()))
-        ; addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-        ){if("\u0062ord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}})
-        ;
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax
+        . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing
+        .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .
+        Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .red
+        ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override
+        public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName (
+        ) ) )throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== pnlBookings ========
@@ -156,7 +158,15 @@ public class MyBookingsPanel extends Panel {
             btnNewBooking.setActionCommand("My Bookings");
             btnNewBooking.setName("new booking");
             pnlControl.add(btnNewBooking);
-            btnNewBooking.setBounds(590, 60, 225, 75);
+            btnNewBooking.setBounds(325, 60, 225, 75);
+
+            //---- btnShow ----
+            btnShow.setText("Show");
+            btnShow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            btnShow.setActionCommand("My Bookings");
+            btnShow.setName("show");
+            pnlControl.add(btnShow);
+            btnShow.setBounds(560, 60, 225, 75);
 
             {
                 // compute preferred size
@@ -179,11 +189,12 @@ public class MyBookingsPanel extends Panel {
 
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
+    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
     private JScrollPane pnlBookings;
     private JTable tblBookings;
     private JPanel pnlControl;
     private JButton btnCancel;
     private JButton btnNewBooking;
+    private JButton btnShow;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

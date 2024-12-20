@@ -26,7 +26,6 @@ public abstract class Panel extends JPanel {
 
     public abstract boolean tfCheck();
 
-
     public void setSelectedButton(JButton button) {
         if (prevSelectedButton == button) return;
         if (prevSelectedButton != null) {

@@ -104,8 +104,8 @@ public class HouseKeepingPanel extends Panel {
         return new Object[] {
                 tfSsn.getText(),
                 tfRoomNumber.getText(),
-                Timestamp.valueOf(tfTime.getText()),
-                String.valueOf(cbSelectColumn.getSelectedItem())
+                tfTime.getText(),
+                cbSelectColumn.getSelectedItem()
         };
     }
     @Override
@@ -142,12 +142,13 @@ public class HouseKeepingPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-        EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing
-        . border. TitledBorder. BOTTOM, new java .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ),
-        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .getPropertyName () ))
-        throw new RuntimeException( ); }} );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing
+        . border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e" , javax. swing .border . TitledBorder
+        . CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dialo\u0067", java .
+        awt . Font. BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) )
+        ;  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
+        ) { if( "borde\u0072" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } )
+        ;
         setLayout(new BorderLayout());
 
         //======== pnlHouseKeeping ========
@@ -235,7 +236,7 @@ public class HouseKeepingPanel extends Panel {
                 lblSsn.setBounds(15, 45, 100, 25);
 
                 //---- lblRoomNumber ----
-                lblRoomNumber.setText("Room Number:");
+                lblRoomNumber.setText("Room ID:");
                 lblRoomNumber.setFont(new Font("Inter", Font.PLAIN, 12));
                 pnlSelection.add(lblRoomNumber);
                 lblRoomNumber.setBounds(120, 45, 100, 25);
