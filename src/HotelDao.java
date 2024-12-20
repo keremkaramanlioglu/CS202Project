@@ -81,6 +81,10 @@ public class HotelDao {
         return stmt.executeUpdate();
     }
     public int insertCustomer(Customer customer) throws SQLException {
+        System.out.println(customer.getC_room_id());
+        if (customer.getC_room_id() == null){
+            System.out.println("it is null");
+        }
         String sql = "INSERT INTO Customers (c_ssn, c_firstname, c_lastname, c_bd, c_room_id, c_email, c_phone_num, c_gender, zip_code) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         stmt = con.prepareStatement(sql);
         stmt.setObject(1, customer.getC_ssn());
@@ -476,9 +480,6 @@ public class HotelDao {
             cs.add(new CleaningSchedule(rs));
         }
         return cs;
-    }
-    public void executeQuery(String query) {
-
     }
 
     // NEW
@@ -998,4 +999,25 @@ public class HotelDao {
             return rowsAffected > 0; // Return true if at least one row was updated
         }
     }
+
+    public ResultSet getResultSet(String query) throws SQLException {
+        PreparedStatement stmt = con.prepareStatement(query);
+        ResultSet resultSet = stmt.executeQuery(query);
+        return resultSet;
+    }
+
+    public ArrayList<Object[]> getRowsAsObject(ResultSet rs, ArrayList<Object> columns) throws SQLException {
+        ArrayList<Object[]> result = new ArrayList<>();
+        int count = columns.size();
+
+        while (rs.next()) {
+            Object[] row = new Object[count];
+            for (int i = 0; i < count; i++) {
+                row[i] = rs.getObject(i + 1);
+            }
+            result.add(row);
+        }
+        return result;
+    }
+
 }

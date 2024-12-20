@@ -2,6 +2,7 @@ import entities.*;
 
 import panels.Panel;
 import panels.customerPanels.ProfilePanel;
+import panels.dbManagerPanels.QueryPanel;
 import panels.managerPanels.*;
 import panels.receptionistPanels.HouseKeepingPanel;
 import panels.receptionistPanels.RoomsPanel;
@@ -12,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.print.Book;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -272,15 +275,30 @@ public class HotelManager {
                             if (command.equals("My Jobs")) {
                                 int affectedRow = hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getSelectedRow()));
                             } else if (command.equals("Profile")) {
-                                System.out.println("confirm button pressed in profile panel");
                                 ProfilePanel profile = (ProfilePanel) activePanel.getPanelByName("Profile");
+                                hotelDao.insertCustomer(profile.getCustomer());
+                                System.out.println("done");
                                 profile.pushConfirmButton();
-                                //hotelDao.processCustomer(profile.getEntity());
                             }
                             break;
                         case "execute":
                             if (command.equals("Query")) {
-                                System.out.println("execute button pressed in query panel");
+                                QueryPanel pnl = (QueryPanel) activePanel.getPanelByName("Query");
+                                String query = pnl.getTaQuery();
+                                System.out.println(query);
+
+                                ArrayList<Object> columnValues = new ArrayList<>();
+
+                                ResultSet resultSet = hotelDao.getResultSet(query);
+                                ResultSetMetaData metaData = resultSet.getMetaData();
+
+                                int columnCount = metaData.getColumnCount();
+                                for (int i = 1; i <= columnCount; i++) {
+                                    columnValues.add(i - 1, metaData.getColumnName(i));
+                                    System.out.println(columnValues.get(i - 1));
+                                }
+                                pnl.setTableColumns(columnValues);
+                                pnl.setTableRows(hotelDao.getRowsAsObject(resultSet, columnValues));
                             }
                             break;
                         case "edit":
