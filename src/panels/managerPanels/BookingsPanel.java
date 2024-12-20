@@ -54,8 +54,8 @@ public class BookingsPanel extends Panel {
         tfRoomID.setText(String.valueOf(rowValues[2]));
         cbPaymentStatus.setSelectedItem(String.valueOf(rowValues[3]));
         cbPaymentMethod.setSelectedItem(String.valueOf(rowValues[4]));
-        tfStartDate.setText(String.valueOf(rowValues[5]));
-        tfEndDate.setText(String.valueOf(rowValues[6]));
+        tfStartDate.setText(String.valueOf(rowValues[5]).split(" ")[0]);
+        tfEndDate.setText(String.valueOf(rowValues[6]).split(" ")[0]);
         cbCheckin.setSelected(Boolean.parseBoolean(String.valueOf(rowValues[7])));
         cbCheckout.setSelected(Boolean.parseBoolean(String.valueOf(rowValues[8])));
     }
@@ -182,6 +182,13 @@ public class BookingsPanel extends Panel {
         label8 = new JLabel();
 
         //======== this ========
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new
+        javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax
+        . swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java
+        . awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
+        . Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .
+        PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .
+        equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== scrollPane1 ========
@@ -215,7 +222,6 @@ public class BookingsPanel extends Panel {
                 }
             });
             tblData.setRowSelectionAllowed(false);
-            tblData.setEnabled(false);
             scrollPane1.setViewportView(tblData);
         }
         add(scrollPane1, BorderLayout.CENTER);

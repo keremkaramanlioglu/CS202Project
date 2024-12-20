@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.print.Book;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -159,7 +160,12 @@ public class HotelManager {
                             break;
                         case "update":
                             if (command.equals("Bookings")) {
-                                hotelDao.updateBooking(new Booking(activePanel.getCenterPanel().getEntity()));
+                                Booking book = new Booking(activePanel.getCenterPanel().getEntity());
+                                book.setBooking_id(Integer.parseInt(String.valueOf(activePanel.getCenterPanel().getSelectedRow()[0])));
+                                int affectedRows = hotelDao.updateBooking(book);
+                                if( affectedRows > 0) {
+                                    JOptionPane.showMessageDialog(null, command + " updated successfully!" + " Affected rows: " + affectedRows);
+                                }
                             } else if (command.equals("Employees")) {
                                 hotelDao.updateEmployee(new Employee(activePanel.getCenterPanel().getEntity()));
                             } else if (command.equals("Housekeeping")) {
@@ -167,9 +173,9 @@ public class HotelManager {
                             } else if (command.equals("Rooms")) {
                                 Room room = new Room(activePanel.getCenterPanel().getEntity());
                                 room.setRoom_id(Integer.parseInt(String.valueOf(activePanel.getCenterPanel().getSelectedRow()[0])));
-                                System.out.println(String.valueOf(activePanel.getCenterPanel().getSelectedRow()[0]));
-                                if( hotelDao.updateRoom(room) > 0) {
-                                    System.out.println("successfully updated customer");
+                                int affectedRows = hotelDao.updateRoom(room);
+                                if( affectedRows > 0) {
+                                    JOptionPane.showMessageDialog(null, "Room updated successfully!" + " Affected rows: " + affectedRows);
                                 }
                             } else if (command.equals("Users")) {
 

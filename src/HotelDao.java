@@ -166,7 +166,7 @@ public class HotelDao {
         stmt.setBoolean(8, booking.isC_check_out_status());
         stmt.executeUpdate();
     }
-    public void updateBooking(Booking booking) throws SQLException {
+    public int updateBooking(Booking booking) throws SQLException {
         String sql = "UPDATE Bookings SET c_ssn = ?, room_id = ?, payment_status = ?, payment_method = ?, booking_start_date = ?, booking_end_date = ?, c_check_in_status = ?, c_check_out_status = ? WHERE booking_id = ?";
         stmt = con.prepareStatement(sql);
         stmt.setString(1, booking.getC_ssn());
@@ -177,7 +177,8 @@ public class HotelDao {
         stmt.setDate(6, booking.getBooking_end_date());
         stmt.setBoolean(7, booking.isC_check_in_status());
         stmt.setBoolean(8, booking.isC_check_out_status());
-        stmt.executeUpdate();
+        stmt.setInt(9, booking.getBooking_id());
+        return stmt.executeUpdate();
     }
     public void deleteBooking(Booking booking) throws SQLException {
         String sql = "DELETE FROM Bookings WHERE booking_id = ?";
