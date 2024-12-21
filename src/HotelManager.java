@@ -32,6 +32,7 @@ public class HotelManager {
     private final SSNPopUpMenu ssnPopUpMenu;
     private String currSsn;
     private Employee currEmployee;
+    private Customer currCustomer;
 
     public HotelManager(HotelView hotelView, DBConnectionControl dbConnectionControl) throws SQLException {
         this.hotelView = hotelView;
@@ -65,37 +66,53 @@ public class HotelManager {
             JOptionPane.showMessageDialog(hotelView,"You can not continue without verifying your ssn!", "Empty Ssn!", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        setCurrEmployee();
+        if (hotelDao.getEmpType(currSsn) == null) {
+            setCurrCustomer();
+            System.out.println(currCustomer.getC_type());
+        }else {
+            setCurrEmployee();
+            System.out.println(currEmployee.getEmp_type());
+        }
     }
 
     private boolean isValidAction(String action) {
-        return switch (String.valueOf(currEmployee.getEmp_type())) {
-            case "Manager" -> compare(action, new String[]{"Manager", "Customer", "Housekeeper", "Receptionist"});
-            case "Database Manager" -> true;
-            case "Receptionist" -> compare(action, new String[]{"Customer", "Receptionist"});
-            case "Housekeeper" -> compare(action, new String[]{"Customer", "Housekeeper"});
-            default -> false;
-        };
+        if ("Back".equals(action)) {
+            return true;
+        }
+        if (String.valueOf(currCustomer.getC_type()) != null){
+            return switch (String.valueOf(currCustomer.getC_type())) {
+                case "Customer" -> compare(action, new String[]{"Customer"});
+                default -> false;
+            };
+        }else {
+            return switch (String.valueOf(currEmployee.getEmp_type())) {
+                case "Manager" -> compare(action, new String[]{"Manager", "Customer", "Housekeeper", "Receptionist"});
+                case "Database Manager" -> true;
+                case "Receptionist" -> compare(action, new String[]{"Customer", "Receptionist"});
+                case "Housekeeper" -> compare(action, new String[]{"Customer", "Housekeeper"});
+                default -> false;
+            };
+        }
     }
 
     public boolean checkAction(String action) {
-        if (currEmployee == null && !action.equals("Back")) {
+        if (!action.equals("Back")) {
             try {
                 setCurrSsn();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
-            if (currEmployee == null) {
+            if (currEmployee ==  null && currCustomer == null) {
                 return false;
             }
-        } else if (!action.equals("Back") && !isValidAction(action)) {
+        } else if (!isValidAction(action)) {
             JOptionPane.showMessageDialog(hotelView,"Invalid action!", "Authority Error", JOptionPane.ERROR_MESSAGE);
             try {
                 setCurrSsn();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
-            if (currEmployee == null) {
+            if (currEmployee ==  null && currCustomer == null) {
                 return false;
             }
         }
@@ -108,6 +125,16 @@ public class HotelManager {
             return;
         }
         currEmployee = hotelDao.getEmployees("ssn", "=", currSsn).getFirst();
+        currCustomer = null;
+    }
+
+    private void setCurrCustomer() throws SQLException {
+        if (hotelDao.getCustomers("ssn", "=", currSsn).isEmpty()) {
+            JOptionPane.showMessageDialog(hotelView, "No such Employee! Please enter a valid ssn!", "Invalid SSN!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        currCustomer = hotelDao.getCustomers("ssn", "=", currSsn).getFirst();
+        currEmployee = null;
     }
 
     public boolean compare(String s1, String[] strings) {
@@ -148,18 +175,27 @@ public class HotelManager {
                 activePanel.setSelectedButton(button);
                 if (activePanel.getCenterPanel() != null) activePanel.getCenterPanel().reset();
                 activePanel.setCenterPanel(activePanel.getPanelByName(command));
-
                 try {
-                    activePanel.getCenterPanel().setTableRows(hotelDao.initializeTable(sidePanelName, activePanel.getCenterPanel().getPanelName(), currEmployee.getEmp_hotel_id()));
+                    if (activePanel.getCenterPanel().table != null) {
+                        activePanel.getCenterPanel().setTableRows(hotelDao.initializeTable(sidePanelName, activePanel.getCenterPanel().getPanelName(), currEmployee.getEmp_hotel_id()));
+                    } else if (sidePanelName.equals("Profile")) {
+                        ((ProfilePanel)activePanel.getCenterPanel()).setTfSsn(currSsn);
+                    }
                 } catch (SQLException ex) {
                     System.out.println(ex.getMessage());
                 }
             } else if (compare(command, mainPanelOptions)) {
-                if (!command.equals("Customer")) if (!checkAction(command)) return;
+                if (!checkAction(command)) return;
                 hotelView.getActivePanel().reset();
                 hotelView.setActivePanel(hotelView.getPanelByName(command));
             } else {
-                Object currHotelID = currEmployee.getEmp_hotel_id();
+                Object currHotelID = null;
+                Object currCustomerSsn = null;
+                if (currEmployee != null) {
+                    currHotelID = currEmployee.getEmp_hotel_id();
+                } else if (currCustomer != null) {
+                    currCustomerSsn = currCustomer.getC_ssn();
+                }
                 Panel activePanel = hotelView.getActivePanel();
                 int rowsAffected = 0;
                 try {
