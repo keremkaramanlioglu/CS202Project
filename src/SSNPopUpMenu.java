@@ -13,41 +13,26 @@ import javax.swing.*;
  * @author kerem
  */
 public class SSNPopUpMenu extends JDialog {
-    private String ssn;
 
 
-    public SSNPopUpMenu(JFrame owner) {
+    public SSNPopUpMenu(JFrame owner, ActionListener listener) {
         super(owner);
-        ssn = "";
         initComponents();
-        btnCancel.addActionListener(new ButtonListener());
-        btnOK.addActionListener(new ButtonListener());
+        btnCancel.addActionListener(listener);
+        btnOK.addActionListener(listener);
     }
 
-    protected String getSsn() {
-        this.setVisible(true);
-        return ssn;
+    public String getSsn() {
+        return tfSsn.getText();
     }
 
     private void tfSsnKeyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            btnOK.doClick();  // Programmatically clicks the OK button
-        }
-    }
-
-    public class ButtonListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == btnOK) {
-                ssn = tfSsn.getText();
-            }
-            dispose();
-        }
+        // TODO add your code here
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         label1 = new JLabel();
         tfSsn = new JTextField();
         btnOK = new JButton();
@@ -79,11 +64,13 @@ public class SSNPopUpMenu extends JDialog {
 
         //---- btnOK ----
         btnOK.setText("OK");
+        btnOK.setName("ssnpopup");
         contentPane.add(btnOK);
         btnOK.setBounds(440, 170, 153, 45);
 
         //---- btnCancel ----
         btnCancel.setText("Cancel");
+        btnCancel.setName("ssnpopup");
         contentPane.add(btnCancel);
         btnCancel.setBounds(285, 170, 153, 45);
 
@@ -107,7 +94,7 @@ public class SSNPopUpMenu extends JDialog {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JLabel label1;
     private JTextField tfSsn;
     private JButton btnOK;
