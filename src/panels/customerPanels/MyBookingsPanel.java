@@ -27,6 +27,10 @@ public class MyBookingsPanel extends Panel {
         initTable();
     }
 
+    public String getPanelName() {
+        return "CustomerPanel";
+    }
+
     private void initTable() {  // TODO write a cancel booking function in hotel dao
        tableModel = new DefaultTableModel(
                new Object[][] {

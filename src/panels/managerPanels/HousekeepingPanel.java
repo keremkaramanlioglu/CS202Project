@@ -39,6 +39,10 @@ public class HousekeepingPanel extends Panel {
         super.tfFilterUpperValue = tfFilterUpperValue;
     }
 
+    public String getPanelName() {
+        return "ManagerPanel";
+    }
+
     private void initTable() {
         tableModel = new DefaultTableModel(
                 new Object[][] {

@@ -97,6 +97,10 @@ public class BookingsPanel extends Panel {
         super.tfFilterValue = tfFilterValue;
     }
 
+    public String getPanelName() {
+        return "ManagerPanel";
+    }
+
     private void initTable() {
         tableModel = new DefaultTableModel(
                 new Object[][] {},

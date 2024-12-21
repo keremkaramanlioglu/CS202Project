@@ -89,6 +89,10 @@ public class ManagerPanel extends Panel {
         pnlFinance.addMouseListener(l);
     }
 
+    public String getPanelName() {
+        return "ManagerPanel";
+    }
+
     public JButton getBtnEmployees() {
         return btnEmployees;
     }

@@ -36,6 +36,10 @@ public class UsersPanel extends Panel {
         super.tfFilterValue = tfFilterValue;
     }
 
+    public String getPanelName() {
+        return "ManagerPanel";
+    }
+
     private void initTable() {
        model1 = new DefaultTableModel(
                 new Object[][] {

@@ -30,7 +30,11 @@ public class BookARoomPanel extends Panel {
     // TODO write a hotelDao function that takes these filters
     public String[] getFilters() {
         return new String[]{String.valueOf(tfCheckInDate.getText()), String.valueOf(tfCheckOutDate.getText()), String.valueOf(tfHotelName.getText()),
-        String.valueOf(tfCity.getText()), String.valueOf(tfRoomType.getText()), String.valueOf(tfNumberOfPeople.getText())};
+        String.valueOf(tfZipcode.getText()), String.valueOf(tfRoomType.getText()), String.valueOf(tfNumberOfPeople.getText())};
+    }
+
+    public String getPanelName() {
+        return "CustomerPanel";
     }
 
     private void initTable() {
@@ -139,8 +143,8 @@ public class BookARoomPanel extends Panel {
         lblHotelName = new JLabel();
         lblRoomType = new JLabel();
         tfRoomType = new JTextField();
-        tfCity = new JTextField();
-        lblCity = new JLabel();
+        tfZipcode = new JTextField();
+        lblZipcode = new JLabel();
         tfNumberOfPeople = new JTextField();
         lblNumberOfPeople = new JLabel();
         btnShowRooms = new JButton();
@@ -149,13 +153,13 @@ public class BookARoomPanel extends Panel {
         btnBook = new JButton();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.
-        swing.border.EmptyBorder(0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border
-        .TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069al\u006fg"
-        ,java.awt.Font.BOLD,12),java.awt.Color.red), getBorder
-        ())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java
-        .beans.PropertyChangeEvent e){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException
-        ();}});
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
+        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax
+        . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
+        .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
+        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .
+        equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== pnlReservableHotels ========
@@ -228,13 +232,13 @@ public class BookARoomPanel extends Panel {
                 lblRoomType.setBounds(370, 35, 100, 17);
                 panel1.add(tfRoomType);
                 tfRoomType.setBounds(375, 50, 100, 40);
-                panel1.add(tfCity);
-                tfCity.setBounds(260, 110, 100, 40);
+                panel1.add(tfZipcode);
+                tfZipcode.setBounds(260, 110, 100, 40);
 
-                //---- lblCity ----
-                lblCity.setText("City:");
-                panel1.add(lblCity);
-                lblCity.setBounds(260, 95, 100, 17);
+                //---- lblZipcode ----
+                lblZipcode.setText("Zipcode:");
+                panel1.add(lblZipcode);
+                lblZipcode.setBounds(260, 95, 100, 17);
                 panel1.add(tfNumberOfPeople);
                 tfNumberOfPeople.setBounds(375, 110, 100, 40);
 
@@ -325,8 +329,8 @@ public class BookARoomPanel extends Panel {
     private JLabel lblHotelName;
     private JLabel lblRoomType;
     private JTextField tfRoomType;
-    private JTextField tfCity;
-    private JLabel lblCity;
+    private JTextField tfZipcode;
+    private JLabel lblZipcode;
     private JTextField tfNumberOfPeople;
     private JLabel lblNumberOfPeople;
     private JButton btnShowRooms;

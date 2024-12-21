@@ -24,6 +24,10 @@ public class DBManagerPanel extends Panel {
         super.prevCenterPanel = null;
     }
 
+    public String getPanelName() {
+        return "DBManagerPanel";
+    }
+
     @Override
     public void addButtonListener(ActionListener al) {
         btnQueryPanel.addActionListener(al);

@@ -1,6 +1,5 @@
 import entities.*;
 
-import javax.lang.model.type.NullType;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -12,6 +11,18 @@ public class HotelDao {
 
     public HotelDao(Connection con) throws SQLException {
         this.con = con;
+    }
+
+    public String getEmpType(String currSsn) throws SQLException {
+        String query = "SELECT emp_type FROM Employees WHERE emp_ssn = ?";
+        String empType = null;
+        stmt = con.prepareStatement(query);
+        stmt.setString(1, currSsn);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            empType = rs.getString("emp_type");
+        }
+        return empType;
     }
 
     public boolean compare(String s1, String[] strings) {
@@ -554,14 +565,14 @@ public class HotelDao {
 
     // NEW
 
-    public ArrayList<Object[]> filterBookings(String columnName, String filterOption, String filterValue, String filterValueUpper) throws SQLException {
+    public ArrayList<Object[]> filterBookings(String columnName, String filterOption, String filterValue, String filterValueUpper, int hotelID) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
         String sql = "";
 
         // Construct the SQL query based on filter options
         switch (filterOption) {
             case "None":
-                sql = "SELECT * FROM Bookings";
+                sql = "SELECT * FROM Bookings b, Rooms r WHERE b.room_id = r.room_id AND r.hotel_id = ?";
                 break;
             case "=":
             case "!=":
@@ -569,13 +580,13 @@ public class HotelDao {
             case ">":
             case "<=":
             case ">=":
-                sql = "SELECT * FROM Bookings WHERE " + columnName + " " + filterOption + " ?";
+                sql = "SELECT * FROM Bookings b, Rooms r WHERE b.room_id = r.room_id AND r.hotel_id = ? AND " + columnName + " " + filterOption + " ?";
                 break;
             case "between":
-                sql = "SELECT * FROM Bookings WHERE " + columnName + " BETWEEN ? AND ?";
+                sql = "SELECT * FROM Bookings b, Rooms r WHERE b.room_id = r.room_id AND r.hotel_id = ? AND " + columnName + " BETWEEN ? AND ?";
                 break;
             case "contains":
-                sql = "SELECT * FROM Bookings WHERE " + columnName + " LIKE ?";
+                sql = "SELECT * FROM Bookings b, Rooms r WHERE b.room_id = r.room_id AND r.hotel_id = ? AND " + columnName + " LIKE ?";
                 filterValue = "%" + filterValue + "%"; // Adjust filterValue for LIKE
                 break;
             default:
@@ -591,23 +602,15 @@ public class HotelDao {
                 } else {
                     stmt.setString(1, filterValue);
                 }
+            }else {
+                stmt.setInt(1, hotelID);
             }
 
             try (ResultSet rs = stmt.executeQuery()) {
                 // Collect results into an ArrayList<Object[]>
                 //rs.next();
                 while (rs.next()) {
-                    Object[] row = new Object[9];
-                    row[0] = rs.getInt("booking_id");
-                    row[1] = rs.getString("c_ssn");
-                    row[2] = rs.getInt("room_id");
-                    row[3] = rs.getString("payment_status");
-                    row[4] = rs.getString("payment_method");
-                    row[5] = rs.getDate("booking_start_date");
-                    row[6] = rs.getDate("booking_end_date");
-                    row[7] = rs.getBoolean("c_check_in_status");
-                    row[8] = rs.getBoolean("c_check_out_status");
-                    result.add(row);
+
                 }
             }
         }
@@ -950,7 +953,6 @@ public class HotelDao {
             stmt.setDate(9, endDate);
 
             try (ResultSet rs = stmt.executeQuery()) {
-                // Müsait odaları toplama
                 while (rs.next()) {
                     Object[] row = new Object[6];
                     row[0] = rs.getString("room_num");
@@ -1163,4 +1165,41 @@ public class HotelDao {
     }
 
 
+    public ArrayList<Object[]> initializeTable(String panelName, String name, Object hotel_id) throws SQLException {
+        ArrayList<Object[]> result = new ArrayList<>();
+        int hotelID = Integer.parseInt(hotel_id.toString());
+        switch (name){
+            case "ManagerPanel":
+                if (panelName.equals("Rooms")) {
+                    result =filterRooms("room_id", "None", "", "", hotelID);
+                } else if (panelName.equals("Bookings")) {
+                    result = filterBookings("booking_id", "None", "", "", hotelID);
+                } else if (panelName.equals("Employees")) {
+                    result = filterEmployees("employee_id", "None", "", "", hotelID);
+                } else if (panelName.equals("Housekeeping")) {
+                    result = filterCleaningSchedule("housekeeping_id", "None", "", "", hotelID);
+                } else if (panelName.equals("Users")) {
+                    result = filterCustomers("user_id", "None", "", "", hotelID);
+                }
+                break;
+            case "ReceptionistPanel":
+                if (panelName.equals("Bookings")) {
+                    result = filterBookings("booking_id", "None", "", "", hotelID);
+                } else if (panelName.equals("Housekeeping")) {
+                    result = filterCleaningScheduleRcp("housekeeping_id", "None", "", "", hotelID);
+                }
+                break;
+            case "CustomerPanel":
+                if (panelName.equals("My Bookings")) {
+                    System.out.println("entered");
+                }
+                break;
+            case "HousekeeperPanel":
+                if (panelName.equals("My Jobs")) {
+                    System.out.println("entered");
+                }
+        }
+        System.out.println("exiting from the method");
+        return result;
+    }
 }

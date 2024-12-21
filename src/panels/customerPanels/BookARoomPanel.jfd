@@ -150,7 +150,7 @@ new FormModel {
 						"y": 50
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "tfCity"
+						name: "tfZipcode"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 40
@@ -158,8 +158,8 @@ new FormModel {
 						"y": 110
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "lblCity"
-						"text": "City:"
+						name: "lblZipcode"
+						"text": "Zipcode:"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 100
 						"height": 17

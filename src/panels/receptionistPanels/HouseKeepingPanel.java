@@ -32,6 +32,10 @@ public class HouseKeepingPanel extends Panel {
         super.tfFilterValue = tfFilterValue;
     }
 
+    public String getPanelName() {
+        return "ReceptionistPanel";
+    }
+
     private void initTable() {
         tableModel = new DefaultTableModel(
                 new Object[][] {
