@@ -29,6 +29,10 @@ public class MyJobsPanel extends Panel {
         initTable();
     }
 
+    public String getPanelName() {
+        return "HousekeeperPanel";
+    }
+
     private void initTable() {
         tableModel = new DefaultTableModel(
                 new Object[][] {

@@ -22,6 +22,10 @@ public class AddCustomerPanel extends Panel {
         initComponents();
     }
 
+    public String getPanelName() {
+        return "ReceptionistPanel";
+    }
+
     @Override
     public void addButtonListener(ActionListener al) {
         btnAdd.addActionListener(al);

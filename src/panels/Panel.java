@@ -105,4 +105,5 @@ public abstract class Panel extends JPanel {
 
     public abstract Panel getPanelByName(String panelName);
 
+    public abstract String getPanelName();
 }

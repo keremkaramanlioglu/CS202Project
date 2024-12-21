@@ -28,6 +28,10 @@ public class CustomerPanel extends Panel {
         super.prevSelectedButton = null;
     }
 
+    public String getPanelName() {
+        return "CustomerPanel";
+    }
+
     @Override
     public void reset() {
         if(prevSelectedButton != null) prevSelectedButton.setBackground(MainPanel.sidePanelColor);

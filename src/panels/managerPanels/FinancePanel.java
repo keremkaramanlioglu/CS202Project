@@ -23,6 +23,10 @@ public class FinancePanel extends Panel {
         initComponents();
     }
 
+    public String getPanelName() {
+        return "ManagerPanel";
+    }
+
     @Override
     public void addButtonListener(ActionListener al) {
         btnShowRevenue.addActionListener(al);

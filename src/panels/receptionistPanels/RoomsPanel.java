@@ -28,6 +28,10 @@ public class RoomsPanel extends Panel {
         initTable();
     }
 
+    public String getPanelName() {
+        return "ReceptionistPanel";
+    }
+
     public void initTable() {
         tableModel = new DefaultTableModel(
                 new Object[][] {

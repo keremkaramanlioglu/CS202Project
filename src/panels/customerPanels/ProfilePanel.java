@@ -23,6 +23,10 @@ public class ProfilePanel extends Panel {
         initComponents();
     }
 
+    public String getPanelName() {
+        return "CustomerPanel";
+    }
+
     @Override
     public void addButtonListener(ActionListener al) {
         btnConfirm.addActionListener(al);

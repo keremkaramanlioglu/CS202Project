@@ -27,6 +27,10 @@ public class ReceptionistPanel extends Panel {
         super.prevSelectedButton = null;
     }
 
+    public String getPanelName() {
+        return "ReceptionistPanel";
+    }
+
     @Override
     public void reset() {
         if(prevSelectedButton != null) prevSelectedButton.setBackground(MainPanel.sidePanelColor);
