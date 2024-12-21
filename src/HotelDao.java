@@ -1,7 +1,9 @@
 import entities.*;
 import javax.swing.*;
+import java.io.*;
 import java.sql.*;
-import java.util.ArrayList;
+import java.sql.Date;
+import java.util.*;
 import java.util.logging.*;
 
 import static java.sql.JDBCType.NULL;
@@ -12,17 +14,37 @@ public class HotelDao {
 
     public HotelDao(Connection con) throws SQLException {
         this.con = con;
-        this.con.setAutoCommit(false);  // Auto-commit devre dışı
+        this.con.setAutoCommit(false);
         configureLogger();
     }
 
     private void configureLogger() {
         try {
-            FileHandler fileHandler = new FileHandler("hotel_dao.log", true);
+            FileHandler fileHandler = new FileHandler("hotel_dao.log", 5 * 1024 * 1024, 5, true);
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
+            logger.setUseParentHandlers(false);
+
+            cleanOldLogs("hotel_dao.log", 5);
         } catch (Exception e) {
             logger.severe("Logger configuration failed: " + e.getMessage());
+        }
+    }
+
+    private void cleanOldLogs(String baseFileName, int maxFiles) {
+        File dir = new File(".");
+        File[] logFiles = dir.listFiles((d, name) -> name.startsWith(baseFileName) && name.matches(baseFileName + "\\.\\d+"));
+
+        if (logFiles != null && logFiles.length > maxFiles) {
+            Arrays.sort(logFiles, Comparator.comparingLong(File::lastModified));
+            int filesToDelete = logFiles.length - maxFiles;
+            for (int i = 0; i < filesToDelete; i++) {
+                if (logFiles[i].delete()) {
+                    logger.info("Deleted old log file: " + logFiles[i].getName());
+                } else {
+                    logger.warning("Failed to delete log file: " + logFiles[i].getName());
+                }
+            }
         }
     }
 
@@ -541,9 +563,6 @@ public class HotelDao {
             logger.severe("Failed to get employees: " + e.getMessage());
             throw e;
         }
-        return bookings;
-    }
-        }
         return employees;
     }
 
@@ -702,7 +721,7 @@ public class HotelDao {
         }
         return result;
     }
-    public double calculateRevenue(Object start, Object end, Object hotelID) {
+    public double calculateRevenue(Object start, Object end, Object hotelID) throws SQLException {
         double totalRevenue = 0.0;
         String query = "SELECT SUM(r.room_price * DATEDIFF(b.booking_end_date, b.booking_start_date)) AS total_revenue "
                 + "FROM Bookings b "
