@@ -10,6 +10,7 @@ import entities.Hotel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.sql.Date;
 import javax.swing.*;
 
@@ -17,82 +18,95 @@ import javax.swing.*;
  * @author kerem
  */
 public class EmpInfos extends JDialog {
-    private Employee emp;
-    JFrame parent;
-    public EmpInfos(JFrame parent) {
-        super(parent);
-        emp = new Employee();
+
+    private String action;
+
+    public EmpInfos() {
+        initComponents();
+    }
+
+    public void setActionListeners(ActionListener al) {
+        btnOK.addActionListener(al);
+        btnCancel.addActionListener(al);
+    }
+
+    public void setMouseListeners(MouseListener ml) {
+        tfBD.addMouseListener(ml);
+        tfStartDate.addMouseListener(ml);
     }
 
     public boolean checkFields() {
-        return !(tfSsn.getText().isEmpty()) && !(tfFirstName.getText().isEmpty()) && !(tfLastName.getText().isEmpty()) && !(tfEmail.getText().isEmpty())
-                && !(tfSalary.getText().isEmpty()) && !(tfGender.getText().isEmpty()) && !(tfType.getText().isEmpty()) && !(tfBD.getText().isEmpty())
-                && !(tfPhoneNum.getText().isEmpty()) && !(tfStartDate.getText().isEmpty());
+        return (tfBD.getText().isEmpty() || tfBD.getText().equals("Choose a Date!") || tfStartDate.getText().isEmpty() || tfStartDate.getText().equals("Choose a Date!"));
     }
 
-//    public checkInitiateEmp() {
-//        emp.setEmp_bd(tfBD.getText());
-//        emp.setEmp_type(tfType.getText());
-//        emp.setEmp_ssn(tfSsn.getText());
-//        emp.setYears(tf);
-//    }
-
-    public Employee getEmployee() {
-        setVisible(true);
-        initComponents();
-        setPreferredSize(new Dimension(800, 600));
-        btnOK.addActionListener(ae -> {
-            if (checkFields()) {
-                emp.setEmp_ssn(tfSsn.getText());
-                emp.setEmp_type(tfType.getText());
-                emp.setYears(Date.valueOf(tfStartDate.getText()));
-                emp.setEmp_salary(Double.parseDouble(tfSalary.getText()));
-                emp.setEmp_gender(tfGender.getText());
-                emp.setEmp_firstname(tfFirstName.getText());
-                emp.setEmp_lastname(tfLastName.getText());
-                emp.setEmp_email(tfEmail.getText());
-                emp.setEmp_hotel_id(Integer.parseInt(tfHotelID.getText()));
-                emp.setZip_code(tfZipcode.getText());
-                emp.setStreet(tfStreet.getText());
-                emp.setNo(tfNo.getText());
-                emp.setApartment(tfApartment.getText());
-                emp.setEmp_bd(Date.valueOf(tfBD.getText()));
-                emp.setEmp_phone_num(tfPhoneNum.getText());
-                dispose();
-                setVisible(false);
-            } else {
-                try {
-                    throw new Exception("Please enter all required Fields!");
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-        btnCancel.addActionListener(ae -> {
-            dispose();
-            setVisible(false);
-        });
-        if(!checkFields()) return null;
-        return emp;
+    public void setAction(String action) {
+        this.action = action;
     }
 
-    public void setEmp(Employee emp) {
-        this.emp = emp;
-        tfSsn.setText(String.valueOf(emp.getEmp_ssn()));
-        tfFirstName.setText(String.valueOf(emp.getEmp_firstname()));
-        tfLastName.setText(String.valueOf(emp.getEmp_lastname()));
-        tfType.setText(String.valueOf(emp.getEmp_type()));
-        tfSalary.setText(String.valueOf(emp.getEmp_salary()));
-        tfEmail.setText(String.valueOf(emp.getEmp_email()));
-        tfGender.setText(String.valueOf(emp.getEmp_gender()));
-        tfStreet.setText(String.valueOf(emp.getEmp_firstname()));
-        tfNo.setText(String.valueOf(emp.getEmp_lastname()));
-        tfApartment.setText(String.valueOf(emp.getEmp_bd()));
-        tfZipcode.setText(String.valueOf(emp.getZip_code()));
-        tfBD.setText(String.valueOf(emp.getEmp_bd()));
-        tfPhoneNum.setText(String.valueOf(emp.getEmp_phone_num()));
-        tfStartDate.setText(String.valueOf(emp.getYears()));
-        tfHotelID.setText(String.valueOf(emp.getEmp_hotel_id()));
+    public String getAction() {
+        return action;
+    }
+
+    public Object[] getEmployee() {
+
+        if (checkFields()) {
+            throw new IllegalArgumentException("Please choose a Date!");
+        }
+
+        return new Object[]{
+                tfSsn.getText(),
+                tfFirstName.getText(),
+                tfLastName.getText(),
+                tfType.getText(),
+                tfBD.getText(),
+                tfStartDate.getText(),
+                tfHotelID.getText(),
+                tfSalary.getText(),
+                tfPhoneNum.getText(),
+                tfEmail.getText(),
+                tfGender.getText(),
+                tfStreet.getText(),
+                tfNo.getText(),
+                tfApartment.getText(),
+                tfZipcode.getText()
+        };
+    }
+
+    public void reset() {
+        tfSsn.setText("");
+        tfFirstName.setText("");
+        tfLastName.setText("");
+        tfType.setText("");
+        tfBD.setText("Choose a Date!");
+        tfStartDate.setText("Choose a Date!");
+        tfStartDate.setText("");
+        tfHotelID.setText("");
+        tfSalary.setText("");
+        tfPhoneNum.setText("");
+        tfEmail.setText("");
+        tfGender.setText("");
+        tfStreet.setText("");
+        tfNo.setText("");
+        tfApartment.setText("");
+        tfZipcode.setText("");
+    }
+
+    public void setEmp(Object[] emp) {
+        tfSsn.setText(String.valueOf(emp[0]));
+        tfFirstName.setText(String.valueOf(emp[1]));
+        tfLastName.setText(String.valueOf(emp[2]));
+        tfType.setText(String.valueOf(emp[3]));
+        tfBD.setText(String.valueOf(emp[4]));
+        tfStartDate.setText(String.valueOf(emp[5]));
+        tfHotelID.setText(String.valueOf(emp[6]));
+        tfSalary.setText(String.valueOf(emp[7]));
+        tfPhoneNum.setText(String.valueOf(emp[8]));
+        tfEmail.setText(String.valueOf(emp[9]));
+        tfGender.setText(String.valueOf(emp[10]));
+        tfStreet.setText(String.valueOf(emp[11]));
+        tfNo.setText(String.valueOf(emp[12]));
+        tfApartment.setText(String.valueOf(emp[13]));
+        tfZipcode.setText(String.valueOf(emp[14]));
     }
 
     private void initComponents() {
@@ -138,12 +152,12 @@ public class EmpInfos extends JDialog {
 
         //======== panel1 ========
         {
-            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
-            border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER
-            , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font
-            .BOLD ,12 ), java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (
-            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r"
-            .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            panel1.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border
+            . EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax
+            . swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,
+            12 ), java. awt. Color. red) ,panel1. getBorder( )) ); panel1. addPropertyChangeListener (new java. beans
+            . PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .
+            getPropertyName () )) throw new RuntimeException( ); }} );
             panel1.setLayout(null);
 
             //---- label1 ----
@@ -228,8 +242,16 @@ public class EmpInfos extends JDialog {
             tfLastName.setBounds(100, 90, 310, 35);
             panel1.add(tfType);
             tfType.setBounds(100, 130, 310, 35);
+
+            //---- tfBD ----
+            tfBD.setEditable(false);
+            tfBD.setText("Choose a Date!");
             panel1.add(tfBD);
             tfBD.setBounds(100, 170, 310, 35);
+
+            //---- tfStartDate ----
+            tfStartDate.setText("Choose a Date!");
+            tfStartDate.setEditable(false);
             panel1.add(tfStartDate);
             tfStartDate.setBounds(100, 210, 310, 35);
             panel1.add(tfHotelID);
@@ -261,7 +283,7 @@ public class EmpInfos extends JDialog {
             //---- btnCancel ----
             btnCancel.setText("Cancel");
             btnCancel.setActionCommand("Employees");
-            btnCancel.setName("ok");
+            btnCancel.setName("cancel");
             panel1.add(btnCancel);
             btnCancel.setBounds(485, 565, 158, 55);
 

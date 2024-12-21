@@ -87,6 +87,7 @@ public class ManagerPanel extends Panel {
         pnlBookings.addMouseListener(l);
         pnlHousekeeping.addMouseListener(l);
         pnlFinance.addMouseListener(l);
+        pnlEmployees.addMouseListener(l);
     }
 
     public String getPanelName() {

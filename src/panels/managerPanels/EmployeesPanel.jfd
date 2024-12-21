@@ -285,7 +285,8 @@ new FormModel {
 			"size": new java.awt.Dimension( 900, 700 )
 		} )
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
-			name: "panel1"
+			name: "pnlInitEmp"
+			"name": "OK"
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "emp_ssn:"
@@ -545,7 +546,7 @@ new FormModel {
 				name: "btnOK"
 				"text": "OK"
 				"actionCommand": "Employees"
-				"name": "ok"
+				"name": "OK"
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 485
 				"y": 505

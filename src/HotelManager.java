@@ -148,9 +148,10 @@ public class HotelManager {
                 activePanel.setSelectedButton(button);
                 if (activePanel.getCenterPanel() != null) activePanel.getCenterPanel().reset();
                 activePanel.setCenterPanel(activePanel.getPanelByName(command));
-
                 try {
-                    activePanel.getCenterPanel().setTableRows(hotelDao.initializeTable(sidePanelName, activePanel.getCenterPanel().getPanelName(), currEmployee.getEmp_hotel_id()));
+                    if (activePanel.getCenterPanel().table != null) {
+                        activePanel.getCenterPanel().setTableRows(hotelDao.initializeTable(sidePanelName, activePanel.getCenterPanel().getPanelName(), currEmployee.getEmp_hotel_id()));
+                    }
                 } catch (SQLException ex) {
                     System.out.println(ex.getMessage());
                 }
@@ -172,12 +173,9 @@ public class HotelManager {
 //                                    JOptionPane.showMessageDialog(hotelView, affectedRows + " " + command + " added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
 //                                }
                             } else if (command.equals("Employees")) {
-//                                //System.out.println("add button pressed in employees panel by manager");
-//                                EmpInfos emp = new EmpInfos(hotelView);
-//                                Employee employee = emp.getEmployee();
-//                                if (employee != null) {
-//                                    hotelDao.insertEmployee(employee);
-//                                }
+                                EmployeesPanel pnl = ((EmployeesPanel)activePanel.getCenterPanel());
+                                pnl.initEmpInfos();
+                                pnl.setAction(name);
                                 // TODO ADD ROOM NUM CONSTRAINTS
                             } else if (command.equals("Housekeeping")) {
                                 rowsAffected = hotelDao.insertCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getEntity()));
@@ -206,19 +204,13 @@ public class HotelManager {
 //                                    JOptionPane.showMessageDialog(null, command + " updated successfully!" + " Affected rows: " + affectedRows);
 //                                }
                             } else if (command.equals("Employees")) {
-//                                Object[] emps = activePanel.getCenterPanel().getSelectedRow();
-//                                if (emps == null) {
-//                                    JOptionPane.showMessageDialog(null, "No row selected!");
-//                                    return;
-//                                }
-//                                Employee employee = new Employee(activePanel.getCenterPanel().getSelectedRow());
-//                                if (employee != null) {
-//                                    EmpInfos emp = new EmpInfos(hotelView);
-//                                    emp.setEmp(employee);
-//                                    employee = emp.getEmployee();
-//                                    //if (employee.equals(employee)) {return;}
-//                                    hotelDao.updateEmployee(employee);
-//                                }
+                                EmployeesPanel pnl = ((EmployeesPanel)activePanel.getCenterPanel());
+                                Object[] emp = activePanel.getCenterPanel().getSelectedRow();
+                                if (emp != null) {
+                                    pnl.initEmpInfos();
+                                    pnl.setAction(name);
+                                    pnl.setFields(emp);
+                                }
                             } else if (command.equals("Housekeeping")) {
                                 CleaningSchedule cs = new CleaningSchedule(activePanel.getCenterPanel().getEntity());
                                 cs.setSchedule_id(activePanel.getCenterPanel().getSelectedRow()[0]);
@@ -283,7 +275,23 @@ public class HotelManager {
                             break;
                         case "ok":
                             if (command.equals("Employees")) {
-                                System.out.println("ok button pressed in EmpInfos panel");
+                                EmployeesPanel pnlEmp = ((EmployeesPanel) activePanel.getCenterPanel());
+                                if (pnlEmp.getAction().equals("update")) {
+                                    rowsAffected = hotelDao.updateEmployee(new Employee(pnlEmp.getEntity()));
+                                } else if (pnlEmp.getAction().equals("add")) {
+                                    rowsAffected = hotelDao.insertEmployee(new Employee(pnlEmp.getEntity()));
+                                }
+                                activePanel.getCenterPanel().setTableRows(hotelDao.initializeTable(command, "ManagerPanel", currEmployee.getEmp_hotel_id()));
+                                pnlEmp.reset();
+                                pnlEmp.closeEmpInfos();
+                            }
+                            break;
+                        case "cancel":
+                            System.out.println("entered");
+                            if(command.equals("Employees")) {
+                                EmployeesPanel pnlEmp = ((EmployeesPanel) activePanel.getCenterPanel());
+                                pnlEmp.closeEmpInfos();
+                                pnlEmp.reset();
                             }
                             break;
                         case "show revenue":
