@@ -235,10 +235,25 @@ public class HotelManager {
                             break;
                         }
                     }
+
                     Panel activePanel = hotelView.getActivePanel();
                     if (activePanel instanceof CustomerPanel && !isValidCustomerAction(command)) {
                         JOptionPane.showMessageDialog(hotelView, "Enter your credentials first!", "Invalid Action!", JOptionPane.ERROR_MESSAGE);
                         return;
+
+                }
+
+                Panel activePanel = hotelView.getActivePanel();
+                activePanel.setSelectedButton(button);
+                if (activePanel.getCenterPanel() != null) activePanel.getCenterPanel().reset();
+                activePanel.setCenterPanel(activePanel.getPanelByName(command));
+                try {
+                    if (activePanel.getCenterPanel().table != null) {
+                        activePanel.getCenterPanel().setTableRows(hotelDao.initializeTable(sidePanelName, activePanel.getCenterPanel().getPanelName(), currEmployee.getEmp_hotel_id()));
+                    } else if (sidePanelName.equals("Profile")) {
+                        ((ProfilePanel)activePanel.getCenterPanel()).setCustomerProfilePanel(String.valueOf(currCustomer.getC_firstname()), String.valueOf(currCustomer.getC_lastname()), String.valueOf(currCustomer.getC_ssn()), String.valueOf(currCustomer.getC_bd()), String.valueOf(currCustomer.getC_email()), String.valueOf(currCustomer.getC_phone_num()), String.valueOf(currCustomer.getC_gender()), String.valueOf(currCustomer.getZip_code()));
+
+
                     }
                     activePanel.setSelectedButton(button);
                     if (activePanel.getCenterPanel() != null) activePanel.getCenterPanel().reset();
@@ -360,6 +375,7 @@ public class HotelManager {
                                     cs.setSchedule_id(activePanel.getCenterPanel().getSelectedRow()[0]);
                                     rowsAffected = hotelDao.deleteCleaningSchedule(cs);
                                 }
+
                                 break;
                             case "applyFilter":
                                 if (command.equals("Bookings")) { //from both
@@ -394,85 +410,81 @@ public class HotelManager {
                                         rowsAffected = hotelDao.updateEmployee(new Employee(pnlEmp.getEntity()));
                                     } else if (pnlEmp.getAction().equals("add")) {
                                         rowsAffected = hotelDao.insertEmployee(new Employee(pnlEmp.getEntity()));
+
+                                activePanel.getCenterPanel().setTableRows(hotelDao.initializeTable(command, "ManagerPanel", currEmployee.getEmp_hotel_id()));
+                                pnlEmp.reset();
+                                pnlEmp.closeEmpInfos();
+                            }
+                            break;
+                        case "cancel":
+                            System.out.println("entered");
+                            if(command.equals("Employees")) {
+                                EmployeesPanel pnlEmp = ((EmployeesPanel) activePanel.getCenterPanel());
+                                pnlEmp.closeEmpInfos();
+                                pnlEmp.reset();
+                            }
+                            break;
+                        case "show revenue":
+                            if (command.equals("Finance")) {
+                                System.out.println("show revenue button pressed in finance panel");
+                                FinancePanel pnl = (FinancePanel)activePanel.getCenterPanel();
+                                double revenue = hotelDao.calculateRevenue(pnl.getStartDate(), pnl.getEndDate(), (Integer)currHotelID);
+                                pnl.setRevenue(String.valueOf(revenue));
+                            }
+                            break;
+                        case "view rooms":
+                            if (command.equals("Rooms")) {
+                                System.out.println("view available rooms button pressed in rooms panel");
+                                RoomsPanel pnl = (RoomsPanel)activePanel.getCenterPanel();
+                                pnl.setTableRows(hotelDao.viewAvailableRooms(pnl.getTfStartDate(), pnl.getTfEndDate(), (Integer)currHotelID));
+                            }
+                            break;
+                        case "make booking":
+                            if (command.equals("Rooms")) {
+                                //System.out.println("make booking button pressed in rooms panel");
+                                int roomID = hotelDao.getRoomID(activePanel.getCenterPanel().getSelectedRow()[0], currHotelID);
+                                activePanel.setCenterPanel(activePanel.getPanelByName("Bookings"));
+                                ((BookingsPanel)activePanel.getCenterPanel()).setTfRoomID(roomID);
+                            }
+                        case "confirm":
+                            if (command.equals("My Jobs")) {
+                                int affectedRow = hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getSelectedRow()));
+                            } else if (command.equals("Profile")) {
+                                ProfilePanel profile = (ProfilePanel) activePanel.getPanelByName("Profile");
+                                if (!hotelDao.isCustomerExist(currCustomerSsn)){
+                                    hotelDao.insertCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
+                                }else {
+                                    System.out.println("customer already exist");
+                                    hotelDao.updateCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
+                                }
+                                System.out.println("done");
+                                profile.pushConfirmButton();
+                            }
+                            break;
+                        case "execute":
+                            if (command.equals("Query")) {
+                                QueryPanel pnl = (QueryPanel) activePanel.getPanelByName("Query");
+                                String query = pnl.getTaQuery();
+                                System.out.println(query);
+
+                                ArrayList<Object> columnValues = new ArrayList<>();
+
+                                try {
+                                    ResultSet resultSet = hotelDao.getResultSet(query);
+                                    ResultSetMetaData metaData = resultSet.getMetaData();
+
+                                    int columnCount = metaData.getColumnCount();
+                                    for (int i = 1; i <= columnCount; i++) {
+                                        columnValues.add(i - 1, metaData.getColumnName(i));
+                                        System.out.println(columnValues.get(i - 1));
+
                                     }
                                     activePanel.getCenterPanel().setTableRows(hotelDao.initializeTable(command, "ManagerPanel", currEmployee.getEmp_hotel_id()));
                                     pnlEmp.reset();
                                     pnlEmp.closeEmpInfos();
                                 }
                                 break;
-                            case "cancel":
-                                System.out.println("entered");
-                                if(command.equals("Employees")) {
-                                    EmployeesPanel pnlEmp = ((EmployeesPanel) activePanel.getCenterPanel());
-                                    pnlEmp.closeEmpInfos();
-                                    pnlEmp.reset();
-                                }
-                                break;
-                            case "show revenue":
-                                if (command.equals("Finance")) {
-                                    System.out.println("show revenue button pressed in finance panel");
-                                    FinancePanel pnl = (FinancePanel)activePanel.getCenterPanel();
-                                    double revenue = hotelDao.calculateRevenue(pnl.getStartDate(), pnl.getEndDate(), (Integer)currHotelID);
-                                    pnl.setRevenue(String.valueOf(revenue));
-                                }
-                                break;
-                            case "view rooms":
-                                if (command.equals("Rooms")) {
-                                    System.out.println("view available rooms button pressed in rooms panel");
-                                    RoomsPanel pnl = (RoomsPanel)activePanel.getCenterPanel();
-                                    pnl.setTableRows(hotelDao.viewAvailableRooms(pnl.getTfStartDate(), pnl.getTfEndDate(), (Integer)currHotelID));
-                                }
-                                break;
-                            case "make booking":
-                                if (command.equals("Rooms")) {
-                                    //System.out.println("make booking button pressed in rooms panel");
-                                    int roomID = hotelDao.getRoomID(activePanel.getCenterPanel().getSelectedRow()[0], currHotelID);
-                                    activePanel.setCenterPanel(activePanel.getPanelByName("Bookings"));
-                                    ((BookingsPanel)activePanel.getCenterPanel()).setTfRoomID(roomID);
-                                }
-                            case "confirm":
-                                if (command.equals("My Jobs")) {
-                                    int affectedRow = hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getSelectedRow()));
-                                } else if (command.equals("Profile")) {
-                                    ProfilePanel profile = (ProfilePanel) activePanel.getPanelByName("Profile");
-                                    hotelDao.insertCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
-                                    System.out.println("done");
-                                    profile.pushConfirmButton();
-                                }
-                                break;
-                            case "execute":
-                                if (command.equals("Query")) {
-                                    QueryPanel pnl = (QueryPanel) activePanel.getPanelByName("Query");
-                                    String query = pnl.getTaQuery();
-                                    System.out.println(query);
-
-                                    ArrayList<Object> columnValues = new ArrayList<>();
-
-                                    try {
-                                        ResultSet resultSet = hotelDao.getResultSet(query);
-                                        ResultSetMetaData metaData = resultSet.getMetaData();
-
-                                        int columnCount = metaData.getColumnCount();
-                                        for (int i = 1; i <= columnCount; i++) {
-                                            columnValues.add(i - 1, metaData.getColumnName(i));
-                                            System.out.println(columnValues.get(i - 1));
-                                        }
-                                        pnl.setTableColumns(columnValues);
-                                        pnl.setTableRows(hotelDao.getRowsAsObject(resultSet, columnValues));
-                                    }catch (Exception ex){
-                                        try {
-                                            int affectedRows = hotelDao.executeUpdate(query);
-                                            System.out.println("Query executed successfully. Rows affected: " + affectedRows);
-                                            JOptionPane.showMessageDialog(null, "Query executed successfully. Rows affected: " + affectedRows);
-                                        } catch (Exception innerEx) {
-                                            System.out.println(innerEx.getMessage());
-                                            System.out.println("Failed to execute the non-result-set query.");
-                                            JOptionPane.showMessageDialog(null, "Failed to execute query: " + innerEx.getMessage(),
-                                                    "Execution Error", JOptionPane.ERROR_MESSAGE);
-                                        }
-                                    }
-                                }
-                                break;
+                         
                             case "edit":
                                 if (command.equals("Profile")) {
                                     System.out.println("edit button pressed in profile panel");
