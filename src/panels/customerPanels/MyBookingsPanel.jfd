@@ -78,13 +78,13 @@ new FormModel {
 				"preferredSize": new java.awt.Dimension( 0, 200 )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnCancel"
-					"text": "Cancel"
+					"text": "Cancel Booking"
 					"cursor": new java.awt.Cursor( 12 )
 					"actionCommand": "My Bookings"
-					"name": "cancel"
+					"name": "Cancel Booking"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 335
-					"y": 55
+					"x": 330
+					"y": 60
 					"width": 225
 					"height": 75
 				} )

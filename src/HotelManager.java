@@ -445,25 +445,39 @@ public class HotelManager {
                             break;
                         case "execute":
                             if (command.equals("Query")) {
+//                                QueryPanel pnl = (QueryPanel) activePanel.getPanelByName("Query");
+//                                String query = pnl.getTaQuery();
+//                                System.out.println(query);
+//
+//                                ArrayList<Object> columnValues = new ArrayList<>();
+//
+//                                try {
+//                                    ResultSet resultSet = hotelDao.getResultSet(query);
+//                                    ResultSetMetaData metaData = resultSet.getMetaData();
+//
+//                                    int columnCount = metaData.getColumnCount();
+//                                    for (int i = 1; i <= columnCount; i++) {
+//                                        columnValues.add(i - 1, metaData.getColumnName(i));
+//                                        System.out.println(columnValues.get(i - 1));
+//
+//                                    }
+//                                } catch (Exception exception) {
+//
+//                                }
+
                                 QueryPanel pnl = (QueryPanel) activePanel.getPanelByName("Query");
                                 String query = pnl.getTaQuery();
                                 System.out.println(query);
-
                                 ArrayList<Object> columnValues = new ArrayList<>();
-
-                                try {
-                                    ResultSet resultSet = hotelDao.getResultSet(query);
-                                    ResultSetMetaData metaData = resultSet.getMetaData();
-
-                                    int columnCount = metaData.getColumnCount();
-                                    for (int i = 1; i <= columnCount; i++) {
-                                        columnValues.add(i - 1, metaData.getColumnName(i));
-                                        System.out.println(columnValues.get(i - 1));
-
-                                    }
-                                } catch (Exception exception) {
-
+                                ResultSet resultSet = hotelDao.getResultSet(query);
+                                ResultSetMetaData metaData = resultSet.getMetaData();
+                                int columnCount = metaData.getColumnCount();
+                                for (int i = 1; i <= columnCount; i++) {
+                                    columnValues.add(i - 1, metaData.getColumnName(i));
+                                    System.out.println(columnValues.get(i - 1));
                                 }
+                                pnl.setTableColumns(columnValues);
+                                pnl.setTableRows(hotelDao.getRowsAsObject(resultSet, columnValues));
                             }
                             break;
                         case "edit":
@@ -472,6 +486,7 @@ public class HotelManager {
                                 ProfilePanel profile = (ProfilePanel) activePanel.getPanelByName("Profile");
                                 profile.pushEditButton();
                             }
+                            break;
                         case "show rooms":
                             if (command.equals("Book a room")) {
                                 BookARoomPanel panel = (BookARoomPanel) activePanel.getPanelByName("Book a room");
@@ -486,6 +501,7 @@ public class HotelManager {
                                 MyBookingsPanel panel = (MyBookingsPanel) activePanel.getPanelByName("My Bookings");
                                 activePanel.getCenterPanel().setTableRows(hotelDao.viewMyBookings(currSsn));
                             }
+                            break;
                         case "book":
                             if (command.equals("Book a room")) {
                                 BookARoomPanel pnl = (BookARoomPanel) activePanel.getCenterPanel();
@@ -498,6 +514,7 @@ public class HotelManager {
                                 Booking b = new Booking(booking);
                                 rowsAffected = hotelDao.insertBooking(b);
                             }
+                            break;
                         case "ssnpopup":
                             if (command.equals("Cancel")) {
                                 ssnPopUpMenu.setVisible(false);
@@ -506,8 +523,10 @@ public class HotelManager {
                                 currSsn = ssnPopUpMenu.getSsn();
                                 ssnPopUpMenu.setVisible(false);
                             }
+                            break;
                         case "Cancel Booking":
-
+                            Object[] b = activePanel.getCenterPanel().getSelectedRow();
+                            rowsAffected = hotelDao.deleteBookingWithRoomNum(b[1], b[4]);
                             break;
                         case "Bookings":
 

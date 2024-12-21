@@ -343,6 +343,18 @@ public class HotelDao {
         }
     }
 
+    public int deleteBookingWithRoomNum(Object phone_num, Object room_num) throws SQLException {
+        int hotel_id = getHotelID(phone_num);
+        int room_id = getRoomID(room_num, hotel_id);
+        System.out.println("hotel_id: " + hotel_id + " room_id: " + room_id);
+        String sql = "DELETE FROM Bookings WHERE room_id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            stmt.setObject(1, room_id);
+            return stmt.executeUpdate();
+        }
+    }
+
     public int insertCleaningScheduleWithRoomNum(CleaningSchedule cleaningSchedule, Object roomNum, Object hotelId) throws SQLException {
         int roomId = getRoomID(roomNum, hotelId);
         String insertScheduleQuery = "INSERT INTO CleaningSchedule (housekeeper_ssn, receptionist_ssn, room_id, cleaning_date, service_status) " +
@@ -1181,16 +1193,25 @@ public class HotelDao {
         return result;
     }
 
+    public ArrayList<Object[]> getRowsAsObject(ResultSet rs, ArrayList<Object> columns) throws SQLException {
+        ArrayList<Object[]> result = new ArrayList<>();
+        int count = columns.size();
+        while (rs.next()) {
+            Object[] row = new Object[count];
+            for (int i = 0; i < count; i++) {
+                row[i] = rs.getObject(i + 1);
+            }
+            result.add(row);
+        }
+        return result;
+    }
+
     public ResultSet getResultSet(String query) throws SQLException {
         ResultSet resultSet = null;
-        try (PreparedStatement stmt = con.prepareStatement(query)) {
-            ensureAutoCommitFalse();
-            resultSet = stmt.executeQuery(query);
-        }catch (SQLException e) {
-            rollbackTransaction();
-            logger.severe("Failed to get result set: " + e.getMessage());
-            throw e;
-        }
+
+        PreparedStatement stmt = con.prepareStatement(query);
+        resultSet = stmt.executeQuery();
+
 
         return resultSet;
     }
