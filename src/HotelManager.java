@@ -184,7 +184,7 @@ public class HotelManager {
                     if (activePanel.getCenterPanel().table != null) {
                         activePanel.getCenterPanel().setTableRows(hotelDao.initializeTable(sidePanelName, activePanel.getCenterPanel().getPanelName(), currEmployee.getEmp_hotel_id()));
                     } else if (sidePanelName.equals("Profile")) {
-                        ((ProfilePanel)activePanel.getCenterPanel()).setTfSsn(currSsn);
+                        ((ProfilePanel)activePanel.getCenterPanel()).setCustomerProfilePanel(String.valueOf(currCustomer.getC_firstname()), String.valueOf(currCustomer.getC_lastname()), String.valueOf(currCustomer.getC_ssn()), String.valueOf(currCustomer.getC_bd()), String.valueOf(currCustomer.getC_email()), String.valueOf(currCustomer.getC_phone_num()), String.valueOf(currCustomer.getC_gender()), String.valueOf(currCustomer.getZip_code()));
 
                     }
                 } catch (SQLException ex) {
@@ -362,7 +362,12 @@ public class HotelManager {
                                 int affectedRow = hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getSelectedRow()));
                             } else if (command.equals("Profile")) {
                                 ProfilePanel profile = (ProfilePanel) activePanel.getPanelByName("Profile");
-                                hotelDao.insertCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
+                                if (!hotelDao.isCustomerExist(currCustomerSsn)){
+                                    hotelDao.insertCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
+                                }else {
+                                    System.out.println("customer already exist");
+                                    hotelDao.updateCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
+                                }
                                 System.out.println("done");
                                 profile.pushConfirmButton();
                             }
