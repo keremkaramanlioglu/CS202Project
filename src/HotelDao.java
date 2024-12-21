@@ -157,21 +157,23 @@ public class HotelDao {
     public int updateEmployee(Employee employee) throws SQLException {
         String sql = "UPDATE Employees SET emp_firstname = ?, emp_lastname = ?, emp_type = ?, emp_bd = ?, years = ?, emp_hotel_id = ?, emp_salary = ?, emp_phone_num = ?, emp_email = ?, emp_gender = ?, street = ?, no = ?, apartment = ?, zip_code = ? WHERE emp_ssn = ?";
         stmt = con.prepareStatement(sql);
-        stmt.setObject(1, employee.getEmp_ssn());
-        stmt.setObject(2, employee.getEmp_firstname());
-        stmt.setObject(3, employee.getEmp_lastname());
-        stmt.setObject(4, employee.getEmp_type());
-        stmt.setObject(5, employee.getEmp_bd());
-        stmt.setObject(6, employee.getYears());
-        stmt.setObject(7, employee.getEmp_hotel_id());
-        stmt.setObject(8, employee.getEmp_salary());
-        stmt.setObject(9, employee.getEmp_phone_num());
-        stmt.setObject(10, employee.getEmp_email());
-        stmt.setObject(11, employee.getEmp_gender());
-        stmt.setObject(12, employee.getStreet());
-        stmt.setObject(13, employee.getNo());
-        stmt.setObject(14, employee.getApartment());
-        stmt.setObject(15, employee.getZip_code());
+        stmt.setObject(15, employee.getEmp_ssn());
+        stmt.setObject(1, employee.getEmp_firstname());
+        stmt.setObject(2, employee.getEmp_lastname());
+        stmt.setObject(3, employee.getEmp_type());
+        stmt.setObject(4, employee.getEmp_bd());
+        stmt.setObject(5, employee.getYears());
+        stmt.setObject(6, employee.getEmp_hotel_id());
+        stmt.setObject(7, employee.getEmp_salary());
+        stmt.setObject(8, employee.getEmp_phone_num());
+        stmt.setObject(9, employee.getEmp_email());
+        stmt.setObject(10, employee.getEmp_gender());
+        stmt.setObject(11, employee.getStreet());
+        stmt.setObject(12, employee.getNo());
+        stmt.setObject(13, employee.getApartment());
+        stmt.setObject(14, employee.getZip_code());
+
+        System.out.println("enterd");
 
         return stmt.executeUpdate();
     }
@@ -1161,7 +1163,7 @@ public class HotelDao {
         switch (name){
             case "ManagerPanel":
                 if (panelName.equals("Rooms")) {
-                    result =filterRooms("room_id", "None", "", "", hotelID);
+                    result = filterRooms("room_id", "None", "", "", hotelID);
                 } else if (panelName.equals("Bookings")) {
                     result = filterBookings("booking_id", "None", "", "", hotelID);
                 } else if (panelName.equals("Employees")) {

@@ -176,6 +176,8 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "tfBD"
+					"editable": false
+					"text": "Choose a Date!"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"width": 310
 					"height": 35
@@ -184,6 +186,8 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "tfStartDate"
+					"text": "Choose a Date!"
+					"editable": false
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"width": 310
 					"height": 35
@@ -277,7 +281,7 @@ new FormModel {
 					name: "btnCancel"
 					"text": "Cancel"
 					"actionCommand": "Employees"
-					"name": "ok"
+					"name": "cancel"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"width": 158
 					"height": 55
