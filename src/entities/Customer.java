@@ -39,6 +39,10 @@ public class Customer {
         this.zip_code = obj[8];
     }
 
+    public String getC_type(){
+        return "Customer";
+    }
+
     public Object getC_ssn() {
         return c_ssn;
     }
