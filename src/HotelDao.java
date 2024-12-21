@@ -875,10 +875,22 @@ public class HotelDao {
         return result;
     }
 
+    public int getHotelID(Object hotelPhone) throws SQLException {
+        String sql = "SELECT hotel_id FROM Hotels WHERE hotel_phone = ?";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setObject(1, hotelPhone);
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt("hotel_id");
+            }
+        }
+        throw new SQLException("No Hotel found");
+    }
+
     public ArrayList<Object[]> viewAvailableRooms(Date startDate, Date endDate) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
 
-        String sql = "SELECT h.hotel_name, h.zip_code, r.room_type, r.room_size, r.room_price, r.room_capacity " +
+        String sql = "SELECT h.hotel_name, h.hotel_phone, h.hotel_email, h.hotel_rating, h.street, h.no, h.zip_code, r.room_num, r.room_type, r.room_size, r.room_price, r.room_capacity " +
                 "FROM Rooms r JOIN Hotels h ON r.hotel_id = h.hotel_id " +
                 "WHERE NOT EXISTS (SELECT 1 " +
                                     "FROM Bookings b " +
@@ -896,13 +908,19 @@ public class HotelDao {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    Object[] row = new Object[6];
+                    Object[] row = new Object[rs.getMetaData().getColumnCount()];
                     row[0] = rs.getObject("hotel_name");
-                    row[1] = rs.getObject("zip_code");
-                    row[2] = rs.getObject("room_type");
-                    row[3] = rs.getObject("room_size");
-                    row[4] = rs.getObject("room_price");
-                    row[5] = rs.getObject("room_capacity");
+                    row[1] = rs.getObject("hotel_phone");
+                    row[2] = rs.getObject("hotel_email");
+                    row[3] = rs.getObject("hotel_rating");
+                    row[4] = rs.getObject("street");
+                    row[5] = rs.getObject("no");
+                    row[6] = rs.getObject("zip_code");
+                    row[7] = rs.getObject("room_num");
+                    row[8] = rs.getObject("room_type");
+                    row[9] = rs.getObject("room_size");
+                    row[10] = rs.getObject("room_price");
+                    row[11] = rs.getObject("room_capacity");
                     result.add(row);
                 }
             }
