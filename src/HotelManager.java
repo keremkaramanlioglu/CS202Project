@@ -194,7 +194,7 @@ public class HotelManager {
                                 HouseKeepingPanel hk = (HouseKeepingPanel) activePanel.getCenterPanel();
                                 CleaningSchedule cs = new CleaningSchedule(activePanel.getCenterPanel().getEntity());
                                 cs.setReceptionist_ssn(currSsn);
-                                rowsAffected = hotelDao.insertCleaningScheduleWithRoomNum(cs, hk.getRoomNum(), Integer.parseInt(String.valueOf(currHotelID)));
+                                rowsAffected = hotelDao.insertCleaningScheduleWithRoomNum(cs, hk.getRoomNum(), currHotelID);
                             }
                             break;
                         case "update":
@@ -238,7 +238,7 @@ public class HotelManager {
                                 arr[2] = currSsn;
                                 arr[3] = null;
                                 CleaningSchedule cs = new CleaningSchedule(arr);
-                                rowsAffected = hotelDao.updateCleaningScheduleWithRoomNum(cs, hk.getRoomNum(), Integer.parseInt(String.valueOf(currHotelID)));
+                                rowsAffected = hotelDao.updateCleaningScheduleWithRoomNum(cs, hk.getRoomNum(), currHotelID);
                             }
                             break;
                         case "delete":
@@ -301,6 +301,13 @@ public class HotelManager {
                                 pnl.setTableRows(hotelDao.viewAvailableRooms(pnl.getTfStartDate(), pnl.getTfEndDate(), (Integer)currHotelID));
                             }
                             break;
+                        case "make booking":
+                            if (command.equals("Rooms")) {
+                                //System.out.println("make booking button pressed in rooms panel");
+                                int roomID = hotelDao.getRoomID(activePanel.getCenterPanel().getSelectedRow()[0], currHotelID);
+                                activePanel.setCenterPanel(activePanel.getPanelByName("Bookings"));
+                                ((BookingsPanel)activePanel.getCenterPanel()).setTfRoomID(roomID);
+                            }
                         case "confirm":
                             if (command.equals("My Jobs")) {
                                 int affectedRow = hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getSelectedRow()));

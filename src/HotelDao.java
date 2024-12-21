@@ -244,23 +244,8 @@ public class HotelDao {
         return stmt.executeUpdate();
     }
 
-    public int insertCleaningScheduleWithRoomNum(CleaningSchedule cleaningSchedule, String roomNum, int hotelId) throws SQLException {
-        int roomId = -1;
-
-        // Step 1: Find the room_id using room_num and hotel_id
-        String findRoomIdQuery = "SELECT room_id FROM Rooms WHERE room_num = ? AND hotel_id = ?";
-        try (PreparedStatement findStmt = con.prepareStatement(findRoomIdQuery)) {
-            findStmt.setString(1, roomNum);
-            findStmt.setInt(2, hotelId);
-
-            try (ResultSet rs = findStmt.executeQuery()) {
-                if (rs.next()) {
-                    roomId = rs.getInt("room_id");
-                } else {
-                    throw new SQLException("Room not found for the given room number and hotel ID.");
-                }
-            }
-        }
+    public int insertCleaningScheduleWithRoomNum(CleaningSchedule cleaningSchedule, Object roomNum, Object hotelId) throws SQLException {
+        int roomId = getRoomID(roomNum, hotelId);
 
         // Step 2: Insert the cleaning schedule
         String insertScheduleQuery = "INSERT INTO CleaningSchedule (housekeeper_ssn, receptionist_ssn, room_id, cleaning_date, service_status) " +
@@ -276,14 +261,12 @@ public class HotelDao {
         }
     }
 
-    public int updateCleaningScheduleWithRoomNum(CleaningSchedule cleaningSchedule, String roomNum, int hotelId) throws SQLException {
+    public int getRoomID(Object roomNum, Object hotelId) throws SQLException {
         int roomId = -1;
-
-        // Step 1: Find the room_id using room_num and hotel_id
         String findRoomIdQuery = "SELECT room_id FROM Rooms WHERE room_num = ? AND hotel_id = ?";
         try (PreparedStatement findStmt = con.prepareStatement(findRoomIdQuery)) {
-            findStmt.setString(1, roomNum);
-            findStmt.setInt(2, hotelId);
+            findStmt.setObject(1, roomNum);
+            findStmt.setObject(2, hotelId);
 
             try (ResultSet rs = findStmt.executeQuery()) {
                 if (rs.next()) {
@@ -293,8 +276,14 @@ public class HotelDao {
                 }
             }
         }
+        return roomId;
+    }
 
-        // Step 2: Update the cleaning schedule
+    public int updateCleaningScheduleWithRoomNum(CleaningSchedule cleaningSchedule, Object roomNum, Object hotelId) throws SQLException {
+
+        int roomId = getRoomID(roomNum, hotelId);
+
+
         String updateScheduleQuery = "UPDATE CleaningSchedule " +
                 "SET housekeeper_ssn = ?, receptionist_ssn = ?, room_id = ?, cleaning_date = ?, service_status = ? " +
                 "WHERE schedule_id = ?";
@@ -702,7 +691,7 @@ public class HotelDao {
 
         return result;
     }
-    public double calculateRevenue(Date start, Date end, int hotelID) {
+    public double calculateRevenue(Object start, Object end, int hotelID) {
         double totalRevenue = 0.0;
         String query = "SELECT SUM(r.room_price * DATEDIFF(b.booking_end_date, b.booking_start_date)) AS total_revenue "
                 + "FROM Bookings b "
@@ -714,9 +703,9 @@ public class HotelDao {
 
         try (PreparedStatement stmt = con.prepareStatement(query)) {
 
-            stmt.setInt(1, hotelID);  // hotelID
-            stmt.setDate(2, new java.sql.Date(start.getTime()));  // start date
-            stmt.setDate(3, new java.sql.Date(end.getTime()));  // end date
+            stmt.setObject(1, hotelID);  // hotelID
+            stmt.setObject(2, start);  // start date
+            stmt.setObject(3, end);  // end date
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
@@ -919,7 +908,7 @@ public class HotelDao {
         return result;
     }
 
-    public ArrayList<Object[]> viewAvailableRooms(Date startDate, Date endDate, int hotelID) throws SQLException {
+    public ArrayList<Object[]> viewAvailableRooms(Date startDate, Object endDate, Object hotelID) throws SQLException {
         ArrayList<Object[]> availableRooms = new ArrayList<>();
 
         String sql = "SELECT r.room_num, r.room_size, r.room_capacity, r.room_price, r.room_type, cs.service_status " +
@@ -941,27 +930,28 @@ public class HotelDao {
                 ")";
 
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
-            // Parametreleri ayarlama
-            stmt.setInt(1, hotelID);
-            stmt.setDate(2, startDate);
-            stmt.setDate(3, endDate);
-            stmt.setDate(4, startDate);
-            stmt.setDate(5, endDate);
-            stmt.setDate(6, startDate);
-            stmt.setDate(7, endDate);
-            stmt.setDate(8, startDate);
-            stmt.setDate(9, endDate);
+
+            stmt.setObject(1, hotelID);
+            stmt.setObject(2, startDate);
+            stmt.setObject(3, endDate);
+            stmt.setObject(4, startDate);
+            stmt.setObject(5, endDate);
+            stmt.setObject(6, startDate);
+            stmt.setObject(7, endDate);
+            stmt.setObject(8, startDate);
+            stmt.setObject(9, endDate);
 
             try (ResultSet rs = stmt.executeQuery()) {
+
                 while (rs.next()) {
                     Object[] row = new Object[6];
-                    row[0] = rs.getString("room_num");
-                    row[1] = rs.getString("room_size");
-                    row[2] = rs.getString("room_capacity");
-                    row[3] = rs.getDouble("room_price");
-                    row[4] = rs.getString("room_type");
+                    row[0] = rs.getObject("room_num");
+                    row[1] = rs.getObject("room_size");
+                    row[2] = rs.getObject("room_capacity");
+                    row[3] = rs.getObject("room_price");
+                    row[4] = rs.getObject("room_type");
 
-                    // Cleaning status NULL ise "No Cleaning Schedule" yaz
+
                     String cleaningStatus = rs.getString("service_status");
                     if (cleaningStatus == null) {
                         cleaningStatus = "No Cleaning Schedule";

@@ -60,6 +60,9 @@ public class BookingsPanel extends Panel {
         cbCheckout.setSelected(Boolean.parseBoolean(String.valueOf(rowValues[8])));
     }
 
+    public void setTfRoomID(int roomID) {
+        tfRoomID.setText(String.valueOf(roomID));
+    }
 
     @Override
     public Object[] getEntity() {
