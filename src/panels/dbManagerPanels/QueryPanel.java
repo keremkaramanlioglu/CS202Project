@@ -29,6 +29,10 @@ public class QueryPanel extends panels.Panel {
         initTable();
     }
 
+    public String getPanelName() {
+        return "DBManagerPanel";
+    }
+
     public void setTableColumns(ArrayList<Object> columnValues) {
         model.setColumnCount(0);
 

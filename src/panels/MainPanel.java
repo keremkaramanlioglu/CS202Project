@@ -28,6 +28,10 @@ public class MainPanel extends Panel {
         btnDBManagerPanel.addActionListener(l);
     }
 
+    public String getPanelName() {
+        return "MainPanel";
+    }
+
     @Override
     public boolean tfCheck() {
         return false;

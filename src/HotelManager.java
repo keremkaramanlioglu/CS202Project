@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.print.Book;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -131,14 +132,28 @@ public class HotelManager {
             //System.out.println(button.getName());
 
             //if (currSsn.isEmpty() && !command.equals("Guest")) return;
+            String sidePanelName = null;
             String[] sidePanelOptions = {"Rooms", "Users", "Employees", "Finance", "Bookings", "Housekeeping",
                     "Book a room", "My Bookings", "Profile", "My Jobs", "Query Panel",  "Add Customer"};
             String [] mainPanelOptions = {"Manager", "Customer", "Housekeeper", "Receptionist", "Database Manager","Back"};
             if (compare(command, sidePanelOptions) && button.getName().equals("side")) {
+                for (String option : sidePanelOptions) {
+                    if (command.equals(option)) {
+                        sidePanelName = option;
+                        break;
+                    }
+                }
+
                 Panel activePanel = hotelView.getActivePanel();
                 activePanel.setSelectedButton(button);
                 if (activePanel.getCenterPanel() != null) activePanel.getCenterPanel().reset();
                 activePanel.setCenterPanel(activePanel.getPanelByName(command));
+
+                try {
+                    activePanel.getCenterPanel().setTableRows(hotelDao.initializeTable(sidePanelName, activePanel.getCenterPanel().getPanelName(), currEmployee.getEmp_hotel_id()));
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
             } else if (compare(command, mainPanelOptions)) {
                 if (!command.equals("Customer")) if (!checkAction(command)) return;
                 hotelView.getActivePanel().reset();
@@ -248,7 +263,7 @@ public class HotelManager {
                         case "applyFilter":
                             if (command.equals("Bookings")) { //from both
                                 activePanel.getCenterPanel().setTableRows(hotelDao.filterBookings(activePanel.getCenterPanel().getSelectedFilterColumn(),
-                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue()));
+                                        activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), (Integer)(currHotelID)));
                             } else if (command.equals("Employees")) { //from manager
                                 activePanel.getCenterPanel().setTableRows(hotelDao.filterEmployees(activePanel.getCenterPanel().getSelectedFilterColumn(),
                                         activePanel.getCenterPanel().getSelectedFilterOption(), activePanel.getCenterPanel().getSelectedFilterValue(), activePanel.getCenterPanel().getSelectedFilterUpperValue(), (Integer)(currHotelID)));
@@ -316,8 +331,6 @@ public class HotelManager {
                                     pnl.setTableColumns(columnValues);
                                     pnl.setTableRows(hotelDao.getRowsAsObject(resultSet, columnValues));
                                 }catch (Exception ex){
-                                    System.out.println(ex.getMessage());
-                                    System.out.println("hata");
                                     try {
                                         int affectedRows = hotelDao.executeUpdate(query);
                                         System.out.println("Query executed successfully. Rows affected: " + affectedRows);

@@ -17,6 +17,10 @@ public class HousekeeperPanel extends Panel {
         MyJobsPanel = new MyJobsPanel();
     }
 
+    public String getPanelName() {
+        return "HousekeeperPanel";
+    }
+
     @Override
     public void reset() {
         if(prevSelectedButton != null) prevSelectedButton.setBackground(MainPanel.sidePanelColor);
