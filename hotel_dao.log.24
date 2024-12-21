@@ -1,0 +1,58 @@
+Ara 21, 2024 9:40:49 ÖS HotelDao deleteBooking
+INFO: Booking deleted successfully: Booking ID 1
+Ara 21, 2024 9:41:01 ÖS HotelDao insertBooking
+INFO: Booking inserted successfully: Booking ID null
+Ara 21, 2024 9:41:13 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:41:13 ÖS HotelDao filterBookings
+SEVERE: Failed to get bookings from filter: No value specified for parameter 2
+Ara 21, 2024 9:41:24 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:41:24 ÖS HotelDao filterBookings
+SEVERE: Failed to get bookings from filter: No value specified for parameter 2
+Ara 21, 2024 9:49:55 ÖS HotelDao insertCleaningSchedule
+INFO: Cleaning schedule inserted successfully: Schedule ID null
+Ara 21, 2024 9:50:00 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:50:00 ÖS HotelDao updateCleaningSchedule
+SEVERE: Failed to update cleaning schedule: "Pending" cleaning progress can only be updated as "Completed"
+Ara 21, 2024 9:50:05 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:50:05 ÖS HotelDao updateCleaningSchedule
+SEVERE: Failed to update cleaning schedule: "Pending" cleaning progress can only be updated as "Completed"
+Ara 21, 2024 9:50:48 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:50:48 ÖS HotelDao updateCleaningSchedule
+SEVERE: Failed to update cleaning schedule: "Pending" cleaning progress can only be updated as "Completed"
+Ara 21, 2024 9:51:07 ÖS HotelDao deleteCleaningSchedule
+INFO: Cleaning schedule deleted successfully: Schedule ID1
+Ara 21, 2024 9:51:15 ÖS HotelDao getCustomers
+INFO: 1 customers found.
+Ara 21, 2024 9:51:39 ÖS HotelDao updateCustomer
+INFO: Customer updated successfully: Customer SSN 6161
+Ara 21, 2024 9:51:39 ÖS HotelDao insertBooking
+INFO: Booking inserted successfully: Booking ID null
+Ara 21, 2024 9:52:14 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:52:14 ÖS HotelDao insertCustomer
+SEVERE: Failed to insert customer: Customer SSN already exists in Employees but details do not match.
+Ara 21, 2024 9:52:25 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:52:31 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:52:49 ÖS HotelDao insertCleaningSchedule
+INFO: Cleaning schedule inserted successfully: Schedule ID null
+Ara 21, 2024 9:52:52 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:53:32 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:53:33 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:53:33 ÖS HotelDao filterBookings
+SEVERE: Failed to get bookings from filter: Parameter index out of range (2 > number of parameters, which is 1).
+Ara 21, 2024 9:54:10 ÖS HotelDao insertBooking
+INFO: Booking inserted successfully: Booking ID null
+Ara 21, 2024 9:54:13 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:54:13 ÖS HotelDao filterBookings
+SEVERE: Failed to get bookings from filter: Parameter index out of range (2 > number of parameters, which is 1).

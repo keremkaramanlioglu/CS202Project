@@ -1,0 +1,204 @@
+Ara 21, 2024 9:12:38 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:13:05 ÖS HotelDao updateRoom
+INFO: Room updated successfully: Room ID 7
+Ara 21, 2024 9:13:19 ÖS HotelDao deleteRoom
+INFO: Room deleted successfully: Room ID 14
+Ara 21, 2024 9:13:44 ÖS HotelDao insertRoom
+INFO: Room inserted successfully: Room number 112
+Ara 21, 2024 9:15:35 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:16:08 ÖS HotelDao updateCustomer
+INFO: Customer updated successfully: Customer SSN 6161
+Ara 21, 2024 9:16:29 ÖS HotelDao deleteCustomer
+INFO: Customer deleted successfully: Customer ID 6161
+Ara 21, 2024 9:17:21 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:17:21 ÖS HotelDao insertCustomer
+SEVERE: Failed to insert customer: Customer SSN already exists in Employees but details do not match.
+Ara 21, 2024 9:17:52 ÖS HotelDao insertCustomer
+INFO: Customer inserted successfully: Customer ID 6161
+Ara 21, 2024 9:18:12 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:18:12 ÖS HotelDao filterEmployees
+SEVERE: Failed to filter employees: Column 'emp_id' not found.
+Ara 21, 2024 9:18:26 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:18:26 ÖS HotelDao filterEmployees
+SEVERE: Failed to filter employees: Column 'emp_id' not found.
+Ara 21, 2024 9:18:43 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:18:43 ÖS HotelDao filterEmployees
+SEVERE: Failed to filter employees: Column 'emp_id' not found.
+Ara 21, 2024 9:20:05 ÖS HotelDao insertEmployee
+INFO: Employee inserted successfully: Employee ID 789
+Ara 21, 2024 9:20:05 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:20:05 ÖS HotelDao filterEmployees
+SEVERE: Failed to filter employees: Column 'emp_id' not found.
+Ara 21, 2024 9:20:12 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:20:12 ÖS HotelDao filterEmployees
+SEVERE: Failed to filter employees: Column 'emp_id' not found.
+Ara 21, 2024 9:21:26 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:21:27 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:21:27 ÖS HotelDao filterEmployees
+SEVERE: Failed to filter employees: Value '12343278978' is outside of valid range for type java.lang.Integer
+Ara 21, 2024 9:21:45 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:21:45 ÖS HotelDao filterEmployees
+SEVERE: Failed to filter employees: Value '12343278978' is outside of valid range for type java.lang.Integer
+Ara 21, 2024 9:24:19 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:24:23 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:24:23 ÖS HotelDao filterEmployees
+SEVERE: Failed to filter employees: Value '12343278978' is outside of valid range for type java.lang.Integer
+Ara 21, 2024 9:24:32 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:24:32 ÖS HotelDao filterEmployees
+SEVERE: Failed to filter employees: Value '12343278978' is outside of valid range for type java.lang.Integer
+Ara 21, 2024 9:27:26 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:27:28 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:27:28 ÖS HotelDao filterEmployees
+SEVERE: Failed to filter employees: Value '12343278978' is outside of valid range for type java.lang.Integer
+Ara 21, 2024 9:29:13 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:29:15 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:29:15 ÖS HotelDao filterEmployees
+SEVERE: Failed to filter employees: Value '12343278978' is outside of valid range for type java.lang.Integer
+Ara 21, 2024 9:29:42 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:29:44 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:29:44 ÖS HotelDao filterEmployees
+SEVERE: Failed to filter employees: Value '12343278978' is outside of valid range for type java.lang.Integer
+Ara 21, 2024 9:31:05 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:31:07 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:31:07 ÖS HotelDao filterEmployees
+SEVERE: Failed to filter employees: Column 'emp_name' not found.
+Ara 21, 2024 9:31:08 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:31:08 ÖS HotelDao filterEmployees
+SEVERE: Failed to filter employees: Column 'emp_name' not found.
+Ara 21, 2024 9:31:20 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:31:20 ÖS HotelDao filterEmployees
+SEVERE: Failed to filter employees: Column 'emp_name' not found.
+Ara 21, 2024 9:32:26 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:33:39 ÖS HotelDao getEmployees
+WARNING: No Employee found.
+Ara 21, 2024 9:33:41 ÖS HotelDao getEmployees
+WARNING: No Employee found.
+Ara 21, 2024 9:33:44 ÖS HotelDao getEmployees
+WARNING: No Employee found.
+Ara 21, 2024 9:33:45 ÖS HotelDao getEmployees
+WARNING: No Employee found.
+Ara 21, 2024 9:33:58 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:34:14 ÖS HotelDao deleteEmployee
+INFO: Employee deleted successfully: Employee ID 12343278978
+Ara 21, 2024 9:34:28 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:34:28 ÖS HotelDao updateEmployee
+SEVERE: Failed to update employee: Data truncation: Data too long for column 'apartment' at row 1
+Ara 21, 2024 9:35:51 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:35:51 ÖS HotelDao updateEmployee
+SEVERE: Failed to update employee: Data truncation: Data too long for column 'apartment' at row 1
+Ara 21, 2024 9:38:54 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:39:07 ÖS HotelDao updateEmployee
+INFO: Employee updated successfully: Employee SSN 12354367844
+Ara 21, 2024 9:39:43 ÖS HotelDao insertEmployee
+INFO: Employee inserted successfully: Employee ID 987
+Ara 21, 2024 9:40:33 ÖS HotelDao insertBooking
+INFO: Booking inserted successfully: Booking ID null
+Ara 21, 2024 9:40:39 ÖS HotelDao updateBooking
+INFO: Booking updated successfully: Booking ID 1
+Ara 21, 2024 9:40:45 ÖS HotelDao updateBooking
+INFO: Booking updated successfully: Booking ID 1
+Ara 21, 2024 9:40:49 ÖS HotelDao deleteBooking
+INFO: Booking deleted successfully: Booking ID 1
+Ara 21, 2024 9:41:01 ÖS HotelDao insertBooking
+INFO: Booking inserted successfully: Booking ID null
+Ara 21, 2024 9:41:13 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:41:13 ÖS HotelDao filterBookings
+SEVERE: Failed to get bookings from filter: No value specified for parameter 2
+Ara 21, 2024 9:41:24 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:41:24 ÖS HotelDao filterBookings
+SEVERE: Failed to get bookings from filter: No value specified for parameter 2
+Ara 21, 2024 9:46:19 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:47:02 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:47:02 ÖS HotelDao filterBookings
+SEVERE: Failed to get bookings from filter: Parameter index out of range (2 > number of parameters, which is 1).
+Ara 21, 2024 9:47:19 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:47:19 ÖS HotelDao filterBookings
+SEVERE: Failed to get bookings from filter: Parameter index out of range (2 > number of parameters, which is 1).
+Ara 21, 2024 9:47:27 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:47:27 ÖS HotelDao filterBookings
+SEVERE: Failed to get bookings from filter: Parameter index out of range (2 > number of parameters, which is 1).
+Ara 21, 2024 9:47:40 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:47:40 ÖS HotelDao filterBookings
+SEVERE: Failed to get bookings from filter: Parameter index out of range (2 > number of parameters, which is 1).
+Ara 21, 2024 9:49:55 ÖS HotelDao insertCleaningSchedule
+INFO: Cleaning schedule inserted successfully: Schedule ID null
+Ara 21, 2024 9:50:00 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:50:00 ÖS HotelDao updateCleaningSchedule
+SEVERE: Failed to update cleaning schedule: "Pending" cleaning progress can only be updated as "Completed"
+Ara 21, 2024 9:50:05 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:50:05 ÖS HotelDao updateCleaningSchedule
+SEVERE: Failed to update cleaning schedule: "Pending" cleaning progress can only be updated as "Completed"
+Ara 21, 2024 9:50:48 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:50:48 ÖS HotelDao updateCleaningSchedule
+SEVERE: Failed to update cleaning schedule: "Pending" cleaning progress can only be updated as "Completed"
+Ara 21, 2024 9:51:07 ÖS HotelDao deleteCleaningSchedule
+INFO: Cleaning schedule deleted successfully: Schedule ID1
+Ara 21, 2024 9:51:15 ÖS HotelDao getCustomers
+INFO: 1 customers found.
+Ara 21, 2024 9:51:39 ÖS HotelDao updateCustomer
+INFO: Customer updated successfully: Customer SSN 6161
+Ara 21, 2024 9:51:39 ÖS HotelDao insertBooking
+INFO: Booking inserted successfully: Booking ID null
+Ara 21, 2024 9:52:14 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:52:14 ÖS HotelDao insertCustomer
+SEVERE: Failed to insert customer: Customer SSN already exists in Employees but details do not match.
+Ara 21, 2024 9:52:25 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:52:31 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:52:49 ÖS HotelDao insertCleaningSchedule
+INFO: Cleaning schedule inserted successfully: Schedule ID null
+Ara 21, 2024 9:52:52 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:53:32 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 9:53:33 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:53:33 ÖS HotelDao filterBookings
+SEVERE: Failed to get bookings from filter: Parameter index out of range (2 > number of parameters, which is 1).
+Ara 21, 2024 9:54:10 ÖS HotelDao insertBooking
+INFO: Booking inserted successfully: Booking ID null
+Ara 21, 2024 9:54:13 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 9:54:13 ÖS HotelDao filterBookings
+SEVERE: Failed to get bookings from filter: Parameter index out of range (2 > number of parameters, which is 1).
