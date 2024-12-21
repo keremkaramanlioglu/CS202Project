@@ -367,6 +367,25 @@ public class HotelDao {
         }
     }
 
+
+    public int updateCleaningScheduleWithServiceStatus(Object[] cleaningSchedule, Object housekeeperSsn, Object hotel_id) throws SQLException {
+
+        int room_id = getRoomID(cleaningSchedule[0], hotel_id);
+
+        String sql = """
+                    UPDATE CleaningSchedule
+                    SET service_status = ?
+                    WHERE housekeeper_ssn = ? AND room_id = ?
+                """;
+        try (PreparedStatement updateStmt = con.prepareStatement(sql)) {
+            updateStmt.setObject(1, cleaningSchedule[2]);
+            updateStmt.setObject(2, housekeeperSsn);
+            updateStmt.setObject(3, room_id);
+            return updateStmt.executeUpdate();
+        }
+    }
+
+
     public int insertCleaningSchedule(CleaningSchedule cleaningSchedule) throws SQLException {
         String sql = "INSERT INTO CleaningSchedule (housekeeper_ssn, receptionist_ssn, " +
                 "room_id, cleaning_date, service_status) VALUES(?, ?, ?, ?, ?)";
@@ -387,6 +406,7 @@ public class HotelDao {
             return 0;
         }
     }
+
 
     public int updateCleaningSchedule(CleaningSchedule cleaningSchedule) throws SQLException {
         String sql = "UPDATE CleaningSchedule SET housekeeper_ssn = ?, receptionist_ssn = ?, room_id = ?, cleaning_date = ?, service_status = ? WHERE schedule_id = ?";
@@ -1192,11 +1212,44 @@ public class HotelDao {
                 break;
             case "HousekeeperPanel":
                 if (panelName.equals("My Jobs")) {
-                    System.out.println("entered");
+                    result = getHousekeeperScheduleWithSsn(ssn);
                 }
         }
         System.out.println("exiting from the method");
         return result;
+    }
+
+    public ArrayList<Object[]> getHousekeeperScheduleWithSsn(String housekeeperSSN) {
+        ArrayList<Object[]> scheduleList = new ArrayList<>();
+
+        String query = """
+            SELECT\s
+                r.room_num,
+                s.cleaning_date,
+                s.service_status
+            FROM Employees e
+            JOIN CleaningSchedule s ON e.emp_ssn = s.housekeeper_ssn
+            JOIN Rooms r ON s.room_id = r.room_id
+            WHERE e.emp_ssn = ?;
+       \s""";
+
+        try (PreparedStatement preparedStatement = con.prepareStatement(query)) {
+            preparedStatement.setString(1, housekeeperSSN);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Object[] row = new Object[3];
+                    row[0] = resultSet.getObject("room_num");
+                    row[1] = resultSet.getObject("cleaning_date");
+                    row[2] = resultSet.getObject("service_status");
+                    scheduleList.add(row);
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+        return scheduleList;
     }
 
     public ArrayList<Object[]> getCustomerBookingData(String customerSSN) {

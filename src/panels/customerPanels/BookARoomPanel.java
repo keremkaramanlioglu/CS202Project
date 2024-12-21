@@ -148,21 +148,13 @@ public class BookARoomPanel extends Panel {
         comboBox1 = new JComboBox<>();
         pnlCommand = new JPanel();
         btnResetFilters = new JButton();
-        tfHotelName = new JTextField();
-        lblHotelName = new JLabel();
-        tfRoomType = new JTextField();
-        lblRoomType = new JLabel();
-        tfZipcode = new JTextField();
-        tfNumberOfPeople = new JTextField();
-        lblNumberOfPeople = new JLabel();
-        lblZipcode = new JLabel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
-        0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
-        . BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
-        red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
-        beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(
+        0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder
+        .BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font.BOLD,12),java.awt.Color.
+        red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.
+        beans.PropertyChangeEvent e){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
         //======== pnlReservableHotels ========
@@ -170,7 +162,29 @@ public class BookARoomPanel extends Panel {
             pnlReservableHotels.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
             //---- tblData ----
-
+            tblData.setModel(new DefaultTableModel(
+                new Object[][] {
+                    {null, null, null, "", null, null, null, null, null, null, null, null},
+                },
+                new String[] {
+                    "hotel_name", "hotel_phone", "hotel_email", "hotel_rating", "street", "no", "zip_code", "room_num", "room_type", "room_size", "room_price", "room_capacity"
+                }
+            ) {
+                Class<?>[] columnTypes = new Class<?>[] {
+                    String.class, String.class, String.class, Object.class, Object.class, Object.class, String.class, String.class, String.class, Double.class, Double.class, String.class
+                };
+                boolean[] columnEditable = new boolean[] {
+                    false, true, true, true, true, true, false, false, false, false, false, false
+                };
+                @Override
+                public Class<?> getColumnClass(int columnIndex) {
+                    return columnTypes[columnIndex];
+                }
+                @Override
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return columnEditable[columnIndex];
+                }
+            });
             tblData.setAutoCreateRowSorter(true);
             pnlReservableHotels.setViewportView(tblData);
         }
@@ -276,34 +290,6 @@ public class BookARoomPanel extends Panel {
                 btnResetFilters.setActionCommand("Book a room");
                 pnlCommand.add(btnResetFilters);
                 btnResetFilters.setBounds(65, 150, 200, 60);
-                pnlCommand.add(tfHotelName);
-                tfHotelName.setBounds(35, 40, 100, 40);
-
-                //---- lblHotelName ----
-                lblHotelName.setText("Hotel Name:");
-                pnlCommand.add(lblHotelName);
-                lblHotelName.setBounds(30, 25, 100, lblHotelName.getPreferredSize().height);
-                pnlCommand.add(tfRoomType);
-                tfRoomType.setBounds(170, 40, 100, 40);
-
-                //---- lblRoomType ----
-                lblRoomType.setText("Room Type:");
-                pnlCommand.add(lblRoomType);
-                lblRoomType.setBounds(160, 25, 100, 17);
-                pnlCommand.add(tfZipcode);
-                tfZipcode.setBounds(40, 95, 100, 40);
-                pnlCommand.add(tfNumberOfPeople);
-                tfNumberOfPeople.setBounds(170, 95, 100, 40);
-
-                //---- lblNumberOfPeople ----
-                lblNumberOfPeople.setText("Number of People:");
-                pnlCommand.add(lblNumberOfPeople);
-                lblNumberOfPeople.setBounds(145, 75, 135, 27);
-
-                //---- lblZipcode ----
-                lblZipcode.setText("Zipcode:");
-                pnlCommand.add(lblZipcode);
-                lblZipcode.setBounds(30, 80, 100, 17);
 
                 {
                     // compute preferred size
@@ -342,13 +328,5 @@ public class BookARoomPanel extends Panel {
     private JComboBox<String> comboBox1;
     private JPanel pnlCommand;
     private JButton btnResetFilters;
-    private JTextField tfHotelName;
-    private JLabel lblHotelName;
-    private JTextField tfRoomType;
-    private JLabel lblRoomType;
-    private JTextField tfZipcode;
-    private JTextField tfNumberOfPeople;
-    private JLabel lblNumberOfPeople;
-    private JLabel lblZipcode;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

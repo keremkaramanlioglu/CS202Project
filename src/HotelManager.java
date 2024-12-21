@@ -427,7 +427,10 @@ public class HotelManager {
                             }
                         case "confirm":
                             if (command.equals("My Jobs")) {
-                                rowsAffected = hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getSelectedRow()));
+                                Object[] cs = activePanel.getCenterPanel().getSelectedRow();
+                                cs[2] = activePanel.getCenterPanel().getEntity()[0];
+                                rowsAffected = hotelDao.updateCleaningScheduleWithServiceStatus(cs, currSsn, currHotelID);
+
                             } else if (command.equals("Profile")) {
                                 ProfilePanel profile = (ProfilePanel) activePanel.getPanelByName("Profile");
                                 if (!hotelDao.isCustomerExist(currSsn)){
