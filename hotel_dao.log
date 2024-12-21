@@ -202,3 +202,49 @@ Ara 21, 2024 9:54:13 ÖS HotelDao rollbackTransaction
 WARNING: Transaction rolled back.
 Ara 21, 2024 9:54:13 ÖS HotelDao filterBookings
 SEVERE: Failed to get bookings from filter: Parameter index out of range (2 > number of parameters, which is 1).
+Ara 21, 2024 10:04:54 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 10:05:02 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 10:05:27 ÖS HotelDao insertRoom
+INFO: Room inserted successfully: Room number 113
+Ara 21, 2024 10:05:33 ÖS HotelDao updateRoom
+INFO: Room updated successfully: Room ID 16
+Ara 21, 2024 10:05:36 ÖS HotelDao deleteRoom
+INFO: Room deleted successfully: Room ID 16
+Ara 21, 2024 10:06:11 ÖS HotelDao insertCustomer
+INFO: Customer inserted successfully: Customer ID 123
+Ara 21, 2024 10:06:18 ÖS HotelDao updateCustomer
+INFO: Customer updated successfully: Customer SSN 123
+Ara 21, 2024 10:06:23 ÖS HotelDao deleteCustomer
+INFO: Customer deleted successfully: Customer ID 123
+Ara 21, 2024 10:07:04 ÖS HotelDao insertEmployee
+INFO: Employee inserted successfully: Employee ID 6931
+Ara 21, 2024 10:07:14 ÖS HotelDao updateEmployee
+INFO: Employee updated successfully: Employee SSN 6931
+Ara 21, 2024 10:07:22 ÖS HotelDao deleteEmployee
+INFO: Employee deleted successfully: Employee ID 6931
+Ara 21, 2024 10:08:54 ÖS HotelDao updateBooking
+INFO: Booking updated successfully: Booking ID 2
+Ara 21, 2024 10:09:11 ÖS HotelDao insertBooking
+INFO: Booking inserted successfully: Booking ID null
+Ara 21, 2024 10:09:14 ÖS HotelDao deleteBooking
+INFO: Booking deleted successfully: Booking ID 5
+Ara 21, 2024 10:09:28 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 10:09:28 ÖS HotelDao updateCleaningSchedule
+SEVERE: Failed to update cleaning schedule: "Pending" cleaning progress can only be updated as "Completed"
+Ara 21, 2024 10:09:30 ÖS HotelDao updateCleaningSchedule
+INFO: Cleaning schedule updated successfully: Schedule ID2
+Ara 21, 2024 10:09:53 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 10:09:54 ÖS HotelDao getCustomers
+INFO: 1 customers found.
+Ara 21, 2024 10:10:55 ÖS HotelDao getEmployees
+INFO: 1 employees found.
+Ara 21, 2024 10:11:21 ÖS HotelDao updateCustomer
+INFO: Customer updated successfully: Customer SSN 3169
+Ara 21, 2024 10:11:28 ÖS HotelDao rollbackTransaction
+WARNING: Transaction rolled back.
+Ara 21, 2024 10:11:28 ÖS HotelDao deleteCustomer
+SEVERE: Failed to delete customer: Cannot delete or update a parent row: a foreign key constraint fails (`mydb`.`Bookings`, CONSTRAINT `Bookings_ibfk_1` FOREIGN KEY (`c_ssn`) REFERENCES `Customers` (`c_ssn`) ON DELETE RESTRICT)
