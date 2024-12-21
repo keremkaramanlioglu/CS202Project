@@ -26,6 +26,7 @@ public class MainPanel extends Panel {
         btnHousePanel.addActionListener(l);
         btnRecepPanel.addActionListener(l);
         btnDBManagerPanel.addActionListener(l);
+        btnSignOut.addActionListener(l);
     }
 
     public String getPanelName() {
@@ -97,19 +98,17 @@ public class MainPanel extends Panel {
         btnCustomer = new JButton();
         btnHousePanel = new JButton();
         btnRecepPanel = new JButton();
-        panel1 = new JPanel();
+        btnSignOut = new JButton();
         label1 = new JLabel();
-        button1 = new JButton();
 
         //======== this ========
         setBackground(new Color(0x666666));
         setForeground(Color.white);
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border
-        .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e" , javax. swing .border . TitledBorder. CENTER ,javax
-        . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069al\u006fg", java .awt . Font. BOLD ,
-        12 ) ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans
-        .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062or\u0064er" .equals ( e.
-        getPropertyName () ) )throw new RuntimeException( ) ;} } );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(
+        0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder
+        .BOTTOM,new java.awt.Font("Dialo\u0067",java.awt.Font.BOLD,12),java.awt.Color.
+        red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.
+        beans.PropertyChangeEvent e){if("borde\u0072".equals(e.getPropertyName()))throw new RuntimeException();}});
         setLayout(new BorderLayout());
 
         //---- lblWelcome ----
@@ -193,48 +192,25 @@ public class MainPanel extends Panel {
             btnRecepPanel.setAlignmentY(0.0F);
             btnRecepPanel.setIconTextGap(0);
             sidePanel.add(btnRecepPanel);
+
+            //---- btnSignOut ----
+            btnSignOut.setText("Sign out");
+            btnSignOut.setPreferredSize(new Dimension(120, 40));
+            btnSignOut.setBackground(new Color(0x333333));
+            btnSignOut.setForeground(Color.white);
+            sidePanel.add(btnSignOut);
         }
         add(sidePanel, BorderLayout.NORTH);
 
-        //======== panel1 ========
-        {
-            panel1.setMinimumSize(new Dimension(234, 300));
-            panel1.setPreferredSize(new Dimension(234, 300));
-            panel1.setBackground(new Color(0x666666));
-            panel1.setLayout(null);
-
-            //---- label1 ----
-            label1.setText("Choose the suitable panel at the top!");
-            label1.setPreferredSize(new Dimension(234, 300));
-            label1.setVerticalAlignment(SwingConstants.TOP);
-            label1.setFont(new Font("JetBrains Mono Medium", Font.PLAIN, 20));
-            label1.setHorizontalAlignment(SwingConstants.CENTER);
-            label1.setBackground(Color.black);
-            label1.setForeground(Color.white);
-            panel1.add(label1);
-            label1.setBounds(0, 0, 1020, 70);
-
-            //---- button1 ----
-            button1.setText("Sign out");
-            panel1.add(button1);
-            button1.setBounds(415, 165, 205, 55);
-
-            {
-                // compute preferred size
-                Dimension preferredSize = new Dimension();
-                for(int i = 0; i < panel1.getComponentCount(); i++) {
-                    Rectangle bounds = panel1.getComponent(i).getBounds();
-                    preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-                    preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
-                }
-                Insets insets = panel1.getInsets();
-                preferredSize.width += insets.right;
-                preferredSize.height += insets.bottom;
-                panel1.setMinimumSize(preferredSize);
-                panel1.setPreferredSize(preferredSize);
-            }
-        }
-        add(panel1, BorderLayout.SOUTH);
+        //---- label1 ----
+        label1.setText("Choose the suitable panel at the top!");
+        label1.setPreferredSize(new Dimension(234, 300));
+        label1.setVerticalAlignment(SwingConstants.TOP);
+        label1.setFont(new Font("JetBrains Mono Medium", Font.PLAIN, 20));
+        label1.setHorizontalAlignment(SwingConstants.CENTER);
+        label1.setBackground(Color.black);
+        label1.setForeground(Color.white);
+        add(label1, BorderLayout.SOUTH);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -247,8 +223,7 @@ public class MainPanel extends Panel {
     private JButton btnCustomer;
     private JButton btnHousePanel;
     private JButton btnRecepPanel;
-    private JPanel panel1;
+    private JButton btnSignOut;
     private JLabel label1;
-    private JButton button1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
