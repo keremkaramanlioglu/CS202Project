@@ -1,28 +1,45 @@
 import entities.*;
-
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.*;
 
 import static java.sql.JDBCType.NULL;
 
 public class HotelDao {
     Connection con;
-    PreparedStatement stmt;
+    private static final Logger logger = Logger.getLogger(HotelDao.class.getName());
 
     public HotelDao(Connection con) throws SQLException {
         this.con = con;
+        this.con.setAutoCommit(false);  // Auto-commit devre dışı
+        configureLogger();
     }
 
-    public String getEmpType(String currSsn) throws SQLException {
-        String query = "SELECT emp_type FROM Employees WHERE emp_ssn = ?";
-        String empType = null;
-        stmt = con.prepareStatement(query);
-        stmt.setString(1, currSsn);
-        ResultSet rs = stmt.executeQuery();
-        if (rs.next()) {
-            empType = rs.getString("emp_type");
+    private void configureLogger() {
+        try {
+            FileHandler fileHandler = new FileHandler("hotel_dao.log", true);
+            fileHandler.setFormatter(new SimpleFormatter());
+            logger.addHandler(fileHandler);
+        } catch (Exception e) {
+            logger.severe("Logger configuration failed: " + e.getMessage());
         }
-        return empType;
+    }
+
+    private void ensureAutoCommitFalse() throws SQLException {
+        if (con.getAutoCommit()) {
+            con.setAutoCommit(false);
+        }
+    }
+
+    private void rollbackTransaction() {
+        try {
+            if (con != null) {
+                con.rollback();
+                logger.warning("Transaction rolled back.");
+            }
+        } catch (SQLException e) {
+            logger.severe("Rollback failed: " + e.getMessage());
+        }
     }
 
     public boolean compare(String s1, String[] strings) {
@@ -32,396 +49,406 @@ public class HotelDao {
         return false;
     }
 
-    public int insertHotel(Hotel hotel) throws SQLException {
-        String sql = "INSERT INTO Hotels (hotel_name, hotel_phone, " +
-                "hotel_email, hotel_rating, street, no, zip_code) VALUES(?, ?, ?, ?, ?, ?, ?)";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, hotel.getHotel_name());
-        stmt.setObject(2, hotel.getHotel_phone());
-        stmt.setObject(3, hotel.getHotel_email());
-        stmt.setObject(4, hotel.getHotel_rating());
-        stmt.setObject(5, hotel.getStreet());
-        stmt.setObject(6, hotel.getNo());
-        stmt.setObject(7, hotel.getZip_code());
-        return stmt.executeUpdate();
-    }
-    public int updateHotel(Hotel hotel) throws SQLException {
-        String sql = "UPDATE Hotels SET hotel_name = ?, hotel_phone = ?, hotel_email = ?, hotel_rating = ?, street = ?, no = ?, zip_code = ? WHERE hotel_id = ?";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, hotel.getHotel_name());
-        stmt.setObject(2, hotel.getHotel_phone());
-        stmt.setObject(3, hotel.getHotel_email());
-        stmt.setObject(4, hotel.getHotel_rating());
-        stmt.setObject(5, hotel.getStreet());
-        stmt.setObject(6, hotel.getNo());
-        stmt.setObject(7, hotel.getZip_code());
-        stmt.setObject(8, hotel.getHotel_id());
+    //insert, update, delete
 
-        return stmt.executeUpdate();
-    }
-    public int insertRoom(Room room) throws SQLException {
+    public int insertRoom(Room room) {
         String sql = "INSERT INTO Rooms (hotel_id, room_num, room_type, room_size, room_price, room_capacity) VALUES(?, ?, ?, ?, ?, ?)";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, room.getHotel_id());
-        stmt.setObject(2, room.getRoom_num());
-        stmt.setObject(3, room.getRoom_type());
-        stmt.setObject(4, room.getRoom_size());
-        stmt.setObject(5, room.getRoom_price());
-        stmt.setObject(6, room.getRoom_capacity());
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            stmt.setObject(1, room.getHotel_id());
+            stmt.setObject(2, room.getRoom_num());
+            stmt.setObject(3, room.getRoom_type());
+            stmt.setObject(4, room.getRoom_size());
+            stmt.setObject(5, room.getRoom_price());
+            stmt.setObject(6, room.getRoom_capacity());
 
-
-        return stmt.executeUpdate();
-    }
-    public int updateRoom(Room room) throws SQLException {
-        String sql = "UPDATE Rooms SET hotel_id = ?, room_num = ?, room_type = ?, room_size = ?, room_price = ?, room_capacity = ? WHERE room_id = ?";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, room.getHotel_id());
-        stmt.setObject(2, room.getRoom_num());
-        stmt.setObject(3, room.getRoom_type());
-        stmt.setObject(4, room.getRoom_size());
-        stmt.setObject(5, room.getRoom_price());
-        stmt.setObject(6, room.getRoom_capacity());
-        stmt.setObject(7, room.getRoom_id());
-
-        return stmt.executeUpdate();
-    }
-//    public int updateRoom(Room room) throws SQLException {
-//        String sql = "UPDATE Rooms SET hotel_id = ?, room_num = ?, room_type = ?, room_size = ?, room_price = ?, room_capacity = ? WHERE room_id = ?";
-//
-//        con.setAutoCommit(false);
-//        int result = 0;
-//
-//        try (PreparedStatement stmt = con.prepareStatement(sql)) {
-//            stmt.setObject(1, room.getHotel_id());
-//            stmt.setObject(2, room.getRoom_num());
-//            stmt.setObject(3, room.getRoom_type());
-//            stmt.setObject(4, room.getRoom_size());
-//            stmt.setObject(5, room.getRoom_price());
-//            stmt.setObject(6, room.getRoom_capacity());
-//            stmt.setObject(7, room.getRoom_id());
-//
-//            result = stmt.executeUpdate();
-//
-//            con.commit();
-//        } catch (SQLException e) {
-//            if (con != null) {
-//                try {
-//                    con.rollback();
-//                    System.out.println("Transaction rolled back due to error: " + e.getMessage());
-//                } catch (SQLException rollbackEx) {
-//                    System.out.println("Error during rollback: " + rollbackEx.getMessage());
-//                }
-//            }
-//            throw e;
-//        } finally {
-//            if (con != null) {
-//                con.setAutoCommit(true);
-//            }
-//        }
-//
-//        return result;
-//    }
-
-    public int deleteRoom(Room room) throws SQLException {
-        String sql = "DELETE FROM Rooms WHERE room_id = ?";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, room.getRoom_id());
-        return stmt.executeUpdate();
-    }
-    public int insertCustomer(Customer customer) throws SQLException {
-        System.out.println(customer.getC_room_id());
-        if (customer.getC_room_id() == null){
-            System.out.println("it is null");
+            int result = stmt.executeUpdate();
+            con.commit();
+            logger.info("Room inserted successfully: Room number " + room.getRoom_num());
+            return result;
+        } catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to insert room: " + e.getMessage());
+            return 0;
         }
+    }
+
+    public int updateRoom(Room room) {
+        String sql = "UPDATE Rooms SET hotel_id = ?, room_num = ?, room_type = ?, room_size = ?, room_price = ?, room_capacity = ? WHERE room_id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            stmt.setObject(1, room.getHotel_id());
+            stmt.setObject(2, room.getRoom_num());
+            stmt.setObject(3, room.getRoom_type());
+            stmt.setObject(4, room.getRoom_size());
+            stmt.setObject(5, room.getRoom_price());
+            stmt.setObject(6, room.getRoom_capacity());
+            stmt.setObject(7, room.getRoom_id());
+
+            int result = stmt.executeUpdate();
+            con.commit();
+            logger.info("Room updated successfully: Room ID " + room.getRoom_id());
+            return result;
+        } catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to update room: " + e.getMessage());
+            return 0;
+        }
+    }
+
+    public int deleteRoom(Room room) {
+        String sql = "DELETE FROM Rooms WHERE room_id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            stmt.setObject(1, room.getRoom_id());
+            int result = stmt.executeUpdate();
+            con.commit();
+            logger.info("Room deleted successfully: Room ID " + room.getRoom_id());
+            return result;
+        } catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to delete room: " + e.getMessage());
+            return 0;
+        }
+    }
+
+    public int insertCustomer(Customer customer) throws SQLException {
         String sql = "INSERT INTO Customers (c_ssn, c_firstname, c_lastname, c_bd, c_room_id, c_email, c_phone_num, c_gender, zip_code) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, customer.getC_ssn());
-        stmt.setObject(2, customer.getC_firstname());
-        stmt.setObject(3, customer.getC_lastname());
-        stmt.setObject(4, customer.getC_bd());
-        if (customer.getC_room_id() != NULL) stmt.setObject(5, customer.getC_room_id());
-        else stmt.setNull(5, java.sql.Types.NULL);
-        stmt.setObject(6, customer.getC_email());
-        stmt.setObject(7, customer.getC_phone_num());
-        stmt.setObject(8, customer.getC_gender());
-        stmt.setObject(9, customer.getZip_code());
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            stmt.setObject(1, customer.getC_ssn());
+            stmt.setObject(2, customer.getC_firstname());
+            stmt.setObject(3, customer.getC_lastname());
+            stmt.setObject(4, customer.getC_bd());
+            if (customer.getC_room_id() != NULL) stmt.setObject(5, customer.getC_room_id());
+            else stmt.setNull(5, java.sql.Types.NULL);
+            stmt.setObject(6, customer.getC_email());
+            stmt.setObject(7, customer.getC_phone_num());
+            stmt.setObject(8, customer.getC_gender());
+            stmt.setObject(9, customer.getZip_code());
 
-
-        return stmt.executeUpdate();
+            int result = stmt.executeUpdate();
+            con.commit();
+            logger.info("Customer inserted successfully: Customer ID " + customer.getC_ssn());
+            return result;
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to insert customer: " + e.getMessage());
+            return 0;
+        }
     }
+
     public int updateCustomer(Customer customer) throws SQLException {
-        System.out.println(customer);
         String sql = "UPDATE Customers SET c_firstname = ?, c_lastname = ?, c_bd = ?, c_room_id = ?, c_email = ?, c_phone_num = ?, c_gender = ?, zip_code = ? WHERE c_ssn = ?";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(9, customer.getC_ssn());
-        stmt.setObject(1, customer.getC_firstname());
-        stmt.setObject(2, customer.getC_lastname());
-        stmt.setObject(3, customer.getC_bd());
-        if (customer.getC_room_id() != NULL) stmt.setObject(4, customer.getC_room_id());
-        else stmt.setNull(4, java.sql.Types.NULL);
-        stmt.setObject(5, customer.getC_email());
-        stmt.setObject(6, customer.getC_phone_num());
-        stmt.setObject(7, customer.getC_gender());
-        stmt.setObject(8, customer.getZip_code());
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            stmt.setObject(9, customer.getC_ssn());
+            stmt.setObject(1, customer.getC_firstname());
+            stmt.setObject(2, customer.getC_lastname());
+            stmt.setObject(3, customer.getC_bd());
+            if (customer.getC_room_id() != NULL) stmt.setObject(4, customer.getC_room_id());
+            else stmt.setNull(4, java.sql.Types.NULL);
+            stmt.setObject(5, customer.getC_email());
+            stmt.setObject(6, customer.getC_phone_num());
+            stmt.setObject(7, customer.getC_gender());
+            stmt.setObject(8, customer.getZip_code());
 
-        return stmt.executeUpdate();
+            int result = stmt.executeUpdate();
+            con.commit();
+            logger.info("Customer updated successfully: Customer SSN " + customer.getC_ssn());
+            return result;
+        } catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to update customer: " + e.getMessage());
+            return 0;
+        }
     }
+
     public int deleteCustomer(Customer customer) throws SQLException {
         String sql = "DELETE FROM Customers WHERE c_ssn = ?";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, customer.getC_ssn());
-        return stmt.executeUpdate();
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            stmt.setObject(1, customer.getC_ssn());
+            int result = stmt.executeUpdate();
+            con.commit();
+            logger.info("Customer deleted successfully: Customer ID " + customer.getC_ssn());
+            return result;
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to delete customer: " + e.getMessage());
+            return 0;
+        }
     }
+
     public int insertEmployee(Employee employee) throws SQLException {
         String sql = "INSERT INTO Employees (emp_ssn, emp_firstname, emp_lastname, emp_type, emp_bd, years, emp_hotel_id, emp_salary, emp_phone_num, emp_email, emp_gender, street, no, apartment, zip_code) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, employee.getEmp_ssn());
-        stmt.setObject(2, employee.getEmp_firstname());
-        stmt.setObject(3, employee.getEmp_lastname());
-        stmt.setObject(4, employee.getEmp_type());
-        stmt.setObject(5, employee.getEmp_bd());
-        stmt.setObject(6, employee.getYears());
-        stmt.setObject(7, employee.getEmp_hotel_id());
-        stmt.setObject(8, employee.getEmp_salary());
-        stmt.setObject(9, employee.getEmp_phone_num());
-        stmt.setObject(10, employee.getEmp_email());
-        stmt.setObject(11, employee.getEmp_gender());
-        stmt.setObject(12, employee.getStreet());
-        stmt.setObject(13, employee.getNo());
-        stmt.setObject(14, employee.getApartment());
-        stmt.setObject(15, employee.getZip_code());
-
-        return stmt.executeUpdate();
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            stmt.setObject(1, employee.getEmp_ssn());
+            stmt.setObject(2, employee.getEmp_firstname());
+            stmt.setObject(3, employee.getEmp_lastname());
+            stmt.setObject(4, employee.getEmp_type());
+            stmt.setObject(5, employee.getEmp_bd());
+            stmt.setObject(6, employee.getYears());
+            stmt.setObject(7, employee.getEmp_hotel_id());
+            stmt.setObject(8, employee.getEmp_salary());
+            stmt.setObject(9, employee.getEmp_phone_num());
+            stmt.setObject(10, employee.getEmp_email());
+            stmt.setObject(11, employee.getEmp_gender());
+            stmt.setObject(12, employee.getStreet());
+            stmt.setObject(13, employee.getNo());
+            stmt.setObject(14, employee.getApartment());
+            stmt.setObject(15, employee.getZip_code());
+            int result = stmt.executeUpdate();
+            con.commit();
+            logger.info("Employee inserted successfully: Employee ID " + employee.getEmp_ssn());
+            return result;
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to insert employee: " + e.getMessage());
+            return 0;
+        }
     }
+
     public int updateEmployee(Employee employee) throws SQLException {
         String sql = "UPDATE Employees SET emp_firstname = ?, emp_lastname = ?, emp_type = ?, emp_bd = ?, years = ?, emp_hotel_id = ?, emp_salary = ?, emp_phone_num = ?, emp_email = ?, emp_gender = ?, street = ?, no = ?, apartment = ?, zip_code = ? WHERE emp_ssn = ?";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(15, employee.getEmp_ssn());
-        stmt.setObject(1, employee.getEmp_firstname());
-        stmt.setObject(2, employee.getEmp_lastname());
-        stmt.setObject(3, employee.getEmp_type());
-        stmt.setObject(4, employee.getEmp_bd());
-        stmt.setObject(5, employee.getYears());
-        stmt.setObject(6, employee.getEmp_hotel_id());
-        stmt.setObject(7, employee.getEmp_salary());
-        stmt.setObject(8, employee.getEmp_phone_num());
-        stmt.setObject(9, employee.getEmp_email());
-        stmt.setObject(10, employee.getEmp_gender());
-        stmt.setObject(11, employee.getStreet());
-        stmt.setObject(12, employee.getNo());
-        stmt.setObject(13, employee.getApartment());
-        stmt.setObject(14, employee.getZip_code());
-
-        System.out.println("enterd");
-
-        return stmt.executeUpdate();
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            stmt.setObject(15, employee.getEmp_ssn());
+            stmt.setObject(1, employee.getEmp_firstname());
+            stmt.setObject(2, employee.getEmp_lastname());
+            stmt.setObject(3, employee.getEmp_type());
+            stmt.setObject(4, employee.getEmp_bd());
+            stmt.setObject(5, employee.getYears());
+            stmt.setObject(6, employee.getEmp_hotel_id());
+            stmt.setObject(7, employee.getEmp_salary());
+            stmt.setObject(8, employee.getEmp_phone_num());
+            stmt.setObject(9, employee.getEmp_email());
+            stmt.setObject(10, employee.getEmp_gender());
+            stmt.setObject(11, employee.getStreet());
+            stmt.setObject(12, employee.getNo());
+            if (employee.getApartment().equals("null")) stmt.setObject(13, null);
+            else stmt.setObject(13, employee.getApartment());
+            stmt.setObject(14, employee.getZip_code());
+            int result = stmt.executeUpdate();
+            con.commit();
+            logger.info("Employee updated successfully: Employee SSN " + employee.getEmp_ssn());
+            return result;
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to update employee: " + e.getMessage());
+            return 0;
+        }
     }
+
     public int deleteEmployee(Employee employee) throws SQLException {
         String sql = "DELETE FROM Employees WHERE emp_ssn = ?";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, employee.getEmp_ssn());
-        return stmt.executeUpdate();
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            stmt.setObject(1, employee.getEmp_ssn());
+            int result = stmt.executeUpdate();
+            con.commit();
+            logger.info("Employee deleted successfully: Employee ID " + employee.getEmp_ssn());
+            return result;
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to delete employee: " + e.getMessage());
+            return 0;
+        }
     }
+
     public int insertBooking(Booking booking) throws SQLException {
         String sql = "INSERT INTO Bookings (c_ssn, room_id, payment_status, payment_method, booking_start_date, booking_end_date, c_check_in_status, c_check_out_status) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, booking.getC_ssn());
-        stmt.setObject(2, booking.getRoom_id());
-        stmt.setObject(3, booking.getPayment_status());
-        stmt.setObject(4, booking.getPayment_method());
-        stmt.setObject(5, booking.getBooking_start_date());
-        stmt.setObject(6, booking.getBooking_end_date());
-        stmt.setObject(7, booking.isC_check_in_status());
-        stmt.setObject(8, booking.isC_check_out_status());
-
-        return stmt.executeUpdate();
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            stmt.setObject(1, booking.getC_ssn());
+            stmt.setObject(2, booking.getRoom_id());
+            stmt.setObject(3, booking.getPayment_status());
+            stmt.setObject(4, booking.getPayment_method());
+            stmt.setObject(5, booking.getBooking_start_date());
+            stmt.setObject(6, booking.getBooking_end_date());
+            stmt.setObject(7, booking.isC_check_in_status());
+            stmt.setObject(8, booking.isC_check_out_status());
+            int result = stmt.executeUpdate();
+            con.commit();
+            logger.info("Booking inserted successfully: Booking ID " + booking.getBooking_id());
+            return result;
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to insert booking: " + e.getMessage());
+            return 0;
+        }
     }
+
     public int updateBooking(Booking booking) throws SQLException {
         String sql = "UPDATE Bookings SET c_ssn = ?, room_id = ?, payment_status = ?, payment_method = ?, booking_start_date = ?, booking_end_date = ?, c_check_in_status = ?, c_check_out_status = ? WHERE booking_id = ?";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, booking.getC_ssn());
-        stmt.setObject(2, booking.getRoom_id());
-        stmt.setObject(3, booking.getPayment_status());
-        stmt.setObject(4, booking.getPayment_method());
-        stmt.setObject(5, booking.getBooking_start_date());
-        stmt.setObject(6, booking.getBooking_end_date());
-        stmt.setObject(7, booking.isC_check_in_status());
-        stmt.setObject(8, booking.isC_check_out_status());
-        stmt.setObject(9, booking.getBooking_id());
-
-        return stmt.executeUpdate();
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            stmt.setObject(1, booking.getC_ssn());
+            stmt.setObject(2, booking.getRoom_id());
+            stmt.setObject(3, booking.getPayment_status());
+            stmt.setObject(4, booking.getPayment_method());
+            stmt.setObject(5, booking.getBooking_start_date());
+            stmt.setObject(6, booking.getBooking_end_date());
+            stmt.setObject(7, booking.isC_check_in_status());
+            stmt.setObject(8, booking.isC_check_out_status());
+            stmt.setObject(9, booking.getBooking_id());
+            int result = stmt.executeUpdate();
+            con.commit();
+            logger.info("Booking updated successfully: Booking ID " + booking.getBooking_id());
+            return result;
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to update booking: " + e.getMessage());
+            return 0;
+        }
     }
+
     public int deleteBooking(Booking booking) throws SQLException {
         String sql = "DELETE FROM Bookings WHERE booking_id = ?";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, booking.getBooking_id());
-        return stmt.executeUpdate();
-    }
-    public int insertParkingLot(ParkingLot parkingLot) throws SQLException {
-        String sql = "INSERT INTO ParkingLot (park_id, hotel_id, capacity) VALUES(?, ?, ?)";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, parkingLot.getPark_id());
-        stmt.setObject(2, parkingLot.getHotel_id());
-        stmt.setObject(3, parkingLot.getCapacity());
-        return stmt.executeUpdate();
-    }
-    public int deleteHotel(Hotel hotel) throws SQLException {
-        String sql = "DELETE FROM Hotels WHERE hotel_id = ?";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, hotel.getHotel_id());
-        return stmt.executeUpdate();
-    }
-    public int updateParkingLot(ParkingLot parkingLot) throws SQLException {
-        String sql = "UPDATE ParkingLot SET hotel_id = ?, capacity = ?";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, parkingLot.getHotel_id());
-        stmt.setObject(2, parkingLot.getCapacity());
-        return stmt.executeUpdate();
-    }
-    public int deleteParkingLot(ParkingLot parkingLot) throws SQLException {
-        String sql = "DELETE FROM ParkingLot WHERE park_id = ?";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, parkingLot.getPark_id());
-        return stmt.executeUpdate();
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            stmt.setObject(1, booking.getBooking_id());
+            int result = stmt.executeUpdate();
+            con.commit();
+            logger.info("Booking deleted successfully: Booking ID " + booking.getBooking_id());
+            return result;
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to delete booking: " + e.getMessage());
+            return 0;
+        }
     }
 
     public int insertCleaningScheduleWithRoomNum(CleaningSchedule cleaningSchedule, Object roomNum, Object hotelId) throws SQLException {
         int roomId = getRoomID(roomNum, hotelId);
-
-        // Step 2: Insert the cleaning schedule
         String insertScheduleQuery = "INSERT INTO CleaningSchedule (housekeeper_ssn, receptionist_ssn, room_id, cleaning_date, service_status) " +
                 "VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement insertStmt = con.prepareStatement(insertScheduleQuery)) {
+            ensureAutoCommitFalse();
             insertStmt.setObject(1, cleaningSchedule.getHousekeeper_ssn());
             insertStmt.setObject(2, cleaningSchedule.getReceptionist_ssn());
             insertStmt.setObject(3, roomId);
             insertStmt.setObject(4, cleaningSchedule.getCleaning_date());
             insertStmt.setObject(5, cleaningSchedule.getService_status());
-
-            return insertStmt.executeUpdate();
+            int result = insertStmt.executeUpdate();
+            con.commit();
+            logger.info("Cleaning schedule inserted successfully: Schedule ID " + cleaningSchedule.getSchedule_id());
+            return result;
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to insert cleaning schedule: " + e.getMessage());
+            return 0;
         }
-    }
-
-    public int getRoomID(Object roomNum, Object hotelId) throws SQLException {
-        int roomId = -1;
-        String findRoomIdQuery = "SELECT room_id FROM Rooms WHERE room_num = ? AND hotel_id = ?";
-        try (PreparedStatement findStmt = con.prepareStatement(findRoomIdQuery)) {
-            findStmt.setObject(1, roomNum);
-            findStmt.setObject(2, hotelId);
-
-            try (ResultSet rs = findStmt.executeQuery()) {
-                if (rs.next()) {
-                    roomId = rs.getInt("room_id");
-                } else {
-                    throw new SQLException("Room not found for the given room number and hotel ID.");
-                }
-            }
-        }
-        return roomId;
     }
 
     public int updateCleaningScheduleWithRoomNum(CleaningSchedule cleaningSchedule, Object roomNum, Object hotelId) throws SQLException {
-
         int roomId = getRoomID(roomNum, hotelId);
-
-
         String updateScheduleQuery = "UPDATE CleaningSchedule " +
                 "SET housekeeper_ssn = ?, receptionist_ssn = ?, room_id = ?, cleaning_date = ?, service_status = ? " +
                 "WHERE schedule_id = ?";
         try (PreparedStatement updateStmt = con.prepareStatement(updateScheduleQuery)) {
+            ensureAutoCommitFalse();
             updateStmt.setObject(1, cleaningSchedule.getHousekeeper_ssn());
             updateStmt.setObject(2, cleaningSchedule.getReceptionist_ssn());
             updateStmt.setObject(3, roomId);
             updateStmt.setObject(4, cleaningSchedule.getCleaning_date());
             updateStmt.setObject(5, cleaningSchedule.getService_status());
             updateStmt.setObject(6, cleaningSchedule.getSchedule_id());
-
-            return updateStmt.executeUpdate();
+            int result = updateStmt.executeUpdate();
+            con.commit();
+            logger.info("Cleaning schedule updated successfully: Schedule ID" + cleaningSchedule.getSchedule_id());
+            return result;
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to update cleaning schedule: " + e.getMessage());
+            return 0;
         }
     }
-
-
-
 
     public int insertCleaningSchedule(CleaningSchedule cleaningSchedule) throws SQLException {
         String sql = "INSERT INTO CleaningSchedule (housekeeper_ssn, receptionist_ssn, " +
                 "room_id, cleaning_date, service_status) VALUES(?, ?, ?, ?, ?)";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, cleaningSchedule.getHousekeeper_ssn());
-        stmt.setObject(2, cleaningSchedule.getReceptionist_ssn());
-        stmt.setObject(3, cleaningSchedule.getRoom_id());
-        stmt.setObject(4, cleaningSchedule.getCleaning_date());
-        stmt.setObject(5, cleaningSchedule.getService_status());
-        return stmt.executeUpdate();
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            stmt.setObject(1, cleaningSchedule.getHousekeeper_ssn());
+            stmt.setObject(2, cleaningSchedule.getReceptionist_ssn());
+            stmt.setObject(3, cleaningSchedule.getRoom_id());
+            stmt.setObject(4, cleaningSchedule.getCleaning_date());
+            stmt.setObject(5, cleaningSchedule.getService_status());
+            int result = stmt.executeUpdate();
+            con.commit();
+            logger.info("Cleaning schedule inserted successfully: Schedule ID " + cleaningSchedule.getSchedule_id());
+            return result;
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to insert cleaning schedule: " + e.getMessage());
+            return 0;
+        }
     }
+
     public int updateCleaningSchedule(CleaningSchedule cleaningSchedule) throws SQLException {
         String sql = "UPDATE CleaningSchedule SET housekeeper_ssn = ?, receptionist_ssn = ?, room_id = ?, cleaning_date = ?, service_status = ? WHERE schedule_id = ?";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, cleaningSchedule.getHousekeeper_ssn());
-        stmt.setObject(2, cleaningSchedule.getReceptionist_ssn());
-        stmt.setObject(3, cleaningSchedule.getRoom_id());
-        stmt.setObject(4, cleaningSchedule.getCleaning_date());
-        stmt.setObject(5, cleaningSchedule.getService_status());
-        stmt.setObject(6, cleaningSchedule.getSchedule_id());
-        return stmt.executeUpdate();
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            stmt.setObject(1, cleaningSchedule.getHousekeeper_ssn());
+            stmt.setObject(2, cleaningSchedule.getReceptionist_ssn());
+            stmt.setObject(3, cleaningSchedule.getRoom_id());
+            stmt.setObject(4, cleaningSchedule.getCleaning_date());
+            stmt.setObject(5, cleaningSchedule.getService_status());
+            stmt.setObject(6, cleaningSchedule.getSchedule_id());
+            int result = stmt.executeUpdate();
+            con.commit();
+            logger.info("Cleaning schedule updated successfully: Schedule ID" + cleaningSchedule.getSchedule_id());
+            return result;
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to update cleaning schedule: " + e.getMessage());
+            return 0;
+        }
     }
+
     public int deleteCleaningSchedule(CleaningSchedule cleaningSchedule) throws SQLException {
         String sql = "DELETE FROM CleaningSchedule WHERE schedule_id = ?";
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, cleaningSchedule.getSchedule_id());
-        return stmt.executeUpdate();
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            stmt.setObject(1, cleaningSchedule.getSchedule_id());
+            int result = stmt.executeUpdate();
+            con.commit();
+            logger.info("Cleaning schedule deleted successfully: Schedule ID" + cleaningSchedule.getSchedule_id());
+            return result;
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to delete cleaning schedule: " + e.getMessage());
+            return 0;
+        }
     }
 
-    public ArrayList<Room> getRooms(String filterColumn, String filterOption, String filterValue) throws SQLException {
-        String sql = "";
-        ArrayList<Room> rooms = new ArrayList<>();
+    //Getters
 
-        if (filterOption.equals("None")) {
-            sql = "SELECT * FROM Rooms";
-        } else {
-            String column = "";
-            String where = "";
-            sql = "SELECT * FROM Rooms WHERE " + filterColumn + filterOption + " ?";
+    public int getRoomID(Object roomNum, Object hotelId) throws SQLException {
+        int roomId = -1;
+        String findRoomIdQuery = "SELECT room_id FROM Rooms WHERE room_num = ? AND hotel_id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(findRoomIdQuery)) {
+            stmt.setObject(1, roomNum);
+            stmt.setObject(2, hotelId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    roomId = rs.getInt("room_id");
+                } else {
+                    throw new SQLException("Room not found for the given room number and hotel ID.");
+                }
+            }
+        } catch (SQLException e) {
+            logger.severe("Failed to get room ID: " + e.getMessage());
+            throw e;
         }
-
-        stmt = con.prepareStatement(sql);
-        stmt.setString(1, filterValue);
-
-        //System.out.println(stmt);
-
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            rooms.add(new Room(rs));
-        }
-        return rooms;
+        return roomId;
     }
-    public ArrayList<Room> getRooms(String filterColumn, String filterOption, String filterValue, String filterValueUpper) throws SQLException {
-        String sql = "";
-        ArrayList<Room> rooms = new ArrayList<>();
 
-        if (filterOption.equals("None")) {
-            sql = "SELECT * FROM Rooms";
-        } else {
-            String column = "";
-            String where = "";
-            sql = "SELECT * FROM Rooms WHERE " + filterColumn + filterOption + " ? AND ?";
-        }
-
-        stmt = con.prepareStatement(sql);
-        stmt.setString(1, filterValue);
-        stmt.setString(2, filterValueUpper);
-
-        //System.out.println(stmt);
-
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            rooms.add(new Room(rs));
-        }
-        return rooms;
-    }
     public ArrayList<Customer> getCustomers(String filterColumn, String filterOption, String filterValue) throws SQLException {
-
-        String sql = "";
+        String sql;
         ArrayList<Customer> customers = new ArrayList<>();
 
         if (filterOption.equals("None")) {
@@ -431,36 +458,38 @@ public class HotelDao {
             if (!compare(filterColumn, new String[]{"zip_code"})) {
                 filterColumn = cus + filterColumn;
             }
-
-            String column = "";
-            String where = "";
             sql = "SELECT * FROM Customers WHERE " + filterColumn + filterOption + " ?";
         }
 
-        stmt = con.prepareStatement(sql);
-        stmt.setObject(1, filterValue);
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            if (!filterOption.equals("None")) {
+                stmt.setObject(1, filterValue);
+            }
 
-        //System.out.println(stmt);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    customers.add(new Customer(rs));
+                }
+            }
 
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            customers.add(new Customer(rs));
-        }
-        if (customers == null || customers.size() == 0) {
-            System.out.println("No Customer found");
+            if (customers.isEmpty()) {
+                logger.warning("No Customer found.");
+            } else {
+                logger.info(customers.size() + " customers found.");
+            }
+        } catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to get customers: " + e.getMessage());
+            throw e;
         }
         return customers;
+    }
 
-    }                                                   //Salary
     public ArrayList<Employee> getEmployees(String filterColumn, String filterOption, String filterValue) throws SQLException {
         String sql = "SELECT * FROM Employees";
         ArrayList<Employee> employees = new ArrayList<>();
-        //System.out.println(filterColumn +" "+ filterOption +" "+ filterValue);
-
-        //System.out.println(filterOption.equals("None"));
 
         if (filterOption.equals("None")) {
-            //System.out.println("Entered");
             sql = "SELECT * FROM Employees";
         } else {
             String emp = "emp_";
@@ -471,138 +500,33 @@ public class HotelDao {
                 filterValue = "'" + filterValue + "'";
             }
 
-            String column = "";
-            String where = "";
             sql = "SELECT * FROM Employees WHERE " + filterColumn + filterOption + filterValue;
-            //System.out.println(sql);
         }
 
-        stmt = con.prepareStatement(sql);
-
-        //System.out.println(stmt);
-
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            employees.add(new Employee(rs));
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    employees.add(new Employee(rs));
+                }
+            }
+            if (employees.isEmpty()) {
+                logger.warning("No Employee found.");
+            } else {
+                logger.info(employees.size() + " employees found.");
+            }
+        } catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to get employees: " + e.getMessage());
+            throw e;
         }
         return employees;
     }
-    public ArrayList<Booking> getBookings(String filterColumn, String filterOption, String filterValue) throws SQLException {
-        String sql = "SELECT * FROM Bookings";
-        ArrayList<Booking> bookings = new ArrayList<>();
-
-        if (filterOption.equals("None")) {
-            sql = "SELECT * FROM Bookings";
-        } else {
-            if (!compare(filterColumn, new String[]{"booking_id", "room_id", "c_check_in_status", "c_check_out_status"})) {
-                filterValue = "'" + filterValue + "'";
-            }
-            String column = "";
-            String where = "";
-            sql = "SELECT * FROM Bookings WHERE " + filterColumn + filterOption + filterValue;
-        }
-
-
-        stmt = con.prepareStatement(sql);
-        //System.out.println(stmt);
-
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            bookings.add(new Booking(rs));
-        }
-        return bookings;
-    }
-    public ArrayList<Booking> getBookings(String filterColumn, String filterOption, String filterValue, String filterValueUpper) throws SQLException {
-        String sql = "SELECT * FROM Bookings";
-        ArrayList<Booking> bookings = new ArrayList<>();
-
-        if (filterOption.equals("None")) {
-            sql = "SELECT * FROM Bookings";
-        } else {
-            String column = "";
-            String where = "";
-            sql = "SELECT * FROM Bookings WHERE " + filterColumn + filterOption + " ? AND ?";
-        }
-
-        stmt = con.prepareStatement(sql);
-        //System.out.println(stmt);
-
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            bookings.add(new Booking(rs));
-        }
-        return bookings;
-    }
-    public ArrayList<ParkingLot> getParkingLots(String filterColumn, String filterOption, String filterValue) throws SQLException {
-        return null;
-    }
-    public ArrayList<CleaningSchedule> getCleaningSchedules(int hotelID, String filterColumn, String filterOption, String filterValue) throws SQLException {
-        System.out.println(hotelID);
-        String sql = "SELECT DISTINCT cs.schedule_id, cs.housekeeper_ssn, cs.receptionist_ssn, cs.room_id, cs.cleaning_date, cs.service_status " +
-                "FROM CleaningSchedule cs, Rooms r, Employees e " +
-                "WHERE cs.room_id = r.room_id AND e.emp_hotel_id = ? AND r.hotel_id = ?";
-
-
-        ArrayList<CleaningSchedule> cleaningSchedules = new ArrayList<>();
-
-        if (filterOption.equals("None")) {
-            sql = "SELECT DISTINCT cs.schedule_id, cs.housekeeper_ssn, cs.receptionist_ssn, cs.room_id, cs.cleaning_date, cs.service_status " +
-                    "FROM CleaningSchedule cs, Rooms r, Employees e " +
-                    "WHERE cs.room_id = r.room_id AND e.emp_hotel_id = ? AND r.hotel_id = ?";
-        } else {
-            if (!compare(filterColumn, new String[]{"schedule_id", "room_id"})) {
-                filterValue = "'" + filterValue + "'";
-            }
-            String column = "";
-            String where = "";
-            sql = "SELECT DISTINCT cs.schedule_id, cs.housekeeper_ssn, cs.receptionist_ssn, cs.room_id, cs.cleaning_date, cs.service_status " +
-                    "FROM CleaningSchedule cs, Rooms r, Employees e " +
-                    "WHERE cs.room_id = r.room_id AND e.emp_hotel_id = ? AND r.hotel_id = ? AND cs." + filterColumn + filterOption + filterValue;
-            System.out.println(sql);
-        }
-        stmt = con.prepareStatement(sql);
-        stmt.setInt(1, hotelID);
-        stmt.setInt(2, hotelID);
-        //System.out.println(stmt);
-
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            cleaningSchedules.add(new CleaningSchedule(rs));
-        }
-        return cleaningSchedules;
-    }
-    public ArrayList<CleaningSchedule> getCleaningSchedules(String filterColumn, String filterOption, String filterValue, String filterValueUpper) throws SQLException {
-        String sql = "";
-        ArrayList<CleaningSchedule> cs = new ArrayList<>();
-
-        if (filterOption.equals("None")) {
-            sql = "SELECT * FROM CleaningSchedule";
-        } else {
-            String column = "";
-            String where = "";
-            sql = "SELECT * FROM CleaningSchedule WHERE " + filterColumn + filterOption + "  ? AND ?";
-        }
-
-        stmt = con.prepareStatement(sql);
-        stmt.setString(1, filterValue);
-        stmt.setString(2, filterValueUpper);
-
-        //System.out.println(stmt);
-
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            cs.add(new CleaningSchedule(rs));
-        }
-        return cs;
-    }
-
-    // NEW
 
     public ArrayList<Object[]> filterBookings(String columnName, String filterOption, String filterValue, String filterValueUpper, int hotelID) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
         String sql = "";
 
-        // Construct the SQL query based on filter options
         switch (filterOption) {
             case "None":
                 sql = "SELECT * FROM Bookings b, Rooms r WHERE b.room_id = r.room_id AND r.hotel_id = ?";
@@ -627,25 +551,42 @@ public class HotelDao {
         }
 
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
-            // Set query parameters based on filter options
+            ensureAutoCommitFalse();
             if (!filterOption.equals("None")) {
                 if (filterOption.equals("between")) {
-                    stmt.setString(1, filterValue);
-                    stmt.setString(2, filterValueUpper);
+                    stmt.setInt(1, hotelID);
+                    stmt.setString(2, filterValue);
+                    stmt.setString(3, filterValueUpper);
                 } else {
-                    stmt.setString(1, filterValue);
+                    stmt.setInt(1, hotelID);
+                    stmt.setString(2, filterValue);
                 }
             }else {
                 stmt.setInt(1, hotelID);
+                stmt.setString(2, filterValue);
             }
 
             try (ResultSet rs = stmt.executeQuery()) {
-                // Collect results into an ArrayList<Object[]>
-                //rs.next();
                 while (rs.next()) {
-
+                    result.add(
+                            new Object[]{
+                                    rs.getObject("booking_id"),
+                                    rs.getObject("c_ssn"),
+                                    rs.getObject("room_id"),
+                                    rs.getObject("payment_status"),
+                                    rs.getObject("payment_method"),
+                                    rs.getObject("booking_start_date"),
+                                    rs.getObject("booking_end_date"),
+                                    rs.getObject("c_check_in_status"),
+                                    rs.getObject("c_check_out_status")
+                            }
+                    );
                 }
             }
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to get bookings from filter: " + e.getMessage());
+            throw e;
         }
 
         return result;
@@ -654,13 +595,12 @@ public class HotelDao {
     public ArrayList<Object[]> filterEmployees(String columnName, String filterOption, String filterValue, String filterValueUpper, int emp_hotel_id) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
         String sql = "";
-
         String emp = "emp_";
+
         if (!compare(columnName, new String[]{"years", "street", "no", "apartment", "zip_code"})) {
             columnName = emp + columnName;
         }
 
-        // Construct the SQL query based on filter options
         switch (filterOption) {
             case "None":
                 sql = "SELECT * FROM Employees";
@@ -678,39 +618,31 @@ public class HotelDao {
                 break;
             case "contains":
                 sql = "SELECT * FROM Employees WHERE " + columnName + " LIKE ?";
-                filterValue = "%" + filterValue + "%"; // Adjust filterValue for LIKE
+                filterValue = "%" + filterValue + "%";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid filter option: " + filterOption);
         }
 
-
         if (emp_hotel_id != -1) {
-            if (filterOption.equals("None")) {
-                sql += " WHERE emp_hotel_id = ?";
-            } else {
-                sql += " AND emp_hotel_id = ?";
-            }
+            sql += filterOption.equals("None") ? " WHERE emp_hotel_id = ?" : " AND emp_hotel_id = ?";
         }
 
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
-            // Set query parameters based on filter options
+            ensureAutoCommitFalse();
             if (!filterOption.equals("None")) {
+                stmt.setObject(1, filterValue);
                 if (filterOption.equals("between")) {
-                    stmt.setString(1, filterValue);
-                    stmt.setString(2, filterValueUpper);
+                    stmt.setObject(2, filterValueUpper);
                     stmt.setInt(3, emp_hotel_id);
                 } else {
-                    stmt.setString(1, filterValue);
-                    stmt.setInt(2, emp_hotel_id);
+                    stmt.setObject(2, emp_hotel_id);
                 }
-            } else{
-                stmt.setInt(1, emp_hotel_id);
+            } else {
+                stmt.setObject(1, emp_hotel_id);
             }
 
-
             try (ResultSet rs = stmt.executeQuery()) {
-                // Collect results into an ArrayList<Object[]>
                 while (rs.next()) {
                     Object[] row = new Object[15];
                     row[0] = rs.getString("emp_ssn");
@@ -731,11 +663,15 @@ public class HotelDao {
                     result.add(row);
                 }
             }
+        } catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to filter employees: " + e.getMessage());
+            throw e;
         }
-
         return result;
     }
-    public double calculateRevenue(Object start, Object end, int hotelID) {
+
+    public double calculateRevenue(Object start, Object end, int hotelID) throws SQLException {
         double totalRevenue = 0.0;
         String query = "SELECT SUM(r.room_price * DATEDIFF(b.booking_end_date, b.booking_start_date)) AS total_revenue "
                 + "FROM Bookings b "
@@ -746,20 +682,20 @@ public class HotelDao {
                 + "AND b.payment_status = 'Completed' ";
 
         try (PreparedStatement stmt = con.prepareStatement(query)) {
-
+            ensureAutoCommitFalse();
             stmt.setObject(1, hotelID);  // hotelID
             stmt.setObject(2, start);  // start date
             stmt.setObject(3, end);  // end date
-
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     totalRevenue = rs.getDouble("total_revenue");
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            rollbackTransaction();
+            logger.severe("Failed to calculate revenue: " + e.getMessage());
+            throw e;
         }
-
         return totalRevenue;
     }
 
@@ -767,8 +703,6 @@ public class HotelDao {
         ArrayList<Object[]> result = new ArrayList<>();
         String sql = "";
 
-
-        // Construct the SQL query based on filter options
         switch (filterOption) {
             case "None":
                 sql = "SELECT cs.schedule_id, cs.housekeeper_ssn, cs.receptionist_ssn, cs.room_id, cs.cleaning_date, cs.service_status FROM CleaningSchedule cs JOIN Rooms r ON cs.room_id = r.room_id WHERE r.hotel_id = ?";
@@ -792,22 +726,19 @@ public class HotelDao {
                 throw new IllegalArgumentException("Invalid filter option: " + filterOption);
         }
 
-
-
-
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
-            // Set query parameters based on filter options
+            ensureAutoCommitFalse();
             if (!filterOption.equals("None")) {
                 if (filterOption.equals("between")) {
                     stmt.setString(2, filterValue);
                     stmt.setString(3, filterValueUpper);
-                    stmt.setInt(1, emp_hotel_id);
+                    stmt.setObject(1, emp_hotel_id);
                 } else {
                     stmt.setString(2, filterValue);
-                    stmt.setInt(1, emp_hotel_id);
+                    stmt.setObject(1, emp_hotel_id);
                 }
             } else{
-                stmt.setInt(1, emp_hotel_id);
+                stmt.setObject(1, emp_hotel_id);
             }
 
 
@@ -824,6 +755,10 @@ public class HotelDao {
                     result.add(row);
                 }
             }
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to filter cleaning schedules: " + e.getMessage());
+            throw e;
         }
 
         return result;
@@ -833,7 +768,6 @@ public class HotelDao {
         ArrayList<Object[]> result = new ArrayList<>();
         String sql = "";
 
-        // Construct the SQL query based on filter options
         switch (filterOption) {
             case "None":
                 sql = "SELECT r.room_id, r.hotel_id, r.room_num, r.room_type, r.room_size, r.room_price, r.room_capacity FROM Rooms r WHERE r.hotel_id = ?";
@@ -857,7 +791,7 @@ public class HotelDao {
                 throw new IllegalArgumentException("Invalid filter option: " + filterOption);
         }
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
-            // Set query parameters based on filter options
+            ensureAutoCommitFalse();
             if (!filterOption.equals("None")) {
                 if (filterOption.equals("between")) {
                     stmt.setInt(1, hotel_id);
@@ -872,7 +806,6 @@ public class HotelDao {
             }
 
             try (ResultSet rs = stmt.executeQuery()) {
-                // Collect results into an ArrayList<Object[]>
                 while (rs.next()) {
                     Object[] row = new Object[7];
                     row[0] = rs.getObject("room_id");
@@ -885,6 +818,10 @@ public class HotelDao {
                     result.add(row);
                 }
             }
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to filter rooms: " + e.getMessage());
+            throw e;
         }
 
         return result;
@@ -900,6 +837,7 @@ public class HotelDao {
                 "WHERE b.c_ssn = ?;";
 
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
             stmt.setString(1, ssn);
 
             try (ResultSet rs = stmt.executeQuery()) {
@@ -913,18 +851,28 @@ public class HotelDao {
                     result.add(row);
                 }
             }
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to view bookings: " + e.getMessage());
+            throw e;
         }
         return result;
     }
 
     public int getHotelID(Object hotelPhone) throws SQLException {
         String sql = "SELECT hotel_id FROM Hotels WHERE hotel_phone = ?";
-        PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.setObject(1, hotelPhone);
-        try (ResultSet rs = stmt.executeQuery()) {
-            if (rs.next()) {
-                return rs.getInt("hotel_id");
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
+            stmt.setObject(1, hotelPhone);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("hotel_id");
+                }
             }
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to get hotel ID: " + e.getMessage());
+            throw e;
         }
         throw new SQLException("No Hotel found");
     }
@@ -941,6 +889,7 @@ public class HotelDao {
                                                                     "(b.booking_start_date <= ? AND b.booking_end_date >= ?)));";
 
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ensureAutoCommitFalse();
             stmt.setDate(1, startDate);
             stmt.setDate(2, endDate);
             stmt.setDate(3, startDate);
@@ -966,6 +915,10 @@ public class HotelDao {
                     result.add(row);
                 }
             }
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to view available rooms: " + e.getMessage());
+            throw e;
         }
         return result;
     }
@@ -992,7 +945,7 @@ public class HotelDao {
                 ")";
 
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
-
+            ensureAutoCommitFalse();
             stmt.setObject(1, hotelID);
             stmt.setObject(2, startDate);
             stmt.setObject(3, endDate);
@@ -1023,15 +976,18 @@ public class HotelDao {
                     availableRooms.add(row);
                 }
             }
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to view available rooms: " + e.getMessage());
+            throw e;
         }
-
         return availableRooms;
     }
+
     public ArrayList<Object[]> filterCustomers(String columnName, String filterOption, String filterValue, String filterValueUpper, int hotel_id) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
         String sql = "";
 
-        // Construct the SQL query based on filter options
         switch (filterOption) {
             case "None":
                 sql = """
@@ -1073,9 +1029,9 @@ public class HotelDao {
         }
 
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
-            // Set query parameters based on filter options
+            ensureAutoCommitFalse();
             if (!filterOption.equals("None")) {
-                stmt.setInt(1, hotel_id); // Set hotel_id parameter
+                stmt.setInt(1, hotel_id);
                 if (filterOption.equals("between")) {
                     stmt.setString(2, filterValue);
                     stmt.setString(3, filterValueUpper);
@@ -1083,11 +1039,10 @@ public class HotelDao {
                     stmt.setString(2, filterValue);
                 }
             } else {
-                stmt.setInt(1, hotel_id); // Set hotel_id parameter
+                stmt.setInt(1, hotel_id);
             }
 
             try (ResultSet rs = stmt.executeQuery()) {
-                // Collect results into an ArrayList<Object[]>
                 while (rs.next()) {
                     Object[] row = new Object[9];
                     row[0] = rs.getString("c_ssn");
@@ -1102,18 +1057,17 @@ public class HotelDao {
                     result.add(row);
                 }
             }
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to filter customers: " + e.getMessage());
         }
-
         return result;
     }
-
 
     public ArrayList<Object[]> filterCleaningScheduleRcp(String columnName, String filterOption, String filterValue, String filterValueUpper, int emp_hotel_id) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
         String sql = "";
 
-
-        // Construct the SQL query based on filter options
         switch (filterOption) {
             case "None":
                 sql = "SELECT cs.schedule_id, cs.housekeeper_ssn, r.room_num, cs.cleaning_date, cs.service_status FROM CleaningSchedule cs JOIN Rooms r ON cs.room_id = r.room_id WHERE r.hotel_id = ?";
@@ -1131,17 +1085,14 @@ public class HotelDao {
                 break;
             case "contains":
                 sql = "SELECT cs.schedule_id, cs.housekeeper_ssn, r.room_num, cs.cleaning_date, cs.service_status FROM CleaningSchedule cs JOIN Rooms r ON cs.room_id = r.room_id WHERE r.hotel_id = ? " + columnName + " LIKE ?";
-                filterValue = "%" + filterValue + "%"; // Adjust filterValue for LIKE
+                filterValue = "%" + filterValue + "%";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid filter option: " + filterOption);
         }
 
-
-
-
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
-            // Set query parameters based on filter options
+            ensureAutoCommitFalse();
             if (!filterOption.equals("None")) {
                 if (filterOption.equals("between")) {
                     stmt.setString(2, filterValue);
@@ -1168,54 +1119,28 @@ public class HotelDao {
                     result.add(row);
                 }
             }
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to filter cleaning schedules: " + e.getMessage());
+            throw e;
         }
 
         return result;
-    }
-
-    public boolean updateCleaningSchedule(Object[] obj, Object ssn) throws SQLException {
-        String sql = "UPDATE CleaningSchedule cs " +
-                "JOIN Rooms r ON cs.room_id = r.room_id " +
-                "SET cs.service_status = ? " +
-                "WHERE r.room_num = ? AND cs.cleaning_date = ? AND cs.housekeeper_ssn = ?";
-
-        try (PreparedStatement stmt = con.prepareStatement(sql)) {
-            // Set the query parameters
-            stmt.setObject(1, obj[2]); // New service status
-            stmt.setObject(2, obj[0]);      // Room number
-            stmt.setObject(3, obj[0]); // Cleaning date
-            stmt.setObject(4, ssn);
-            // Execute the update
-            int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0; // Return true if at least one row was updated
-        }
     }
 
     public ResultSet getResultSet(String query) throws SQLException {
-        PreparedStatement stmt = con.prepareStatement(query);
-        ResultSet resultSet = stmt.executeQuery(query);
+        ResultSet resultSet = null;
+        try (PreparedStatement stmt = con.prepareStatement(query)) {
+            ensureAutoCommitFalse();
+            resultSet = stmt.executeQuery(query);
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to get result set: " + e.getMessage());
+            throw e;
+        }
+
         return resultSet;
     }
-
-    public ArrayList<Object[]> getRowsAsObject(ResultSet rs, ArrayList<Object> columns) throws SQLException {
-        ArrayList<Object[]> result = new ArrayList<>();
-        int count = columns.size();
-
-        while (rs.next()) {
-            Object[] row = new Object[count];
-            for (int i = 0; i < count; i++) {
-                row[i] = rs.getObject(i + 1);
-            }
-            result.add(row);
-        }
-        return result;
-    }
-
-    public int executeUpdate(String query) throws SQLException {
-        Statement stmt = con.createStatement();
-        return stmt.executeUpdate(query); //for INSERT, UPDATE, DELETE
-    }
-
 
     public ArrayList<Object[]> initializeTable(String panelName, String name, Object hotel_id) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
@@ -1257,11 +1182,16 @@ public class HotelDao {
 
     public boolean isCustomerExist(Object currCustomerSsn) throws SQLException {
         String sql = "SELECT 1 FROM Customers WHERE c_ssn = ?";
-        stmt = con.prepareStatement(sql);
-        stmt.setString(1, String.valueOf(currCustomerSsn));
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            return true;
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, String.valueOf(currCustomerSsn));
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+        }catch (SQLException e) {
+            rollbackTransaction();
+            logger.severe("Failed to identify is custome rexist: " + e.getMessage());
+            throw e;
         }
         return false;
     }
