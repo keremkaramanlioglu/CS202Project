@@ -67,6 +67,7 @@ public class HotelManager {
             return;
         }
         if (hotelDao.getEmpType(currSsn) == null) {
+            System.out.println("entered");
             setCurrCustomer();
             System.out.println(currCustomer.getC_type());
         }else {
@@ -79,12 +80,12 @@ public class HotelManager {
         if ("Back".equals(action)) {
             return true;
         }
-        if (String.valueOf(currCustomer.getC_type()) != null){
+        if (currCustomer != null){
             return switch (String.valueOf(currCustomer.getC_type())) {
                 case "Customer" -> compare(action, new String[]{"Customer"});
                 default -> false;
             };
-        }else {
+        } else {
             return switch (String.valueOf(currEmployee.getEmp_type())) {
                 case "Manager" -> compare(action, new String[]{"Manager", "Customer", "Housekeeper", "Receptionist"});
                 case "Database Manager" -> true;
@@ -96,7 +97,7 @@ public class HotelManager {
     }
 
     public boolean checkAction(String action) {
-        if (!action.equals("Back")) {
+        if ((currEmployee == null && currCustomer == null) && !action.equals("Back")) {
             try {
                 setCurrSsn();
             } catch (SQLException ex) {
@@ -105,12 +106,16 @@ public class HotelManager {
             if (currEmployee ==  null && currCustomer == null) {
                 return false;
             }
-        } else if (!isValidAction(action)) {
+        }
+        if (!isValidAction(action)) {
             JOptionPane.showMessageDialog(hotelView,"Invalid action!", "Authority Error", JOptionPane.ERROR_MESSAGE);
             try {
                 setCurrSsn();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
+            }
+            if(!isValidAction(action)) {
+                return false;
             }
             if (currEmployee ==  null && currCustomer == null) {
                 return false;
