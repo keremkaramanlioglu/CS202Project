@@ -56,7 +56,7 @@ new FormModel {
 						add( null )
 						add( null )
 					} )
-					"enabled": false
+					"autoCreateRowSorter": true
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
@@ -74,9 +74,9 @@ new FormModel {
 						"actionCommand": "Rooms"
 						"name": "view rooms"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"width": 245
+						"width": 165
 						"height": 60
-						"x": 300
+						"x": 255
 						"y": 120
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
@@ -128,6 +128,17 @@ new FormModel {
 						"height": 25
 						"x": 420
 						"y": 20
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btnMakeBooking"
+						"text": "Make Booking"
+						"actionCommand": "Rooms"
+						"name": "make booking"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 430
+						"y": 120
+						"width": 160
+						"height": 60
 					} )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {

@@ -52,8 +52,8 @@ public class RoomsPanel extends Panel {
                 int selectedRow = tblrooms.getSelectedRow();
 
                 if (selectedRow != -1) {
-                    for (int i = 0; i < fields.length; i++) {
-                        fields[i] = tblrooms.getValueAt(selectedRow, i + 1);
+                    for (int i = 0; i < tblrooms.getColumnCount(); i++) {
+                        fields[i] = tblrooms.getValueAt(selectedRow, i);
                     }
                 }
                 setFields(fields);
@@ -64,15 +64,17 @@ public class RoomsPanel extends Panel {
     }
 
     public Date getTfStartDate(){
+        if (tfStartDate.getText().equals("") || tfStartDate.getText().equals("Choose a Date!")) throw new IllegalArgumentException("Please choose a Date!");
         return Date.valueOf(this.tfStartDate.getText());
     }
     public Date getTfEndDate(){
+        if (tfStartDate.getText().equals("") || tfStartDate.getText().equals("Choose a Date!")) throw new IllegalArgumentException("Please choose a Date!");
         return Date.valueOf(this.tfEndDate.getText());
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlRooms = new JScrollPane();
         tblrooms = new JTable();
         pnlControl = new JPanel();
@@ -83,13 +85,16 @@ public class RoomsPanel extends Panel {
         label8 = new JLabel();
         label1 = new JLabel();
         label2 = new JLabel();
+        btnMakeBooking = new JButton();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(
-        0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder
-        .BOTTOM,new java.awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),java.awt.Color.
-        red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.
-        beans.PropertyChangeEvent e){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException();}});
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax
+        . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing
+        .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .
+        Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .red
+        ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override
+        public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName (
+        ) ) )throw new RuntimeException( ) ;} } );
         setLayout(new BorderLayout());
 
         //======== pnlRooms ========
@@ -99,6 +104,8 @@ public class RoomsPanel extends Panel {
             //---- tblrooms ----
             tblrooms.setModel(new DefaultTableModel(
                 new Object[][] {
+                    {null, null, null, null, null, null},
+                    {null, null, null, null, null, null},
                 },
                 new String[] {
                     "room_num", "room_size", "room_capacity", "room_price", "room_type", "cleaning_status"
@@ -119,7 +126,7 @@ public class RoomsPanel extends Panel {
                     return columnEditable[columnIndex];
                 }
             });
-            tblrooms.setEnabled(false);
+            tblrooms.setAutoCreateRowSorter(true);
             pnlRooms.setViewportView(tblrooms);
         }
         add(pnlRooms, BorderLayout.CENTER);
@@ -140,7 +147,7 @@ public class RoomsPanel extends Panel {
                 btnApply.setActionCommand("Rooms");
                 btnApply.setName("view rooms");
                 pnlFilter.add(btnApply);
-                btnApply.setBounds(300, 120, 245, 60);
+                btnApply.setBounds(255, 120, 165, 60);
 
                 //---- tfStartDate ----
                 tfStartDate.setToolTipText("Filter Input");
@@ -173,6 +180,13 @@ public class RoomsPanel extends Panel {
                 pnlFilter.add(label2);
                 label2.setBounds(420, 20, 120, 25);
 
+                //---- btnMakeBooking ----
+                btnMakeBooking.setText("Make Booking");
+                btnMakeBooking.setActionCommand("Rooms");
+                btnMakeBooking.setName("make booking");
+                pnlFilter.add(btnMakeBooking);
+                btnMakeBooking.setBounds(430, 120, 160, 60);
+
                 {
                     // compute preferred size
                     Dimension preferredSize = new Dimension();
@@ -197,6 +211,7 @@ public class RoomsPanel extends Panel {
     @Override
     public void addButtonListener(ActionListener al) {
         btnApply.addActionListener(al);
+        btnMakeBooking.addActionListener(al);
     }
 
     @Override
@@ -229,7 +244,7 @@ public class RoomsPanel extends Panel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane pnlRooms;
     private JTable tblrooms;
     private JPanel pnlControl;
@@ -240,5 +255,6 @@ public class RoomsPanel extends Panel {
     private JLabel label8;
     private JLabel label1;
     private JLabel label2;
+    private JButton btnMakeBooking;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
