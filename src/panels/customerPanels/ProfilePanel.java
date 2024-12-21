@@ -58,6 +58,17 @@ public class ProfilePanel extends Panel {
 
     }
 
+    public void setFieldsWithCus(Customer customer) {
+        tfSsn.setText(String.valueOf(customer.getC_ssn()));
+        tfGender.setText(String.valueOf(customer.getC_gender()));
+        tfFirstName.setText(String.valueOf(customer.getC_firstname()));
+        tfLastName.setText(String.valueOf(customer.getC_lastname()));
+        tfEmail.setText(String.valueOf(customer.getC_email()));
+        tfPhoneNumber.setText(String.valueOf(customer.getC_phone_num()));
+        tfZipCode.setText(String.valueOf(customer.getZip_code()));
+        tfBirthDate.setText(String.valueOf(customer.getC_bd()));
+    }
+
     @Override
     public Object[] getEntity() {
 
