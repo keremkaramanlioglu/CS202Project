@@ -27,7 +27,9 @@ public class SSNPopUpMenu extends JDialog {
     }
 
     private void tfSsnKeyPressed(KeyEvent e) {
-        // TODO add your code here
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnOK.doClick();
+        }
     }
 
     private void initComponents() {
