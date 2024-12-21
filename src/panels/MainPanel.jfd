@@ -8,18 +8,6 @@ new FormModel {
 			"background": new java.awt.Color( 102, 102, 102, 255 )
 			"foreground": new java.awt.Color( 255, 255, 255, 255 )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label1"
-				"text": "Choose the suitable panel at the top!"
-				"preferredSize": new java.awt.Dimension( 234, 300 )
-				"verticalAlignment": 1
-				"font": new java.awt.Font( "JetBrains Mono Medium", 0, 20 )
-				"horizontalAlignment": 0
-				"background": new java.awt.Color( 0, 0, 0, 255 )
-				"foreground": new java.awt.Color( 255, 255, 255, 255 )
-			}, new FormLayoutConstraints( class java.lang.String ) {
-				"value": "South"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblWelcome"
 				"text": "Welcome to Hotel Management Application"
 				"font": new java.awt.Font( "JetBrains Mono Medium", 1, 22 )
@@ -122,9 +110,41 @@ new FormModel {
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "North"
 			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+				name: "panel1"
+				"minimumSize": new java.awt.Dimension( 234, 300 )
+				"preferredSize": new java.awt.Dimension( 234, 300 )
+				"background": new java.awt.Color( 102, 102, 102, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "Choose the suitable panel at the top!"
+					"preferredSize": new java.awt.Dimension( 234, 300 )
+					"verticalAlignment": 1
+					"font": new java.awt.Font( "JetBrains Mono Medium", 0, 20 )
+					"horizontalAlignment": 0
+					"background": new java.awt.Color( 0, 0, 0, 255 )
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 1020
+					"height": 70
+					"x": 0
+					"y": 0
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "Sign out"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 415
+					"y": 165
+					"width": 205
+					"height": 55
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "South"
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 760, 560 )
+			"size": new java.awt.Dimension( 1055, 790 )
 		} )
 	}
 }

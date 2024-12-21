@@ -316,6 +316,11 @@ public class HotelManager {
                             break;
                         case "ok":
                             if (command.equals("Employees")) {
+                                Employee emp = new Employee(activePanel.getCenterPanel().getEntity());
+                                if (!(String.valueOf(currEmployee.getEmp_type())).equalsIgnoreCase("Database Manager") && (String.valueOf(emp.getEmp_type()).equalsIgnoreCase("Manager")) || String.valueOf(emp.getEmp_type()).equalsIgnoreCase("Database Manager")) {
+                                    JOptionPane.showMessageDialog(hotelView, "Only Database Managers can add " + String.valueOf(emp.getEmp_type()) + "!", "Error", JOptionPane.ERROR_MESSAGE);
+                                    return;
+                                }
                                 EmployeesPanel pnlEmp = ((EmployeesPanel) activePanel.getCenterPanel());
                                 if (pnlEmp.getAction().equals("update")) {
                                     rowsAffected = hotelDao.updateEmployee(new Employee(pnlEmp.getEntity()));
@@ -419,6 +424,17 @@ public class HotelManager {
                                 System.out.println("show bookings button pressed in My Bookings panel by Customer");
                                 MyBookingsPanel panel = (MyBookingsPanel) activePanel.getPanelByName("My Bookings");
                                 activePanel.getCenterPanel().setTableRows(hotelDao.viewMyBookings(currSsn));
+                            }
+                        case "book":
+                            if (command.equals("Book a room")) {
+                                BookARoomPanel pnl = (BookARoomPanel) activePanel.getCenterPanel();
+                                Object[] selectedRow = pnl.getSelectedRow();
+                                currCustomer.setC_room_id(hotelDao.getRoomID(selectedRow[7], hotelDao.getHotelID(selectedRow[1])));
+                                hotelDao.updateCustomer(currCustomer);
+                                Object[] booking = pnl.getEntity();
+                                Booking b = new Booking(booking);
+                                System.out.println(b);
+                                rowsAffected = hotelDao.insertBooking(b);
                             }
                     }
                 } catch (Exception ex) {
