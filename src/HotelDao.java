@@ -399,13 +399,16 @@ public class HotelDao {
         }
 
         stmt = con.prepareStatement(sql);
-        stmt.setString(1, filterValue);
+        stmt.setObject(1, filterValue);
 
         //System.out.println(stmt);
 
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
             customers.add(new Customer(rs));
+        }
+        if (customers == null || customers.size() == 0) {
+            System.out.println("No Customer found");
         }
         return customers;
 

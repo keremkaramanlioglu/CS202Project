@@ -31,6 +31,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btnOK"
 				"text": "OK"
+				"name": "ssnpopup"
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 440
 				"y": 170
@@ -40,6 +41,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btnCancel"
 				"text": "Cancel"
+				"name": "ssnpopup"
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 285
 				"y": 170
