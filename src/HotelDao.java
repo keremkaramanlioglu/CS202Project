@@ -113,6 +113,7 @@ public class HotelDao {
         return stmt.executeUpdate();
     }
     public int updateCustomer(Customer customer) throws SQLException {
+        System.out.println(customer);
         String sql = "UPDATE Customers SET c_firstname = ?, c_lastname = ?, c_bd = ?, c_room_id = ?, c_email = ?, c_phone_num = ?, c_gender = ?, zip_code = ? WHERE c_ssn = ?";
         stmt = con.prepareStatement(sql);
         stmt.setObject(9, customer.getC_ssn());
@@ -1211,5 +1212,16 @@ public class HotelDao {
         }
         System.out.println("exiting from the method");
         return result;
+    }
+
+    public boolean isCustomerExist(Object currCustomerSsn) throws SQLException {
+        String sql = "SELECT 1 FROM Customers WHERE c_ssn = ?";
+        stmt = con.prepareStatement(sql);
+        stmt.setString(1, String.valueOf(currCustomerSsn));
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            return true;
+        }
+        return false;
     }
 }

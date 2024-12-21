@@ -96,6 +96,17 @@ public class ProfilePanel extends Panel {
         this.tfSsn.setText(tfSsn);
     }
 
+    public void setCustomerProfilePanel(String cFirstName, String cLastName, String cSsn, String cBirthDate, String cEmail, String cPhoneNumber, String cGender, String cZipCode) {
+        this.tfFirstName.setText(cFirstName);
+        this.tfLastName.setText(cLastName);
+        this.tfSsn.setText(cSsn);
+        this.tfBirthDate.setText(cBirthDate);
+        this.tfEmail.setText(cEmail);
+        this.tfPhoneNumber.setText(cPhoneNumber);
+        this.tfGender.setText(cGender);
+        this.tfZipCode.setText(cZipCode);
+    }
+
     @Override
     public Panel getPanelByName(String panelName) {
         return null;
