@@ -68,11 +68,11 @@ public class RoomsPanel extends Panel {
     }
 
     public Date getTfStartDate(){
-        if (tfStartDate.getText().equals("") || tfStartDate.getText().equals("Choose a Date!")) throw new IllegalArgumentException("Please choose a Date!");
+        if (tfStartDate.getText().isEmpty() || tfStartDate.getText().equals("Choose a Date!")) throw new IllegalArgumentException("Please choose a Date!");
         return Date.valueOf(this.tfStartDate.getText());
     }
     public Date getTfEndDate(){
-        if (tfStartDate.getText().equals("") || tfStartDate.getText().equals("Choose a Date!")) throw new IllegalArgumentException("Please choose a Date!");
+        if (tfEndDate.getText().isEmpty() || tfEndDate.getText().equals("Choose a Date!")) throw new IllegalArgumentException("Please choose a Date!");
         return Date.valueOf(this.tfEndDate.getText());
     }
 
@@ -220,7 +220,7 @@ public class RoomsPanel extends Panel {
 
     @Override
     public boolean tfCheck() {
-        return !tfStartDate.getText().equals("Choose a Date!") && !tfEndDate.getText().equals("Choose a Date!");
+        return !tfStartDate.getText().equals("Choose a Date!") || !tfEndDate.getText().equals("Choose a Date!") || !tfEndDate.getText().isEmpty() || !tfStartDate.getText().isEmpty();
     }
 
     @Override

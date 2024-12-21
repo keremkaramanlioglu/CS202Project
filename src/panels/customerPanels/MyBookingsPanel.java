@@ -27,6 +27,7 @@ public class MyBookingsPanel extends Panel {
         initTable();
     }
 
+    @Override
     public String getPanelName() {
         return "CustomerPanel";
     }
@@ -34,15 +35,13 @@ public class MyBookingsPanel extends Panel {
     private void initTable() {  // TODO write a cancel booking function in hotel dao
        tableModel = new DefaultTableModel(
                new Object[][] {
-                       {null, null, null, null, null},
-                       {null, null, null, null, null},
                },
                new String[] {
-                       "hotel_name", "zip_code", "room_type", "booking_start_date", "booking_end_date"
+                       "hotel_name", "hotel_phone", "hotel_email", "zip_code", "room_num", "room_type", "booking_start_date", "booking_end_date"
                }
        ) {
-           Class<?>[] columnTypes = new Class<?>[] {
-                   String.class, String.class, String.class, String.class, String.class
+           final Class<?>[] columnTypes = new Class<?>[] {
+                   String.class, Object.class, Object.class, String.class, Object.class, String.class, String.class, String.class
            };
            @Override
            public Class<?> getColumnClass(int columnIndex) {
@@ -127,23 +126,7 @@ public class MyBookingsPanel extends Panel {
             pnlBookings.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
             //---- tblBookings ----
-            tblBookings.setModel(new DefaultTableModel(
-                new Object[][] {
-                    {null, null, null, null, null, null, null, null},
-                    {null, null, null, null, null, null, null, null},
-                },
-                new String[] {
-                    "hotel_name", "hotel_phone", "hotel_email", "zip_code", "room_num", "room_type", "booking_start_date", "booking_end_date"
-                }
-            ) {
-                Class<?>[] columnTypes = new Class<?>[] {
-                    String.class, Object.class, Object.class, String.class, Object.class, String.class, String.class, String.class
-                };
-                @Override
-                public Class<?> getColumnClass(int columnIndex) {
-                    return columnTypes[columnIndex];
-                }
-            });
+
             tblBookings.setAutoCreateRowSorter(true);
             pnlBookings.setViewportView(tblBookings);
         }

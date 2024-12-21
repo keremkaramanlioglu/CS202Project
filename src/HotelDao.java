@@ -1,4 +1,5 @@
 import entities.*;
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.*;
@@ -520,10 +521,15 @@ public class HotelDao {
             logger.severe("Failed to get employees: " + e.getMessage());
             throw e;
         }
+        return bookings;
+    }
+        }
         return employees;
     }
 
-    public ArrayList<Object[]> filterBookings(String columnName, String filterOption, String filterValue, String filterValueUpper, int hotelID) throws SQLException {
+    // NEW
+
+    public ArrayList<Object[]> filterBookings(String columnName, String filterOption, String filterValue, String filterValueUpper, Object hotelID) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
         String sql = "";
 
@@ -554,16 +560,15 @@ public class HotelDao {
             ensureAutoCommitFalse();
             if (!filterOption.equals("None")) {
                 if (filterOption.equals("between")) {
-                    stmt.setInt(1, hotelID);
-                    stmt.setString(2, filterValue);
-                    stmt.setString(3, filterValueUpper);
+                    stmt.setObject(1, hotelID);
+                    stmt.setObject(2, filterValue);
+                    stmt.setObject(3, filterValueUpper);
                 } else {
-                    stmt.setInt(1, hotelID);
-                    stmt.setString(2, filterValue);
+                    stmt.setObject(1, hotelID);
+                    stmt.setObject(2, filterValue);
                 }
             }else {
-                stmt.setInt(1, hotelID);
-                stmt.setString(2, filterValue);
+                stmt.setObject(1, hotelID);
             }
 
             try (ResultSet rs = stmt.executeQuery()) {
@@ -592,7 +597,7 @@ public class HotelDao {
         return result;
     }
 
-    public ArrayList<Object[]> filterEmployees(String columnName, String filterOption, String filterValue, String filterValueUpper, int emp_hotel_id) throws SQLException {
+    public ArrayList<Object[]> filterEmployees(String columnName, String filterOption, String filterValue, String filterValueUpper, Object emp_hotel_id) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
         String sql = "";
         String emp = "emp_";
@@ -624,8 +629,13 @@ public class HotelDao {
                 throw new IllegalArgumentException("Invalid filter option: " + filterOption);
         }
 
-        if (emp_hotel_id != -1) {
-            sql += filterOption.equals("None") ? " WHERE emp_hotel_id = ?" : " AND emp_hotel_id = ?";
+
+        if (emp_hotel_id != null) {
+            if (filterOption.equals("None")) {
+                sql += " WHERE emp_hotel_id = ?";
+            } else {
+                sql += " AND emp_hotel_id = ?";
+            }
         }
 
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -633,33 +643,35 @@ public class HotelDao {
             if (!filterOption.equals("None")) {
                 stmt.setObject(1, filterValue);
                 if (filterOption.equals("between")) {
+                    stmt.setObject(1, filterValue);
                     stmt.setObject(2, filterValueUpper);
-                    stmt.setInt(3, emp_hotel_id);
+                    stmt.setObject(3, emp_hotel_id);
                 } else {
+                    stmt.setObject(1, filterValue);
                     stmt.setObject(2, emp_hotel_id);
                 }
-            } else {
+            } else{
                 stmt.setObject(1, emp_hotel_id);
             }
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Object[] row = new Object[15];
-                    row[0] = rs.getString("emp_ssn");
-                    row[1] = rs.getString("emp_firstname");
-                    row[2] = rs.getString("emp_lastname");
-                    row[3] = rs.getString("emp_type");
-                    row[4] = rs.getDate("emp_bd");
-                    row[5] = rs.getDate("years");
-                    row[6] = rs.getInt("emp_hotel_id");
-                    row[7] = rs.getDouble("emp_salary");
-                    row[8] = rs.getString("emp_phone_num");
-                    row[9] = rs.getString("emp_email");
-                    row[10] = rs.getString("emp_gender");
-                    row[11] = rs.getString("street");
-                    row[12] = rs.getString("no");
-                    row[13] = rs.getString("apartment");
-                    row[14] = rs.getString("zip_code");
+                    row[0] = rs.getObject("emp_ssn");
+                    row[1] = rs.getObject("emp_firstname");
+                    row[2] = rs.getObject("emp_lastname");
+                    row[3] = rs.getObject("emp_type");
+                    row[4] = rs.getObject("emp_bd");
+                    row[5] = rs.getObject("years");
+                    row[6] = rs.getObject("emp_hotel_id");
+                    row[7] = rs.getObject("emp_salary");
+                    row[8] = rs.getObject("emp_phone_num");
+                    row[9] = rs.getObject("emp_email");
+                    row[10] = rs.getObject("emp_gender");
+                    row[11] = rs.getObject("street");
+                    row[12] = rs.getObject("no");
+                    row[13] = rs.getObject("apartment");
+                    row[14] = rs.getObject("zip_code");
                     result.add(row);
                 }
             }
@@ -670,8 +682,7 @@ public class HotelDao {
         }
         return result;
     }
-
-    public double calculateRevenue(Object start, Object end, int hotelID) throws SQLException {
+    public double calculateRevenue(Object start, Object end, Object hotelID) {
         double totalRevenue = 0.0;
         String query = "SELECT SUM(r.room_price * DATEDIFF(b.booking_end_date, b.booking_start_date)) AS total_revenue "
                 + "FROM Bookings b "
@@ -764,7 +775,7 @@ public class HotelDao {
         return result;
     }
 
-    public ArrayList<Object[]> filterRooms(String columnName, String filterOption, String filterValue, String filterValueUpper, int hotel_id) throws SQLException {
+    public ArrayList<Object[]> filterRooms(String columnName, String filterOption, String filterValue, String filterValueUpper, Object hotel_id) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
         String sql = "";
 
@@ -794,15 +805,15 @@ public class HotelDao {
             ensureAutoCommitFalse();
             if (!filterOption.equals("None")) {
                 if (filterOption.equals("between")) {
-                    stmt.setInt(1, hotel_id);
-                    stmt.setString(2, filterValue);
-                    stmt.setString(3, filterValueUpper);
+                    stmt.setObject(1, hotel_id);
+                    stmt.setObject(2, filterValue);
+                    stmt.setObject(3, filterValueUpper);
                 } else {
-                    stmt.setInt(1, hotel_id);
-                    stmt.setString(2, filterValue);
+                    stmt.setObject(1, hotel_id);
+                    stmt.setObject(2, filterValue);
                 }
             } else {
-                stmt.setInt(1, hotel_id);
+                stmt.setObject(1, hotel_id);
             }
 
             try (ResultSet rs = stmt.executeQuery()) {
@@ -830,11 +841,12 @@ public class HotelDao {
     public ArrayList<Object[]> viewMyBookings(String ssn) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
 
-        String sql = "SELECT h.hotel_name, h.zip_code, r.room_type, b.booking_start_date, b.booking_end_date\n" +
-                "FROM Bookings b\n" +
-                "JOIN Rooms r ON b.room_id = r.room_id\n" +
-                "JOIN Hotels h ON r.hotel_id = h.hotel_id\n" +
-                "WHERE b.c_ssn = ?;";
+        String sql = """
+                SELECT h.hotel_name, h.hotel_phone, h.hotel_email,h.zip_code, r.room_num,r.room_type, b.booking_start_date, b.booking_end_date
+                FROM Bookings b
+                JOIN Rooms r ON b.room_id = r.room_id
+                JOIN Hotels h ON r.hotel_id = h.hotel_id
+                WHERE b.c_ssn = ?;""";
 
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             ensureAutoCommitFalse();
@@ -842,12 +854,15 @@ public class HotelDao {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    Object[] row = new Object[5];
+                    Object[] row = new Object[rs.getMetaData().getColumnCount()];
                     row[0] = rs.getObject("hotel_name");
-                    row[1] = rs.getObject("zip_code");
-                    row[2] = rs.getObject("room_type");
-                    row[3] = rs.getObject("booking_start_date");
-                    row[4] = rs.getObject("booking_end_date");
+                    row[1] = rs.getObject("hotel_phone");
+                    row[2] = rs.getObject("hotel_email");
+                    row[3] = rs.getObject("zip_code");
+                    row[4] = rs.getObject("room_num");
+                    row[5] = rs.getObject("room_type");
+                    row[6] = rs.getObject("booking_start_date");
+                    row[7] = rs.getObject("booking_end_date");
                     result.add(row);
                 }
             }
@@ -877,7 +892,7 @@ public class HotelDao {
         throw new SQLException("No Hotel found");
     }
 
-    public ArrayList<Object[]> viewAvailableRooms(Date startDate, Date endDate) throws SQLException {
+    public ArrayList<Object[]> viewAvailableRooms(Object startDate, Object endDate) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
 
         String sql = "SELECT h.hotel_name, h.hotel_phone, h.hotel_email, h.hotel_rating, h.street, h.no, h.zip_code, r.room_num, r.room_type, r.room_size, r.room_price, r.room_capacity " +
@@ -889,13 +904,12 @@ public class HotelDao {
                                                                     "(b.booking_start_date <= ? AND b.booking_end_date >= ?)));";
 
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
-            ensureAutoCommitFalse();
-            stmt.setDate(1, startDate);
-            stmt.setDate(2, endDate);
-            stmt.setDate(3, startDate);
-            stmt.setDate(4, endDate);
-            stmt.setDate(5, startDate);
-            stmt.setDate(6, endDate);
+            stmt.setObject(1, startDate);
+            stmt.setObject(2, endDate);
+            stmt.setObject(3, startDate);
+            stmt.setObject(4, endDate);
+            stmt.setObject(5, startDate);
+            stmt.setObject(6, endDate);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
@@ -1142,7 +1156,8 @@ public class HotelDao {
         return resultSet;
     }
 
-    public ArrayList<Object[]> initializeTable(String panelName, String name, Object hotel_id) throws SQLException {
+
+    public ArrayList<Object[]> initializeTable(String panelName, String name, Object hotel_id, String ssn) throws SQLException {
         ArrayList<Object[]> result = new ArrayList<>();
         int hotelID = Integer.parseInt(hotel_id.toString());
         switch (name){
@@ -1167,8 +1182,12 @@ public class HotelDao {
                 }
                 break;
             case "CustomerPanel":
+                System.out.println("suck my dick 2");
                 if (panelName.equals("My Bookings")) {
-                    System.out.println("entered");
+                    System.out.println("suck my dick");
+                    result = viewMyBookings(ssn);
+                } else if (panelName.equals("Book a room")) {
+
                 }
                 break;
             case "HousekeeperPanel":
@@ -1178,6 +1197,50 @@ public class HotelDao {
         }
         System.out.println("exiting from the method");
         return result;
+    }
+
+    public ArrayList<Object[]> getCustomerBookingData(String customerSSN) {
+        ArrayList<Object[]> dataList = new ArrayList<>();
+
+        String query = """
+            SELECT\s
+                h.hotel_name,\s
+                h.hotel_phone,\s
+                h.hotel_email,\s
+                h.zip_code,\s
+                r.room_num,\s
+                r.room_type,\s
+                b.booking_start_date,\s
+                b.booking_end_date
+            FROM Customers c
+            JOIN Bookings b ON c.c_ssn = b.c_ssn
+            JOIN Rooms r ON b.room_id = r.room_id
+            JOIN Hotels h ON r.hotel_id = h.hotel_id
+            WHERE c.c_ssn = ?;
+       \s""";
+
+        try (PreparedStatement preparedStatement = con.prepareStatement(query)) {
+            preparedStatement.setString(1, customerSSN);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Object[] row = new Object[8];
+                    row[0] = resultSet.getObject("hotel_name");
+                    row[1] = resultSet.getObject("hotel_phone");
+                    row[2] = resultSet.getObject("hotel_email");
+                    row[3] = resultSet.getObject("zip_code");
+                    row[4] = resultSet.getObject("room_num");
+                    row[5] = resultSet.getObject("room_type");
+                    row[6] = resultSet.getObject("booking_start_date");
+                    row[7] = resultSet.getObject("booking_end_date");
+                    dataList.add(row);
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+        return dataList;
     }
 
     public boolean isCustomerExist(Object currCustomerSsn) throws SQLException {

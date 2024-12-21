@@ -55,17 +55,18 @@ public class AddCustomerPanel extends Panel {
 
     @Override
     public Object[] getEntity() {
-        if (!tfCheck()) {
-            JOptionPane.showMessageDialog(this, "Please enter all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
+//        if (!tfCheck()) {
+//            JOptionPane.showMessageDialog(this, "Please enter all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
+//            return null;
+//        }
 
 
         return new Object[] {
                 tfSsn.getText(),
                 tfFirstName.getText(),
                 tfLastName.getText(),
-                Date.valueOf(tfBirthDate.getText()),
+                tfBirthDate.getText(),
+                null,
                 tfEmail.getText(),
                 tfPhoneNumber.getText(),
                 tfGender.getText(),
@@ -82,7 +83,7 @@ public class AddCustomerPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         lblfirstName = new JLabel();
         tfFirstName = new JTextField();
         lblLastName = new JLabel();
@@ -102,13 +103,12 @@ public class AddCustomerPanel extends Panel {
         btnAdd = new JButton();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
-        . border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder
-        . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .
-        awt .Font .BOLD ,12 ), java. awt. Color. red) , getBorder( )) )
-        ;  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-        ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
-        ;
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border
+        .EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax
+        .swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,
+        12),java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans
+        .PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.
+        getPropertyName()))throw new RuntimeException();}});
         setLayout(null);
 
         //---- lblfirstName ----
@@ -117,7 +117,6 @@ public class AddCustomerPanel extends Panel {
         lblfirstName.setBounds(150, 50, 200, 22);
 
         //---- tfFirstName ----
-        tfFirstName.setEditable(false);
         tfFirstName.setSelectionColor(new Color(0x666666));
         tfFirstName.setForeground(new Color(0x333333));
         add(tfFirstName);
@@ -127,9 +126,6 @@ public class AddCustomerPanel extends Panel {
         lblLastName.setText("Last Name:");
         add(lblLastName);
         lblLastName.setBounds(160, 175, 195, 22);
-
-        //---- tfLastName ----
-        tfLastName.setEditable(false);
         add(tfLastName);
         tfLastName.setBounds(170, 200, 200, 40);
 
@@ -137,9 +133,6 @@ public class AddCustomerPanel extends Panel {
         lblSsn.setText("Ssn:");
         add(lblSsn);
         lblSsn.setBounds(150, 295, 195, 22);
-
-        //---- tfSsn ----
-        tfSsn.setEditable(false);
         add(tfSsn);
         tfSsn.setBounds(170, 315, 200, 40);
 
@@ -160,9 +153,6 @@ public class AddCustomerPanel extends Panel {
         lblEmail.setText("E-Mail:");
         add(lblEmail);
         lblEmail.setBounds(610, 40, 200, 22);
-
-        //---- tfEmail ----
-        tfEmail.setEditable(false);
         add(tfEmail);
         tfEmail.setBounds(625, 70, 200, 40);
 
@@ -170,9 +160,6 @@ public class AddCustomerPanel extends Panel {
         lblPhoneNumber.setText("Phone Number:");
         add(lblPhoneNumber);
         lblPhoneNumber.setBounds(605, 175, 200, 22);
-
-        //---- tfPhoneNumber ----
-        tfPhoneNumber.setEditable(false);
         add(tfPhoneNumber);
         tfPhoneNumber.setBounds(630, 195, 200, 40);
 
@@ -180,9 +167,6 @@ public class AddCustomerPanel extends Panel {
         lblGender.setText("Gender:");
         add(lblGender);
         lblGender.setBounds(605, 295, 200, 22);
-
-        //---- tfGender ----
-        tfGender.setEditable(false);
         add(tfGender);
         tfGender.setBounds(635, 315, 200, 40);
 
@@ -190,9 +174,6 @@ public class AddCustomerPanel extends Panel {
         lblZipCode.setText("Zip Code:");
         add(lblZipCode);
         lblZipCode.setBounds(605, 415, 195, 22);
-
-        //---- tfZipCode ----
-        tfZipCode.setEditable(false);
         add(tfZipCode);
         tfZipCode.setBounds(635, 435, 200, 40);
 
@@ -223,7 +204,7 @@ public class AddCustomerPanel extends Panel {
 
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JLabel lblfirstName;
     private JTextField tfFirstName;
     private JLabel lblLastName;
