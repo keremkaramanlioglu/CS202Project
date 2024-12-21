@@ -66,3 +66,7 @@ Ara 21, 2024 9:54:13 ÖS HotelDao rollbackTransaction
 WARNING: Transaction rolled back.
 Ara 21, 2024 9:54:13 ÖS HotelDao filterBookings
 SEVERE: Failed to get bookings from filter: Parameter index out of range (2 > number of parameters, which is 1).
+Ara 21, 2024 10:51:21 ÖS HotelDao getEmployees
+WARNING: No Employee found.
+Ara 21, 2024 10:51:23 ÖS HotelDao getEmployees
+WARNING: No Employee found.
