@@ -47,6 +47,13 @@ public class Employee {
         this.years = obj[5];
         this.emp_hotel_id = obj[6];
         this.emp_salary = obj[7];
+        this.emp_phone_num = obj[8];
+        this.emp_email = obj[9];
+        this.emp_gender = obj[10];
+        this.street = obj[11];
+        this.no = obj[12];
+        this.apartment = obj[13];
+        this.zip_code = obj[14];
     }
 
     public Employee() {
