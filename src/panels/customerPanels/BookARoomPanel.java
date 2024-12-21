@@ -27,14 +27,10 @@ public class BookARoomPanel extends Panel {
 
         initTable();
     }
-    // TODO write a hotelDao function that takes these filters
-    public String[] getFilters() {
-        return new String[]{String.valueOf(tfCheckInDate.getText()), String.valueOf(tfCheckOutDate.getText()), String.valueOf(tfHotelName.getText()),
-        String.valueOf(tfZipcode.getText()), String.valueOf(tfRoomType.getText()), String.valueOf(tfNumberOfPeople.getText())};
-    }
+
 
     public String getPanelName() {
-        return "CustomerPanel";
+        return "Book a Room";
     }
 
     private void initTable() {
@@ -88,11 +84,12 @@ public class BookARoomPanel extends Panel {
     }
     
 
-    public Date getStartDate(){
-        return Date.valueOf(tfCheckInDate.getText());
+    public Object getStartDate(){
+
+        return (tfCheckInDate.getText());
     }
-    public Date getEndDate(){
-        return Date.valueOf(tfCheckOutDate.getText());
+    public Object getEndDate(){
+        return tfCheckOutDate.getText();
     }
 
     @Override
