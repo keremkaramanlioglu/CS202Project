@@ -55,7 +55,6 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "tfSsn"
 				"editable": false
-				"enabled": false
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 200
 				"height": 40

@@ -175,14 +175,12 @@ public class UsersPanel extends Panel {
 //            throw new IllegalArgumentException("Please enter all required fields!");
 //        }
 
-        System.out.println(tfRoomID.getText().isEmpty());
-
         return new Object[] {
                 tfSsn.getText(),
                 tfFirstName.getText(),
                 tfLastName.getText(),
                 tfBirthDate.getText(),
-                (tfRoomID.getText().isEmpty() ? NULL : tfRoomID.getText()),
+                ((tfRoomID.getText().isEmpty() || tfRoomID.getText().equals("0")) ? NULL : tfRoomID.getText()),
                 tfEmail.getText(),
                 tfPhoneNo.getText(),
                 tfGender.getText(),
