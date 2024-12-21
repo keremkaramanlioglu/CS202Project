@@ -40,7 +40,6 @@ public class BookARoomPanel extends Panel {
     private void initTable() {
         tableModel = new DefaultTableModel(
                 new Object[][] {
-                        {null, null, null, "", null, null, null, null, null, null, null, null},
                 },
                 new String[] {
                         "hotel_name", "hotel_phone", "hotel_email", "hotel_rating", "street", "no", "zip_code", "room_num", "room_type", "room_size", "room_price", "room_capacity"
@@ -50,7 +49,7 @@ public class BookARoomPanel extends Panel {
                     String.class, String.class, String.class, Object.class, Object.class, Object.class, String.class, String.class, String.class, Double.class, Double.class, String.class
             };
             final boolean[] columnEditable = new boolean[] {
-                    false, true, true, true, true, true, false, false, false, false, false, false
+                    false, false, true, true, true, true, false, false, false, false, false, false
             };
             @Override
             public Class<?> getColumnClass(int columnIndex) {
@@ -174,29 +173,7 @@ public class BookARoomPanel extends Panel {
             pnlReservableHotels.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
             //---- tblData ----
-            tblData.setModel(new DefaultTableModel(
-                new Object[][] {
-                    {null, null, null, "", null, null, null, null, null, null, null, null},
-                },
-                new String[] {
-                    "hotel_name", "hotel_phone", "hotel_email", "hotel_rating", "street", "no", "zip_code", "room_num", "room_type", "room_size", "room_price", "room_capacity"
-                }
-            ) {
-                Class<?>[] columnTypes = new Class<?>[] {
-                    String.class, String.class, String.class, Object.class, Object.class, Object.class, String.class, String.class, String.class, Double.class, Double.class, String.class
-                };
-                boolean[] columnEditable = new boolean[] {
-                    false, true, true, true, true, true, false, false, false, false, false, false
-                };
-                @Override
-                public Class<?> getColumnClass(int columnIndex) {
-                    return columnTypes[columnIndex];
-                }
-                @Override
-                public boolean isCellEditable(int rowIndex, int columnIndex) {
-                    return columnEditable[columnIndex];
-                }
-            });
+
             tblData.setAutoCreateRowSorter(true);
             pnlReservableHotels.setViewportView(tblData);
         }

@@ -251,7 +251,7 @@ public class HotelManager {
                     if (activePanel.getCenterPanel().table != null) {
                         activePanel.getCenterPanel().setTableRows(hotelDao.initializeTable(sidePanelName, activePanel.getCenterPanel().getPanelName(), currEmployee.getEmp_hotel_id()));
                     } else if (sidePanelName.equals("Profile") && currCustomer != null) {
-                        ((ProfilePanel)activePanel.getCenterPanel()).setCustomerProfilePanel(String.valueOf(currCustomer.getC_firstname()), String.valueOf(currCustomer.getC_lastname()), String.valueOf(currCustomer.getC_ssn()), String.valueOf(currCustomer.getC_bd()), String.valueOf(currCustomer.getC_email()), String.valueOf(currCustomer.getC_phone_num()), String.valueOf(currCustomer.getC_gender()), String.valueOf(currCustomer.getZip_code()));
+                        ((ProfilePanel)activePanel.getCenterPanel()).setFieldsWithCus(currCustomer);
                     }
                     activePanel.setSelectedButton(button);
                     if (activePanel.getCenterPanel() != null) activePanel.getCenterPanel().reset();
@@ -442,17 +442,16 @@ public class HotelManager {
                             }
                         case "confirm":
                             if (command.equals("My Jobs")) {
-                                int affectedRow = hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getSelectedRow()));
+                                rowsAffected = hotelDao.updateCleaningSchedule(new CleaningSchedule(activePanel.getCenterPanel().getSelectedRow()));
                             } else if (command.equals("Profile")) {
                                 ProfilePanel profile = (ProfilePanel) activePanel.getPanelByName("Profile");
                                 if (!hotelDao.isCustomerExist(currCustomerSsn)){
                                     rowsAffected = hotelDao.insertCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
                                 }else {
-                                    System.out.println("customer already exist");
+//                                    System.out.println("customer already exist");
                                     rowsAffected = hotelDao.updateCustomer(new Customer(activePanel.getCenterPanel().getEntity()));
                                 }
                                 if (rowsAffected > 0) currCustomer = hotelDao.getCustomers("ssn", "=", currSsn).getFirst();
-                                System.out.println("done");
                                 profile.pushConfirmButton();
                             }
                             break;
@@ -514,10 +513,15 @@ public class HotelManager {
                         case "ssnpopup":
                             if (command.equals("Cancel")) {
                                 ssnPopUpMenu.setVisible(false);
+                                return;
                             } else if (command.equals("OK")) {
                                 currSsn = ssnPopUpMenu.getSsn();
                                 ssnPopUpMenu.setVisible(false);
                             }
+                        case "Cancel Booking":
+                            System.out.println("Entered");
+                            break;
+                        case "Bookings":
                         }
                     } catch (Exception ex) {
                         ex.printStackTrace();

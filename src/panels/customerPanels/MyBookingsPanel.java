@@ -72,7 +72,6 @@ public class MyBookingsPanel extends Panel {
     @Override
     public void addButtonListener(ActionListener al) {
         btnCancel.addActionListener(al);
-        btnShow.addActionListener(al);
     }
 
     @Override
@@ -107,20 +106,20 @@ public class MyBookingsPanel extends Panel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+        // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
         pnlBookings = new JScrollPane();
         tblBookings = new JTable();
         pnlControl = new JPanel();
         btnCancel = new JButton();
-        btnShow = new JButton();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.
-        border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER
-        ,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font
-        .BOLD,12),java.awt.Color.red), getBorder())); addPropertyChangeListener(
-        new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r"
-        .equals(e.getPropertyName()))throw new RuntimeException();}});
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
+        javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax
+        . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
+        .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
+        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans.
+        PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .
+        equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new BorderLayout());
 
         //======== pnlBookings ========
@@ -130,15 +129,15 @@ public class MyBookingsPanel extends Panel {
             //---- tblBookings ----
             tblBookings.setModel(new DefaultTableModel(
                 new Object[][] {
-                    {null, null, null, null, null},
-                    {null, null, null, null, null},
+                    {null, null, null, null, null, null, null, null},
+                    {null, null, null, null, null, null, null, null},
                 },
                 new String[] {
-                    "hotel_name", "zip_code", "room_type", "booking_start_date", "booking_end_date"
+                    "hotel_name", "hotel_phone", "hotel_email", "zip_code", "room_num", "room_type", "booking_start_date", "booking_end_date"
                 }
             ) {
                 Class<?>[] columnTypes = new Class<?>[] {
-                    String.class, String.class, String.class, String.class, String.class
+                    String.class, Object.class, Object.class, String.class, Object.class, String.class, String.class, String.class
                 };
                 @Override
                 public Class<?> getColumnClass(int columnIndex) {
@@ -161,15 +160,7 @@ public class MyBookingsPanel extends Panel {
             btnCancel.setActionCommand("My Bookings");
             btnCancel.setName("cancel");
             pnlControl.add(btnCancel);
-            btnCancel.setBounds(120, 60, 225, 75);
-
-            //---- btnShow ----
-            btnShow.setText("Show");
-            btnShow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btnShow.setActionCommand("My Bookings");
-            btnShow.setName("show");
-            pnlControl.add(btnShow);
-            btnShow.setBounds(530, 60, 225, 75);
+            btnCancel.setBounds(335, 55, 225, 75);
 
             {
                 // compute preferred size
@@ -192,11 +183,10 @@ public class MyBookingsPanel extends Panel {
 
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Kutay Mumcu
+    // Generated using JFormDesigner Evaluation license - Kerem Karamanlıoğlu
     private JScrollPane pnlBookings;
     private JTable tblBookings;
     private JPanel pnlControl;
     private JButton btnCancel;
-    private JButton btnShow;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
