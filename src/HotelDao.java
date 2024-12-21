@@ -157,7 +157,8 @@ public class HotelDao {
         stmt.setObject(1, customer.getC_firstname());
         stmt.setObject(2, customer.getC_lastname());
         stmt.setObject(3, customer.getC_bd());
-        stmt.setObject(4, customer.getC_room_id());
+        if (customer.getC_room_id() != NULL) stmt.setObject(4, customer.getC_room_id());
+        else stmt.setNull(4, java.sql.Types.NULL);
         stmt.setObject(5, customer.getC_email());
         stmt.setObject(6, customer.getC_phone_num());
         stmt.setObject(7, customer.getC_gender());
