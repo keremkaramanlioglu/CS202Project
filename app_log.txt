@@ -1,0 +1,5 @@
+[Sat Dec 21 18:28:38 GMT+03:00 2024] INFO: Rooms filtered successfully for hotelID: 1
+[Sat Dec 21 18:28:46 GMT+03:00 2024] INFO: Revenue calculated successfully for hotelID: 1, totalRevenue: 0.0
+[Sat Dec 21 18:28:49 GMT+03:00 2024] INFO: Cleaning schedule filtered successfully for hotelID: 1
+[Sat Dec 21 18:28:51 GMT+03:00 2024] INFO: Cleaning schedule filtered successfully for hotelID: 1
+[Sat Dec 21 18:29:17 GMT+03:00 2024] INFO: Rooms filtered successfully for hotelID: 1

@@ -85,6 +85,43 @@ public class HotelDao {
 
         return stmt.executeUpdate();
     }
+//    public int updateRoom(Room room) throws SQLException {
+//        String sql = "UPDATE Rooms SET hotel_id = ?, room_num = ?, room_type = ?, room_size = ?, room_price = ?, room_capacity = ? WHERE room_id = ?";
+//
+//        con.setAutoCommit(false);
+//        int result = 0;
+//
+//        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+//            stmt.setObject(1, room.getHotel_id());
+//            stmt.setObject(2, room.getRoom_num());
+//            stmt.setObject(3, room.getRoom_type());
+//            stmt.setObject(4, room.getRoom_size());
+//            stmt.setObject(5, room.getRoom_price());
+//            stmt.setObject(6, room.getRoom_capacity());
+//            stmt.setObject(7, room.getRoom_id());
+//
+//            result = stmt.executeUpdate();
+//
+//            con.commit();
+//        } catch (SQLException e) {
+//            if (con != null) {
+//                try {
+//                    con.rollback();
+//                    System.out.println("Transaction rolled back due to error: " + e.getMessage());
+//                } catch (SQLException rollbackEx) {
+//                    System.out.println("Error during rollback: " + rollbackEx.getMessage());
+//                }
+//            }
+//            throw e;
+//        } finally {
+//            if (con != null) {
+//                con.setAutoCommit(true);
+//            }
+//        }
+//
+//        return result;
+//    }
+
     public int deleteRoom(Room room) throws SQLException {
         String sql = "DELETE FROM Rooms WHERE room_id = ?";
         stmt = con.prepareStatement(sql);
